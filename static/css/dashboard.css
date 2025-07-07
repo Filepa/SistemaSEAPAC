@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Murecho:wght@100..900&display=swap');
+
+:root {
+    --dark-green: #03500C;
+    --background-grey: #F9FAFB;
+    --soft-green: #22A331;
+    --softer-green: #BDEEC2;
+    --button-grey: #F5F5F5;
+    --font-grey: #606060;
+    --font-murecho: "Murecho", sans-serif;
+    --font-lalezar: "Lalezar", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: var(--background-grey);
+}
+
+body{
+    margin: 0;
+
+}
+
+.navbar{
+    background: var(--dark-green);
+    height: 6rem;
+}
+
+.sidebar{
+    background: white;
+    font-family: var(--font-lalezar);
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: 9rem;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 25px;
+    margin: 2px;
+    font-size: large;
+}
+
+.navlink{
+    color: black;
+}
+
+.navlink:hover{
+    color: var(--dark-green);
+    text-decoration: none;
+}
+
+main{
+    padding: 2rem 0 0 12rem;
+}

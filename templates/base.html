@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Home</title>
+</head>
+<body>
+    <nav class='navbar'>
+        
+    </nav>
+    <aside class='sidebar'>
+        <a class='navlink' href="{% url 'index' %}">Home</a>
+        <a class='navlink' href="{% url 'cadastro' %}">Cadastro</a>
+    </aside>
+    <main>
+        {% block center %}
+
+        {% endblock %}
+    </main>
+</body>
+</html>
