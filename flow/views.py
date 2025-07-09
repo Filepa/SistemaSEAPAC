@@ -4,5 +4,5 @@ from django.shortcuts import render
 def index(request):
     return render(request, "flow/index.html")
 
-def sign(request):
-    return render(request, "flow/sign.html")
+def register(request):
+    return render(request, "flow/register.html")

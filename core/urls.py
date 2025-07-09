@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from flow.views import index, sign
+from flow.views import index, register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('cadastro/', sign, name='cadastro'),
+    path('cadastrar/', register, name='register'),
 ]
 
 if settings.DEBUG:

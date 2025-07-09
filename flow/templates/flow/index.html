@@ -2,6 +2,64 @@
 
 {% block center %}
 
-<h1>Dashboard</h1>
+<h1 class='title'>Página Inicial - Dashboard</h1>
+<div class='top-infos'>
+    <div class='block-info'>
+        <h3>Teste</h3>
+        <p>Teste</p>
+    </div>
+    <div class='block-info'>
+        <h3></h3>
+        <p></p>
+    </div>
+    <div class='block-info'>
+        <h3></h3>
+        <p></p>
+    </div>
+    <div class='block-info'>
+        <h3></h3>
+        <p></p>
+    </div>
+</div>
+<div class='search-field'>
+    <div class='filter'>
+        <h4>Filtrar</h4>
+        <!--Aqui fica o campo de filtro--> 
+    </div>
+    <div class='search'>
+        <h4>Pesquisar</h4>
+        <!--Aqui fica o campo de pesquisa-->
+    </div>
+</div>
+<section class='families-sec'>
+    <div class='families-list'>
+        <div class='families-list-header'>
+            <h1 class='title'>Famílias Cadastradas</h1>
+            <a id='add-family' href="{% url 'register' %}">Adicionar</a>
+        </div>
+        <div class='family-card'>
+            <h5>Família Silva</h5>
+        </div>
+        <div class='family-card'>
+            <h5>Família Menezes</h5>
+        </div>
+        <div class='family-card'>
+            <h5>Família Nunes</h5>
+        </div>
+    </div>
+    <div class='family-data'>
+        <div class='block-data'>
 
+        </div>
+        <div class='block-data'>
+
+        </div>
+        <div class='block-data'>
+
+        </div>
+    </div>
+</section>
+<footer>
+
+</footer>
 {% endblock %}
