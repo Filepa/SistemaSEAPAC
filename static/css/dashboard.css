@@ -118,3 +118,14 @@ main{
     margin: 1rem 1rem 1rem 3rem;
     border-radius: 1em;
 }
+
+.flowlink{
+    font-family: var(--font-murecho);
+    font-weight: bold;
+    color: var(--soft-green);
+}
+
+.flowlink:hover{
+    color: var(--soft-green-hover);
+    text-decoration: none;
+}

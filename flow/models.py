@@ -42,7 +42,12 @@ class Family(models.Model):
         return self.nome_familia
     
 class Subsystem(models.Model):
-    nome_sistema = models.CharField(max_length=20)
+    nome_subsistema = models.CharField(max_length=20)
+    #foto_subsistema = models.ImageField()
+    #produtos_entrada = models.CharField()
+    #produtos_saida = models.CharField()
+    #destino_produtos_entrada = models.CharField()
+    #destino_produtos_saida = models.CharField()
 
     def __str__(self):
         return self.nome_sistema
