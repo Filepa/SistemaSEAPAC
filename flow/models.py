@@ -39,7 +39,7 @@ class Family(models.Model):
     #falta o link com a terra e o subsistema, mas é algo a ser decidido
 
     def __str__(self):
-        return "Família " + self.nome_familia
+        return self.nome_familia
     
 class Subsystem(models.Model):
     nome_sistema = models.CharField(max_length=20)

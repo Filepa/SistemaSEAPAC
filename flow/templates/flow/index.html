@@ -37,15 +37,11 @@
             <h1 class='title'>Famílias Cadastradas</h1>
             <a id='add-family' href="{% url 'register' %}">Adicionar</a>
         </div>
-        <div class='family-card'>
-            <h5>Família Silva</h5>
-        </div>
-        <div class='family-card'>
-            <h5>Família Menezes</h5>
-        </div>
-        <div class='family-card'>
-            <h5>Família Nunes</h5>
-        </div>
+        {% for family in families %}
+            <div class='family-card' onclick="redirect('{% url 'flow' family.nome_familia|slugify %}')">
+                <h5>{{ family.nome_familia }}</h5>
+            </div>
+        {% endfor %}
     </div>
     <div class='family-data'>
         <div class='block-data'>
@@ -62,4 +58,9 @@
 <footer>
 
 </footer>
+<script>
+function redirect(url) {
+  window.location.href = url;
+}
+</script>
 {% endblock %}

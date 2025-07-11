@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from flow.views import index, register
+from flow.views import index, register, flow, timeline
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('cadastrar/', register, name='register'),
+    path('<str:nome_familia>/fluxo/', flow, name='flow'),
+    path('<str:nome_familia>/timeline/', timeline, name='timeline'),
 ]
 
 if settings.DEBUG:
