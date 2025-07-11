@@ -68,7 +68,7 @@ main{
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.top-infos, .families-list-header{
+.top-infos, .families-list-header, .flow-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
