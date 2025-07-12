@@ -34,16 +34,31 @@ body{
     font-family: var(--font-lalezar);
     position: fixed;
     height: 100%;
-    width: 10rem;
+    width: 12rem;
     display: flex;
     flex-direction: column;
-    padding: 25px 25px;
+    padding: 20px;
     margin: 2px;
     font-size: large;
 }
 
+.sidebar-item{
+    display: flex;
+    padding: 2px 0;
+}
+
+.bi-house-fill, .bi-person-fill-add{
+    margin-top: 2.4px;
+}
+
+.sidebar-item-text{
+    margin: 0 10px;
+}
+
 .navlink{
     color: black;
+    padding-left: 0.3rem;
+    display: flex;
 }
 
 .navlink:hover{
@@ -52,15 +67,16 @@ body{
 }
 
 main{
-    padding: 2rem 0 0 12rem;
-    margin-right: 8rem;
+    padding-top: 2rem;
+    margin:0 8rem 0 15rem;
 }
 
 .title{
     font-family: var(--font-lalezar);
+    padding: 0 0 8px 0;
 }
 
-.block-info, .search-field, .family-card{
+.block-info, .search-field, .family-card, .forms-info-terra, .forms-info-titular, .box-save-cancel{
     border-radius: 1em;
     background: white !important;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
@@ -95,6 +111,7 @@ main{
 }
 
 #add-family{
+    padding: 10px 36px;
     font-family: var(--font-murecho);
     font-weight: bold;
     color: var(--soft-green);
@@ -107,8 +124,9 @@ main{
 }
 
 .family-card{
+    width: 40rem;
     margin: 1em;
-    padding: 2rem 0 2rem 1rem;
+    padding: 2rem 0 2rem 1.5rem;
     align-content: flex-start;
 }
 
@@ -117,8 +135,25 @@ main{
     cursor: pointer;
 }
 
+.family-card-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .family-name{
     font-weight: bold;
+}
+
+.tag-transition-level{
+    width: 8rem;
+    height: 2rem;
+    border-radius: 20px;
+    background-color: var(--soft-green);
+    margin-left: 0.5rem;
+    text-align: center;
+    color: white;
+    padding: 3px;
 }
 
 #target{
@@ -127,9 +162,11 @@ main{
 
 .block-data{
     background: var(--dark-green);
-    padding: 8rem 30rem;
+    padding: 1rem 2rem;
     margin: 1rem 1rem 1rem 3rem;
     border-radius: 1em;
+    width: 45rem;
+    color: white;
 }
 
 .flowlink{
@@ -141,4 +178,33 @@ main{
 .flowlink:hover{
     color: var(--soft-green-hover);
     text-decoration: none;
+}
+
+.container-forms{
+    display: flex;
+    flex-direction: row;
+}
+
+.box-save-cancel{
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    height: 7.5rem;
+    padding: 15px;
+    margin: 15px;
+}
+
+.btn{
+    margin: 5px 0;
+}
+
+.form-control{
+    max-width: 36rem;
+}
+
+.forms-info-titular, .forms-info-terra{
+    width: 40rem;
+    margin: 1em;
+    padding: 2rem 0 2rem 1.5rem;
+    align-content: flex-start;
 }

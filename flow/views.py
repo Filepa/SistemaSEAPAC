@@ -1,16 +1,41 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Family, Subsystem
+from .forms import FamilyForm
 
 # Create your views here.
 def index(request):
+    total_families = Family.objects.count()
     families = Family.objects.all()
     context = {
-        "families": families
+        "families": families,
+        "total_families": total_families
     }
     return render(request, "flow/index.html", context)
 
 def register(request):
-    return render(request, "flow/register.html")
+    if request.method == 'POST':
+        form = FamilyForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            form = FamilyForm()
+    else:
+        form = FamilyForm()
+
+    return render(request, "flow/register.html", {'form': form})
+
+def edit_family(request,id):
+    family = get_object_or_404(Family,id=id)
+   
+    if request.method == 'POST':
+        form = FamilyForm(request.POST,request.FILES,instance=family)
+
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = FamilyForm(instance=family)
+
+    return render(request,'flow/register.html', {'form':form})
 
 def flow(request, nome_familia):
     subsystems = Subsystem.objects.all()

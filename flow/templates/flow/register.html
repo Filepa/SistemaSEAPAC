@@ -1,7 +1,47 @@
 {% extends 'base.html' %}
 
 {% block center %}
-
 <h1 class='title'>Cadastrar</h1>
+<div>
+    <form method="post" enctype="multipart/form-data" class="container-forms">
+        <section class='forms-section'>
+            <div class="forms-info-titular">
+                <h2>Informações do Titular</h2>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome</label>
+                    {{ form.nome_titular }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="cpf" class="form-label">CPF</label>
+                    {{ form.cpf }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="nis" class="form-label">NIS</label>
+                    {{ form.nis }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="dap" class="form-label">DAP</label>
+                    {{ form.dap }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="bpc" class="form-label">BPC</label>
+                    {{ form.bpc }}
+                </div>
+            </div>
+            <div class="forms-info-terra">
+                <h2>Informações da Terra</h2>
+            </div>
+        </section>
+        <div class="box-save-cancel">
+            <button class="btn btn-success" type="submit">Salvar</button>
+            <button class="btn btn-danger" type="reset">Cancelar</button>
+        </div>
+    </form>
+</div>
 
 {% endblock %}
