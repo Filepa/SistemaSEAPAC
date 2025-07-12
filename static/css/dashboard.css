@@ -16,10 +16,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: var(--background-grey);
 }
 
 body{
+    background: var(--background-grey) !important;
     margin: 0;
 }
 
@@ -33,7 +33,6 @@ body{
     background: white;
     font-family: var(--font-lalezar);
     position: fixed;
-    left: 0;
     height: 100%;
     width: 10rem;
     display: flex;
@@ -63,7 +62,7 @@ main{
 
 .block-info, .search-field, .family-card{
     border-radius: 1em;
-    background: white;
+    background: white !important;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -74,7 +73,13 @@ main{
 }
 
 .block-info{
-    padding: 4rem 10rem;
+    padding: 2rem 7.5rem 3rem 2rem;
+    align-content: flex-start;
+}
+
+.p-info{
+    font-weight: bolder;
+    font-size: xx-large;
 }
 
 .search-field{
