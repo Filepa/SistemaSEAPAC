@@ -6,7 +6,7 @@ class User(models.Model):
     email = models.EmailField(max_length=30, null=True)
     senha = models.CharField(max_length=200, null=True) #tem que deixar privado depois
     contato = models.CharField(max_length=30, null=True)
-    foto_perfil = models.ImageField(upload_to='fotos_de_perfil/', blank=True, null=True) #favor não utilizar ainda
+    foto_perfil = models.ImageField(upload_to='fotos_perfil/', blank=True, null=True) #favor não utilizar ainda
 
     def __str__(self):
         return self.nome
@@ -43,11 +43,11 @@ class Family(models.Model):
     
 class Subsystem(models.Model):
     nome_subsistema = models.CharField(max_length=20)
-    #foto_subsistema = models.ImageField()
+    #foto_subsistema = models.ImageField(upload_to='fotos_subsistemas/', blank=True, null=True) #favor nao utilizar ainda
     #produtos_entrada = models.CharField()
     #produtos_saida = models.CharField()
     #destino_produtos_entrada = models.CharField()
     #destino_produtos_saida = models.CharField()
 
     def __str__(self):
-        return self.nome_sistema
+        return self.nome_subsistema

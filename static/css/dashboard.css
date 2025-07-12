@@ -21,7 +21,6 @@
 
 body{
     margin: 0;
-
 }
 
 .navbar{
@@ -74,7 +73,7 @@ main{
     justify-content: space-between;
 }
 
-.block-info, .family-card{
+.block-info{
     padding: 4rem 10rem;
 }
 
@@ -104,6 +103,8 @@ main{
 
 .family-card{
     margin: 1em;
+    padding: 2rem 0 2rem 1rem;
+    align-content: flex-start;
 }
 
 .family-card:hover{
@@ -111,8 +112,15 @@ main{
     cursor: pointer;
 }
 
+.family-name{
+    font-weight: bold;
+}
+
+#target{
+    display: none;
+}
+
 .block-data{
-    display: none; /*vai dar um trabalho da p p ajeitar isso aqui*/
     background: var(--dark-green);
     padding: 8rem 30rem;
     margin: 1rem 1rem 1rem 3rem;

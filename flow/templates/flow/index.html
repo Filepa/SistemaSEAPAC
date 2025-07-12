@@ -5,8 +5,8 @@
 <h1 class='title'>Página Inicial - Dashboard</h1>
 <div class='top-infos'>
     <div class='block-info'>
-        <h3>Teste</h3>
-        <p>Teste</p>
+        <h3>Total de Famílias: </h3>
+        <p></p>
     </div>
     <div class='block-info'>
         <h3></h3>
@@ -26,7 +26,7 @@
         <h4>Filtrar</h4>
         <!--Aqui fica o campo de filtro--> 
     </div>
-    <div class='search'>
+    <div class='search' >
         <h4>Pesquisar</h4>
         <!--Aqui fica o campo de pesquisa-->
     </div>
@@ -38,20 +38,28 @@
             <a id='add-family' href="{% url 'register' %}">Adicionar</a>
         </div>
         {% for family in families %}
-            <div class='family-card' onclick="redirect('{% url 'flow' family.nome_familia|slugify %}')">
-                <h5>{{ family.nome_familia }}</h5>
+            <div class='family-card trigger' onclick="redirect('{% url 'flow' family.nome_familia|slugify %}')">
+                <div class="family-card-header">
+                    <h5 class='family-name'>{{ family.nome_familia }}</h5>
+                    <div class="tag-transition-level"></div>
+                </div>
+                <p>Responsável: {{ family.nome_titular}}</p>
+                <p>Localização: </p>
+                <br>
+                <p>Pontuação: </p>
+                <!--Aqui ficaria a linha de progressão x/100%-->
             </div>
         {% endfor %}
     </div>
-    <div class='family-data'>
+    <div class='family-data' id='target'>
         <div class='block-data'>
-
+            
         </div>
         <div class='block-data'>
-
+            
         </div>
         <div class='block-data'>
-
+            
         </div>
     </div>
 </section>
