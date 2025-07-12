@@ -63,6 +63,10 @@ body{
     margin: 0 10px;
 }
 
+.logo-seapac{
+    margin: 70vh 0 0 3rem;
+}
+
 .navlink{
     color: black;
     padding-left: 0.3rem;
