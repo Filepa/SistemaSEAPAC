@@ -1,6 +1,6 @@
 [
   {
-    "model": "flow.user",
+    "model": "seapac.user",
     "pk": 1,
     "fields": {
         "nome": "Adm",
@@ -11,7 +11,7 @@
     }
   },
   {
-    "model": "flow.family",
+    "model": "seapac.family",
     "pk": 1,
     "fields": {
         "nome_familia": "Familia Francisco",
@@ -30,7 +30,7 @@
     }
   },
   {
-    "model": "flow.family",
+    "model": "seapac.family",
     "pk": 2,
     "fields": {
         "nome_familia": "Familia Adalberto",
@@ -49,7 +49,7 @@
     }
   },
   {
-    "model": "flow.family",
+    "model": "seapac.family",
     "pk": 3,
     "fields": {
         "nome_familia": "Familia Joana",

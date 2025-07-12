@@ -10,7 +10,7 @@ def index(request):
         "families": families,
         "total_families": total_families
     }
-    return render(request, "flow/index.html", context)
+    return render(request, "seapac/index.html", context)
 
 def register(request):
     if request.method == 'POST':
@@ -21,7 +21,7 @@ def register(request):
     else:
         form = FamilyForm()
 
-    return render(request, "flow/register.html", {'form': form})
+    return render(request, "seapac/register.html", {'form': form})
 
 def edit_family(request,id):
     family = get_object_or_404(Family,id=id)
@@ -35,7 +35,7 @@ def edit_family(request,id):
     else:
         form = FamilyForm(instance=family)
 
-    return render(request,'flow/register.html', {'form':form})
+    return render(request,'seapac/register.html', {'form':form})
 
 def flow(request, nome_familia):
     subsystems = Subsystem.objects.all()
@@ -43,10 +43,10 @@ def flow(request, nome_familia):
         "nome_familia": nome_familia,
         "subsystems": subsystems
     }
-    return render(request, "flow/flow.html", context)
+    return render(request, "seapac/flow.html", context)
 
 def timeline(request, nome_familia):
     context = {
         "nome_familia": nome_familia
     }
-    return render(request, "flow/timeline.html", context)
+    return render(request, "seapac/timeline.html", context)

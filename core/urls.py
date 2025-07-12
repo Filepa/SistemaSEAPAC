@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from flow.views import index, register, flow, timeline, edit_family
+from seapac.views import index, register, flow, timeline, edit_family
 
 urlpatterns = [
     path('admin/', admin.site.urls),
