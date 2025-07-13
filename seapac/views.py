@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Family, Subsystem
 from .forms import FamilyForm
 
@@ -21,13 +21,12 @@ def register(request):
     else:
         form = FamilyForm()
 
-    return render(request, "seapac/register.html", {'form': form})
+    return render(request, "seapac/register.html", {'form': form, 'modo': 'register'})
 
 def edit_family(request,id):
     family = get_object_or_404(Family,id=id)
-   
     if request.method == 'POST':
-        form = FamilyForm(request.POST,request.FILES,instance=family)
+        form = FamilyForm(request.POST, request.FILES, instance=family)
 
         if form.is_valid():
             form.save()
@@ -35,7 +34,14 @@ def edit_family(request,id):
     else:
         form = FamilyForm(instance=family)
 
-    return render(request,'seapac/register.html', {'form':form})
+    return render(request,'seapac/register.html', {'form':form, 'modo': 'edit'})
+
+def list_families(request):
+    families = Family.objects.all()
+    context ={
+        'families': families
+    }
+    return render(request, "seapac/list_families.html", context)
 
 def flow(request, nome_familia):
     subsystems = Subsystem.objects.all()

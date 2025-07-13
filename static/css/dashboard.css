@@ -32,6 +32,10 @@ body{
     z-index: 1000;
 }
 
+.sistema-seapac-logo{
+    margin: 0.5rem 0 0.5rem 1rem;
+}
+
 .sidebar{
     background: white;
     font-family: var(--font-lalezar);
@@ -47,7 +51,7 @@ body{
 
 .sidebar-items{
     position: fixed;
-    top: 8rem;
+    top: 7.5rem;
 }
 
 .sidebar-item{
@@ -55,8 +59,8 @@ body{
     padding: 2px 0;
 }
 
-.bi-house-fill, .bi-person-fill-add{
-    margin-top: 2.4px;
+.bi-house-fill, .bi-person-fill-add, .bi-people-fill{
+    margin-top: 2.5px;
 }
 
 .sidebar-item-text{
@@ -64,7 +68,7 @@ body{
 }
 
 .logo-seapac{
-    margin: 70vh 0 0 3rem;
+    margin: 67vh 0 0 3rem;
 }
 
 .navlink{

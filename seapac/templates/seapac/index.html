@@ -34,7 +34,7 @@
             <a id='add-family' href="{% url 'register' %}">Adicionar</a>
         </div>
         <div class="list-cards">
-            {% for family in families %}
+            {% for family in families|slice:":3" %}
                 <div class='family-card trigger' onclick="redirect('{% url 'flow' family.nome_familia|slugify %}')">
                     <div class="family-card-header">
                         <div class='family-name'>
@@ -58,7 +58,7 @@
                 </div>
             {% endfor %}
             <div class="list-families-a-div">
-                <a class="list-families-a" href="#">Lista de Famílias</a>
+                <a class="list-families-a" href="{% url 'list_families' %}">Lista de Famílias</a>
             </div>
         </div>
     </div>
