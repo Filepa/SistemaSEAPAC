@@ -67,7 +67,7 @@ python manage.py migrate
 python manage.py loaddata dados_iniciais.json
 ```
 
-8. **Inicie o servidor**
+7. **Inicie o servidor**
 
 ```bash
 python manage.py runserver
