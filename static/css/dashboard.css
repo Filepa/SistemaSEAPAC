@@ -105,8 +105,26 @@ main{
 }
 
 .block-info{
-    padding: 2rem 7.5rem 3rem 2rem;
-    align-content: flex-start;
+    padding: 2rem 3rem 3rem 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.block-info-icon{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: var(--softer-green);
+    margin: 1rem 0 0 3.5rem;
+}
+
+.block-icon{
+    color: var(--soft-green-hover);
+    margin: 0.8rem 0.8rem;
+}
+
+#icon-3{
+    margin: 1.2rem 0 0 1.2rem;
 }
 
 .p-info{
@@ -121,6 +139,41 @@ main{
     flex-direction: row;
     justify-content: space-around;
 }
+
+.bi-funnel{
+    margin: .4rem .5rem;
+}
+
+.filter{
+    display: flex;
+}
+
+.filter-form{
+    margin-top: .3rem;
+}
+
+.filter-select{
+    border-radius: .5rem;
+}
+
+.bi-search{
+    margin: .3rem .5rem;
+}
+
+.search{
+    display: flex;
+}
+
+.search-input{
+    width: 30rem;
+    padding: 2px;
+    margin-top: .1rem;
+    border-radius: .5rem;
+}
+
+.search-input:focus{
+    outline: none;
+    border: 2px solid var(--soft-green);}
 
 .families-sec{
     display: flex;
@@ -166,6 +219,7 @@ main{
     flex-direction: row;
     align-items: center;
 }
+
 .family-name{
     font-weight: bold;
 }
@@ -196,6 +250,15 @@ main{
 
 #target{
     display: none;
+}
+
+.location{
+    display: flex;
+    align-items: center;
+}
+
+.bi-geo-alt{
+    margin: 0 .5rem 0.95rem 0;
 }
 
 .block-data{
