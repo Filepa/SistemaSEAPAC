@@ -1,3 +1,5 @@
+/* BASE */
+
 @import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Murecho:wght@100..900&display=swap');
 
 :root {
@@ -24,6 +26,8 @@ body{
     background: var(--background-grey) !important;
     margin: 0;
 }
+
+/* BASE INDEX */
 
 .navbar{
     background: var(--dark-green);
@@ -86,6 +90,8 @@ main{
     padding-top: 2rem;
     margin:0 8rem 0 15rem;
 }
+
+/* DASHBOARD */
 
 .title{
     font-family: var(--font-lalezar);
@@ -281,6 +287,8 @@ main{
     color: white;
 }
 
+/* FLUXO */
+
 .flowlink{
     font-family: var(--font-murecho);
     font-weight: bold;
@@ -291,6 +299,86 @@ main{
     color: var(--soft-green-hover);
     text-decoration: none;
 }
+
+.sandbox{
+    position: relative;
+    height: 700px;
+    background-color: #f0f0f0;
+}
+
+.subsystem-block{
+    width: 180px;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    text-align: center;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 40px 5px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.subsystem-image{
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    display: absolute;
+    margin: 0 auto;
+}
+
+#block1 { width: 360px; height: 200px; top: 250px; left: 550px; }
+#block2 { top: 500px; left: 900px; }
+#block3 { top: 580px; left: 25px; }
+#block4 { top: 470px; left: 25px; }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.panel {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.overlay.active .panel {
+    transform: scale(1);
+}
+
+.panel h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.panel p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* FORM */
 
 .container-forms{
     display: flex;
@@ -305,6 +393,7 @@ main{
     width: 15rem;
     margin: 15px 45rem;
 }
+
 .box-save-cancel button {
     display: flex;
     align-items: center;

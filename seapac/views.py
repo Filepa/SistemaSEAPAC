@@ -21,7 +21,7 @@ def register(request):
     else:
         form = FamilyForm()
 
-    return render(request, "seapac/register.html", {'form': form, 'modo': 'register'})
+    return render(request, "seapac/form.html", {'form': form, 'modo': 'register'})
 
 def edit_family(request,id):
     family = get_object_or_404(Family,id=id)
@@ -34,7 +34,7 @@ def edit_family(request,id):
     else:
         form = FamilyForm(instance=family)
 
-    return render(request,'seapac/register.html', {'form':form, 'modo': 'edit'})
+    return render(request,'seapac/form.html', {'form':form, 'modo': 'edit'})
 
 def list_families(request):
     families = Family.objects.all()

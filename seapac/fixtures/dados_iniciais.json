@@ -6,7 +6,7 @@
         "nome": "Adm",
         "email": "adm@exemplo.com",
         "senha": "123",
-        "contato": null,
+        "contato": "(84) 94002-8922",
         "foto_perfil": null
     }
   },
@@ -17,15 +17,15 @@
         "nome_familia": "Familia Almeida",
         "nome_titular": "João Almeida",
         "nome_conjuge": "Maria Almeida",
-        "data_nasc": null,
-        "data_inic": null,
+        "data_nasc": "1992-01-10",
+        "data_inic": "2025-03-20",
         "cpf": "123.456.789-10",
         "contato": "(84) 94002-8922",
         "bpc": 123,
         "nis": 321,
         "dap": 111,
         "aposentadoria": true,
-        "auxilio": false,
+        "auxilio": true,
         "escolaridade": "1"
     }
   },
@@ -36,8 +36,8 @@
         "nome_familia": "Familia Beraldo",
         "nome_titular": "Lucas Beraldo",
         "nome_conjuge": "Joaquina Beraldo",
-        "data_nasc": null,
-        "data_inic": null,
+        "data_nasc": "1970-07-12",
+        "data_inic": "2014-03-09",
         "cpf": "123.456.789-10",
         "contato": "(84) 94002-8922",
         "bpc": 456,
@@ -81,7 +81,7 @@
         "bpc": 234,
         "nis": 234,
         "dap": 333,
-        "aposentadoria": true,
+        "aposentadoria": false,
         "auxilio": false,
         "escolaridade": "4"
     }
