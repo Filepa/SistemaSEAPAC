@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //blocos do fluxograma
 jsPlumb.ready(function() {
-
   jsPlumb.setContainer("sandbox");
 
   const blocks = ["block1", "block2", "block3", "block4"];
@@ -29,15 +28,32 @@ jsPlumb.ready(function() {
     containment: "parent"
   });
 
-  jsPlumb.connect({
-    source: "block1",
-    target: "block2",
-    anchors: ["Bottom", "Top"],
-    connector: ["Flowchart", { cornerRadius: 5 }],
-    paintStyle: { stroke: "blue", strokeWidth: 3 },
-    overlays: [
-      ["Arrow", { width: 12, length: 12, location: 1 }]
+  const endpointOptions = {
+    endpoint: "Dot",
+    anchor: "AutoDefault",
+    paintStyle: { fill: "#51d360", radius: 6 },
+    isSource: true,
+    isTarget: true,
+    maxConnections: 10,
+    allowLoopback: false,
+    dropOptions: { hoverClass: "dropHover" },
+    connector: ["Bezier", { curviness: 80 }],
+    connectorStyle: { stroke: "#51d360", strokeWidth: 3 },
+    connectorOverlays: [
+      ["Arrow", { width: 12, length: 12, location: 1 }],
+      ["Label", { label: "produto", location: 0.5, id: "produto" }]
     ]
+  };
+
+  blocks.forEach(function(block) {
+    jsPlumb.addEndpoint(block, endpointOptions);
+  });
+  
+  jsPlumb.bind("beforeDrop", function(info) {
+    if (info.sourceId === info.targetId) {
+      return false;
+    }
+    return true;
   });
 });
 
