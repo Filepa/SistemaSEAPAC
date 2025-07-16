@@ -23,20 +23,14 @@ jsPlumb.ready(function() {
   jsPlumb.setContainer("sandbox");
 
   const blocks = ["block1", "block2", "block3", "block4"];
-
-  jsPlumb.draggable(blocks.slice(1), {
-    containment: "parent"
-  });
+  jsPlumb.draggable(blocks.slice(1), { containment: "parent" });
 
   const endpointOptions = {
     endpoint: "Dot",
-    anchor: "AutoDefault",
-    paintStyle: { fill: "#51d360", radius: 6 },
+    paintStyle: { fill: "transparent", radius: 6 },
+    hoverPaintStyle: { fill: "#51d360", stroke: "transparent" },
     isSource: true,
-    isTarget: true,
     maxConnections: 10,
-    allowLoopback: false,
-    dropOptions: { hoverClass: "dropHover" },
     connector: ["Bezier", { curviness: 80 }],
     connectorStyle: { stroke: "#51d360", strokeWidth: 3 },
     connectorOverlays: [
@@ -45,15 +39,30 @@ jsPlumb.ready(function() {
     ]
   };
 
+  const anchors = ["Top", "Bottom", "Left", "Right"];
+
   blocks.forEach(function(block) {
-    jsPlumb.addEndpoint(block, endpointOptions);
+    anchors.forEach(function(anchor) {
+      jsPlumb.addEndpoint(block, {
+        ...endpointOptions,
+        anchor: anchor,
+        isTarget: true
+      });
+    });
+
+    jsPlumb.makeTarget(block, {
+      anchor: "Continuous",
+      allowLoopback: false,
+      endpoint: "Blank",
+      dropOptions: { hoverClass: "dropHover" }
+    });
   });
-  
+
   jsPlumb.bind("beforeDrop", function(info) {
-    if (info.sourceId === info.targetId) {
-      return false;
-    }
-    return true;
+      if (info.sourceId === info.targetId) {
+        return false;
+      }
+      return true;
   });
 });
 
