@@ -18,7 +18,26 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-//blocos do fluxograma
+// cor da tag de nível
+document.addEventListener('DOMContentLoaded', function () {
+  const tag = document.querySelectorAll('.tag-transition-level');
+  tag.forEach(element => {
+    const level = element.textContent.trim();
+    switch (level) {
+      case 'Avançado':
+        element.style.backgroundColor = '#4CAF50';
+        break;
+      case 'Intermediário':
+        element.style.backgroundColor = '#2196F3';
+        break;
+      case 'Inicial':
+        element.style.backgroundColor = '#ff4625';
+        break;
+    }
+  });
+})
+
+// blocos do fluxograma
 jsPlumb.ready(function() {
   jsPlumb.setContainer("sandbox");
 
@@ -66,7 +85,7 @@ jsPlumb.ready(function() {
   });
 });
 
-//painel de controle, arrasto e clique dos blocos e o cursor
+// painel de controle, arrasto e clique dos blocos e o cursor
 document.addEventListener('DOMContentLoaded', () => {
   const subsystemBlocks = document.querySelectorAll('.subsystem-block');
   const overlay = document.getElementById('overlay');

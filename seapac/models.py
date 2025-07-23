@@ -23,7 +23,7 @@ ESCOLAR_CHOICES = [
 ]
 
 LEVEL_CHOICES = [
-    (1, "Baixo"),
+    (1, "Inicial"),
     (2, "Intermediário"),
     (3, "Avançado")
 ]
