@@ -2,7 +2,7 @@
 
 {% block center %}
 
-<h1 class='title'>Página Inicial - Dashboard</h1>
+<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
 <div class='top-infos'>
     <div class='block-info'>
         <div class="block-info-text">
@@ -30,7 +30,7 @@
     <div class='block-info'>
         <div class="block-info-text">
             <h3 class='block-title-info'>Total de Níveis Avançados: </h3>
-            <p class='p-info'>4</p>
+            <p class='p-info'>{{ total_avancado }}</p>
         </div>
         <div class="block-info-icon">
             <svg id='icon-3' class='block-icon' xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">

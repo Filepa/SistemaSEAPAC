@@ -2,7 +2,7 @@
 
 {% block center %}
 
-<h1 class='title'>Lista de Famílias</h1>
+<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
 {% include "partials/search.html" %}
 {% for family in families %}
     {% include "partials/card.html" %}

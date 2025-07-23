@@ -1,13 +1,7 @@
 {% extends 'base.html' %}
 
 {% block center %}
-<h1 class='title'>
-    {% if modo == 'edit' %}
-        Editar Família
-    {% else %}
-        Cadastrar
-    {% endif %}
-</h1>
+<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
 <div>
     <form method="post" enctype="multipart/form-data" class="container-forms">
         <section class='forms-section'>
