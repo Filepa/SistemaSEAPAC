@@ -10,7 +10,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
   cards.forEach(card => {
     card.addEventListener('mouseenter', () => {
+      const dataInic = card.dataset.dataInic;
+      const contato = card.dataset.contato;
+
       target.style.display = 'block';
+
+      target.innerHTML = `
+        <div class='block-data'>
+            <h3>Detalhes da Família</h3>
+            <h6>Início da Transição: </h6>
+            <p>${dataInic}</p>
+            <h6>Número para Contato</h6>
+            <p>${contato}</p>
+        </div>
+        <div class='block-data'>
+            <h3>Subsistemas - Cultivos</h3>
+        </div>
+      `;
     });
     card.addEventListener('mouseleave', () => {
       target.style.display = 'none';
