@@ -4,14 +4,22 @@ from .forms import FamilyForm
 
 # Create your views here.
 def index(request):
-    total_families = Family.objects.count()
+    level = request.GET.get('nivel')
+    query = request.GET.get('q')
     families = Family.objects.all()
+    if level:
+        families = families.filter(nivel=level)
+    if query:
+        families = families.filter(nome_titular__icontains=query)
+    total_families = Family.objects.count()
     total_avancado = Family.objects.filter(nivel=3).count()
     context = {
         "families": families,
         "total_families": total_families,
         "total_avancado": total_avancado,
-        "title": "Página Inicial - Dashboard"
+        "title": "Página Inicial - Dashboard",
+        "nivel_selecionado": level,
+        "query": query,
     }
     return render(request, "seapac/index.html", context)
 
@@ -40,10 +48,18 @@ def edit_family(request,id):
     return render(request,'seapac/form.html', {'form':form, 'title': 'Editar Família'})
 
 def list_families(request):
+    level = request.GET.get('nivel')
+    query = request.GET.get('q')
     families = Family.objects.all()
+    if level:
+        families = families.filter(nivel=level)
+    if query:
+        families = families.filter(nome_titular__icontains=query)
     context ={
         'families': families, 
-        'title': 'Lista de Famílias'
+        'title': 'Lista de Famílias',
+        "nivel_selecionado": level,
+        "query": query
     }
     return render(request, "seapac/list_families.html", context)
 

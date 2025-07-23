@@ -6,12 +6,12 @@
         <h4>Filtrar por nível</h4>
         <div class="filter-container">
             <div class="container">
-                <form action="" method="GET" class="filter-form">
-                    <select name="nivel" class="filter-select">
+                <form method="GET" class="filter-form">
+                    <select name="nivel" class="filter-select" onchange="this.form.submit()">
                         <option value="">------</option>
-                        <option value="inicial">Inicial</option>
-                        <option value="intermediario">Intermediário</option>
-                        <option value="avancado">Avançado</option>
+                        <option value="1" {% if nivel_selecionado == '1' %}selected{% endif %}>Inicial</option>
+                        <option value="2" {% if nivel_selecionado == '2' %}selected{% endif %}>Intermediário</option>
+                        <option value="3" {% if nivel_selecionado == '3' %}selected{% endif %}>Avançado</option>
                     </select>
                 </form>
             </div>
@@ -25,7 +25,7 @@
         <div class="search-container">
             <div class="container">
                 <form action="" method="GET" class="search-form">
-                    <input type="search" class="search-input" name='q' value="">
+                    <input type="search" class="search-input" name="q" value="{{ query|default:'' }}" placeholder=" Buscar por nome...">
                 </form>
             </div>
         </div>

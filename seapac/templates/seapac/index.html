@@ -47,9 +47,13 @@
             <a id='add-family' href="{% url 'register' %}">Adicionar</a>
         </div>
         <div class="list-cards">
-            {% for family in families|slice:":3" %}
-                {% include "partials/card.html" %}
-            {% endfor %}
+            {% if families %}
+                {% for family in families|slice:":3" %}
+                    {% include "partials/card.html" %}
+                {% endfor %}
+            {% else %}
+                <p class="no-results">Nenhuma família encontrada.</p>
+            {% endif %}
             <div class="list-families-a-div">
                 <a class="list-families-a" href="{% url 'list_families' %}">Lista de Famílias</a>
             </div>
