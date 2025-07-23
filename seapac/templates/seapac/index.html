@@ -51,12 +51,12 @@
                 {% for family in families|slice:":3" %}
                     {% include "partials/card.html" %}
                 {% endfor %}
+                <div class="list-families-a-div">
+                    <a class="list-families-a" href="{% url 'list_families' %}">Lista de Famílias</a>
+                </div>
             {% else %}
                 <p class="no-results">Nenhuma família encontrada.</p>
             {% endif %}
-            <div class="list-families-a-div">
-                <a class="list-families-a" href="{% url 'list_families' %}">Lista de Famílias</a>
-            </div>
         </div>
     </div>
     <div class='family-data' id='target'>
