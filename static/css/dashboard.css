@@ -29,66 +29,43 @@ body{
 
 /* BASE INDEX */
 
-.navbar{
-    background: var(--dark-green);
-    width: 100%;
-    height: 6rem;
-    z-index: 1000;
-}
-
-.sistema-seapac-logo{
-    margin: 0.5rem 0 0.5rem 1rem;
-}
-
-.sidebar{
-    background: white;
-    font-family: var(--font-lalezar);
-    min-height: 150vh;
-    width: 12rem;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin: 2px;
-    font-size: large;
-    position: absolute;
-}
-
-.sidebar-items{
+.sidebar {
     position: fixed;
-    top: 7.5rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0;
 }
-
-.sidebar-item{
-    display: flex;
-    padding: 2px 0;
+  
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4.5rem;
+    height: calc(100vh - 4.5rem);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
-
-.bi-house-fill, .bi-person-fill-add, .bi-people-fill{
-    margin-top: 2.5px;
-}
-
-.sidebar-item-text{
-    margin: 0 10px;
-}
-
-.logo-seapac{
-    margin: 67vh 0 0 3rem;
-}
-
-.navlink{
-    color: black;
-    padding-left: 0.3rem;
-    display: flex;
-}
-
-.navlink:hover{
+  
+.sidebar .nav-link {
+    font-weight: 500;
     color: var(--dark-green);
-    text-decoration: none;
 }
 
-main{
-    padding-top: 2rem;
-    margin:0 8rem 0 15rem;
+.navbar .nav-link {
+    color: red;
+}
+
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: var(--dark-green);
+}
+
+.navbar{
+    background-color: var(--dark-green);
 }
 
 /* DASHBOARD */
