@@ -26,7 +26,8 @@
         "dap": 111,
         "aposentadoria": true,
         "auxilio": true,
-        "escolaridade": "1"
+        "escolaridade": 1,
+        "nivel": 1
     }
   },
   {
@@ -45,7 +46,8 @@
         "dap": 678,
         "aposentadoria": true,
         "auxilio": true,
-        "escolaridade": "2"
+        "escolaridade": 2,
+        "nivel": 2
     }
   },
   {
@@ -64,7 +66,8 @@
         "dap": 222,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "3"
+        "escolaridade": 3,
+        "nivel": 1
     }
   },
   {
@@ -83,7 +86,8 @@
         "dap": 333,
         "aposentadoria": false,
         "auxilio": false,
-        "escolaridade": "4"
+        "escolaridade": 4,
+        "nivel": 2
     }
   },
   {
@@ -102,7 +106,8 @@
         "dap": 444,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "2"
+        "escolaridade": 2,
+        "nivel": 1
     }
   },
   {
@@ -121,7 +126,8 @@
         "dap": 555,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "3"
+        "escolaridade": 3,
+        "nivel": 3
     }
   },
   {
@@ -140,7 +146,8 @@
         "dap": 666,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "1"
+        "escolaridade": 1,
+        "nivel": 3
     }
   },
   {
@@ -159,7 +166,8 @@
         "dap": 777,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "4"
+        "escolaridade": 4,
+        "nivel": 3
     }
   },
   {
@@ -178,7 +186,8 @@
         "dap": 888,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "5"
+        "escolaridade": 5,
+        "nivel": 1
     }
   },
   {
@@ -197,7 +206,8 @@
         "dap": 999,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "6"
+        "escolaridade": 6,
+        "nivel": 2
     }
   },
   {
@@ -216,7 +226,8 @@
         "dap": 101,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "2"
+        "escolaridade": 2,
+        "nivel": 1
     }
   },
   {
@@ -235,7 +246,8 @@
         "dap": 202,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "7"
+        "escolaridade": 7,
+        "nivel": 3
     }
   },
   {
@@ -254,7 +266,8 @@
         "dap": 303,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "8"
+        "escolaridade": 8,
+        "nivel": 3
     }
   },
   {
@@ -273,7 +286,8 @@
         "dap": 404,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "2"
+        "escolaridade": 2,
+        "nivel": 1
     }
   },
   {
@@ -292,7 +306,8 @@
         "dap": 505,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "3"
+        "escolaridade": 3,
+        "nivel": 1
     }
   },
   {
@@ -311,7 +326,8 @@
         "dap": 606,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "5"
+        "escolaridade": 5,
+        "nivel": 1
     }
   },
   {
@@ -330,7 +346,8 @@
         "dap": 707,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "1"
+        "escolaridade": 1,
+        "nivel": 1
     }
   },
   {
@@ -349,7 +366,8 @@
         "dap": 808,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "4"
+        "escolaridade": 4,
+        "nivel": 1
     }
   },
   {
@@ -368,7 +386,8 @@
         "dap": 909,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "6"
+        "escolaridade": 6,
+        "nivel": 2
     }
   },
   {
@@ -387,7 +406,8 @@
         "dap": 110,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "2"
+        "escolaridade": 2,
+        "nivel": 2
     }
   },
   {
@@ -406,7 +426,8 @@
         "dap": 211,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "8"
+        "escolaridade": 8,
+        "nivel": 2
     }
   },
   {
@@ -425,7 +446,8 @@
         "dap": 312,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "3"
+        "escolaridade": 3,
+        "nivel": 1
     }
   },
   {
@@ -444,7 +466,8 @@
         "dap": 413,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "1"
+        "escolaridade": 1,
+        "nivel": 1
     }
   },
   {
@@ -463,7 +486,8 @@
         "dap": 312,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "3"
+        "escolaridade": 3,
+        "nivel": 1
     }
   },
   {
@@ -482,7 +506,8 @@
         "dap": 413,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "2"
+        "escolaridade": 2,
+        "nivel": 3
     }
   },
   {
@@ -501,7 +526,8 @@
         "dap": 514,
         "aposentadoria": true,
         "auxilio": false,
-        "escolaridade": "1"
+        "escolaridade": 1,
+        "nivel": 1
     }
   },
   {
@@ -520,7 +546,8 @@
         "dap": 615,
         "aposentadoria": false,
         "auxilio": true,
-        "escolaridade": "1"
+        "escolaridade": 1,
+        "nivel": 2
     }
   }
 ] 

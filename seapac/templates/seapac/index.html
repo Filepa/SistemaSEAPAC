@@ -39,39 +39,7 @@
         </div>
     </div>
 </div>
-<div class='search-field'>
-    <div class='filter'>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
-            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
-        </svg>
-        <h4>Filtrar por nível</h4>
-        <div class="filter-container">
-            <div class="container">
-                <form action="" method="GET" class="filter-form">
-                    <select name="nivel" class="filter-select">
-                        <option value="">------</option>
-                        <option value="inicial">Inicial</option>
-                        <option value="intermediario">Intermediário</option>
-                        <option value="avancado">Avançado</option>
-                    </select>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class='search' >
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-        </svg>
-        <h4>Pesquisar</h4>
-        <div class="search-container">
-            <div class="container">
-                <form action="" method="GET" class="search-form">
-                    <input type="search" class="search-input" name='q' value="">
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+{% include "partials/search.html" %}
 <section class='families-sec'>
     <div class='families-list'>
         <div class='families-list-header'>
@@ -80,32 +48,7 @@
         </div>
         <div class="list-cards">
             {% for family in families|slice:":3" %}
-                <div class='family-card trigger' onclick="redirect('{% url 'flow' family.nome_familia|slugify %}')">
-                    <div class="family-card-header">
-                        <div class='family-name'>
-                            <h5>{{ family.nome_familia }}</h5>
-                        </div>
-                        <div class="family-card-actions">
-                            <div class="tag-transition-level">Avançado</div>
-                            <a class='edit-family' href="{% url 'edit_family' family.id %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <p>Responsável: {{ family.nome_titular}}</p>
-                    <div class="location">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
-                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                        </svg><p class='location-p'> Sítio Terra Vermelha </p>
-                    </div>
-                    <br>
-                    <p>Pontuação: </p>
-                    <!--Aqui ficaria a linha de progressão x/100%-->
-                </div>
+                {% include "partials/card.html" %}
             {% endfor %}
             <div class="list-families-a-div">
                 <a class="list-families-a" href="{% url 'list_families' %}">Lista de Famílias</a>

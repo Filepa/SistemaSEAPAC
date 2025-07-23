@@ -12,14 +12,20 @@ class User(models.Model):
         return self.nome
     
 ESCOLAR_CHOICES = [
-    ("1", "nenhum"),
-    ("2", "fundamental incompleto"),
-    ("3", "fundamental completo"),
-    ("4", "ensino médio incompleto"),
-    ("5", "ensino médio completo"),
-    ("6", "ensino superior incompleto"),
-    ("7", "ensino superior completo"),
-    ("8", "pós-graduação"),
+    (1, "nenhum"),
+    (2, "fundamental incompleto"),
+    (3, "fundamental completo"),
+    (4, "ensino médio incompleto"),
+    (5, "ensino médio completo"),
+    (6, "ensino superior incompleto"),
+    (7, "ensino superior completo"),
+    (8, "pós-graduação"),
+]
+
+LEVEL_CHOICES = [
+    (1, "Baixo"),
+    (2, "Intermediário"),
+    (3, "Avançado")
 ]
 
 class Family(models.Model):
@@ -35,11 +41,15 @@ class Family(models.Model):
     dap = models.CharField(max_length=50, null=True)
     aposentadoria = models.BooleanField(default=False, null=True)
     auxilio = models.BooleanField(default=False, null=True)
-    escolaridade = models.CharField(max_length=30, choices=ESCOLAR_CHOICES, default="1", null=True)
+    escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1, null=True)
+    nivel = models.IntegerField(choices=LEVEL_CHOICES, default=1, null=True)
     #falta o link com a terra e o subsistema, mas é algo a ser decidido
 
     def __str__(self):
         return self.nome_familia
+    
+    def get_nivel(self):
+        return dict(LEVEL_CHOICES).get(self.nivel)
     
 class Subsystem(models.Model):
     nome_subsistema = models.CharField(max_length=20)
