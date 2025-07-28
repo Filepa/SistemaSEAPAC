@@ -378,7 +378,6 @@ body{
     object-fit: cover;
 }
 
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -451,4 +450,38 @@ tbody > tr:nth-of-type(even) {
     margin: 1em;
     padding: 2rem 0 2rem 1.5rem;
     align-content: flex-start;
+}
+
+/*LISTA DE FAMILIAS */
+
+.pages-div {
+    margin: -5px 45px 0 0;
+    display: flex;
+    border: 1px solid #dee2e6;
+    max-width: fit-content;
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+.pages-div div {
+    padding: 0.5rem 1rem;
+    border-right: 1px solid #dee2e6;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pages-div div:last-child {
+    border-right: none;
+}
+
+.pages-div div:hover {
+    background-color: #0077ff; 
+    color: white;
+}
+
+.active-page {
+    background-color: #0077ff;
+    color: white;
 }

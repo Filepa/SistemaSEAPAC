@@ -19,6 +19,21 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="data_nasc" class="form-label">Data de Nascimento</label>
+                    {{ form.data_nasc }}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="data_inic" class="form-label">Data de Iniciação</label>
+                    {{ form.data_inic }}
+                </div>
+
+                <div class="mb-3">
+                    <label for="contato" class="form-label">Contato</label>
+                    {{ form.contato }}
+                </div>
+
+                <div class="mb-3">
                     <label for="nis" class="form-label">NIS</label>
                     {{ form.nis }}
                 </div>
@@ -32,6 +47,22 @@
                     <label for="bpc" class="form-label">BPC</label>
                     {{ form.bpc }}
                 </div>
+
+                <div class="mb-3 ">
+                    {{ form.auxilio }}
+                    <label for="auxilio" class="form-label">Aposentadoria?</label>
+                </div>
+
+                <div class="mb-3">
+                    {{ form.aposentadoria }}
+                    <label for="aposentadoria" class="form-label">Auxílio?</label>
+                </div>
+
+                <div class="mb-3">
+                    <label for="escolaridade" class="form-label">Escolaridade</label>
+                    {{ form.escolaridade }}
+                </div>
+
             </div>
             <div class="forms-info-terra">
                 <h2>Informações da Terra</h2>
