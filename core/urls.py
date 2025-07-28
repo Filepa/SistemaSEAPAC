@@ -24,8 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('cadastrar/', register, name='register'),
-    path('<str:nome_familia>/fluxo/', flow, name='flow'),
-    path('<str:nome_familia>/timeline/', timeline, name='timeline'),
+    path('<str:id>/fluxo/', flow, name='flow'),
+    path('<str:id>/timeline/', timeline, name='timeline'),
     path('editar-familia/<int:id>/', edit_family, name='edit_family'),
     path('lista-familias/', list_families, name='list_families'),
 ]

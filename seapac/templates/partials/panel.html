@@ -1,0 +1,32 @@
+{% load static %}
+<div class="overlay" id="overlay">
+    <div class="panel" id="panel">
+        <div class="image-panel-div">
+            <img src="{% static 'img/image.png' %}" alt="imagem aleatória" class="panel-image">
+        </div>
+        <div class="panel-content">
+            <h2>Título</h2>
+            <p>Descrição do painel. Aqui você pode adicionar informações relevantes sobre o subsistema ou a funcionalidade.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Porcentagem</th>
+                        <th scope="col">Destino</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">Ovo</td>
+                        <td>80%</td>
+                        <td>UFPA</td>
+                    </tr>
+                    <tr>
+                        <td>20%</td>
+                        <td>Mercado Local</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

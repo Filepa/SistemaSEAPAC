@@ -58,7 +58,6 @@ jsPlumb.ready(function() {
   jsPlumb.setContainer("sandbox");
 
   const blocks = ["block1", "block2", "block3", "block4"];
-  jsPlumb.draggable(blocks.slice(1), { containment: "parent" });
 
   const endpointOptions = {
     endpoint: "Dot",
