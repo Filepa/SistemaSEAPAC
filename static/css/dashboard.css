@@ -72,6 +72,10 @@ body{
     color: var(--softer-dark-green);
 }
 
+.nav-link svg{
+    margin-bottom: -2px;
+}
+
 /* DASHBOARD */
 
 .title{
@@ -168,6 +172,7 @@ body{
 
 .families-sec{
     display: flex;
+    flex-direction: row;
 }
 
 .list-cards{
@@ -257,6 +262,11 @@ body{
 
 .bi-geo-alt{
     margin: 0 .5rem 0.95rem 0;
+}
+
+.family-data{
+    position: fixed;
+    margin: 0px 6px 66px 666px;
 }
 
 .block-data{
@@ -403,6 +413,17 @@ th, td {
 
 tbody > tr:nth-of-type(even) {
   background-color: rgb(237, 238, 242);
+}
+
+#btn-flow{
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    padding: 12px 8px;
+}
+
+#btn-flow svg{
+    margin-top: 5px;
 }
 
 /* FORM */

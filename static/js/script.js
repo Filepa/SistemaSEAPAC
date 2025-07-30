@@ -100,53 +100,24 @@ jsPlumb.ready(function() {
   });
 });
 
-// painel de controle, arrasto e clique dos blocos e o cursor
+// painel de controle, clique dos blocos e o cursor
 document.addEventListener('DOMContentLoaded', () => {
   const subsystemBlocks = document.querySelectorAll('.subsystem-block');
   const overlay = document.getElementById('overlay');
   const panel = document.getElementById('panel');
 
-  let isDragging = false;
-  let startX, startY;
-  const DRAG_THRESHOLD = 3;
-
   subsystemBlocks.forEach(block => {
     block.addEventListener('mouseenter', () => {
-      block.style.cursor = 'grab';
+      block.style.cursor = 'pointer';
     });
 
-    block.addEventListener('mousedown', (e) => {
-      startX = e.clientX;
-      startY = e.clientY;
-      isDragging = false;
-      block.style.cursor = 'grabbing';
-    });
-
-    block.addEventListener('mousemove', (e) => {
-      if (e.buttons === 1) { 
-        const dx = Math.abs(e.clientX - startX);
-        const dy = Math.abs(e.clientY - startY);
-        if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) {
-            isDragging = true;
-        }
-      }
-    });
-
-    block.addEventListener('mouseup', (e) => {
-      block.style.cursor = 'grab';
-      if (!isDragging) {
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-      isDragging = false;
+    block.addEventListener('mouseup', () => {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
 
     block.addEventListener('mouseleave', () => {
       block.style.cursor = '';
-    });
-
-    block.addEventListener('dragstart', (e) => {
-      e.preventDefault();
     });
   });
 
