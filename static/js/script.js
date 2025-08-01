@@ -1,7 +1,18 @@
 // mudar página a partir da div
 function redirect(url) {
   window.location.href = url;
-}
+};
+
+// mostrar e remover blocos de informação ocultos
+function toggleBlocks() {
+  const blocks = document.querySelectorAll('.hidden-block');
+  const seeMore = document.getElementById('see-more');
+
+  blocks.forEach(block => {
+    block.classList.remove('hidden-block');
+    block.classList.add('block-info no-hidden');
+  });
+};
 
 // mostrar e esconder o block data
 document.addEventListener('DOMContentLoaded', function () {

@@ -83,6 +83,11 @@ body{
     padding: 0 0 8px 0;
 }
 
+.top-head{
+    display: flex;
+    flex-direction: column;
+}
+
 .block-info, .search-field, .family-card, .forms-info-terra, .forms-info-titular, .box-save-cancel{
     border-radius: 1em;
     background: white !important;
@@ -127,8 +132,26 @@ body{
     font-size: xx-large;
 }
 
+.hidden-block{
+    display: none;
+}
+
+.see-more-div{
+    padding-top: 1rem;
+    text-align: center;
+}
+
+#see-more{
+    color: #0077ff;
+}
+
+#see-more:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .search-field{
-    margin: 2% 0;
+    margin: 1% 0 2% 0;
     padding: 1rem;
     display: flex;
     flex-direction: row;
