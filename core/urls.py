@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from seapac.views import index, register, flow, timeline, edit_family, list_families, calendar, eventos_json, criar_evento
+from seapac.views import index, register, flow, timeline, edit_family, list_families, calendar, eventos_json, criar_evento, deletar_evento
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +31,7 @@ urlpatterns = [
     path('calendario-visitas/', calendar, name='calendar'),
     path('api/events/', eventos_json),
     path('api/events/create/', criar_evento),
+    path('api/events/delete/<int:event_id>/', deletar_evento),
 ]
 
 if settings.DEBUG:

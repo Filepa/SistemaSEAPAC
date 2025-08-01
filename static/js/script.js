@@ -169,13 +169,37 @@ document.addEventListener('DOMContentLoaded', function () {
   const calendarEl = document.getElementById('calendar');
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
+    headerToolbar: {
+      right: 'prev,next today',
+      left: 'title',
+    },
     editable: true,
     droppable: true,
+    timeZone: 'local',
 
-    events: '/api/events/',  // Django endpoint que retorna JSON
+    events: '/api/events/',
+    
+    eventClick: function(info) {
+      if (confirm("Deseja deletar este evento?")) {
+        fetch(`/api/events/delete/${info.event.id}/`, {
+          method: 'DELETE',
+          headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/json',
+          }
+        }).then(response => {
+          if (response.ok) {
+            info.event.remove();
+          } else {
+            alert('Erro ao deletar evento');
+          }
+        });
+      }
+    },
 
     drop: function (info) {
-      // POST para salvar o evento via Django
+      const dateStr = info.date.toISOString();
+      
       fetch('/api/events/create/', {
         method: 'POST',
         headers: {
@@ -184,10 +208,13 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         body: JSON.stringify({
           title: info.draggedEl.innerText,
-          start: info.dateStr
+          start: dateStr
         })
-      }).then(() => {
-        calendar.refetchEvents(); // recarrega eventos após criar
+      }).then(response => response.json())
+        .then(data => {
+          if (data.status === 'ok') {
+            calendar.refetchEvents();
+          }
       });
     }
   });

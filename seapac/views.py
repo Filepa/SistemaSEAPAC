@@ -102,6 +102,7 @@ def calendar(request):
 def eventos_json(request):
     eventos = Evento.objects.all()
     data = [{
+        'id': e.id,
         'title': e.titulo,
         'start': e.inicio.isoformat()
     } for e in eventos]
@@ -111,8 +112,22 @@ def eventos_json(request):
 def criar_evento(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        Evento.objects.create(
+        start_datetime = parse_datetime(data['start'])
+        
+        evento = Evento.objects.create(
             titulo=data['title'],
-            inicio=parse_datetime(data['start'])
+            inicio=start_datetime
         )
-        return JsonResponse({'status': 'ok'})
+        Evento.save_as_fixture()
+        return JsonResponse({'status': 'ok', 'id': evento.id})
+    
+@csrf_exempt
+def deletar_evento(request, event_id):
+    if request.method == 'DELETE':
+        try:
+            evento = Evento.objects.get(id=event_id)
+            evento.delete()
+            Evento.save_as_fixture()
+            return JsonResponse({'status': 'ok'})
+        except Evento.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Evento não encontrado'}, status=404)

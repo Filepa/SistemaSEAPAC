@@ -1,4 +1,6 @@
 from django.db import models #coloquei um monte de null pq tava dando erro essa bosta
+from django.core.serializers import serialize
+import json
 
 # Create your models here.
 class User(models.Model):
@@ -65,3 +67,16 @@ class Subsystem(models.Model):
 class Evento(models.Model):
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()
+
+    def __str__(self):
+        return f"{self.titulo} - {self.inicio}"
+
+    @classmethod
+    def save_as_fixture(cls):
+        eventos = cls.objects.all()
+        fixture_data = serialize('json', eventos)
+        
+        fixture_path = 'seapac/fixtures/eventos.json'
+        
+        with open(fixture_path, 'w') as f:
+            f.write(fixture_data)
