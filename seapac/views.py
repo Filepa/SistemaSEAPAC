@@ -92,10 +92,18 @@ def timeline(request, id):
     return render(request, "seapac/timeline.html", context)
 
 def calendar(request):
+    level = request.GET.get('nivel')
+    query = request.GET.get('q')
     families = Family.objects.all()
+    if level:
+        families = families.filter(nivel=level)
+    if query:
+        families = families.filter(nome_titular__icontains=query)
     context = {
         "title": "Calendário de Visitas",
         "families": families,
+        "nivel_selecionado": level,
+        "query": query,
     }
     return render(request, "seapac/calendar.html", context)
 
