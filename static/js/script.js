@@ -5,13 +5,22 @@ function redirect(url) {
 
 // mostrar e remover blocos de informação ocultos
 function toggleBlocks() {
-  const blocks = document.querySelectorAll('.hidden-block');
+  const blocks = document.querySelectorAll('.hidden-block, .block-info.no-hidden');
   const seeMore = document.getElementById('see-more');
 
+  const isHidden = blocks[0].classList.contains('hidden-block');
+
   blocks.forEach(block => {
-    block.classList.remove('hidden-block');
-    block.classList.add('block-info no-hidden');
+    if (isHidden) {
+      block.classList.remove('hidden-block');
+      block.classList.add('block-info', 'no-hidden');
+    } else {
+      block.classList.remove('block-info', 'no-hidden');
+      block.classList.add('hidden-block');
+    }
   });
+
+  seeMore.textContent = isHidden ? 'Ver menos' : 'Ver mais';
 };
 
 // mostrar e esconder o block data
@@ -62,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
         break;
     }
   });
-})
+});
 
 // blocos do fluxograma
 jsPlumb.ready(function() {

@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from seapac.views import index, register, flow, timeline, edit_family, list_families
+from seapac.views import index, register, flow, timeline, edit_family, list_families, schedule, visits
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,8 @@ urlpatterns = [
     path('<str:id>/timeline/', timeline, name='timeline'),
     path('editar-familia/<int:id>/', edit_family, name='edit_family'),
     path('lista-familias/', list_families, name='list_families'),
+    path('agendar-visita/', schedule, name='schedule'),
+    path('visitas-agendadas/', visits, name='visits'),
 ]
 
 if settings.DEBUG:

@@ -13,10 +13,14 @@ def index(request):
         families = families.filter(nome_titular__icontains=query)
     total_families = Family.objects.count()
     total_avancado = Family.objects.filter(nivel=3).count()
+    total_intermediario = Family.objects.filter(nivel=2).count()
+    total_inicial = Family.objects.filter(nivel=1).count()
     context = {
         "families": families,
         "total_families": total_families,
         "total_avancado": total_avancado,
+        "total_intermediario": total_intermediario,
+        "total_inicial": total_inicial,
         "title": "Página Inicial - Dashboard",
         "nivel_selecionado": level,
         "query": query,
@@ -82,3 +86,15 @@ def timeline(request, id):
         "title": "Linha do Tempo"
     }
     return render(request, "seapac/timeline.html", context)
+
+def visits(request):
+    context = {
+        "title": "Visitas Agendadas",
+    }
+    return render(request, "seapac/visits.html", context)
+
+def schedule(request):
+    context = {
+        "title": "Agendar Visita",
+    }
+    return render(request, "seapac/schedule.html", context)

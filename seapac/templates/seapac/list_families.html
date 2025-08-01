@@ -5,25 +5,29 @@
 <h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
 {% include "partials/search.html" %}
 <div class="container-fluid px-md-3 px-0">
-    <div class="row g-2">
-        {% for family in families|slice:":4" %}
-            <div class="col-md-6 mb-2">
-                {% include "partials/card.html" %}
-            </div>
-        {% endfor %}
-    </div>
-    
-    <div class="row mt-2">
-        <div class="col-12 d-flex justify-content-center">
-            <div class="pages-div">
-                <div class="first-page">1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div class="last-page">»</div>
+    {% if families %}
+        <div class="row g-2">
+            {% for family in families|slice:":4" %}
+                <div class="col-md-6 mb-2">
+                    {% include "partials/card.html" %}
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="row mt-2">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="pages-div">
+                    <div class="first-page">1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div class="last-page">»</div>
+                </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <p class="no-results">Nenhuma família encontrada.</p>
+    {% endif %}
 </div>
     
 {% endblock %}
