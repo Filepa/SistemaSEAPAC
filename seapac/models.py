@@ -61,3 +61,7 @@ class Subsystem(models.Model):
 
     def __str__(self):
         return self.nome_subsistema
+    
+class Evento(models.Model):
+    titulo = models.CharField(max_length=200)
+    inicio = models.DateTimeField()

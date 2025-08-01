@@ -544,3 +544,25 @@ tbody > tr:nth-of-type(even) {
     background-color: #0077ff;
     color: white;
 }
+
+/* CALENDÁRIO DE VISITAS */
+
+#calendar {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.external-event {
+    padding: 8px 12px;
+    background-color: #3788d8;
+    color: white;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+#external-events {
+    width: 200px;
+    padding: 10px;
+    float: left;
+    margin-right: 20px;
+}

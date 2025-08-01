@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem
+from .models import Family, Subsystem, Evento
 from .forms import FamilyForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.dateparse import parse_datetime
+import json
 
 # Create your views here.
 def index(request):
@@ -87,14 +91,28 @@ def timeline(request, id):
     }
     return render(request, "seapac/timeline.html", context)
 
-def visits(request):
+def calendar(request):
+    families = Family.objects.all()
     context = {
-        "title": "Visitas Agendadas",
+        "title": "Calendário de Visitas",
+        "families": families,
     }
-    return render(request, "seapac/visits.html", context)
+    return render(request, "seapac/calendar.html", context)
 
-def schedule(request):
-    context = {
-        "title": "Agendar Visita",
-    }
-    return render(request, "seapac/schedule.html", context)
+def eventos_json(request):
+    eventos = Evento.objects.all()
+    data = [{
+        'title': e.titulo,
+        'start': e.inicio.isoformat()
+    } for e in eventos]
+    return JsonResponse(data, safe=False)
+
+@csrf_exempt
+def criar_evento(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        Evento.objects.create(
+            titulo=data['title'],
+            inicio=parse_datetime(data['start'])
+        )
+        return JsonResponse({'status': 'ok'})

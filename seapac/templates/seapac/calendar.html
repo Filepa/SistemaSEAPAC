@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
+
+<div id='external-events'>
+  <p><strong>Famílias:</strong></p>
+  {% for family in families %}
+    <div class='external-event'>{{family.nome_familia}}</div>
+  {% endfor %}
+</div>
+<div id='calendar'></div>
+
+{% endblock %}
