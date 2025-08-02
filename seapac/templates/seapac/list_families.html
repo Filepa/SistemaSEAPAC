@@ -8,7 +8,7 @@
     {% if families %}
         <div class="row g-2">
             {% for family in families|slice:":4" %}
-                <div class="col-md-6 mb-2">
+                <div class="col-md-6 mb-2 cards-list" data-id="{{ family.id }}">
                     {% include "partials/card.html" %}
                 </div>
             {% endfor %}
