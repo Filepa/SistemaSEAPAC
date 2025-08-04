@@ -1,7 +1,14 @@
-// mudar página a partir da div
-function redirect(url) {
-  window.location.href = url;
-};
+// mudar página
+document.addEventListener('DOMContentLoaded', function () {
+  const cardsList = document.querySelectorAll('.cards-list');
+
+  cardsList.forEach(card => {
+    const id = card.dataset.id
+    card.addEventListener('mouseup', () => {
+      window.location.replace(`/${id}/perfil/`);
+    });
+  });
+});
 
 // mostrar e remover blocos de informação ocultos
 function toggleBlocks() {
@@ -23,33 +30,43 @@ function toggleBlocks() {
   seeMore.textContent = isHidden ? 'Ver menos' : 'Ver mais';
 };
 
-// mostrar e esconder o block data
+// mostrar o block data
 document.addEventListener('DOMContentLoaded', function () {
   const cards = document.querySelectorAll('.family-card.trigger');
   const target = document.getElementById('target');
 
   cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
+    card.addEventListener('mouseup', () => {
       const dataInic = card.dataset.dataInic;
       const contato = card.dataset.contato;
+      const id = card.dataset.id
 
       target.style.display = 'block';
-
+      //resta saber se usar aquele href ali é correto
       target.innerHTML = `
         <div class='block-data'>
+          <div class='block-data-head'>
             <h3>Detalhes da Família</h3>
-            <h6>Início da Transição: </h6>
-            <p>${dataInic}</p>
-            <h6>Número para Contato</h6>
-            <p>${contato}</p>
+            <a class='profile-access' href="${id}/perfil/"> 
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z"/>
+                <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+              </svg>
+            </a>
+          </div>
+          <h6>Início da Transição: </h6>
+          <p>${dataInic}</p>
+          <h6>Número para Contato</h6>
+          <p>${contato}</p>
         </div>
         <div class='block-data'>
-            <h3>Subsistemas - Cultivos</h3>
+          <h3>Subsistemas - Cultivos</h3>
         </div>
       `;
-    });
-    card.addEventListener('mouseleave', () => {
-      target.style.display = 'none';
+      window.scrollTo({
+        top: document.body.scrollHeight - 1030,
+        behavior: 'smooth'
+      });
     });
   });
 });
@@ -61,13 +78,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const level = element.textContent.trim();
     switch (level) {
       case 'Avançado':
-        element.style.backgroundColor = '#4CAF50';
+        element.style.backgroundColor = '#02a708ff';
         break;
       case 'Intermediário':
-        element.style.backgroundColor = '#2196F3';
+        element.style.backgroundColor = '#50db54ff';
         break;
       case 'Inicial':
-        element.style.backgroundColor = '#ff4625';
+        element.style.backgroundColor = '#8dd38fff';
         break;
     }
   });

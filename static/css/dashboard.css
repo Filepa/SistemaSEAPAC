@@ -94,7 +94,7 @@ body{
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.families-list-header, .flow-header, .flow-header-main{
+.families-list-header, .flow-header, .flow-header-main, .block-data-head{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -303,8 +303,7 @@ body{
 }
 
 .family-data{
-    position: fixed;
-    margin: 0px 6px 66px 666px;
+    margin-top: 3.5rem;
 }
 
 .block-data{
@@ -314,6 +313,16 @@ body{
     border-radius: 1em;
     width: 45rem;
     color: white;
+}
+
+.profile-access{
+    color: white;
+    margin-top: 10px;
+}
+
+.profile-access:hover{
+    color: white;
+    margin-top: 10px;
 }
 
 .no-results {
@@ -509,6 +518,10 @@ tbody > tr:nth-of-type(even) {
     margin: 1em;
     padding: 2rem 0 2rem 1.5rem;
     align-content: flex-start;
+}
+
+.btn-selecionar{
+    margin-left: 1.5rem;
 }
 
 /*LISTA DE FAMILIAS */

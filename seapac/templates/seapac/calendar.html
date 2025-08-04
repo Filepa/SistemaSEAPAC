@@ -6,7 +6,7 @@
 {% include "partials/search.html" %}
 <div id='external-events'>
   <p><strong>Famílias:</strong></p>
-  {% for family in families %}
+  {% for family in families|slice:":10" %}
     <div class='external-event'>{{family.nome_familia}} ({{family.get_nivel}})</div>
   {% endfor %}
 </div>
