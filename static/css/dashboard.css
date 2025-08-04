@@ -520,6 +520,10 @@ tbody > tr:nth-of-type(even) {
     align-content: flex-start;
 }
 
+.btn-selecionar{
+    margin-left: 1.5rem;
+}
+
 /*LISTA DE FAMILIAS */
 
 .pages-div {

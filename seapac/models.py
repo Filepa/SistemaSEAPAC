@@ -45,7 +45,7 @@ class Family(models.Model):
     auxilio = models.BooleanField(default=False, null=True)
     escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1, null=True)
     nivel = models.IntegerField(choices=LEVEL_CHOICES, default=1, null=True)
-    #falta o link com a terra e o subsistema, mas é algo a ser decidido
+    #falta o link com a terra (municipio, localizacao etc) e os subsistemas
 
     def __str__(self):
         return self.nome_familia
@@ -64,7 +64,7 @@ class Subsystem(models.Model):
     def __str__(self):
         return self.nome_subsistema
     
-class Evento(models.Model):
+class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()
 
