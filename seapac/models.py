@@ -32,10 +32,10 @@ class Project(models.Model):
 class Subsystem(models.Model):
     nome_subsistema = models.CharField(max_length=20)
     foto_subsistema = models.ImageField(upload_to='fotos_subsistemas/', blank=True)
-    produtos_entrada = models.CharField()
-    produtos_saida = models.CharField()
-    destino_produtos_entrada = models.CharField()
-    destino_produtos_saida = models.CharField()
+    produtos_entrada = models.CharField(max_length=20)
+    produtos_saida = models.CharField(max_length=20)
+    destino_produtos_entrada = models.CharField(max_length=20)
+    destino_produtos_saida = models.CharField(max_length=20)
 
     def __str__(self):
         return self.nome_subsistema
