@@ -24,7 +24,7 @@ class Project(models.Model):
     nome_projeto = models.CharField(max_length=30)
     descricao = models.TextField()
     data_inicio = models.DateField()
-    data_fim = models.DateField(blank=True)
+    data_fim = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.nome_projeto
@@ -32,10 +32,12 @@ class Project(models.Model):
 class Subsystem(models.Model):
     nome_subsistema = models.CharField(max_length=20)
     foto_subsistema = models.ImageField(upload_to='fotos_subsistemas/', blank=True)
-    produtos_entrada = models.CharField(max_length=20)
-    produtos_saida = models.CharField(max_length=20)
-    destino_produtos_entrada = models.CharField(max_length=20)
-    destino_produtos_saida = models.CharField(max_length=20)
+    produtos_entrada = models.CharField(max_length=20, null=True)
+    produtos_saida = models.CharField(max_length=20, null=True)
+    destino_produtos_entrada = models.CharField(max_length=20, null=True)
+    destino_produtos_saida = models.CharField(max_length=20, null=True)
+    produtos_entrada_opcoes = models.JSONField(null=True, blank=True)
+    produtos_saida_opcoes = models.JSONField(null=True, blank=True)
 
     def __str__(self):
         return self.nome_subsistema
@@ -80,6 +82,9 @@ class Family(models.Model):
 
     def get_nivel(self):
         return dict(LEVEL_CHOICES).get(self.nivel)
+    
+    def get_nome_familia(self):
+        return "Família " + self.nome_titular.split()[1]
 
 class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas
     titulo = models.CharField(max_length=200)

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento
+from .models import Family, Subsystem, Evento, Terrain
 from .forms import FamilyForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -15,6 +15,7 @@ def index(request):
         families = families.filter(nivel=level)
     if query:
         families = families.filter(nome_titular__icontains=query)
+    total_municipios = Terrain.objects.values('municipio').distinct().count()
     total_families = Family.objects.count()
     total_avancado = Family.objects.filter(nivel=3).count()
     total_intermediario = Family.objects.filter(nivel=2).count()
@@ -28,6 +29,7 @@ def index(request):
         "title": "Página Inicial - Dashboard",
         "nivel_selecionado": level,
         "query": query,
+        "total_municipios": total_municipios
     }
     return render(request, "seapac/index.html", context)
 

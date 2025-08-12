@@ -26,7 +26,10 @@
         "aposentadoria": true,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 1,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -45,7 +48,10 @@
         "aposentadoria": true,
         "auxilio": true,
         "escolaridade": 2,
-        "nivel": 2
+        "nivel": 2,
+        "terra": 2,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -64,7 +70,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 3,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 3,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -83,7 +92,10 @@
         "aposentadoria": false,
         "auxilio": false,
         "escolaridade": 4,
-        "nivel": 2
+        "nivel": 2,
+        "terra": 4,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -102,7 +114,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 2,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 5,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -121,7 +136,10 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 3,
-        "nivel": 3
+        "nivel": 3,
+        "terra": 6,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -140,14 +158,17 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 3
+        "nivel": 3,
+        "terra": 7,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
     "model": "seapac.family",
     "pk": 8,
     "fields": {
-        "nome_titular": "Henrique Silva",
+        "nome_titular": "Silva Henrique",
         "nome_conjuge": "Clara Henrique",
         "data_nascimento": "1978-02-05",
         "data_inicio": "2020-08-12",
@@ -159,14 +180,17 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 4,
-        "nivel": 3
+        "nivel": 3,
+        "terra": 8,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
     "model": "seapac.family",
     "pk": 9,
     "fields": {
-        "nome_titular": "Ivo Martins",
+        "nome_titular": "Martins Ivo",
         "nome_conjuge": "Sônia Ivo",
         "data_nascimento": "1983-03-14",
         "data_inicio": "2021-09-30",
@@ -178,14 +202,17 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 5,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 9,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
     "model": "seapac.family",
     "pk": 10,
     "fields": {
-        "nome_titular": "Jardel Souza",
+        "nome_titular": "Souza Jardim",
         "nome_conjuge": "Rita Jardim",
         "data_nascimento": "1992-12-21",
         "data_inicio": "2017-11-05",
@@ -197,7 +224,10 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 6,
-        "nivel": 2
+        "nivel": 2,
+        "terra": 10,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -216,7 +246,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 2,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 11,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -235,7 +268,10 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 7,
-        "nivel": 3
+        "nivel": 3,
+        "terra": 12,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -254,7 +290,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 8,
-        "nivel": 3
+        "nivel": 3,
+        "terra": 13,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -273,7 +312,10 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 2,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 14,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -292,7 +334,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 3,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 15,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -311,7 +356,10 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 5,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 16,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -330,7 +378,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 17,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -349,7 +400,10 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 4,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 18,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -368,7 +422,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 6,
-        "nivel": 2
+        "nivel": 2,
+        "terra": 19,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -387,7 +444,10 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 2,
-        "nivel": 2
+        "nivel": 2,
+        "terra": 20,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -406,7 +466,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 8,
-        "nivel": 2
+        "nivel": 2,
+        "terra": 21,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -425,7 +488,10 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 3,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 22,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -444,33 +510,17 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 23,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
     "model": "seapac.family",
     "pk": 24,
     "fields": {
-        "nome_titular": "Vitor Vasconcelos",
-        "nome_conjuge": "Renata Vasconcelos",
-        "data_nascimento": "1980-02-28",
-        "data_inicio": "2022-10-01",
-        "cpf": "012.345.678-29",
-        "contato": "(84) 94002-8941",
-        "bpc": 923,
-        "nis": 222,
-        "dap": 312,
-        "aposentadoria": true,
-        "auxilio": false,
-        "escolaridade": 3,
-        "nivel": 1
-    }
-  },
-  {
-    "model": "seapac.family",
-    "pk": 25,
-    "fields": {
-        "nome_titular": "Xavier Lopes",
+        "nome_titular": "Lopes Xavier",
         "nome_conjuge": "Eliane Xavier",
         "data_nascimento": "1986-12-07",
         "data_inicio": "2020-12-15",
@@ -482,12 +532,15 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 2,
-        "nivel": 3
+        "nivel": 3,
+        "terra": 24,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
     "model": "seapac.family",
-    "pk": 26,
+    "pk": 25,
     "fields": {
         "nome_titular": "Yuri Yamada",
         "nome_conjuge": "Keiko Yamada",
@@ -501,12 +554,15 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 1,
-        "nivel": 1
+        "nivel": 1,
+        "terra": 25,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
     "model": "seapac.family",
-    "pk": 27,
+    "pk": 26,
     "fields": {
         "nome_titular": "Zilda Zamboni",
         "nome_conjuge": "Rogério Zamboni",
@@ -520,7 +576,10 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 2
+        "nivel": 2,
+        "terra": 26,
+        "projeto": 1,
+        "subsistemas": []
     }
   },
   {
@@ -1008,5 +1067,301 @@
         "destino_produtos_entrada": null,
         "destino_produtos_saida": null
     }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 1,
+    "fields": {
+      "municipio": "Mossoró",
+      "latitude": 5.189,
+      "longitude": -37.349,
+      "comunidade": "Comunidade A",
+      "tamanho_m2": 1000.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 2,
+    "fields": {
+      "municipio": "Natal",
+      "latitude": -5.794,
+      "longitude": -35.211,
+      "comunidade": "Comunidade B",
+      "tamanho_m2": 1200.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 3,
+    "fields": {
+      "municipio": "Parnamirim",
+      "latitude": -5.917,
+      "longitude": -35.262,
+      "comunidade": "Comunidade C",
+      "tamanho_m2": 950.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 4,
+    "fields": {
+      "municipio": "Caicó",
+      "latitude": -6.454,
+      "longitude": -37.106,
+      "comunidade": "Comunidade D",
+      "tamanho_m2": 1100.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 5,
+    "fields": {
+      "municipio": "Assu",
+      "latitude": -5.583,
+      "longitude": -37.962,
+      "comunidade": "Comunidade E",
+      "tamanho_m2": 1050.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 6,
+    "fields": {
+      "municipio": "Currais Novos",
+      "latitude": -6.254,
+      "longitude": -36.517,
+      "comunidade": "Comunidade F",
+      "tamanho_m2": 980.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 7,
+    "fields": {
+      "municipio": "Macau",
+      "latitude": -5.107,
+      "longitude": -36.633,
+      "comunidade": "Comunidade G",
+      "tamanho_m2": 1020.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 8,
+    "fields": {
+      "municipio": "Pau dos Ferros",
+      "latitude": -6.112,
+      "longitude": -38.207,
+      "comunidade": "Comunidade H",
+      "tamanho_m2": 1150.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 9,
+    "fields": {
+      "municipio": "São Gonçalo do Amarante",
+      "latitude": -5.790,
+      "longitude": -35.325,
+      "comunidade": "Comunidade I",
+      "tamanho_m2": 990.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 10,
+    "fields": {
+      "municipio": "Ceará-Mirim",
+      "latitude": -5.634,
+      "longitude": -35.424,
+      "comunidade": "Comunidade J",
+      "tamanho_m2": 1080.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 11,
+    "fields": {
+      "municipio": "Nova Cruz",
+      "latitude": -6.478,
+      "longitude": -35.430,
+      "comunidade": "Comunidade K",
+      "tamanho_m2": 1010.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 12,
+    "fields": {
+      "municipio": "Santa Cruz",
+      "latitude": -6.224,
+      "longitude": -36.019,
+      "comunidade": "Comunidade L",
+      "tamanho_m2": 970.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 13,
+    "fields": {
+      "municipio": "Apodi",
+      "latitude": -5.653,
+      "longitude": -37.794,
+      "comunidade": "Comunidade M",
+      "tamanho_m2": 1040.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 14,
+    "fields": {
+      "municipio": "João Câmara",
+      "latitude": -5.540,
+      "longitude": -35.813,
+      "comunidade": "Comunidade N",
+      "tamanho_m2": 1120.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 15,
+    "fields": {
+      "municipio": "Goianinha",
+      "latitude": -6.264,
+      "longitude": -35.204,
+      "comunidade": "Comunidade O",
+      "tamanho_m2": 1060.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 16,
+    "fields": {
+      "municipio": "Areia Branca",
+      "latitude": -4.953,
+      "longitude": -37.125,
+      "comunidade": "Comunidade P",
+      "tamanho_m2": 1090.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 17,
+    "fields": {
+      "municipio": "São Paulo do Potengi",
+      "latitude": -5.899,
+      "longitude": -35.764,
+      "comunidade": "Comunidade Q",
+      "tamanho_m2": 1005.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 18,
+    "fields": {
+      "municipio": "Touros",
+      "latitude": -5.201,
+      "longitude": -35.462,
+      "comunidade": "Comunidade R",
+      "tamanho_m2": 1075.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 19,
+    "fields": {
+      "municipio": "Jardim de Piranhas",
+      "latitude": -6.376,
+      "longitude": -37.262,
+      "comunidade": "Comunidade S",
+      "tamanho_m2": 1030.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 20,
+    "fields": {
+      "municipio": "São Miguel",
+      "latitude": -6.202,
+      "longitude": -38.494,
+      "comunidade": "Comunidade T",
+      "tamanho_m2": 1115.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 21,
+    "fields": {
+      "municipio": "Ipanguaçu",
+      "latitude": -5.489,
+      "longitude": -36.850,
+      "comunidade": "Comunidade U",
+      "tamanho_m2": 1025.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 22,
+    "fields": {
+      "municipio": "Açu",
+      "latitude": -5.583,
+      "longitude": -37.162,
+      "comunidade": "Comunidade V",
+      "tamanho_m2": 1130.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 23,
+    "fields": {
+      "municipio": "Monte Alegre",
+      "latitude": -6.070,
+      "longitude": -35.325,
+      "comunidade": "Comunidade W",
+      "tamanho_m2": 990.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 24,
+    "fields": {
+      "municipio": "Extremoz",
+      "latitude": -5.702,
+      "longitude": -35.304,
+      "comunidade": "Comunidade X",
+      "tamanho_m2": 1085.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 25,
+    "fields": {
+      "municipio": "Lajes",
+      "latitude": -5.693,
+      "longitude": -36.247,
+      "comunidade": "Comunidade Y",
+      "tamanho_m2": 1015.0
+    }
+  },
+  {
+    "model": "seapac.terrain",
+    "pk": 26,
+    "fields": {
+      "municipio": "Pedro Avelino",
+      "latitude": -5.516,
+      "longitude": -36.386,
+      "comunidade": "Comunidade Z",
+      "tamanho_m2": 995.0
+    }
+  },
+  {
+    "model": "seapac.project",
+    "pk": 1,
+    "fields": {
+      "nome_projeto": "Projeto de Desenvolvimento Sustentável SEAPAC",
+      "descricao": "Projeto voltado para o desenvolvimento sustentável das comunidades rurais do RN, promovendo a agroecologia e a inclusão social.",
+      "data_inicio": "2015-01-01",
+      "data_fim": null
+    }
   }
-] 
+]
