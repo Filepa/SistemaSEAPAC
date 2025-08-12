@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento, Terrain
-from .forms import FamilyForm
+from .models import Family, Subsystem, Evento, Terrain, Project
+from .forms import FamilyForm, TerrainForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
@@ -35,27 +35,47 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        form = FamilyForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            form = FamilyForm()
+        familyform = FamilyForm(request.POST, request.FILES)
+        terrainform = TerrainForm(request.POST)
+        if familyform.is_valid() and terrainform.is_valid():
+            family = familyform.save()
+            terrain = terrainform.save(commit=False)
+            terrain.family = family 
+            terrain.save()
+            return redirect('index')
     else:
-        form = FamilyForm()
-
-    return render(request, "seapac/form.html", {'form': form, 'title': 'Cadastrar Família'})
+        familyform = FamilyForm()
+        terrainform = TerrainForm()
+    return render(request, "seapac/form.html", {
+        'familyform': familyform,
+        'terrainform': terrainform,
+        'title': 'Cadastrar Família'
+    })
 
 def edit_family(request, id):
     family = get_object_or_404(Family, id=id)
-    if request.method == 'POST':
-        form = FamilyForm(request.POST, request.FILES, instance=family)
+    try:
+        terrain = Terrain.objects.get(family=family)
+    except Terrain.DoesNotExist:
+        terrain = None
 
-        if form.is_valid():
-            form.save()
+    if request.method == 'POST':
+        familyform = FamilyForm(request.POST, request.FILES, instance=family)
+        terrainform = TerrainForm(request.POST, instance=terrain)
+        if familyform.is_valid() and terrainform.is_valid():
+            family = familyform.save()
+            terrain = terrainform.save(commit=False)
+            terrain.family = family
+            terrain.save()
             return redirect('index')
     else:
-        form = FamilyForm(instance=family)
-
-    return render(request,'seapac/form.html', {'form':form, 'title': 'Editar Família'})
+        familyform = FamilyForm(instance=family)
+        terrainform = TerrainForm(instance=terrain)
+    return render(request, "seapac/form.html", {
+        'familyform': familyform,
+        'terrainform': terrainform,
+        'title': 'Editar Família'
+    })
 
 def list_families(request):
     level = request.GET.get('nivel')

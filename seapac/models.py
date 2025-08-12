@@ -20,6 +20,9 @@ class Terrain(models.Model):
     comunidade = models.CharField(max_length=30, null=True)
     tamanho_m2 = models.FloatField(max_length=30, null=True)
 
+    def __str__(self):
+        return self.municipio
+
 class Project(models.Model):
     nome_projeto = models.CharField(max_length=30)
     descricao = models.TextField()

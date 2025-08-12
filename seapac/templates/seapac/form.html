@@ -9,63 +9,80 @@
                 <h2>Informações do Titular</h2>
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="nome" class="form-label">Nome</label>
-                    {{ form.nome_titular }}
+                    <label for="nome_titular" class="form-label">Nome</label>
+                    {{ familyform.nome_titular }}
                 </div>
-
+                <div class="mb-3">
+                    <label for="nome_conjuge" class="form-label">Nome do Cônjuge</label>
+                    {{ familyform.nome_conjuge }}
+                </div>
                 <div class="mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    {{ form.cpf }}
+                    {{ familyform.cpf }}
                 </div>
-
                 <div class="mb-3">
-                    <label for="data_nasc" class="form-label">Data de Nascimento</label>
-                    {{ form.data_nasc }}
+                    <label for="data_nascimento" class="form-label">Data de Nascimento</label>
+                    {{ familyform.data_nascimento }}
                 </div>
-                
                 <div class="mb-3">
-                    <label for="data_inic" class="form-label">Data de Iniciação</label>
-                    {{ form.data_inic }}
+                    <label for="data_inicio" class="form-label">Data de Iniciação</label>
+                    {{ familyform.data_inicio }}
                 </div>
-
                 <div class="mb-3">
                     <label for="contato" class="form-label">Contato</label>
-                    {{ form.contato }}
+                    {{ familyform.contato }}
                 </div>
-
                 <div class="mb-3">
                     <label for="nis" class="form-label">NIS</label>
-                    {{ form.nis }}
+                    {{ familyform.nis }}
                 </div>
-
                 <div class="mb-3">
                     <label for="dap" class="form-label">DAP</label>
-                    {{ form.dap }}
+                    {{ familyform.dap }}
                 </div>
-
                 <div class="mb-3">
                     <label for="bpc" class="form-label">BPC</label>
-                    {{ form.bpc }}
+                    {{ familyform.bpc }}
                 </div>
-
                 <div class="mb-3 btn-selecionar">
-                    {{ form.auxilio }}
-                    <label for="auxilio" class="form-label">Aposentadoria?</label>
+                    {{ familyform.auxilio }}
+                    <label for="auxilio" class="form-label">Auxílio?</label>
                 </div>
-
                 <div class="mb-3 btn-selecionar">
-                    {{ form.aposentadoria }}
-                    <label for="aposentadoria" class="form-label">Auxílio?</label>
+                    {{ familyform.aposentadoria }}
+                    <label for="aposentadoria" class="form-label">Aposentadoria?</label>
                 </div>
-
                 <div class="mb-3">
                     <label for="escolaridade" class="form-label">Escolaridade</label>
-                    {{ form.escolaridade }}
+                    {{ familyform.escolaridade }}
                 </div>
-
+                <div class="mb-3">
+                    <label for="projeto" class="form-label">Projeto</label>
+                    {{ familyform.projeto }}
+                </div>
             </div>
             <div class="forms-info-terra">
                 <h2>Informações da Terra</h2>
+                <div class="mb-3">
+                    <label for="municipio" class="form-label">Município</label>
+                    {{ terrainform.municipio }}
+                </div>
+                <div class="mb-3">
+                    <label for="comunidade" class="form-label">Comunidade</label>
+                    {{ terrainform.comunidade }}
+                </div>
+                <div class="mb-3">
+                    <label for="latitude" class="form-label">Latitude</label>
+                    {{ terrainform.latitude }}
+                </div>
+                <div class="mb-3">
+                    <label for="longitude" class="form-label">Longitude</label>
+                    {{ terrainform.longitude }}
+                </div>
+                <div class="mb-3">
+                    <label for="tamanho_m2" class="form-label">Tamanho (m²)</label>
+                    {{ terrainform.tamanho_m2 }}
+                </div>
             </div>
         </section>
         <div class="box-save-cancel">
