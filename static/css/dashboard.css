@@ -376,9 +376,29 @@ body{
 }
 
 #block1 { width: 360px; height: 200px; top: 250px; left: 550px; }
-#block2 { top: 500px; left: 900px; }
-#block3 { top: 580px; left: 25px; }
-#block4 { top: 470px; left: 25px; }
+#block1 img {
+    width: 400px;
+    height: 200px;
+}
+#block6 { top: 470px; left: 850px; }
+#block11 { top: 470px; left: 650px; }
+#block12 { top: 470px; left: 450px; }
+#block17 { top: 130px; left: 950px; }
+#block18 { top: 130px; left: 750px; }
+#block19 { top: 130px; left: 550px; }
+#block20 { top: 130px; left: 350px; }
+#block2 { top: 580px; left: 25px; }
+#block3 { top: 470px; left: 25px; }
+#block4 { top: 360px; left: 25px; }
+#block5 { top: 250px; left: 25px; }
+#block7 { top: 140px; left: 25px; }
+#block8 { top: 30px; left: 25px; }
+#block9 { top: 30px; left: 1300px; }
+#block10 { top: 140px; left: 1300px; }
+#block13 { top: 250px; left: 1300px; }
+#block14 { top: 360px; left: 1300px; }
+#block15 { top: 470px; left: 1300px; }
+#block16 { top: 580px; left: 1300px; }
 
 .overlay {
     position: fixed;

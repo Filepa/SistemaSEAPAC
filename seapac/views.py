@@ -96,10 +96,12 @@ def list_families(request):
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
     subsystems = Subsystem.objects.all()
+    total_subsystems = Subsystem.objects.count()
     context = {
         "id": id,
         "family": family,
         "subsystems": subsystems,
+        "total_subsystems": total_subsystems,
         "title": "Fluxo"
     }
     return render(request, "seapac/flow.html", context)
