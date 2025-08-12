@@ -95,8 +95,8 @@ def list_families(request):
 
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
-    subsystems = Subsystem.objects.all()
-    total_subsystems = Subsystem.objects.count()
+    subsystems = Subsystem.objects.filter(family=family)
+    total_subsystems = subsystems.count()
     context = {
         "id": id,
         "family": family,
