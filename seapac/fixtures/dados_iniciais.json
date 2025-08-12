@@ -14,7 +14,6 @@
     "model": "seapac.family",
     "pk": 1,
     "fields": {
-        "nome_familia": "Familia Almeida",
         "nome_titular": "João Almeida",
         "nome_conjuge": "Maria Almeida",
         "data_nasc": "1992-01-10",
@@ -34,7 +33,6 @@
     "model": "seapac.family",
     "pk": 2,
     "fields": {
-        "nome_familia": "Familia Beraldo",
         "nome_titular": "Lucas Beraldo",
         "nome_conjuge": "Joaquina Beraldo",
         "data_nasc": "1970-07-12",
@@ -54,7 +52,6 @@
     "model": "seapac.family",
     "pk": 3,
     "fields": {
-        "nome_familia": "Familia Cavalcanti",
         "nome_titular": "Maria Cavalcanti",
         "nome_conjuge": "Francisco Cavalcanti",
         "data_nasc": "1982-07-15",
@@ -74,7 +71,6 @@
     "model": "seapac.family",
     "pk": 4,
     "fields": {
-        "nome_familia": "Familia Dias",
         "nome_titular": "Carlos Dias",
         "nome_conjuge": "Ana Dias",
         "data_nasc": "1975-04-22",
@@ -94,7 +90,6 @@
     "model": "seapac.family",
     "pk": 5,
     "fields": {
-        "nome_familia": "Familia Esteves",
         "nome_titular": "Roberto Esteves",
         "nome_conjuge": "Juliana Esteves",
         "data_nasc": "1980-09-12",
@@ -114,7 +109,6 @@
     "model": "seapac.family",
     "pk": 6,
     "fields": {
-        "nome_familia": "Familia Farias",
         "nome_titular": "Fernanda Farias",
         "nome_conjuge": "Paulo Farias",
         "data_nasc": "1990-11-30",
@@ -134,7 +128,6 @@
     "model": "seapac.family",
     "pk": 7,
     "fields": {
-        "nome_familia": "Familia Gomes",
         "nome_titular": "Eduardo Gomes",
         "nome_conjuge": "Patrícia Gomes",
         "data_nasc": "1985-06-18",
@@ -154,7 +147,6 @@
     "model": "seapac.family",
     "pk": 8,
     "fields": {
-        "nome_familia": "Familia Henrique",
         "nome_titular": "Henrique Silva",
         "nome_conjuge": "Clara Henrique",
         "data_nasc": "1978-02-05",
@@ -174,7 +166,6 @@
     "model": "seapac.family",
     "pk": 9,
     "fields": {
-        "nome_familia": "Familia Ivo",
         "nome_titular": "Ivo Martins",
         "nome_conjuge": "Sônia Ivo",
         "data_nasc": "1983-03-14",
@@ -194,7 +185,6 @@
     "model": "seapac.family",
     "pk": 10,
     "fields": {
-        "nome_familia": "Familia Jardim",
         "nome_titular": "Jardel Souza",
         "nome_conjuge": "Rita Jardim",
         "data_nasc": "1992-12-21",
@@ -214,7 +204,6 @@
     "model": "seapac.family",
     "pk": 11,
     "fields": {
-        "nome_familia": "Familia Karam",
         "nome_titular": "Karina Karam",
         "nome_conjuge": "Luiz Karam",
         "data_nasc": "1987-08-09",
@@ -234,7 +223,6 @@
     "model": "seapac.family",
     "pk": 12,
     "fields": {
-        "nome_familia": "Familia Lima",
         "nome_titular": "Lucas Lima",
         "nome_conjuge": "Beatriz Lima",
         "data_nasc": "1979-05-27",
@@ -254,7 +242,6 @@
     "model": "seapac.family",
     "pk": 13,
     "fields": {
-        "nome_familia": "Familia Martins",
         "nome_titular": "Marcos Martins",
         "nome_conjuge": "Helena Martins",
         "data_nasc": "1981-10-03",
@@ -274,7 +261,6 @@
     "model": "seapac.family",
     "pk": 14,
     "fields": {
-        "nome_familia": "Familia Nogueira",
         "nome_titular": "Nivaldo Nogueira",
         "nome_conjuge": "Cecília Nogueira",
         "data_nasc": "1986-01-17",
@@ -294,7 +280,6 @@
     "model": "seapac.family",
     "pk": 15,
     "fields": {
-        "nome_familia": "Familia Oliveira",
         "nome_titular": "Otávio Oliveira",
         "nome_conjuge": "Priscila Oliveira",
         "data_nasc": "1976-07-29",
@@ -314,7 +299,6 @@
     "model": "seapac.family",
     "pk": 16,
     "fields": {
-        "nome_familia": "Familia Pereira",
         "nome_titular": "Paulo Pereira",
         "nome_conjuge": "Simone Pereira",
         "data_nasc": "1989-09-11",
@@ -334,7 +318,6 @@
     "model": "seapac.family",
     "pk": 17,
     "fields": {
-        "nome_familia": "Familia Queiroz",
         "nome_titular": "Quirino Queiroz",
         "nome_conjuge": "Tatiana Queiroz",
         "data_nasc": "1984-03-25",
@@ -354,7 +337,6 @@
     "model": "seapac.family",
     "pk": 18,
     "fields": {
-        "nome_familia": "Familia Rocha",
         "nome_titular": "Rafael Rocha",
         "nome_conjuge": "Viviane Rocha",
         "data_nasc": "1977-06-13",
@@ -374,7 +356,6 @@
     "model": "seapac.family",
     "pk": 19,
     "fields": {
-        "nome_familia": "Familia Silva",
         "nome_titular": "Sérgio Silva",
         "nome_conjuge": "Débora Silva",
         "data_nasc": "1982-11-02",
@@ -394,7 +375,6 @@
     "model": "seapac.family",
     "pk": 20,
     "fields": {
-        "nome_familia": "Familia Teixeira",
         "nome_titular": "Tiago Teixeira",
         "nome_conjuge": "Larissa Teixeira",
         "data_nasc": "1988-05-19",
@@ -414,7 +394,6 @@
     "model": "seapac.family",
     "pk": 21,
     "fields": {
-        "nome_familia": "Familia Uchôa",
         "nome_titular": "Ubiratan Uchôa",
         "nome_conjuge": "Marta Uchôa",
         "data_nasc": "1974-08-23",
@@ -434,7 +413,6 @@
     "model": "seapac.family",
     "pk": 22,
     "fields": {
-        "nome_familia": "Familia Vasconcelos",
         "nome_titular": "Vitor Vasconcelos",
         "nome_conjuge": "Renata Vasconcelos",
         "data_nasc": "1980-02-28",
@@ -454,7 +432,6 @@
     "model": "seapac.family",
     "pk": 23,
     "fields": {
-        "nome_familia": "Familia Watanabe",
         "nome_titular": "Yuki Watanabe",
         "nome_conjuge": "Aiko Watanabe",
         "data_nasc": "1985-04-14",
@@ -474,7 +451,6 @@
     "model": "seapac.family",
     "pk": 24,
     "fields": {
-        "nome_familia": "Familia Vasconcelos",
         "nome_titular": "Vitor Vasconcelos",
         "nome_conjuge": "Renata Vasconcelos",
         "data_nasc": "1980-02-28",
@@ -494,7 +470,6 @@
     "model": "seapac.family",
     "pk": 25,
     "fields": {
-        "nome_familia": "Familia Xavier",
         "nome_titular": "Xavier Lopes",
         "nome_conjuge": "Eliane Xavier",
         "data_nasc": "1986-12-07",
@@ -514,7 +489,6 @@
     "model": "seapac.family",
     "pk": 26,
     "fields": {
-        "nome_familia": "Familia Yamada",
         "nome_titular": "Yuri Yamada",
         "nome_conjuge": "Keiko Yamada",
         "data_nasc": "1978-03-16",
@@ -534,7 +508,6 @@
     "model": "seapac.family",
     "pk": 27,
     "fields": {
-        "nome_familia": "Familia Zamboni",
         "nome_titular": "Zilda Zamboni",
         "nome_conjuge": "Rogério Zamboni",
         "data_nasc": "1983-09-28",
@@ -548,6 +521,492 @@
         "auxilio": true,
         "escolaridade": 1,
         "nivel": 2
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 1,
+    "fields": {
+        "nome_subsistema": "Caprinocultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Carne",
+            "Esterco",
+            "Animais para reprodução",
+            "Couro"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 2,
+    "fields": {
+        "nome_subsistema": "Avinocultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Pinto",
+            "Esterco",
+            "Carne de aves",
+            "Ovo"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 3,
+    "fields": {
+        "nome_subsistema": "Bovinocultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Carne",
+            "Esterco",
+            "Animais para reprodução",
+            "Couro"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 4,
+    "fields": {
+        "nome_subsistema": "Suinocultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Carne",
+            "Esterco",
+            "Animais para reprodução"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 5,
+    "fields": {
+        "nome_subsistema": "Quintal",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Fruta",
+            "Hortaliça",
+            "Forragem"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 6,
+    "fields": {
+        "nome_subsistema": "Apicultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Mel",
+            "Cera",
+            "Geleia real",
+            "Própolis",
+            "Enxames"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 7,
+    "fields": {
+        "nome_subsistema": "Meliponicultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Mel",
+            "Cera",
+            "Enxames"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 8,
+    "fields": {
+        "nome_subsistema": "Horticultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Coentro",
+            "Cebolinha",
+            "Pimentão",
+            "Tomate",
+            "Tomate cereja",
+            "Beringela",
+            "Pimenta de cheiro",
+            "Repolho"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 9,
+    "fields": {
+        "nome_subsistema": "Fruticultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Banana",
+            "Mamão",
+            "Coco",
+            "Limão"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 10,
+    "fields": {
+        "nome_subsistema": "Roçado",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Milho",
+            "Feijão",
+            "Jerimum",
+            "Melância",
+            "Feijão guandu",
+            "Fava",
+            "Arroz",
+            "Amendoim"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 11,
+    "fields": {
+        "nome_subsistema": "Forragem",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Palma",
+            "Moringa",
+            "Leucena",
+            "Gliricídia",
+            "Margaridão",
+            "Capiaçu"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 12,
+    "fields": {
+        "nome_subsistema": "Plantas medicinais e condimentares",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Hortelã",
+            "Cidreira",
+            "Capim santo",
+            "Urucum"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 13,
+    "fields": {
+        "nome_subsistema": "Viveiro de mudas",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Coco",
+            "Limão",
+            "Banana"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 14,
+    "fields": {
+        "nome_subsistema": "Banco de sementes",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Feijão",
+            "Milho",
+            "Fava"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 15,
+    "fields": {
+        "nome_subsistema": "Piscicultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Tilápia",
+            "Tambaqui"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 16,
+    "fields": {
+        "nome_subsistema": "Cacinicultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": null,
+        "produtos_entrada": null,
+        "produtos_saida": "Camarão",
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 17,
+    "fields": {
+        "nome_subsistema": "Floricultura",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": null,
+        "produtos_entrada": null,
+        "produtos_saida": "Tulipa",
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 18,
+    "fields": {
+        "nome_subsistema": "Compostagem e bioinsumo",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Composto orgânico",
+            "Biofertilizante",
+            "EM4"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 19,
+    "fields": {
+        "nome_subsistema": "Agroindustria artesanal",
+        "produtos_entrada_opcoes": [
+            "Ração",
+            "Milho",
+            "Farelo de soja",
+            "Sal mineral",
+            "Vacinas",
+            "Medicamentos",
+            "Água"
+        ],
+        "produtos_saida_opcoes": [
+            "Doces",
+            "Bolos",
+            "Queijos"
+        ],
+        "produtos_entrada": null,
+        "produtos_saida": null,
+        "destino_produtos_entrada": null,
+        "destino_produtos_saida": null
     }
   }
 ] 

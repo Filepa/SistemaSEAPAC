@@ -4,14 +4,41 @@ import json
 
 # Create your models here.
 class User(models.Model):
-    nome = models.CharField(max_length=30, null=True)
-    email = models.EmailField(max_length=30, null=True)
-    senha = models.CharField(max_length=200, null=True) #tem que deixar privado depois
-    contato = models.CharField(max_length=30, null=True)
-    foto_perfil = models.ImageField(upload_to='fotos_perfil/', blank=True, null=True) #favor não utilizar ainda
+    nome = models.CharField(max_length=30)
+    email = models.EmailField(max_length=30)
+    senha = models.CharField(max_length=200) #tem que deixar privado depois
+    contato = models.CharField(max_length=30)
+    foto_perfil = models.ImageField(upload_to='fotos_perfil/', blank=True)
 
     def __str__(self):
         return self.nome
+
+class Terrain(models.Model):
+    municipio = models.CharField(max_length=30)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
+    comunidade = models.CharField(max_length=30, null=True)
+    tamanho_m2 = models.FloatField(max_length=30, null=True)
+
+class Project(models.Model):
+    nome_projeto = models.CharField(max_length=30)
+    descricao = models.TextField()
+    data_inicio = models.DateField()
+    data_fim = models.DateField(blank=True)
+
+    def __str__(self):
+        return self.nome_projeto
+
+class Subsystem(models.Model):
+    nome_subsistema = models.CharField(max_length=20)
+    foto_subsistema = models.ImageField(upload_to='fotos_subsistemas/', blank=True)
+    produtos_entrada = models.CharField()
+    produtos_saida = models.CharField()
+    destino_produtos_entrada = models.CharField()
+    destino_produtos_saida = models.CharField()
+
+    def __str__(self):
+        return self.nome_subsistema
     
 ESCOLAR_CHOICES = [
     (1, "nenhum"),
@@ -31,39 +58,29 @@ LEVEL_CHOICES = [
 ]
 
 class Family(models.Model):
-    nome_familia = models.CharField(max_length=30, null=True)
-    nome_titular = models.CharField(max_length=30, null=True)
-    nome_conjuge = models.CharField(max_length=30, null=True)
-    data_nasc = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
-    data_inic = models.DateField(auto_now_add=True, null=True)
-    cpf = models.CharField(max_length=30, null=True)
-    contato = models.CharField(max_length=30, null=True)
-    bpc = models.CharField(max_length=50, null=True)
-    nis = models.CharField(max_length=50, null=True)
-    dap = models.CharField(max_length=50, null=True)
-    aposentadoria = models.BooleanField(default=False, null=True)
-    auxilio = models.BooleanField(default=False, null=True)
-    escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1, null=True)
-    nivel = models.IntegerField(choices=LEVEL_CHOICES, default=1, null=True)
-    #falta o link com a terra (municipio, localizacao etc) e os subsistemas
+    nome_titular = models.CharField(max_length=30)
+    nome_conjuge = models.CharField(max_length=30)
+    data_nascimento = models.DateField(blank=True)
+    data_inicio = models.DateField()
+    cpf = models.CharField(max_length=30)
+    contato = models.CharField(max_length=30)
+    bpc = models.CharField(max_length=50)
+    nis = models.CharField(max_length=50)
+    dap = models.CharField(max_length=50)
+    aposentadoria = models.BooleanField(default=False)
+    auxilio = models.BooleanField(default=False)
+    escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1)
+    nivel = models.IntegerField(choices=LEVEL_CHOICES, default=1)
+    terra = models.OneToOneField('Terrain', on_delete=models.CASCADE)
+    projeto = models.ForeignKey('Project', on_delete=models.CASCADE)
+    subsistemas = models.ManyToManyField('Subsystem', blank=True)
 
     def __str__(self):
-        return self.nome_familia
-    
+        return self.nome_titular
+
     def get_nivel(self):
         return dict(LEVEL_CHOICES).get(self.nivel)
-    
-class Subsystem(models.Model):
-    nome_subsistema = models.CharField(max_length=20)
-    #foto_subsistema = models.ImageField(upload_to='fotos_subsistemas/', blank=True, null=True) #favor nao utilizar ainda
-    #produtos_entrada = models.CharField()
-    #produtos_saida = models.CharField()
-    #destino_produtos_entrada = models.CharField()
-    #destino_produtos_saida = models.CharField()
 
-    def __str__(self):
-        return self.nome_subsistema
-    
 class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()
