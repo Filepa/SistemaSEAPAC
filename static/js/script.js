@@ -1,94 +1,99 @@
-// mudar página
-document.addEventListener('DOMContentLoaded', function () {
-  const cardsList = document.querySelectorAll('.cards-list');
-
-  cardsList.forEach(card => {
-    const id = card.dataset.id
-    card.addEventListener('mouseup', () => {
-      window.location.replace(`/${id}/perfil/`);
-    });
-  });
+function redirect(url) {
+  window.location.href = url;
+}
+// Initialize the app
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCounterAnimations();
+    
 });
 
-// mostrar e remover blocos de informação ocultos
-function toggleBlocks() {
-  const blocks = document.querySelectorAll('.hidden-block, .block-info.no-hidden');
-  const seeMore = document.getElementById('see-more');
+// Counter animation for stats
+function initializeCounterAnimations() {
+  document.querySelectorAll('.stat-value').forEach(element => {
+    const target = parseInt(element.textContent, 10);
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    let current = 0;
 
-  const isHidden = blocks[0].classList.contains('hidden-block');
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target;
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current);
+      }
+    }, 16);
+  });
+}
 
-  blocks.forEach(block => {
-    if (isHidden) {
-      block.classList.remove('hidden-block');
-      block.classList.add('block-info', 'no-hidden');
-    } else {
-      block.classList.remove('block-info', 'no-hidden');
-      block.classList.add('hidden-block');
+// Add CSS for family score and no families state
+const additionalStyles = `
+    .family-score {
+        margin-bottom: var(--space-4);
     }
-  });
-
-  seeMore.textContent = isHidden ? 'Ver menos' : 'Ver mais';
-};
-
-// mostrar o block data
-document.addEventListener('DOMContentLoaded', function () {
-  const cards = document.querySelectorAll('.family-card.trigger');
-  const target = document.getElementById('target');
-
-  cards.forEach(card => {
-    card.addEventListener('mouseup', () => {
-      const dataInic = card.dataset.dataInic;
-      const contato = card.dataset.contato;
-      const id = card.dataset.id
-
-      target.style.display = 'block';
-      //resta saber se usar aquele href ali é correto
-      target.innerHTML = `
-        <div class='block-data'>
-          <div class='block-data-head'>
-            <h3>Detalhes da Família</h3>
-            <a class='profile-access' href="${id}/perfil/"> 
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z"/>
-                <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
-              </svg>
-            </a>
-          </div>
-          <h6>Início da Transição: </h6>
-          <p>${dataInic}</p>
-          <h6>Número para Contato</h6>
-          <p>${contato}</p>
-        </div>
-        <div class='block-data'>
-          <h3>Subsistemas - Cultivos</h3>
-        </div>
-      `;
-      window.scrollTo({
-        top: document.body.scrollHeight - 1030,
-        behavior: 'smooth'
-      });
-    });
-  });
-});
-
-// cor da tag de nível
-document.addEventListener('DOMContentLoaded', function () {
-  const tag = document.querySelectorAll('.tag-transition-level');
-  tag.forEach(element => {
-    const level = element.textContent.trim();
-    switch (level) {
-      case 'Avançado':
-        element.style.backgroundColor = '#02a708ff';
-        break;
-      case 'Intermediário':
-        element.style.backgroundColor = '#50db54ff';
-        break;
-      case 'Inicial':
-        element.style.backgroundColor = '#8dd38fff';
-        break;
+    
+    .score-label {
+        font-size: var(--font-size-sm);
+        color: var(--gray-600);
+        margin-bottom: var(--space-2);
+        font-weight: 500;
     }
-  });
-});
+    
+    .score-value {
+        font-size: var(--font-size-lg);
+        font-weight: 600;
+        color: var(--gray-900);
+        margin-bottom: var(--space-2);
+    }
+    
+    .score-bar {
+        height: 8px;
+        background-color: var(--gray-200);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: var(--space-2);
+    }
+    
+    .score-progress {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent-green), var(--light-green));
+        transition: width 0.8s ease-in-out;
+        border-radius: 4px;
+    }
+    
+    .no-families {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-16);
+        text-align: center;
+        color: var(--gray-500);
+    }
+    
+    .no-families i {
+        font-size: var(--font-size-4xl);
+        margin-bottom: var(--space-4);
+        color: var(--gray-400);
+    }
+    
+    .no-families h3 {
+        font-size: var(--font-size-xl);
+        font-weight: 600;
+        color: var(--gray-600);
+        margin-bottom: var(--space-2);
+    }
+    
+    .no-families p {
+        color: var(--gray-500);
+    }
+`;
+
+// Add the additional styles to the page
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
 
 // blocos do fluxograma
 jsPlumb.ready(function() {

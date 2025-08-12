@@ -1,23 +1,51 @@
-<div class='family-card trigger' data-data-inic="{{ family.data_inic }}" data-contato="{{ family.contato }}" data-id="{{ family.id }}">
-    <div class="family-card-header">
-        <div class='family-name'>
-            <h5>{{ family.get_nome_familia }}</h5>
+<div class="family-card">
+    <div class="family-header">
+        <h3 class="family-name">{{ family.get_nome_familia}}</h3>
+        <span class="family-status {{ family.get_nivel|lower }}">
+            <i class="fas fa-circle"></i>
+            {{ family.get_nivel }}
+        </span>
+    </div>
+    
+    <div class="family-info">
+        <div class="info-item">
+            <i class="fas fa-user"></i>
+            <span>Responsável: {{ family.nome_titular }}</span>
         </div>
-        <div class="family-card-actions">
-            <div class="tag-transition-level">
-                {{ family.get_nivel }}
-            </div>
-            <a class='edit-family' href="{% url 'edit_family' family.id %}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/></svg>
-            </a>
+        <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ family.terra.municipio}} - {{ family.terra.comunidade }}</span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <span>{{ family.contato }}</span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-calendar-check"></i>
+            <span> visitas realizadas</span>
         </div>
     </div>
-    <p>Responsável: {{ family.nome_titular }}</p>
-    <div class="location">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/><path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>
-        <p class='location-p'> {{ family.terra.municipio }} - {{ family.terra.comunidade }} </p>
+    
+    <div class="family-score">
+        <div class="score-label">Pontuação:</div>
+        <div class="score-value">30/100</div>
+        <div class="score-bar">
+            <div class="score-progress" style="width: 30%"></div>
+        </div>
     </div>
-    <br>
-    <p>Pontuação: </p>
-    <!--Aqui ficaria a linha de progressão x/100%-->
+    
+    <div class="family-actions">
+        <button class="btn btn-outline btn-sm" onclick="">
+            <i class="fas fa-eye"></i>
+            Visualizar
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'edit_family' family.id %}')">
+            <i class="fas fa-edit"></i>
+            Editar
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="">
+            <i class="fas fa-calendar-plus"></i>
+            Agendar Visita
+        </button>
+    </div>
 </div>

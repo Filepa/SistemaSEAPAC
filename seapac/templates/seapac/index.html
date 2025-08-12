@@ -1,83 +1,109 @@
 {% extends 'base.html' %}
 
 {% block center %}
+<div class="page active" id="dashboard">
+    <div class="page-header">
+        <h1 class="page-title">{% block title %}{{ title }}{% endblock title %}</h1>
+    </div>
 
-<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
-<div class='top-head'>
-    <div class='top-infos'>
-        <div class='block-info'>
-            <div class="block-info-text">
-                <h3 class='block-title-info'>Total de Famílias: </h3>
-                <p class='p-info'>{{ total_families }}</p>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon families">
+                <i class="fas fa-users"></i>
             </div>
-            <div class="block-info-icon">
-                <svg class='block-icon' xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" viewBox="0 0 16 16"><path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/><path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/></svg>
+            <div class="stat-content">
+                <div class="stat-label">Total de Famílias</div>
+                <div class="stat-value">{{ total_families }}</div>
             </div>
-        </div>
-        <div class='block-info'>
-            <div class="block-info-text">
-                <h3 class='block-title-info'>Total de Municípios: </h3>
-                <p class='p-info'>{{ total_municipios }}</p>
-            </div>
-            <div class="block-info-icon">
-                <svg id='icon-2' class='block-icon' xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" viewBox="0 0 16 16"><path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0zM8 9.433 1.562 6 8 2.567 14.438 6z"/></svg>
+            <div class="stat-trend positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+5%</span>
             </div>
         </div>
-        <!--Colocar total de técnicos?-->
-        <div class='block-info'>
-            <div class="block-info-text">
-                <h3 class='block-title-info'>Total de Níveis Avançados: </h3>
-                <p class='p-info'>{{ total_avancado }}</p>
+
+        <div class="stat-card">
+            <div class="stat-icon municipalities">
+                <i class="fas fa-map-marker-alt"></i>
             </div>
-            <div class="block-info-icon">
-                <svg id='icon-3' class='block-icon' xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/></svg>
+            <div class="stat-content">
+                <div class="stat-label">Total de Municípios</div>
+                <div class="stat-value">{{ total_municipios }}</div>
             </div>
-        </div>
-        <div class='hidden-block'>
-            <div class="block-info-text">
-                <h3 class='block-title-info'>Total de Níveis Intermediários: </h3>
-                <p class='p-info'>{{ total_intermediario }}</p>
-            </div>
-            <div class="block-info-icon">
-                <svg id='icon-3' class='block-icon' xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/></svg>
+            <div class="stat-trend positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+2%</span>
             </div>
         </div>
-        <div class='hidden-block'>
-            <div class="block-info-text">
-                <h3 class='block-title-info'>Total de Níveis Iniciais: </h3>
-                <p class='p-info'>{{ total_inicial }}</p>
+
+        <div class="stat-card">
+            <div class="stat-icon levels">
+                <i class="fas fa-chart-line"></i>
             </div>
-            <div class="block-info-icon">
-                <svg id='icon-3' class='block-icon' xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/></svg>
+            <div class="stat-content">
+                <div class="stat-label">Total de Níveis Avançados</div>
+                <div class="stat-value">{{ total_avancado }}</div>
+            </div>
+            <div class="stat-trend positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+12%</span>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon levels">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-label">Total de Níveis Intermediário</div>
+                <div class="stat-value">{{ total_intermediario }}</div>
+            </div>
+            <div class="stat-trend positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+12%</span>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon levels">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-label">Total de Níveis Inicial</div>
+                <div class="stat-value">{{ total_inicial }}</div>
+            </div>
+            <div class="stat-trend positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+12%</span>
             </div>
         </div>
     </div>
-    <div class='see-more-div'>
-        <span id='see-more' onclick='toggleBlocks()'>Ver mais</span>
-    </div>
-</div>
-{% include "partials/search.html" %}
-<section class='families-sec'>
-    <div class='families-list'>
-        <div class='families-list-header'>
-            <h1 class='title'>Famílias Cadastradas</h1>
-            <a id='add-family' href="{% url 'register' %}">Adicionar</a>
+
+    <!-- Controls -->
+    {% include "partials/search.html" %}
+
+    <!-- Families Section -->
+    <div class="families-section">
+        <div class="section-header">
+            <h2>Famílias Cadastradas</h2>
+            <button class="btn btn-primary" id="addFamilyBtn" onclick="redirect('{% url 'register' %}')">
+                <i class="fas fa-plus"></i>
+                Adicionar
+            </button>
         </div>
-        <div class="list-cards">
+
+        <div class="families-grid" id="familiesGrid">
             {% if families %}
-                {% for family in families|slice:":3" %}
+                {% for family in families %}
                     {% include "partials/card.html" %}
                 {% endfor %}
-                <div class="list-families-a-div">
-                    <a class="list-families-a" href="{% url 'list_families' %}">Lista de Famílias</a>
-                </div>
             {% else %}
-                <p class="no-results">Nenhuma família encontrada.</p>
+                <div class="no-families">
+                    <i class="fas fa-search"></i>
+                    <h3>Nenhuma família encontrada</h3>
+                    <p>Tente ajustar os filtros de pesquisa.</p>
+                </div>
             {% endif %}
         </div>
     </div>
-    <div class='family-data' id='target'>
-    </div>
-</section>
-<br>
+</div>
 {% endblock %}
