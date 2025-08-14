@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block center %}
 <div class="page active" id="dashboard">
     <div class="page-header">
@@ -106,4 +106,5 @@
         </div>
     </div>
 </div>
+{% include "partials/family_profile.html" %}
 {% endblock %}

@@ -115,15 +115,6 @@ def timeline(request, id):
     }
     return render(request, "seapac/timeline.html", context)
 
-def family_profile(request, id):
-    family = get_object_or_404(Family, id=id)
-    context = {
-        "id": id,
-        "family": family,
-        "title": "Perfil"
-    }
-    return render(request, "seapac/family_profile.html", context)
-
 def calendar(request):
     level = request.GET.get('nivel')
     query = request.GET.get('q')

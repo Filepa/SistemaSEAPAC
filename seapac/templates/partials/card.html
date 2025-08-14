@@ -1,3 +1,4 @@
+{% load static %}
 <div class="family-card">
     <div class="family-header">
         <h3 class="family-name">{{ family.get_nome_familia}}</h3>
@@ -35,7 +36,7 @@
     </div>
     
     <div class="family-actions">
-        <button class="btn btn-outline btn-sm" onclick="">
+        <button class="btn btn-outline btn-sm" onclick="showProfile('{{ family.id }}')">
             <i class="fas fa-eye"></i>
             Visualizar
         </button>

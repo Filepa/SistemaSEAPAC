@@ -7,6 +7,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
+function showProfile(id) {
+  const overlay = document.getElementById('overlay');
+  const panel = document.getElementById('panel');
+
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  panel.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+};
+
 // Counter animation for stats
 function initializeCounterAnimations() {
   document.querySelectorAll('.stat-value').forEach(element => {

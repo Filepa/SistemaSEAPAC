@@ -704,38 +704,6 @@ body {
     visibility: visible;
 }
 
-/* Coming Soon */
-.coming-soon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-16);
-    text-align: center;
-    background: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--gray-200);
-}
-
-.coming-soon i {
-    font-size: var(--font-size-4xl);
-    color: var(--gray-400);
-    margin-bottom: var(--space-4);
-}
-
-.coming-soon h3 {
-    font-size: var(--font-size-2xl);
-    font-weight: 600;
-    color: var(--gray-700);
-    margin-bottom: var(--space-2);
-}
-
-.coming-soon p {
-    color: var(--gray-600);
-    font-size: var(--font-size-lg);
-}
-
 /* Responsive Design */
 @media (max-width: 1024px) {
     .sidebar {
