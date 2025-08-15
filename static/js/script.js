@@ -1,11 +1,13 @@
+// Initialize the app
+document.addEventListener('DOMContentLoaded', function() {
+  initializeCounterAnimations();
+  calendar()
+  showSubsystem();
+});
+
 function redirect(url) {
   window.location.href = url;
 }
-// Initialize the app
-document.addEventListener('DOMContentLoaded', function() {
-    initializeCounterAnimations();
-    
-});
 
 function showProfile(id) {
   const overlay = document.getElementById('overlay');
@@ -46,73 +48,38 @@ function initializeCounterAnimations() {
   });
 }
 
-// Add CSS for family score and no families state
-const additionalStyles = `
-    .family-score {
-        margin-bottom: var(--space-4);
-    }
-    
-    .score-label {
-        font-size: var(--font-size-sm);
-        color: var(--gray-600);
-        margin-bottom: var(--space-2);
-        font-weight: 500;
-    }
-    
-    .score-value {
-        font-size: var(--font-size-lg);
-        font-weight: 600;
-        color: var(--gray-900);
-        margin-bottom: var(--space-2);
-    }
-    
-    .score-bar {
-        height: 8px;
-        background-color: var(--gray-200);
-        border-radius: 4px;
-        overflow: hidden;
-        margin-bottom: var(--space-2);
-    }
-    
-    .score-progress {
-        height: 100%;
-        background: linear-gradient(90deg, var(--accent-green), var(--light-green));
-        transition: width 0.8s ease-in-out;
-        border-radius: 4px;
-    }
-    
-    .no-families {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: var(--space-16);
-        text-align: center;
-        color: var(--gray-500);
-    }
-    
-    .no-families i {
-        font-size: var(--font-size-4xl);
-        margin-bottom: var(--space-4);
-        color: var(--gray-400);
-    }
-    
-    .no-families h3 {
-        font-size: var(--font-size-xl);
-        font-weight: 600;
-        color: var(--gray-600);
-        margin-bottom: var(--space-2);
-    }
-    
-    .no-families p {
-        color: var(--gray-500);
-    }
-`;
+// painel de controle, clique dos blocos e o cursor
+function showSubsystem() {
+  const subsystemBlocks = document.querySelectorAll('.subsystem-block');
+  const overlay = document.getElementById('overlay');
+  const panel = document.getElementById('panel');
 
-// Add the additional styles to the page
-const styleSheet = document.createElement('style');
-styleSheet.textContent = additionalStyles;
-document.head.appendChild(styleSheet);
+  subsystemBlocks.forEach(block => {
+    block.addEventListener('mouseenter', () => {
+      block.style.cursor = 'pointer';
+    });
+
+    block.addEventListener('mouseup', () => {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    block.addEventListener('mouseleave', () => {
+      block.style.cursor = '';
+    });
+  });
+
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  panel.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+};
 
 // blocos do fluxograma
 jsPlumb.ready(function() {
@@ -165,41 +132,8 @@ jsPlumb.ready(function() {
   });
 });
 
-// painel de controle, clique dos blocos e o cursor
-document.addEventListener('DOMContentLoaded', () => {
-  const subsystemBlocks = document.querySelectorAll('.subsystem-block');
-  const overlay = document.getElementById('overlay');
-  const panel = document.getElementById('panel');
-
-  subsystemBlocks.forEach(block => {
-    block.addEventListener('mouseenter', () => {
-      block.style.cursor = 'pointer';
-    });
-
-    block.addEventListener('mouseup', () => {
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-
-    block.addEventListener('mouseleave', () => {
-      block.style.cursor = '';
-    });
-  });
-
-  overlay.addEventListener('click', (event) => {
-    if (event.target === overlay) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-
-  panel.addEventListener('click', (event) => {
-    event.stopPropagation();
-  });
-});
-
 //calendário de agendamento de visitas
-document.addEventListener('DOMContentLoaded', function () {
+function calendar() {
   const Draggable = FullCalendar.Draggable;
 
   new Draggable(document.getElementById('external-events'), {
@@ -265,4 +199,4 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   calendar.render();
-});
+};

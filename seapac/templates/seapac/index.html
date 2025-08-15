@@ -85,13 +85,13 @@
     <div class="families-section">
         <div class="section-header">
             <h2>Famílias Cadastradas</h2>
-            <button class="btn btn-primary" id="addFamilyBtn" onclick="redirect('{% url 'register' %}')">
+            <button class="btn btn-primary" onclick="redirect('{% url 'register' %}')">
                 <i class="fas fa-plus"></i>
                 Adicionar
             </button>
         </div>
 
-        <div class="families-grid" id="familiesGrid">
+        <div class="families-grid">
             {% if families %}
                 {% for family in families %}
                     {% include "partials/card.html" %}

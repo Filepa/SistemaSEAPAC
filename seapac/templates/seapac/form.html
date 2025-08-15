@@ -6,7 +6,9 @@
     <form method="post" enctype="multipart/form-data" class="container-forms">
         <section class='forms-section'>
             <div class="forms-info-titular">
-                <h2>Informações do Titular</h2>
+                <div class="section-header form-header">
+                    <h2>Informações do Titular</h2>
+                </div>
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="nome_titular" class="form-label">Nome</label>
@@ -20,13 +22,15 @@
                     <label for="cpf" class="form-label">CPF</label>
                     {{ familyform.cpf }}
                 </div>
-                <div class="mb-3">
-                    <label for="data_nascimento" class="form-label">Data de Nascimento</label>
-                    {{ familyform.data_nascimento }}
-                </div>
-                <div class="mb-3">
-                    <label for="data_inicio" class="form-label">Data de Iniciação</label>
-                    {{ familyform.data_inicio }}
+                <div class="row mb-3 centralized-row">
+                    <div class="col-md-6">
+                        <label for="data_nascimento" class="form-label">Data de Nascimento</label>
+                        {{ familyform.data_nascimento }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="data_inicio" class="form-label">Data de Iniciação</label>
+                        {{ familyform.data_inicio }}
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="contato" class="form-label">Contato</label>
@@ -62,7 +66,9 @@
                 </div>
             </div>
             <div class="forms-info-terra">
-                <h2>Informações da Terra</h2>
+                <div class="section-header form-header">
+                    <h2>Informações da Terra</h2>
+                </div>
                 <div class="mb-3">
                     <label for="municipio" class="form-label">Município</label>
                     {{ terrainform.municipio }}
@@ -71,13 +77,15 @@
                     <label for="comunidade" class="form-label">Comunidade</label>
                     {{ terrainform.comunidade }}
                 </div>
-                <div class="mb-3">
-                    <label for="latitude" class="form-label">Latitude</label>
-                    {{ terrainform.latitude }}
-                </div>
-                <div class="mb-3">
-                    <label for="longitude" class="form-label">Longitude</label>
-                    {{ terrainform.longitude }}
+                <div class="row mb-3 centralized-row">
+                    <div class="col-md-6">
+                        <label for="latitude" class="form-label">Latitude</label>
+                        {{ terrainform.latitude }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="longitude" class="form-label">Longitude</label>
+                        {{ terrainform.longitude }}
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="tamanho_m2" class="form-label">Tamanho (m²)</label>

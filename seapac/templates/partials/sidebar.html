@@ -2,19 +2,19 @@
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-content">
         <nav class="nav-menu">
-            <a href="{% url 'index' %}" class="nav-item active" data-page="dashboard">
+            <a href="{% url 'index' %}" class="nav-item {% if request.resolver_match.url_name == 'index' %}active{% endif %}" data-page="dashboard">
                 <i class="fas fa-home"></i>
                 <span>Página Inicial</span>
             </a>
-            <a href="{% url 'register' %}" class="nav-item" data-page="cadastrar">
+            <a href="{% url 'register' %}" class="nav-item {% if request.resolver_match.url_name == 'register' %}active{% endif %}" data-page="cadastrar">
                 <i class="fas fa-user-plus"></i>
                 <span>Cadastrar Família</span>
             </a>
-            <a href="{% url 'list_families' %}" class="nav-item" data-page="familias">
+            <a href="{% url 'list_families' %}" class="nav-item {% if request.resolver_match.url_name == 'list_families' %}active{% endif %}" data-page="familias">
                 <i class="fas fa-users"></i>
                 <span>Lista de Famílias</span>
             </a>
-            <a href="{% url 'calendar' %}" class="nav-item" data-page="calendario">
+            <a href="{% url 'calendar' %}" class="nav-item {% if request.resolver_match.url_name == 'calendar' %}active{% endif %}" data-page="calendario">
                 <i class="fas fa-calendar-alt"></i>
                 <span>Calendário de Visitas</span>
             </a>
