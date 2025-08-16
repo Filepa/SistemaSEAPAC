@@ -315,16 +315,22 @@ body {
 }
 
 .stat-icon.municipalities {
+    background: linear-gradient(135deg, var(--error), #ff7675);
+}
+
+.stat-icon.basic {
     background: linear-gradient(135deg, var(--info), #74b9ff);
 }
 
-.stat-icon.levels {
+.stat-icon.intermediary, .stat-icon.technical {
     background: linear-gradient(135deg, var(--warning), #fdcb6e);
 }
 
-.stat-icon.visits {
+.stat-icon.visits, .stat-icon.advanced {
     background: linear-gradient(135deg, var(--success), #00b894);
 }
+
+
 
 .stat-content {
     flex: 1;

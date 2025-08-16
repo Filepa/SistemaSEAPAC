@@ -26,7 +26,6 @@
         "aposentadoria": true,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 1,
         "terra": 1,
         "projeto": 1,
         "subsistemas": []
@@ -48,7 +47,6 @@
         "aposentadoria": true,
         "auxilio": true,
         "escolaridade": 2,
-        "nivel": 2,
         "terra": 2,
         "projeto": 1,
         "subsistemas": []
@@ -70,7 +68,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 3,
-        "nivel": 1,
         "terra": 3,
         "projeto": 1,
         "subsistemas": []
@@ -92,7 +89,6 @@
         "aposentadoria": false,
         "auxilio": false,
         "escolaridade": 4,
-        "nivel": 2,
         "terra": 4,
         "projeto": 1,
         "subsistemas": []
@@ -114,7 +110,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 2,
-        "nivel": 1,
         "terra": 5,
         "projeto": 1,
         "subsistemas": []
@@ -136,7 +131,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 3,
-        "nivel": 3,
         "terra": 6,
         "projeto": 1,
         "subsistemas": []
@@ -158,7 +152,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 3,
         "terra": 7,
         "projeto": 1,
         "subsistemas": []
@@ -180,7 +173,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 4,
-        "nivel": 3,
         "terra": 8,
         "projeto": 1,
         "subsistemas": []
@@ -202,7 +194,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 5,
-        "nivel": 1,
         "terra": 9,
         "projeto": 1,
         "subsistemas": []
@@ -224,7 +215,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 6,
-        "nivel": 2,
         "terra": 10,
         "projeto": 1,
         "subsistemas": []
@@ -246,7 +236,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 2,
-        "nivel": 1,
         "terra": 11,
         "projeto": 1,
         "subsistemas": []
@@ -268,7 +257,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 7,
-        "nivel": 3,
         "terra": 12,
         "projeto": 1,
         "subsistemas": []
@@ -290,7 +278,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 8,
-        "nivel": 3,
         "terra": 13,
         "projeto": 1,
         "subsistemas": []
@@ -312,7 +299,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 2,
-        "nivel": 1,
         "terra": 14,
         "projeto": 1,
         "subsistemas": []
@@ -334,7 +320,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 3,
-        "nivel": 1,
         "terra": 15,
         "projeto": 1,
         "subsistemas": []
@@ -356,7 +341,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 5,
-        "nivel": 1,
         "terra": 16,
         "projeto": 1,
         "subsistemas": []
@@ -378,7 +362,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 1,
         "terra": 17,
         "projeto": 1,
         "subsistemas": []
@@ -400,7 +383,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 4,
-        "nivel": 1,
         "terra": 18,
         "projeto": 1,
         "subsistemas": []
@@ -422,7 +404,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 6,
-        "nivel": 2,
         "terra": 19,
         "projeto": 1,
         "subsistemas": []
@@ -444,7 +425,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 2,
-        "nivel": 2,
         "terra": 20,
         "projeto": 1,
         "subsistemas": []
@@ -466,7 +446,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 8,
-        "nivel": 2,
         "terra": 21,
         "projeto": 1,
         "subsistemas": []
@@ -488,7 +467,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 3,
-        "nivel": 1,
         "terra": 22,
         "projeto": 1,
         "subsistemas": []
@@ -510,7 +488,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 1,
         "terra": 23,
         "projeto": 1,
         "subsistemas": []
@@ -532,7 +509,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 2,
-        "nivel": 3,
         "terra": 24,
         "projeto": 1,
         "subsistemas": []
@@ -554,7 +530,6 @@
         "aposentadoria": true,
         "auxilio": false,
         "escolaridade": 1,
-        "nivel": 1,
         "terra": 25,
         "projeto": 1,
         "subsistemas": []
@@ -576,7 +551,6 @@
         "aposentadoria": false,
         "auxilio": true,
         "escolaridade": 1,
-        "nivel": 2,
         "terra": 26,
         "projeto": 1,
         "subsistemas": []
