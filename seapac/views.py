@@ -167,6 +167,18 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
         'type': 'edit'
     })
 
+def edit_conections(request, id):
+    family = get_object_or_404(Family, id=id)
+    subsystems = Subsystem.objects.filter(family=family)
+    if request.method == 'POST':
+        family.save()
+        return redirect('flow', id=family.id)
+    return render(request, "seapac/edit_conections.html", {
+        'family': family,
+        'subsystems': subsystems,
+        'title': 'Editar Conexões'
+    })
+
 def timeline(request, id):
     family = get_object_or_404(Family, id=id)
     context = {

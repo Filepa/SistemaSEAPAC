@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from seapac.views import index, register, flow, timeline, edit_family, list_families, calendar, edit_flow, family_profile, subsystem_panel, edit_subsystem_panel, eventos_json, criar_evento, deletar_evento
+from seapac.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,11 +28,12 @@ urlpatterns = [
     path('<str:family_id>/painel-subsistema/<str:subsystem_id>/', subsystem_panel, name='subsystem_panel'),
     path('<str:family_id>/editar-painel-subsistema/<str:subsystem_id>/', edit_subsystem_panel, name='edit_subsystem_panel'),
     path('<str:id>/timeline/', timeline, name='timeline'),
-    path('editar-familia/<int:id>/', edit_family, name='edit_family'),
+    path('<str:id>/editar-familia/', edit_family, name='edit_family'),
     path('lista-familias/', list_families, name='list_families'),
     path('calendario-visitas/', calendar, name='calendar'),
     path('<str:id>/editar-fluxo/', edit_flow, name='edit_flow'),
-    path('perfil-familia/<int:id>/', family_profile, name='family_profile'),
+    path('<str:id>/perfil-familia/', family_profile, name='family_profile'),
+    path('<str:id>/editar-conexoes/', edit_conections, name='edit_conections'),
     path('api/events/', eventos_json),
     path('api/events/create/', criar_evento),
     path('api/events/delete/<int:event_id>/', deletar_evento),
