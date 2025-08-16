@@ -11,15 +11,15 @@ def index(request):
     level = request.GET.get('nivel')
     query = request.GET.get('q')
     families = Family.objects.all()
-    if level:
-        families = families.filter(nivel=level)
     if query:
         families = families.filter(nome_titular__icontains=query)
+    if level:
+        families = [f for f in families if str(f.get_nivel(None)) == str(dict(LEVEL_CHOICES).get(int(level)))]
     total_municipios = Terrain.objects.values('municipio').distinct().count()
     total_families = Family.objects.count()
-    total_avancado = Family.objects.filter(nivel=3).count()
-    total_intermediario = Family.objects.filter(nivel=2).count()
-    total_inicial = Family.objects.filter(nivel=1).count()
+    total_avancado = len([f for f in Family.objects.all() if f.get_nivel() == "Avancado"])
+    total_intermediario = len([f for f in Family.objects.all() if f.get_nivel() == "Intermediario"])
+    total_inicial = len([f for f in Family.objects.all() if f.get_nivel() == "Inicial"])
     context = {
         "families": families,
         "total_families": total_families,
@@ -43,7 +43,7 @@ def register(request):
             family.terra = terrain
             family.save()
             familyform.save_m2m()
-            return redirect('formflow', id=family.id)
+            return redirect('edit_flow', id=family.id)
         else:
             print(terrainform.errors, familyform.errors)
     else:
@@ -101,7 +101,7 @@ def list_families(request):
     query = request.GET.get('q')
     families = Family.objects.all()
     if level:
-        families = families.filter(nivel=level)
+        families = [f for f in families if str(f.get_nivel(None)) == str(dict(LEVEL_CHOICES).get(int(level)))]
     if query:
         families = families.filter(nome_titular__icontains=query)
     context ={
@@ -139,7 +139,7 @@ def calendar(request):
     query = request.GET.get('q')
     families = Family.objects.all()
     if level:
-        families = families.filter(nivel=level)
+        families = [f for f in families if str(f.get_nivel(None)) == str(dict(LEVEL_CHOICES).get(int(level)))]
     if query:
         families = families.filter(nome_titular__icontains=query)
     context = {

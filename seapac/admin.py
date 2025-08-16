@@ -17,7 +17,7 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Family)
 class FamilyAdmin(admin.ModelAdmin):
-    list_display = ('nome_titular', 'nome_conjuge', 'data_nascimento', 'data_inicio', 'cpf', 'contato', 'bpc', 'nis', 'dap', 'aposentadoria', 'auxilio', 'escolaridade', 'nivel', 'projeto', 'terra')
+    list_display = ('nome_titular', 'nome_conjuge', 'data_nascimento', 'data_inicio', 'cpf', 'contato', 'bpc', 'nis', 'dap', 'aposentadoria', 'auxilio', 'escolaridade', 'projeto', 'terra')
 
 @admin.register(Terrain)
 class TerrainAdmin(admin.ModelAdmin):

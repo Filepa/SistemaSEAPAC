@@ -75,7 +75,6 @@ class Family(models.Model):
     aposentadoria = models.BooleanField(default=False)
     auxilio = models.BooleanField(default=False)
     escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1)
-    nivel = models.IntegerField(choices=LEVEL_CHOICES, default=1, null=True, blank=True)
     terra = models.OneToOneField('Terrain', on_delete=models.CASCADE)
     projeto = models.ForeignKey('Project', on_delete=models.CASCADE)
     subsistemas = models.ManyToManyField('Subsystem', blank=True)
@@ -83,8 +82,18 @@ class Family(models.Model):
     def __str__(self):
         return self.nome_titular
 
+    def get_pontuacao(self):
+        pontuacao = self.subsistemas.count() * 5
+        return pontuacao
+
     def get_nivel(self):
-        return dict(LEVEL_CHOICES).get(self.nivel)
+        pontos = self.get_pontuacao()
+        if pontos <= 30:
+            return dict(LEVEL_CHOICES).get(1)
+        elif pontos <= 60:
+            return dict(LEVEL_CHOICES).get(2)
+        else:
+            return dict(LEVEL_CHOICES).get(3)
     
     def get_nome_familia(self):
         try:
