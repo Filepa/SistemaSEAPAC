@@ -773,15 +773,22 @@ body {
 }
 
 /* FLUXO */
-.flowlink{
-    font-family: var(--font-murecho);
-    font-weight: bold;
-    color: var(--soft-green);
+.flow-header, .flow-header-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.flowlink:hover{
-    color: var(--soft-green-hover);
-    text-decoration: none;
+.btn-timeline{
+    margin-bottom: 10px;
+}
+
+.edit-flow{
+    color: var(--success);
+}
+
+.edit-flow:hover{
+    color: var(--accent-green);
 }
 
 .sandbox{

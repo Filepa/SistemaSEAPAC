@@ -55,7 +55,7 @@ def register(request):
         'title': 'Cadastrar Família'
     })
 
-def formflow(request, id):
+def edit_flow(request, id):
     family = get_object_or_404(Family, id=id)
     subsystems = Subsystem.objects.all()
     selected_ids = list(family.subsistemas.values_list('id', flat=True))

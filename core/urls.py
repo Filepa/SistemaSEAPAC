@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from seapac.views import index, register, flow, timeline, edit_family, list_families, calendar, formflow, eventos_json, criar_evento, deletar_evento
+from seapac.views import index, register, flow, timeline, edit_family, list_families, calendar, edit_flow, eventos_json, criar_evento, deletar_evento
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,7 +29,7 @@ urlpatterns = [
     path('editar-familia/<int:id>/', edit_family, name='edit_family'),
     path('lista-familias/', list_families, name='list_families'),
     path('calendario-visitas/', calendar, name='calendar'),
-    path('formflow/<int:id>/', formflow, name='formflow'),
+    path('<str:id>/editar-fluxo', edit_flow, name='edit_flow'),
     path('api/events/', eventos_json),
     path('api/events/create/', criar_evento),
     path('api/events/delete/<int:event_id>/', deletar_evento),
