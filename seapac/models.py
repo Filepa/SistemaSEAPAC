@@ -1,6 +1,5 @@
 from django.db import models #coloquei um monte de null pq tava dando erro essa bosta
 from django.core.serializers import serialize
-import json
 
 # Create your models here.
 class User(models.Model):
@@ -101,6 +100,12 @@ class Family(models.Model):
             return "Família " + sobrenome
         except IndexError:
             return "Família " + self.nome_titular
+        
+    def get_escolaridade_display(self):
+        return dict(ESCOLAR_CHOICES).get(self.escolaridade)
+
+    def get_subsistemas_list(self):
+        return ", ".join(subsistema.nome_subsistema for subsistema in self.subsistemas.all())
 
 class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas
     titulo = models.CharField(max_length=200)
