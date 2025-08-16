@@ -2,31 +2,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   initializeCounterAnimations();
   calendar()
-  showSubsystem();
 });
 
 function redirect(url) {
   window.location.href = url;
 }
-
-function showProfile(id) {
-  const overlay = document.getElementById('overlay');
-  const panel = document.getElementById('panel');
-
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-
-  overlay.addEventListener('click', (event) => {
-    if (event.target === overlay) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-
-  panel.addEventListener('click', (event) => {
-    event.stopPropagation();
-  });
-};
 
 // Counter animation for stats
 function initializeCounterAnimations() {
@@ -47,39 +27,6 @@ function initializeCounterAnimations() {
     }, 16);
   });
 }
-
-// painel de controle, clique dos blocos e o cursor
-function showSubsystem() {
-  const subsystemBlocks = document.querySelectorAll('.subsystem-block');
-  const overlay = document.getElementById('overlay');
-  const panel = document.getElementById('panel');
-
-  subsystemBlocks.forEach(block => {
-    block.addEventListener('mouseenter', () => {
-      block.style.cursor = 'pointer';
-    });
-
-    block.addEventListener('mouseup', () => {
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-
-    block.addEventListener('mouseleave', () => {
-      block.style.cursor = '';
-    });
-  });
-
-  overlay.addEventListener('click', (event) => {
-    if (event.target === overlay) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-
-  panel.addEventListener('click', (event) => {
-    event.stopPropagation();
-  });
-};
 
 // blocos do fluxograma
 jsPlumb.ready(function() {

@@ -852,48 +852,6 @@ body {
 #block15 { top: 470px; left: 1300px; }
 #block16 { top: 580px; left: 1300px; }
 
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.panel {
-    overflow: hidden;
-    background-color: white;
-    display: flex;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 1200px;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-    align-items: stretch;
-}
-
-.overlay.active .panel {
-    transform: scale(1);
-}
-
-.panel-content {
-    text-align: center;
-    padding: 20px;
-}
-
 .image-panel-div {
     width: 10rem;
     flex-shrink: 0;

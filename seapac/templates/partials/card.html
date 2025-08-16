@@ -36,7 +36,7 @@
     </div>
     
     <div class="family-actions">
-        <button class="btn btn-outline btn-sm" onclick="showProfile('{{ family.id }}')">
+        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'family_profile' family.id %}')">
             <i class="fas fa-eye"></i>
             Visualizar
         </button>

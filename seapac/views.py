@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Family, Subsystem, Evento, Terrain, Project
-from .forms import FamilyForm, TerrainForm
+from .forms import FamilyForm, TerrainForm, SubsystemForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
@@ -69,7 +69,7 @@ def edit_flow(request, id):
         selected = request.POST.getlist('subsistemas')
         family.subsistemas.set(selected)
         family.save()
-        return redirect('index')
+        return redirect('flow', id=family.id)
     return render(request, "seapac/formflow.html", {
         'family': family,
         'subsystems': subsystems,
@@ -118,6 +118,14 @@ def list_families(request):
     }
     return render(request, "seapac/list_families.html", context)
 
+def family_profile(request, id):
+    family = get_object_or_404(Family, id=id)
+    context = {
+        "family": family,
+        "title": "Perfil da Família"
+    }
+    return render(request, "seapac/family_profile.html", context)
+
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
     subsystems = Subsystem.objects.filter(family=family)
@@ -130,6 +138,34 @@ def flow(request, id):
         "title": "Fluxo"
     }
     return render(request, "seapac/flow.html", context)
+
+def subsystem_panel(request, family_id, subsystem_id):
+    family = get_object_or_404(Family, id=family_id)
+    subsystems = Subsystem.objects.filter(family=family)
+    subsystem = subsystems.get(id=subsystem_id)
+    return render(request, "seapac/subsystem_panel.html", {
+        'subsystem': subsystem,
+        'family': family,
+        'title': 'Painel do Subsistema',
+        'type': 'readonly'
+    })
+
+def edit_subsystem_panel(request, family_id, subsystem_id):
+    family = get_object_or_404(Family, id=family_id)
+    subsystems = Subsystem.objects.filter(family=family)
+    subsystem = subsystems.get(id=subsystem_id)
+    if request.method == 'POST':
+        form = SubsystemForm(request.POST, instance=subsystem)
+        if form.is_valid():
+            subsystem = form.save(commit=False)
+            subsystem.family = family
+        return redirect('subsystem_panel', family_id=family.id, subsystem_id=subsystem.id)
+    return render(request, "seapac/subsystem_panel.html", {
+        'subsystem': subsystem,
+        'family': family,
+        'title': 'Editar Painel do Subsistema',
+        'type': 'edit'
+    })
 
 def timeline(request, id):
     family = get_object_or_404(Family, id=id)
