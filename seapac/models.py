@@ -87,7 +87,11 @@ class Family(models.Model):
         return dict(LEVEL_CHOICES).get(self.nivel)
     
     def get_nome_familia(self):
-        return "Família " + self.nome_titular.split()[1]
+        try:
+            sobrenome = self.nome_titular.split()[1]
+            return "Família " + sobrenome
+        except IndexError:
+            return "Família " + self.nome_titular
 
 class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas
     titulo = models.CharField(max_length=200)
