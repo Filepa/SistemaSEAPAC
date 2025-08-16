@@ -205,23 +205,13 @@ body {
 
 .seapac-logo {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: var(--space-3);
     padding: var(--space-3);
     background: linear-gradient(135deg, var(--gray-100), var(--gray-50));
     border-radius: var(--border-radius);
     color: var(--gray-700);
-}
-
-.logo-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--accent-green), var(--light-green));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
 }
 
 /* Mobile Menu Toggle */

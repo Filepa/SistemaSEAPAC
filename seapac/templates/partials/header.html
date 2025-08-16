@@ -3,11 +3,11 @@
     <div class="header-content">
         <div class="logo">
             <i class="fas fa-users"></i>
-            <span>Sistema SEAPAC</span>
+            <a href="{% url "index" %}"><img src="{% static "img/sistemaseapaclogo.png" %}" alt="Logo Sistema SEAPAC" height="50" width="100"></a>
         </div>
         <div class="header-actions">
             <div class="user-menu">
-                <img src="" alt="Usuário" class="user-avatar">
+                <img src="{% static "img/fotos_perfil/default.jpg" %}" alt="Usuário" class="user-avatar">
                 <span>Admin</span>
                 <i class="fas fa-chevron-down"></i>
             </div>
