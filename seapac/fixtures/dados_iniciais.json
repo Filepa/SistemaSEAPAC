@@ -893,7 +893,7 @@
     "model": "seapac.subsystem",
     "pk": 13,
     "fields": {
-        "nome_subsistema": "Plantas medicinais e condimentares",
+        "nome_subsistema": "Plantas medicinais",
         "produtos_entrada_opcoes": [
             "Ração",
             "Milho",
@@ -1035,7 +1035,7 @@
     "model": "seapac.subsystem",
     "pk": 19,
     "fields": {
-        "nome_subsistema": "Compostagem e bioinsumo",
+        "nome_subsistema": "Compostagem",
         "produtos_entrada_opcoes": [
             "Ração",
             "Milho",
@@ -1060,7 +1060,7 @@
     "model": "seapac.subsystem",
     "pk": 20,
     "fields": {
-        "nome_subsistema": "Agroindustria artesanal",
+        "nome_subsistema": "Artesanato",
         "produtos_entrada_opcoes": [
             "Ração",
             "Milho",

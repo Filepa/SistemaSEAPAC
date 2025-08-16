@@ -43,6 +43,7 @@ class FamilyForm(ModelForm):
 
     class Meta:
         model = Family
+        exclude = ['terra']
         fields = '__all__'
         widgets = {
             'nome_titular': forms.TextInput(attrs={'class': 'form-control'}),

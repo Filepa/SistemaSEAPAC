@@ -35,21 +35,40 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        familyform = FamilyForm(request.POST, request.FILES)
         terrainform = TerrainForm(request.POST)
-        if familyform.is_valid() and terrainform.is_valid():
-            family = familyform.save()
-            terrain = terrainform.save(commit=False)
-            terrain.family = family 
-            terrain.save()
-            return redirect('index')
+        familyform = FamilyForm(request.POST, request.FILES)
+        if terrainform.is_valid() and familyform.is_valid():
+            terrain = terrainform.save()
+            family = familyform.save(commit=False)
+            family.terra = terrain
+            family.save()
+            familyform.save_m2m()
+            return redirect('formflow', id=family.id)
+        else:
+            print(terrainform.errors, familyform.errors)
     else:
-        familyform = FamilyForm()
         terrainform = TerrainForm()
+        familyform = FamilyForm()
     return render(request, "seapac/form.html", {
         'familyform': familyform,
         'terrainform': terrainform,
         'title': 'Cadastrar Família'
+    })
+
+def formflow(request, id):
+    family = get_object_or_404(Family, id=id)
+    subsystems = Subsystem.objects.all()
+    selected_ids = list(family.subsistemas.values_list('id', flat=True))
+    if request.method == 'POST':
+        selected = request.POST.getlist('subsistemas')
+        family.subsistemas.set(selected)
+        family.save()
+        return redirect('index')
+    return render(request, "seapac/formflow.html", {
+        'family': family,
+        'subsystems': subsystems,
+        'selected_ids': selected_ids,
+        'title': 'Fluxo'
     })
 
 def edit_family(request, id):

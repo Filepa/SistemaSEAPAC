@@ -1006,6 +1006,90 @@ tbody > tr:nth-of-type(even) {
     justify-content:space-between ;
 }
 
+/* FORMFLOW */
+
+.form-sandbox {
+    position: relative;
+    height: 720px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    overflow: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-subsystem-block {
+    position: absolute;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 2px;
+    width: 160px;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.form-subsystem-block:hover {
+    transform: scale(1.03);
+    border-color: #28a745;
+}
+
+.form-subsystem-block.selected {
+    border-color: #28a745;
+    background: #28a745;
+    box-shadow: 0 3px 8px rgba(40,167,69,0.2);
+}
+
+.form-subsystem-image {
+    display: block;
+    margin: 4px auto 0;
+    border-radius: 6px;
+    width: 120px;
+    height: 60px;
+    object-fit: cover;
+}
+#form-block1 { top: 300px; left: 650px; }
+#form-block6 { top: 470px; left: 850px; }
+#form-block11 { top: 470px; left: 650px; }
+#form-block12 { top: 470px; left: 450px; }
+#form-block17 { top: 130px; left: 950px; }
+#form-block18 { top: 130px; left: 750px; }
+#form-block19 { top: 130px; left: 550px; }
+#form-block20 { top: 130px; left: 350px; }
+#form-block2 { top: 570px; left: 25px; }
+#form-block3 { top: 460px; left: 25px; }
+#form-block4 { top: 350px; left: 25px; }
+#form-block5 { top: 240px; left: 25px; }
+#form-block7 { top: 130px; left: 25px; }
+#form-block8 { top: 20px; left: 25px; }
+#form-block9 { top: 20px; left: 1300px; }
+#form-block10 { top: 130px; left: 1300px; }
+#form-block13 { top: 240px; left: 1300px; }
+#form-block14 { top: 350px; left: 1300px; }
+#form-block15 { top: 460px; left: 1300px; }
+#form-block16 { top: 570px; left: 1300px; }
+
+.form-subsystem-block input[type="checkbox"] {
+    display: none;
+}
+
+.form-subsystem-block input[type="checkbox"]:checked {
+    display: none;
+}
+
+.form-subsystem-block input[type="checkbox"]:checked + .block-content {
+    border-color: #28a745;
+    background: #e6ffe6;
+    box-shadow: 0 3px 8px rgba(40,167,69,0.2);
+}
+
+.subsystem-btn-submit{
+    margin-top: 10px; 
+    text-align: center;
+}
+
 /*LISTA DE FAMILIAS */
 
 .pages-div {

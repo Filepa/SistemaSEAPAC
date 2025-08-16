@@ -65,7 +65,7 @@ LEVEL_CHOICES = [
 class Family(models.Model):
     nome_titular = models.CharField(max_length=30)
     nome_conjuge = models.CharField(max_length=30)
-    data_nascimento = models.DateField(blank=True)
+    data_nascimento = models.DateField()
     data_inicio = models.DateField()
     cpf = models.CharField(max_length=30)
     contato = models.CharField(max_length=30)
@@ -75,7 +75,7 @@ class Family(models.Model):
     aposentadoria = models.BooleanField(default=False)
     auxilio = models.BooleanField(default=False)
     escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1)
-    nivel = models.IntegerField(choices=LEVEL_CHOICES, default=1)
+    nivel = models.IntegerField(choices=LEVEL_CHOICES, default=1, null=True, blank=True)
     terra = models.OneToOneField('Terrain', on_delete=models.CASCADE)
     projeto = models.ForeignKey('Project', on_delete=models.CASCADE)
     subsistemas = models.ManyToManyField('Subsystem', blank=True)
