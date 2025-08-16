@@ -6,6 +6,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
 import json
 
+LEVEL_CHOICES = [
+    (1, "Inicial"),
+    (2, "Intermediario"),
+    (3, "Avancado")
+]
+
 # Create your views here.
 def index(request):
     level = request.GET.get('nivel')
@@ -14,7 +20,7 @@ def index(request):
     if query:
         families = families.filter(nome_titular__icontains=query)
     if level:
-        families = [f for f in families if str(f.get_nivel(None)) == str(dict(LEVEL_CHOICES).get(int(level)))]
+        families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
     total_municipios = Terrain.objects.values('municipio').distinct().count()
     total_families = Family.objects.count()
     total_avancado = len([f for f in Family.objects.all() if f.get_nivel() == "Avancado"])
@@ -101,7 +107,7 @@ def list_families(request):
     query = request.GET.get('q')
     families = Family.objects.all()
     if level:
-        families = [f for f in families if str(f.get_nivel(None)) == str(dict(LEVEL_CHOICES).get(int(level)))]
+        families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
     if query:
         families = families.filter(nome_titular__icontains=query)
     context ={
@@ -139,7 +145,7 @@ def calendar(request):
     query = request.GET.get('q')
     families = Family.objects.all()
     if level:
-        families = [f for f in families if str(f.get_nivel(None)) == str(dict(LEVEL_CHOICES).get(int(level)))]
+        families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
     if query:
         families = families.filter(nome_titular__icontains=query)
     context = {
