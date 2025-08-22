@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
+{% include "partials/search.html" %}
+    <div class="container-fluid px-md-3 px-0">
+    <div class="modal-overlay" id="projectModalOverlay">
+            <div class="modal" id="projectModal">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Cadastrar Novo Projeto</h2>
+                    <button class="close-btn" id="closeProjectModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="projectForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectTitle">Título do Projeto *</label>
+                                <input type="text" id="projectTitle" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="projectStatus">Status *</label>
+                                <select id="projectStatus" name="status" required>
+                                    <option value="">Selecione o status</option>
+                                    <option value="planejamento">Em Planejamento</option>
+                                    <option value="em-execucao">Em Execução</option>
+                                    <option value="concluido">Concluído</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectDescription">Descrição das Atividades *</label>
+                            <textarea id="projectDescription" name="description" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectDuration">Tempo de Execução *</label>
+                                <input type="text" id="projectDuration" name="duration" placeholder="Ex: 12 meses" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="projectBudget">Orçamento</label>
+                                <input type="text" id="projectBudget" name="budget" placeholder="Ex: R$ 50.000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectMunicipalities">Municípios de Atuação *</label>
+                            <input type="text" id="projectMunicipalities" name="municipalities" placeholder="Ex: São Paulo, Campinas, Santos" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectTechnicians">Técnicos Envolvidos *</label>
+                            <input type="text" id="projectTechnicians" name="technicians" placeholder="Ex: João Silva, Maria Santos" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectFamilies">Famílias Envolvidas</label>
+                            <input type="number" id="projectFamilies" name="families" placeholder="Número de famílias" min="0">
+                        </div>
+
+                        <div class="modal-actions">
+                            <button type="button" class="btn btn-outline" id="cancelProject">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Salvar Projeto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
