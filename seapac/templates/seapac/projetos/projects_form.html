@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block center %}
+<!--<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
+<body>
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Cadastrar Novo Projeto</h1>
+            <p class="page-subtitle">Preencha as informações do projeto</p>
+        </div>
+
+        <div class="form-container">
+            <div class="form-card">
+                <div class="form-header">
+                    <h2>Informações do Projeto</h2>
+                    <p>Todos os campos marcados com * são obrigatórios</p>
+                </div>
+
+                <form id="projectForm" class="project-form">
+                    <div class="form-section">
+                        <h3>Dados Básicos</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectTitle">Título do Projeto *</label>
+                                <input type="text" id="projectTitle" name="title" required>
+                                <small class="form-help">Nome que identifica o projeto</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="projectStatus">Status *</label>
+                                <select id="projectStatus" name="status" required>
+                                    <option value="">Selecione o status</option>
+                                    <option value="planejamento">Em Planejamento</option>
+                                    <option value="em-execucao">Em Execução</option>
+                                    <option value="concluido">Concluído</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectDescription">Descrição das Atividades *</label>
+                            <textarea id="projectDescription" name="description" rows="4" required placeholder="Descreva as principais atividades e objetivos do projeto..."></textarea>
+                            <small class="form-help">Detalhe as atividades que serão desenvolvidas no projeto</small>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Execução e Recursos</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectDuration">Tempo de Execução *</label>
+                                <input type="text" id="projectDuration" name="duration" placeholder="Ex: 12 meses" required>
+                                <small class="form-help">Duração prevista para o projeto</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="projectBudget">Orçamento</label>
+                                <input type="text" id="projectBudget" name="budget" placeholder="Ex: R$ 50.000">
+                                <small class="form-help">Valor total disponível (opcional)</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectFamilies">Famílias Envolvidas</label>
+                            <input type="number" id="projectFamilies" name="families" placeholder="Número de famílias" min="0">
+                            <small class="form-help">Quantidade de famílias que participarão do projeto</small>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Localização e Equipe</h3>
+                        
+                        <div class="form-group">
+                            <label for="projectMunicipalities">Municípios de Atuação *</label>
+                            <input type="text" id="projectMunicipalities" name="municipalities" placeholder="Ex: São Paulo, Campinas, Santos" required>
+                            <small class="form-help">Liste os municípios separados por vírgula</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectTechnicians">Técnicos Envolvidos *</label>
+                            <input type="text" id="projectTechnicians" name="technicians" placeholder="Ex: João Raposo, Aninha Santos" required>
+                            <small class="form-help">Nome dos técnicos responsáveis, separados por vírgula</small>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="window.location.href='projects.html'">
+                            <i class="fas fa-arrow-left"></i>
+                            Voltar
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Salvar Projeto
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mai>
+</body>

@@ -24,6 +24,8 @@ class Terrain(models.Model):
 
 class Project(models.Model):
     nome_projeto = models.CharField(max_length=30)
+    #familias = models.ManyToManyField('Family', on_delete=models.CASCADE)
+    #tecnicos = models.CharField(max_length=40) #pretendo deixar isso aqui como um select e obviamente uma chave estrangeira do model de ténicos (cujo irei fzr)
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_fim = models.DateField(blank=True, null=True)
@@ -107,7 +109,7 @@ class Family(models.Model):
     def get_subsistemas_list(self):
         return ", ".join(subsistema.nome_subsistema for subsistema in self.subsistemas.all())
 
-class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas
+class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas #tá bom
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()
 

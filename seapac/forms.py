@@ -9,6 +9,8 @@ class ProjectForm(ModelForm):
         widgets = {
             'nome_projeto': forms.TextInput(attrs={'class': 'form-control'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control'}),
+            #'tecnicos': forms.Textarea(attrs={'class': 'form-control'}), #vai virar um select ainda
+            #'familias': forms.Select(attrs={'class': 'form-select'}),
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'data_fim': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
         }

@@ -77,6 +77,48 @@ def edit_flow(request, id):
         'title': 'Fluxo'
     })
 
+#crud projetos: fazendo
+
+#def list_projects(request):
+   # projects = Project.objects.all()
+    #return render(request, 'seapac/projetos/projects.html', {'projects': projects})
+
+#def create_projects(request, id): 
+   # if request.method == 'POST':
+     #   form = ProjectForm(request.POST)
+       # if form.is_valid():
+         #   projetos = form.save()
+          #  return redirect('list_projects')
+
+    #else: 
+     #   form = ProjectForm()
+
+    #return render(request, 'seapac/projetos/projects_form.html', {'form': form, 'projetos': None})
+
+#def edit_projects(request, pk): 
+    #projetos = get_object_or_404(Project, pk=pk)
+    
+    #if request.method == 'POST':
+      #  form = ProjectForm(request.POST, instance=projetos)
+       # if form.is_valid():
+        #    form.save()
+         #   return redirect('detail_projects', pk=projetos.pk)
+   # else:
+        #form = ProjetcForm(instance=projetos)
+    #
+   # return render(request, 'seapac/projetos/projects_detail.html', {
+      # 'form': form,
+       # 'projeto': projetos
+    #})
+
+#def detail_projects(request, pk):
+   # projetos = get_object_or_404(Project, pk=pk)
+   # context= {
+       # 'projetos': projetos
+   # }
+   # return render(request, 'seapac/projetos/projects_detail.html', context) 
+
+
 def edit_family(request, id):
     family = get_object_or_404(Family, id=id)
     try:
