@@ -69,7 +69,7 @@ def edit_flow(request, id):
         selected = request.POST.getlist('subsistemas')
         family.subsistemas.set(selected)
         family.save()
-        return redirect('flow', id=family.id)
+        return redirect('index')
     return render(request, "seapac/formflow.html", {
         'family': family,
         'subsystems': subsystems,
