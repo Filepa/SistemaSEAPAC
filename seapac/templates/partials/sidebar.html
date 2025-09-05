@@ -14,12 +14,12 @@
                 <i class="fas fa-users"></i>
                 <span>Lista de Famílias</span>
             </a>
-            <a href=#  class="nav-item {% if request.resolver_match.url_name == 'list_families' %}active{% endif %}" data-page="familias">
-                <i class="fas fa-users"></i>
+            <a href=#  class="nav-item {% if request.resolver_match.url_name == 'list_projects' %}active{% endif %}" data-page="projetos">
+                <i class="fa-solid fa-diagram-project"></i>
                 <span>Projetos</span>
             </a>
-            <a href= # class="nav-item {% if request.resolver_match.url_name == 'list_families' %}active{% endif %}" data-page="familias">
-                <i class="fas fa-users"></i>
+            <a href=# class="nav-item {% if request.resolver_match.url_name == 'list_tecnicos' %}active{% endif %}" data-page="tecnicos">
+                <i class="fas fa-user-tag"></i>
                 <span>Técnicos</span>
             </a>
             <a href="{% url 'calendar' %}" class="nav-item {% if request.resolver_match.url_name == 'calendar' %}active{% endif %}" data-page="calendario">
