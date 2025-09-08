@@ -20,11 +20,19 @@
     </div>
 </div>
 
-<div class="sandbox">
+<div class="sandbox"
+     id="sandbox"
+     data-subsystems="{{ json_subsystems }}">
     {% for subsystem in subsystems %}
-        <div class='subsystem-block' id="block{{ forloop.counter }}" onclick="redirect('{% url 'subsystem_panel' family.id subsystem.id %}')">
+        <div class='subsystem-block' 
+             id="block{{ forloop.counter }}" 
+             data-name="{{ subsystem.nome_subsistema }}" 
+             onclick="redirect('{% url 'subsystem_panel' family.id subsystem.id %}')">
             {{ subsystem.nome_subsistema }}
-            <img src="{% static 'img/fotos_subsistemas/default.png' %}" alt="imagem aleatória" width='200' height='100' class="subsystem-image">
+            <img src="{% static 'img/fotos_subsistemas/default.png' %}" 
+                 alt="imagem aleatória" 
+                 width='200' height='100' 
+                 class="subsystem-image">
         </div>
     {% endfor %}
 </div>

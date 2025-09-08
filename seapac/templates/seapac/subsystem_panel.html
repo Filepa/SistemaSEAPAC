@@ -37,49 +37,49 @@
             </tr>
         </thead>
         <tbody>
-    {% if type == 'edit' %}
-        {{ formset.management_form }}
-        {% for form in formset %}
-            <tr>
-                <td>{{ form.nome_produto.value }}</td>
-                <td>{{ form.porcentagem }}</td>
-                <td>{{ form.destino }}</td>
-                {{ form.nome_produto }}
-            </tr>
-            {% if form.errors %}
-                <tr class="table-danger">
-                    <td colspan="3">
-                        <ul class="errorlist">
-                            {% for field, errors in form.errors.items %}
-                                {% for error in errors %}
-                                    <li>{{ field|title }}: {{ error }}</li>
-                                {% endfor %}
-                            {% endfor %}
-                        </ul>
-                    </td>
+        {% if type == 'edit' %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+                <tr>
+                    <td>{{ form.nome_produto.value }}</td>
+                    <td>{{ form.porcentagem }}</td>
+                    <td>{{ form.destino }}</td>
+                    {{ form.nome_produto }}
                 </tr>
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        {% for produto in subsystem.produtos_saida %}
-            <tr>
-                <td rowspan="{{ produto.fluxos|length|default:1 }}">{{ produto.nome }}</td>
-
-                {% if produto.fluxos %}
-                    {% for fluxo in produto.fluxos %}
-                        {% if not forloop.first %}<tr>{% endif %}
-                        <td>{{ fluxo.porcentagem|default:"0" }}%</td>
-                        <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
-                        </tr>
-                    {% endfor %}
-                {% else %}
-                    <td>0%</td>
-                    <td>Sem Destino</td>
+                {% if form.errors %}
+                    <tr class="table-danger">
+                        <td colspan="3">
+                            <ul class="errorlist">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ field|title }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
                 {% endif %}
-            </tr>
-        {% endfor %}
-    {% endif %}
-</tbody>
+            {% endfor %}
+        {% else %}
+            {% for produto in subsystem.produtos_saida %}
+                <tr>
+                    <td rowspan="{{ produto.fluxos|length|default:1 }}">{{ produto.nome }}</td>
+
+                    {% if produto.fluxos %}
+                        {% for fluxo in produto.fluxos %}
+                            {% if not forloop.first %}<tr>{% endif %}
+                            <td>{{ fluxo.porcentagem|default:"0" }}%</td>
+                            <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <td>0%</td>
+                        <td>Sem Destino</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
     </table>
     
     {% if type == 'edit' %}

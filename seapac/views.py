@@ -173,12 +173,23 @@ def flow(request, id):
     family = get_object_or_404(Family, id=id)
     subsystems = Subsystem.objects.filter(family=family)
     total_subsystems = subsystems.count()
+
+    subsystems_data = []
+    for subsystem in subsystems:
+        subsystems_data.append({
+            'nome_subsistema': subsystem.nome_subsistema,
+            'produtos_saida': subsystem.produtos_saida,
+        })
+
+    json_subsystems = json.dumps(subsystems_data, separators=(',', ':'))
+
     context = {
         "id": id,
         "family": family,
         "subsystems": subsystems,
         "total_subsystems": total_subsystems,
-        "title": "Fluxo"
+        "title": "Fluxo",
+        "json_subsystems": json_subsystems
     }
     return render(request, "seapac/flow.html", context)
 
