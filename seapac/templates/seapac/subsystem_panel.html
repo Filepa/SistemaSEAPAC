@@ -3,41 +3,90 @@
 {% block center %}
 <div class="flow-header">
     <div class="flow-header-main">
-        <h1 class="title">{% block title %}{{ title }}{% endblock title %} {{ subsystem.nome_subsistema }} da {{ family.get_nome_familia}} </h1>
+        <h1 class="title">
+            {% block title %}{{ title }}{% endblock title %} 
+            {{ subsystem.nome_subsistema }} da {{ family.get_nome_familia }}
+        </h1>
     </div>
     {% if type == 'readonly' %}
-        <button class="btn btn-primary btn-timeline" onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">
+        <button class="btn btn-primary btn-timeline"
+                onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">
             <i class="fa-solid fa-shuffle"></i>
             Editar Fluxo
         </button>
     {% endif %}
 </div>
 
-<p>Descrição do painel. Aqui você pode adicionar informações relevantes sobre o subsistema ou a funcionalidade.</p>
-<table>
-    <thead>
-        <tr>
-            <th scope="col">Produto</th>
-            <th scope="col">Porcentagem</th>
-            <th scope="col">Destino</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan="2">Ovo</td>
-            <td>80%</td>
-            <td>UFPA</td>
-        </tr>
-        <tr>
-            <td>20%</td>
-            <td>Mercado Local</td>
-        </tr>
-    </tbody>
-</table>
-{% if type == 'edit'  %}
-    <button id="btn-flow" class="btn btn-success" type="submit">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16"><path d="M11 2H9v3h2z"/><path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"/></svg>
-        <p class='btn-text'>Salvar</p>
-    </button>
-{% endif %}
+<p>Descrição do painel. Aqui você pode adicionar informações relevantes sobre o subsistema</p>
+
+<form method="post">
+    {% csrf_token %}
+    
+    {% if formset.non_form_errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ formset.non_form_errors }}
+        </div>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Porcentagem</th>
+                <th>Destino</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% if type == 'edit' %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <tr>
+                <td>{{ form.nome_produto.value }}</td>
+                <td>{{ form.porcentagem }}</td>
+                <td>{{ form.destino }}</td>
+                {{ form.nome_produto }}
+            </tr>
+            {% if form.errors %}
+                <tr class="table-danger">
+                    <td colspan="3">
+                        <ul class="errorlist">
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <li>{{ field|title }}: {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for produto in subsystem.produtos_saida %}
+            <tr>
+                <td rowspan="{{ produto.fluxos|length|default:1 }}">{{ produto.nome }}</td>
+
+                {% if produto.fluxos %}
+                    {% for fluxo in produto.fluxos %}
+                        {% if not forloop.first %}<tr>{% endif %}
+                        <td>{{ fluxo.porcentagem|default:"0" }}%</td>
+                        <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <td>0%</td>
+                    <td>Sem Destino</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    {% endif %}
+</tbody>
+    </table>
+    
+    {% if type == 'edit' %}
+        <button id="btn-flow" class="btn btn-success" type="submit">
+            <p class='btn-text'>Salvar</p>
+        </button>
+    {% endif %}
+</form>
+
 {% endblock %}

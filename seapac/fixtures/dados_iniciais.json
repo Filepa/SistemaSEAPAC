@@ -561,498 +561,466 @@
     "pk": 1,
     "fields": {
         "nome_subsistema": "UFPA",
-        "produtos_entrada_opcoes": [],
-        "produtos_saida_opcoes": [],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+        "produtos_saida": []
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 2,
     "fields": {
-        "nome_subsistema": "Caprinocultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Carne",
-            "Esterco",
-            "Animais para reprodução",
-            "Couro"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Caprinocultura",
+      "produtos_saida": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        },
+        {
+          "nome": "Couro",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 3,
     "fields": {
-        "nome_subsistema": "Avinocultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Pinto",
-            "Esterco",
-            "Carne de aves",
-            "Ovo"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Avinocultura",
+      "produtos_saida": [
+        {
+          "nome": "Pinto",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Carne de aves",
+          "fluxos": []
+        },
+        {
+          "nome": "Ovo",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 4,
     "fields": {
-        "nome_subsistema": "Bovinocultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Carne",
-            "Esterco",
-            "Animais para reprodução",
-            "Couro"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Bovinocultura",
+      "produtos_saida": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        },
+        {
+          "nome": "Couro",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 5,
     "fields": {
-        "nome_subsistema": "Suinocultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Carne",
-            "Esterco",
-            "Animais para reprodução"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Suinocultura",
+      "produtos_saida": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 6,
     "fields": {
-        "nome_subsistema": "Quintal",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Fruta",
-            "Hortaliça",
-            "Forragem"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Quintal",
+      "produtos_saida": [
+        {
+          "nome": "Fruta",
+          "fluxos": []
+        },
+        {
+          "nome": "Hortaliça",
+          "fluxos": []
+        },
+        {
+          "nome": "Forragem",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 7,
     "fields": {
-        "nome_subsistema": "Apicultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Mel",
-            "Cera",
-            "Geleia real",
-            "Própolis",
-            "Enxames"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Apicultura",
+      "produtos_saida": [
+        {
+          "nome": "Mel",
+          "fluxos": []
+        },
+        {
+          "nome": "Cera",
+          "fluxos": []
+        },
+        {
+          "nome": "Geleia real",
+          "fluxos": []
+        },
+        {
+          "nome": "Própolis",
+          "fluxos": []
+        },
+        {
+          "nome": "Enxames",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 8,
     "fields": {
-        "nome_subsistema": "Meliponicultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Mel",
-            "Cera",
-            "Enxames"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Meliponicultura",
+      "produtos_saida": [
+        {
+          "nome": "Mel",
+          "fluxos": []
+        },
+        {
+          "nome": "Cera",
+          "fluxos": []
+        },
+        {
+          "nome": "Enxames",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 9,
     "fields": {
-        "nome_subsistema": "Horticultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Coentro",
-            "Cebolinha",
-            "Pimentão",
-            "Tomate",
-            "Tomate cereja",
-            "Beringela",
-            "Pimenta de cheiro",
-            "Repolho"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Horticultura",
+      "produtos_saida": [
+        {
+          "nome": "Coentro",
+          "fluxos": []
+        },
+        {
+          "nome": "Cebolinha",
+          "fluxos": []
+        },
+        {
+          "nome": "Pimentão",
+          "fluxos": []
+        },
+        {
+          "nome": "Tomate",
+          "fluxos": []
+        },
+        {
+          "nome": "Tomate cereja",
+          "fluxos": []
+        },
+        {
+          "nome": "Beringela",
+          "fluxos": []
+        },
+        {
+          "nome": "Pimenta de cheiro",
+          "fluxos": []
+        },
+        {
+          "nome": "Repolho",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 10,
     "fields": {
-        "nome_subsistema": "Fruticultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Banana",
-            "Mamão",
-            "Coco",
-            "Limão"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Fruticultura",
+      "produtos_saida": [
+        {
+          "nome": "Banana",
+          "fluxos": []
+        },
+        {
+          "nome": "Mamão",
+          "fluxos": []
+        },
+        {
+          "nome": "Coco",
+          "fluxos": []
+        },
+        {
+          "nome": "Limão",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 11,
     "fields": {
-        "nome_subsistema": "Roçado",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Milho",
-            "Feijão",
-            "Jerimum",
-            "Melância",
-            "Feijão guandu",
-            "Fava",
-            "Arroz",
-            "Amendoim"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Roçado",
+      "produtos_saida": [
+        {
+          "nome": "Milho",
+          "fluxos": []
+        },
+        {
+          "nome": "Feijão",
+          "fluxos": []
+        },
+        {
+          "nome": "Jerimum",
+          "fluxos": []
+        },
+        {
+          "nome": "Melância",
+          "fluxos": []
+        },
+        {
+          "nome": "Feijão guandu",
+          "fluxos": []
+        },
+        {
+          "nome": "Fava",
+          "fluxos": []
+        },
+        {
+          "nome": "Arroz",
+          "fluxos": []
+        },
+        {
+          "nome": "Amendoim",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 12,
     "fields": {
-        "nome_subsistema": "Forragem",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Palma",
-            "Moringa",
-            "Leucena",
-            "Gliricídia",
-            "Margaridão",
-            "Capiaçu"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Forragem",
+      "produtos_saida": [
+        {
+          "nome": "Palma",
+          "fluxos": []
+        },
+        {
+          "nome": "Moringa",
+          "fluxos": []
+        },
+        {
+          "nome": "Leucena",
+          "fluxos": []
+        },
+        {
+          "nome": "Gliricídia",
+          "fluxos": []
+        },
+        {
+          "nome": "Margaridão",
+          "fluxos": []
+        },
+        {
+          "nome": "Capiaçu",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 13,
     "fields": {
-        "nome_subsistema": "Plantas medicinais",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Hortelã",
-            "Cidreira",
-            "Capim santo",
-            "Urucum"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Plantas medicinais",
+      "produtos_saida": [
+        {
+          "nome": "Hortelã",
+          "fluxos": []
+        },
+        {
+          "nome": "Cidreira",
+          "fluxos": []
+        },
+        {
+          "nome": "Capim santo",
+          "fluxos": []
+        },
+        {
+          "nome": "Urucum",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 14,
     "fields": {
-        "nome_subsistema": "Viveiro de mudas",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Coco",
-            "Limão",
-            "Banana"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Viveiro de mudas",
+      "produtos_saida": [
+        {
+          "nome": "Coco",
+          "fluxos": []
+        },
+        {
+          "nome": "Limão",
+          "fluxos": []
+        },
+        {
+          "nome": "Banana",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 15,
     "fields": {
-        "nome_subsistema": "Banco de sementes",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Feijão",
-            "Milho",
-            "Fava"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Banco de sementes",
+      "produtos_saida": [
+        {
+          "nome": "Feijão",
+          "fluxos": []
+        },
+        {
+          "nome": "Milho",
+          "fluxos": []
+        },
+        {
+          "nome": "Fava",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 16,
     "fields": {
-        "nome_subsistema": "Piscicultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Tilápia",
-            "Tambaqui"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Piscicultura",
+      "produtos_saida": [
+        {
+          "nome": "Tilápia",
+          "fluxos": []
+        },
+        {
+          "nome": "Tambaqui",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 17,
     "fields": {
-        "nome_subsistema": "Cacinicultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": null,
-        "produtos_entrada": null,
-        "produtos_saida": "Camarão",
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Cacinicultura",
+      "produtos_saida": [
+        {
+          "nome": "Camarão",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 18,
     "fields": {
-        "nome_subsistema": "Floricultura",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": null,
-        "produtos_entrada": null,
-        "produtos_saida": "Tulipa",
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Floricultura",
+      "produtos_saida": [
+        {
+          "nome": "Tulipa",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 19,
     "fields": {
-        "nome_subsistema": "Compostagem",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Composto orgânico",
-            "Biofertilizante",
-            "EM4"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Compostagem",
+      "produtos_saida": [
+        {
+          "nome": "Composto orgânico",
+          "fluxos": []
+        },
+        {
+          "nome": "Biofertilizante",
+          "fluxos": []
+        },
+        {
+          "nome": "EM4",
+          "fluxos": []
+        }
+      ]
     }
   },
   {
     "model": "seapac.subsystem",
     "pk": 20,
     "fields": {
-        "nome_subsistema": "Artesanato",
-        "produtos_entrada_opcoes": [
-            "Ração",
-            "Milho",
-            "Farelo de soja",
-            "Sal mineral",
-            "Vacinas",
-            "Medicamentos",
-            "Água"
-        ],
-        "produtos_saida_opcoes": [
-            "Doces",
-            "Bolos",
-            "Queijos"
-        ],
-        "produtos_entrada": null,
-        "produtos_saida": null,
-        "destino_produtos_entrada": null,
-        "destino_produtos_saida": null
+      "nome_subsistema": "Artesanato",
+      "produtos_saida": [
+        {
+          "nome": "Doces",
+          "fluxos": []
+        },
+        {
+          "nome": "Bolos",
+          "fluxos": []
+        },
+        {
+          "nome": "Queijos",
+          "fluxos": []
+        }
+      ]
     }
   },
   {

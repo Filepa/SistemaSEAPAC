@@ -27,19 +27,10 @@ class TerrainForm(ModelForm):
             'tamanho_m2': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
-class SubsystemForm(ModelForm):
-
-    class Meta:
-        model = Subsystem
-        fields = '__all__'
-        widgets = {
-            'nome_subsistema': forms.TextInput(attrs={'class': 'form-control'}),
-            'produtos_entrada': forms.Select(attrs={'class': 'form-select'}),
-            'produtos_saida': forms.Select(attrs={'class': 'form-select'}),
-            'destino_produtos_entrada': forms.Select(attrs={'class': 'form-select'}),
-            'destino_produtos_saida': forms.Select(attrs={'class': 'form-select'}),
-            'foto_subsistema': forms.FileInput(attrs={'class': 'form-control-file'}),
-        }
+class FluxoForm(forms.Form):
+    porcentagem = forms.DecimalField(max_digits=5, decimal_places=2, required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    destino = forms.ChoiceField(choices=[], required=False, widget=forms.Select(attrs={'class': 'form-select'}))
+    nome_produto = forms.CharField(widget=forms.HiddenInput())
 
 class FamilyForm(ModelForm):
 

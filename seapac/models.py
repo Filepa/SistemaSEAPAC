@@ -32,19 +32,6 @@ class Project(models.Model):
 
     def __str__(self):
         return self.nome_projeto
-
-class Subsystem(models.Model):
-    nome_subsistema = models.CharField(max_length=20)
-    foto_subsistema = models.ImageField(upload_to='fotos_subsistemas/', blank=True)
-    produtos_entrada = models.CharField(max_length=20, null=True)
-    produtos_saida = models.CharField(max_length=20, null=True)
-    destino_produtos_entrada = models.CharField(max_length=20, null=True)
-    destino_produtos_saida = models.CharField(max_length=20, null=True)
-    produtos_entrada_opcoes = models.JSONField(null=True, blank=True)
-    produtos_saida_opcoes = models.JSONField(null=True, blank=True)
-
-    def __str__(self):
-        return self.nome_subsistema
     
 ESCOLAR_CHOICES = [
     (1, "nenhum"),
@@ -108,6 +95,13 @@ class Family(models.Model):
 
     def get_subsistemas_list(self):
         return ", ".join(subsistema.nome_subsistema for subsistema in self.subsistemas.all())
+
+class Subsystem(models.Model):
+    nome_subsistema = models.CharField(max_length=50)
+    produtos_saida = models.JSONField(default=list, blank=True)
+
+    def __str__(self):
+        return self.nome_subsistema
 
 class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas #tá bom
     titulo = models.CharField(max_length=200)
