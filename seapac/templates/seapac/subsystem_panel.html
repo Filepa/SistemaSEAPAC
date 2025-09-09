@@ -9,11 +9,18 @@
         </h1>
     </div>
     {% if type == 'readonly' %}
-        <button class="btn btn-primary btn-timeline"
-                onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">
-            <i class="fa-solid fa-shuffle"></i>
-            Editar Fluxo
-        </button>
+        <div>
+            <button class="btn btn-primary btn-timeline"
+                    onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">
+                <i class="fa-solid fa-shuffle"></i>
+                Editar Fluxo
+            </button>
+            <button class="btn btn-primary btn-timeline"
+                    onclick="redirect('{% url 'flow' family.id %}')">
+                <i class="fa-solid fa-shuffle"></i>
+                Visualizar Fluxo
+            </button>
+        </div>
     {% endif %}
 </div>
 
@@ -34,6 +41,9 @@
                 <th>Produto</th>
                 <th>Porcentagem</th>
                 <th>Destino</th>
+                {% if type == 'readonly' %}
+                    <th>Ação</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -68,14 +78,16 @@
                     {% if produto.fluxos %}
                         {% for fluxo in produto.fluxos %}
                             {% if not forloop.first %}<tr>{% endif %}
-                            <td>{{ fluxo.porcentagem|default:"0" }}%</td>
-                            <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
-                            </tr>
+                                <td>{{ fluxo.porcentagem|default:"0" }}%</td>
+                                <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
                         {% endfor %}
                     {% else %}
                         <td>0%</td>
                         <td>Sem Destino</td>
+                        
                     {% endif %}
+                        <td><button class="btn btn-success add-row" onclick="addRow({{ produto }})">Adicionar</button></td>
+                    </tr>
                 </tr>
             {% endfor %}
         {% endif %}

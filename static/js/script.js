@@ -28,6 +28,10 @@ function initializeCounterAnimations() {
   });
 }
 
+function addRow() {
+  
+}
+
 // blocos do fluxograma
 jsPlumb.ready(function() {
     jsPlumb.setContainer("sandbox");
