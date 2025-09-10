@@ -65,7 +65,7 @@ class Family(models.Model):
     escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1)
     terra = models.OneToOneField('Terrain', on_delete=models.CASCADE)
     projeto = models.ForeignKey('Project', on_delete=models.CASCADE)
-    subsistemas = models.ManyToManyField('Subsystem', blank=True)
+    subsistemas = models.ManyToManyField('Subsystem', through='FamilySubsystem', blank=True)
 
     def __str__(self):
         return self.nome_titular
@@ -94,15 +94,39 @@ class Family(models.Model):
         return dict(ESCOLAR_CHOICES).get(self.escolaridade)
 
     def get_subsistemas_list(self):
-        return ", ".join(subsistema.nome_subsistema for subsistema in self.subsistemas.all())
+        return ", ".join(
+            f"{fs.subsystem.nome_subsistema} ({len(fs.produtos_saida)} produtos)"
+            for fs in FamilySubsystem.objects.filter(family=self)
+        )
+    
+    def add_subsystem_to_family(family, subsystem):
+        family_subsystem, created = FamilySubsystem.objects.get_or_create(
+            family=family,
+            subsystem=subsystem,
+        )
+        if created:
+            family_subsystem.produtos_saida = subsystem.produtos_base
+            family_subsystem.save()
+        return family_subsystem
 
 class Subsystem(models.Model):
     nome_subsistema = models.CharField(max_length=50)
-    produtos_saida = models.JSONField(default=list, blank=True)
+    produtos_base = models.JSONField(default=list, blank=True)
 
     def __str__(self):
         return self.nome_subsistema
 
+class FamilySubsystem(models.Model):
+    family = models.ForeignKey('Family', on_delete=models.CASCADE)
+    subsystem = models.ForeignKey('Subsystem', on_delete=models.CASCADE)
+    produtos_saida = models.JSONField(default=list, blank=True)
+
+    class Meta:
+        unique_together = ('family', 'subsystem')
+
+    def __str__(self):
+        return f"{self.family.get_nome_familia()} - {self.subsystem.nome_subsistema}"
+    
 class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas #tá bom
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()

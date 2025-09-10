@@ -561,7 +561,7 @@
     "pk": 1,
     "fields": {
         "nome_subsistema": "UFPA",
-        "produtos_saida": []
+        "produtos_base": []
     }
   },
   {
@@ -569,7 +569,7 @@
     "pk": 2,
     "fields": {
       "nome_subsistema": "Caprinocultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Carne",
           "fluxos": []
@@ -594,7 +594,7 @@
     "pk": 3,
     "fields": {
       "nome_subsistema": "Avinocultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Pinto",
           "fluxos": []
@@ -619,7 +619,7 @@
     "pk": 4,
     "fields": {
       "nome_subsistema": "Bovinocultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Carne",
           "fluxos": []
@@ -644,7 +644,7 @@
     "pk": 5,
     "fields": {
       "nome_subsistema": "Suinocultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Carne",
           "fluxos": []
@@ -665,7 +665,7 @@
     "pk": 6,
     "fields": {
       "nome_subsistema": "Quintal",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Fruta",
           "fluxos": []
@@ -686,7 +686,7 @@
     "pk": 7,
     "fields": {
       "nome_subsistema": "Apicultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Mel",
           "fluxos": []
@@ -715,7 +715,7 @@
     "pk": 8,
     "fields": {
       "nome_subsistema": "Meliponicultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Mel",
           "fluxos": []
@@ -736,7 +736,7 @@
     "pk": 9,
     "fields": {
       "nome_subsistema": "Horticultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Coentro",
           "fluxos": []
@@ -777,7 +777,7 @@
     "pk": 10,
     "fields": {
       "nome_subsistema": "Fruticultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Banana",
           "fluxos": []
@@ -802,7 +802,7 @@
     "pk": 11,
     "fields": {
       "nome_subsistema": "Roçado",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Milho",
           "fluxos": []
@@ -843,7 +843,7 @@
     "pk": 12,
     "fields": {
       "nome_subsistema": "Forragem",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Palma",
           "fluxos": []
@@ -876,7 +876,7 @@
     "pk": 13,
     "fields": {
       "nome_subsistema": "Plantas medicinais",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Hortelã",
           "fluxos": []
@@ -901,7 +901,7 @@
     "pk": 14,
     "fields": {
       "nome_subsistema": "Viveiro de mudas",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Coco",
           "fluxos": []
@@ -922,7 +922,7 @@
     "pk": 15,
     "fields": {
       "nome_subsistema": "Banco de sementes",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Feijão",
           "fluxos": []
@@ -943,7 +943,7 @@
     "pk": 16,
     "fields": {
       "nome_subsistema": "Piscicultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Tilápia",
           "fluxos": []
@@ -960,7 +960,7 @@
     "pk": 17,
     "fields": {
       "nome_subsistema": "Cacinicultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Camarão",
           "fluxos": []
@@ -973,7 +973,7 @@
     "pk": 18,
     "fields": {
       "nome_subsistema": "Floricultura",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Tulipa",
           "fluxos": []
@@ -986,7 +986,7 @@
     "pk": 19,
     "fields": {
       "nome_subsistema": "Compostagem",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Composto orgânico",
           "fluxos": []
@@ -1007,7 +1007,7 @@
     "pk": 20,
     "fields": {
       "nome_subsistema": "Artesanato",
-      "produtos_saida": [
+      "produtos_base": [
         {
           "nome": "Doces",
           "fluxos": []

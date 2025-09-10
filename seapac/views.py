@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento, Terrain, Project
+from .models import Family, Subsystem, Evento, Terrain, FamilySubsystem, Project
 from .forms import FamilyForm, TerrainForm, FluxoForm
 from django.forms import formset_factory
 from django.http import JsonResponse
@@ -171,14 +171,13 @@ def family_profile(request, id):
 
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
-    subsystems = Subsystem.objects.filter(family=family)
-    total_subsystems = subsystems.count()
-
+    family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
+    
     subsystems_data = []
-    for subsystem in subsystems:
+    for family_subsystem in family_subsystems:
         subsystems_data.append({
-            'nome_subsistema': subsystem.nome_subsistema,
-            'produtos_saida': subsystem.produtos_saida,
+            'nome_subsistema': family_subsystem.subsystem.nome_subsistema,
+            'produtos_saida': family_subsystem.produtos_saida,
         })
 
     json_subsystems = json.dumps(subsystems_data, separators=(',', ':'))
@@ -186,8 +185,8 @@ def flow(request, id):
     context = {
         "id": id,
         "family": family,
-        "subsystems": subsystems,
-        "total_subsystems": total_subsystems,
+        "family_subsystems": family_subsystems,  # Renamed for clarity
+        "total_subsystems": family_subsystems.count(),
         "title": "Fluxo",
         "json_subsystems": json_subsystems
     }
@@ -195,30 +194,36 @@ def flow(request, id):
 
 def subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
-    subsystem = get_object_or_404(family.subsistemas, id=subsystem_id)
+    family_subsystem = get_object_or_404(FamilySubsystem, family=family, subsystem_id=subsystem_id)
+
+    if not family_subsystem.produtos_saida:
+        family_subsystem.produtos_saida = family_subsystem.subsystem.produtos_base
+        family_subsystem.save()
+
+
     return render(request, "seapac/subsystem_panel.html", {
-        'subsystem': subsystem,
+        'subsystem': family_subsystem.subsystem,
         'family': family,
+        'family_subsystem': family_subsystem,
         'title': 'Painel do Subsistema',
         'type': 'readonly'
     })
 
 def edit_subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
-    subsystem = get_object_or_404(family.subsistemas, id=subsystem_id)
-    
+    family_subsystem = get_object_or_404(FamilySubsystem, family=family, subsystem_id=subsystem_id)
+
     subsystems_destino = family.subsistemas.all()
     destino_choices = [(s.nome_subsistema, s.nome_subsistema) for s in subsystems_destino]
-    
     destino_choices.insert(0, ('', '---------'))
 
     FluxoFormSet = formset_factory(FluxoForm, extra=0)
-    
+
     if request.method == 'POST':
         formset = FluxoFormSet(request.POST, prefix='fluxo')
     else:
         initial_data = []
-        for produto in subsystem.produtos_saida:
+        for produto in family_subsystem.produtos_saida:
             initial = {
                 'nome_produto': produto['nome'],
                 'porcentagem': produto['fluxos'][0]['porcentagem'] if produto['fluxos'] else None,
@@ -227,12 +232,12 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
             initial_data.append(initial)
 
         formset = FluxoFormSet(initial=initial_data, prefix='fluxo')
-    
+
     for form in formset:
         form.fields['destino'].choices = destino_choices
 
     if request.method == 'POST' and formset.is_valid():
-        produtos_saida_atualizados = list(subsystem.produtos_saida)
+        produtos_saida_atualizados = list(family_subsystem.produtos_saida)
         produto_map = {p['nome']: i for i, p in enumerate(produtos_saida_atualizados)}
 
         for form in formset:
@@ -244,7 +249,7 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                 porcentagem = float(porcentagem)
 
             produto_index = produto_map.get(nome_produto)
-            
+
             if produto_index is not None:
                 if produtos_saida_atualizados[produto_index]['fluxos']:
                     produtos_saida_atualizados[produto_index]['fluxos'][0]['porcentagem'] = porcentagem
@@ -255,14 +260,19 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                         'destino': destino,
                     }]
 
-        subsystem.produtos_saida = produtos_saida_atualizados
-        subsystem.save()
+        family_subsystem.produtos_saida = produtos_saida_atualizados
+        family_subsystem.save()
 
-        return redirect('subsystem_panel', family_id=family.id, subsystem_id=subsystem.id)
+        return redirect('subsystem_panel', family_id=family.id, subsystem_id=family_subsystem.subsystem.id)
+
+    if not family_subsystem.produtos_saida:
+        family_subsystem.produtos_saida = family_subsystem.subsystem.produtos_base
+        family_subsystem.save()
 
     return render(request, "seapac/subsystem_panel.html", {
-        'subsystem': subsystem,
+        'subsystem': family_subsystem.subsystem,
         'family': family,
+        'family_subsystem': family_subsystem,
         'title': 'Editar Painel do Subsistema',
         'type': 'edit',
         'formset': formset,

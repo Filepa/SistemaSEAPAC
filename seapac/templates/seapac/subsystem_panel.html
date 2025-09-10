@@ -71,7 +71,7 @@
                 {% endif %}
             {% endfor %}
         {% else %}
-            {% for produto in subsystem.produtos_saida %}
+            {% for produto in family_subsystem.produtos_saida %}
                 <tr>
                     <td rowspan="{{ produto.fluxos|length|default:1 }}">{{ produto.nome }}</td>
 

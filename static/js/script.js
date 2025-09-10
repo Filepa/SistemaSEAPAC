@@ -95,6 +95,7 @@ jsPlumb.ready(function() {
         });
     });
 });
+
 //calendário de agendamento de visitas
 function calendar() {
   const Draggable = FullCalendar.Draggable;
