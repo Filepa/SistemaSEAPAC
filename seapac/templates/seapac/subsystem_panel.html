@@ -25,69 +25,87 @@
 </div>
 
 <p>Descrição do painel. Aqui você pode adicionar informações relevantes sobre o subsistema</p>
-
+{% if type == 'edit' %}
 <form method="post">
-    {% csrf_token %}
-    
-    {% if formset.non_form_errors %}
-        <div class="alert alert-danger" role="alert">
-            {{ formset.non_form_errors }}
-        </div>
-    {% endif %}
+  {% csrf_token %}
+  {{ formset.management_form }}
 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Porcentagem</th>
+        <th>Destino</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+
+    <tbody id="fluxo-rows">
+      {% for form in formset %}
+      <tr class="fluxo-row" data-produto="{{ form.nome_produto.value }}">
+        <td class="produto-name">
+          {{ form.nome_produto.value }}
+          {{ form.nome_produto }}
+        </td>
+        <td>{{ form.porcentagem }}</td>
+        <td>{{ form.destino }}</td>
+        <td>
+          <button type="button" class="btn btn-success add-row">+</button>
+          <button type="button" class="btn btn-danger remove-row">-</button>
+        </td>
+      </tr>
+      {% endfor %}
+
+      <tr id="empty-form-row" class="fluxo-row" style="display:none;" data-produto="">
+        <td class="produto-name"></td>
+        <td>
+          {{ formset.empty_form.nome_produto }}
+          {{ formset.empty_form.porcentagem }}
+        </td>
+        <td>{{ formset.empty_form.destino }}</td>
+        <td>
+          <button type="button" class="btn btn-success add-row">+</button>
+          <button type="button" class="btn btn-danger remove-row">-</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <button id="btn-flow" class="btn btn-success" type="submit">Salvar</button>
+</form>
+{% else %}
     <table class="table">
         <thead>
             <tr>
                 <th>Produto</th>
                 <th>Porcentagem</th>
                 <th>Destino</th>
-                {% if type == 'edit' %}
-                    <th>Ação</th>
-                {% endif %}
             </tr>
         </thead>
-        <tbody>
-        {% if type == 'edit' %}
-            {{ formset.management_form }}
-            {% for form in formset %}
-                <tr>
-                    <td>{{ form.nome_produto.value }}</td>
-                    <td>{{ form.porcentagem }}</td>
-                    <td>{{ form.destino }}</td>
-                    <td>
-                        <button class="btn text-white bg-success add-row" onclick="addRow({{ produto }})">Adicionar</button>
-                        <button class="btn text-white bg-danger delete-row" onclick="deleteRow({{ produto }})">Remover</button>
-                    </td> 
-                    {{ form.nome_produto }}
-                </tr>
-            {% endfor %}
-        {% else %}
-            {% for produto in family_subsystem.produtos_saida %}
-                <tr>
-                    <td rowspan="{{ produto.fluxos|length|default:1 }}">{{ produto.nome }}</td>
-
-                    {% if produto.fluxos %}
-                        {% for fluxo in produto.fluxos %}
-                            {% if not forloop.first %}<tr>{% endif %}
-                                <td>{{ fluxo.porcentagem|default:"0" }}%</td>
-                                <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
-                        {% endfor %}
-                    {% else %}
-                        <td>0%</td>
-                        <td>Sem Destino</td>
-                    {% endif %}
-                    </tr>
-                </tr>
-            {% endfor %}
-        {% endif %}
+    <tbody> 
+        {% for produto in family_subsystem.produtos_saida %} 
+            {% if produto.fluxos %} 
+                {% for fluxo in produto.fluxos %} 
+                    <tr> 
+                        {% if forloop.first %} 
+                            <td rowspan="{{ produto.fluxos|length }}">{{ produto.nome }}</td> 
+                        {% endif %} 
+                            <td>{{ fluxo.porcentagem|default:"0" }}%</td> 
+                            <td>{{ fluxo.destino|default:"Sem Destino" }}</td> 
+                        </tr> 
+                {% endfor %} 
+            {% else %} 
+                <tr> 
+                    <td>{{ produto.nome }}</td> 
+                    <td>0%</td> 
+                    <td>Sem Destino</td> 
+                </tr> 
+            {% endif %}
+        {% endfor %} 
     </tbody>
     </table>
-    
-    {% if type == 'edit' %}
-        <button id="btn-flow" class="btn btn-success" type="submit">
-            <p class='btn-text'>Salvar</p>
-        </button>
-    {% endif %}
-</form>
-
+{% endif %}
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'js/panel.js' %}"></script>
 {% endblock %}

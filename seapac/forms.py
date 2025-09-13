@@ -28,9 +28,9 @@ class TerrainForm(ModelForm):
         }
 
 class FluxoForm(forms.Form):
-    porcentagem = forms.DecimalField(max_digits=5, decimal_places=2, required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    destino = forms.ChoiceField(choices=[], required=False, widget=forms.Select(attrs={'class': 'form-select'}))
     nome_produto = forms.CharField(widget=forms.HiddenInput())
+    porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2)
+    destino = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))
 
 class FamilyForm(ModelForm):
 

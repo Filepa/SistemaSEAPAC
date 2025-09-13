@@ -224,12 +224,19 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
     else:
         initial_data = []
         for produto in family_subsystem.produtos_saida:
-            initial = {
-                'nome_produto': produto['nome'],
-                'porcentagem': produto['fluxos'][0]['porcentagem'] if produto['fluxos'] else None,
-                'destino': produto['fluxos'][0]['destino'] if produto['fluxos'] else None,
-            }
-            initial_data.append(initial)
+            if produto['fluxos']:
+                for fluxo in produto['fluxos']:
+                    initial_data.append({
+                        'nome_produto': produto['nome'],
+                        'porcentagem': fluxo['porcentagem'],
+                        'destino': fluxo['destino'],
+                    })
+            else:
+                initial_data.append({
+                    'nome_produto': produto['nome'],
+                    'porcentagem': None,
+                    'destino': None,
+                })
 
         formset = FluxoFormSet(initial=initial_data, prefix='fluxo')
 
@@ -240,25 +247,48 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
         produtos_saida_atualizados = list(family_subsystem.produtos_saida)
         produto_map = {p['nome']: i for i, p in enumerate(produtos_saida_atualizados)}
 
+        # prepara estrutura para novos fluxos
+        novos_fluxos = {p['nome']: [] for p in produtos_saida_atualizados}
+
+        # percorre forms e agrupa por produto
         for form in formset:
+            if not form.cleaned_data:
+                continue
             nome_produto = form.cleaned_data['nome_produto']
-            porcentagem = form.cleaned_data['porcentagem']
-            destino = form.cleaned_data['destino']
+            porcentagem = form.cleaned_data.get('porcentagem') or 0
+            destino = form.cleaned_data.get('destino') or ''
 
-            if porcentagem is not None:
-                porcentagem = float(porcentagem)
+            # valida duplicidade de destino por produto
+            if destino and any(f['destino'] == destino for f in novos_fluxos[nome_produto]):
+                form.add_error('destino', 'Destino duplicado para este produto.')
+                continue
 
-            produto_index = produto_map.get(nome_produto)
+            # valida soma não ultrapassar 100
+            soma_atual = sum((f.get('porcentagem') or 0) for f in novos_fluxos[nome_produto])
+            if soma_atual + float(porcentagem or 0) > 100:
+                form.add_error('porcentagem', 'A soma das porcentagens não pode passar de 100%.')
+                continue
 
-            if produto_index is not None:
-                if produtos_saida_atualizados[produto_index]['fluxos']:
-                    produtos_saida_atualizados[produto_index]['fluxos'][0]['porcentagem'] = porcentagem
-                    produtos_saida_atualizados[produto_index]['fluxos'][0]['destino'] = destino
-                else:
-                    produtos_saida_atualizados[produto_index]['fluxos'] = [{
-                        'porcentagem': porcentagem,
-                        'destino': destino,
-                    }]
+            novos_fluxos[nome_produto].append({
+                'porcentagem': float(porcentagem),
+                'destino': destino,
+            })
+
+        # se houver erros adicionados manualmente, re-renderiza com formset (Django mostrará os errors)
+        if any(form.errors for form in formset):
+            return render(request, "seapac/subsystem_panel.html", {
+                'subsystem': family_subsystem.subsystem,
+                'family': family,
+                'family_subsystem': family_subsystem,
+                'title': 'Editar Painel do Subsistema',
+                'type': 'edit',
+                'formset': formset,
+            })
+
+        # monta produtos_saida com os novos fluxos
+        for produto in produtos_saida_atualizados:
+            nome = produto['nome']
+            produto['fluxos'] = novos_fluxos.get(nome, [])
 
         family_subsystem.produtos_saida = produtos_saida_atualizados
         family_subsystem.save()
