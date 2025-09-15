@@ -104,16 +104,31 @@ document.addEventListener("DOMContentLoaded", function () {
     totalFormsInput.value = rows.length;
   }
 
-// mostra o + em todas as linhas e o - somente se houver >1 linha
-function refreshButtonsVisibility() {
+  // mostra o + em todas as linhas e o - somente se houver >1 linha
+  function refreshButtonsVisibility() {
     const rows = getRealRows();
-    rows.forEach((r) => {
+
+    // agrupa linhas por produto
+    const grupos = {};
+    rows.forEach(r => {
+      const produto = r.dataset.produto || (r.querySelector('.produto-name') && r.querySelector('.produto-name').textContent.trim());
+      if (!grupos[produto]) grupos[produto] = [];
+      grupos[produto].push(r);
+    });
+
+    // percorre cada grupo e decide botões
+    Object.values(grupos).forEach(grupo => {
+      grupo.forEach((r, idx) => {
         const addBtn = r.querySelector('.add-row');
         const remBtn = r.querySelector('.remove-row');
-        if (addBtn) addBtn.style.display = '';
-        if (remBtn) remBtn.style.display = (rows.length > 1) ? '' : 'none';
+        if (addBtn) addBtn.style.display = ''; // sempre mostra +
+        if (remBtn) {
+          // só mostra - se esse produto tiver mais de uma linha
+          remBtn.style.display = (grupo.length > 1) ? '' : 'none';
+        }
+      });
     });
-}
+  }
 
   // validação antes do submit (soma <=100 e sem destinos duplicados)
   const form = container.closest('form');

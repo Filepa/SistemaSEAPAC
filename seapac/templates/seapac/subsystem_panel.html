@@ -9,18 +9,11 @@
         </h1>
     </div>
     {% if type == 'readonly' %}
-        <div>
-            <button class="btn btn-primary btn-timeline"
-                    onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">
-                <i class="fa-solid fa-shuffle"></i>
-                Editar Fluxo
-            </button>
-            <button class="btn btn-primary btn-timeline"
-                    onclick="redirect('{% url 'flow' family.id %}')">
-                <i class="fa-solid fa-shuffle"></i>
-                Visualizar Fluxo
-            </button>
-        </div>
+      <button class="btn btn-primary btn-timeline"
+              onclick="redirect('{% url 'flow' family.id %}')">
+          <i class="fa-solid fa-shuffle"></i>
+          Visualizar Fluxo
+      </button>
     {% endif %}
 </div>
 
@@ -28,50 +21,32 @@
 {% if type == 'edit' %}
 <form method="post">
   {% csrf_token %}
-  {{ formset.management_form }}
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Produto</th>
-        <th>Porcentagem</th>
-        <th>Destino</th>
-        <th>Ação</th>
-      </tr>
-    </thead>
-
-    <tbody id="fluxo-rows">
-      {% for form in formset %}
-      <tr class="fluxo-row" data-produto="{{ form.nome_produto.value }}">
-        <td class="produto-name">
-          {{ form.nome_produto.value }}
-          {{ form.nome_produto }}
-        </td>
-        <td>{{ form.porcentagem }}</td>
-        <td>{{ form.destino }}</td>
-        <td>
-          <button type="button" class="btn btn-success add-row">+</button>
-          <button type="button" class="btn btn-danger remove-row">-</button>
-        </td>
-      </tr>
-      {% endfor %}
-
-      <tr id="empty-form-row" class="fluxo-row" style="display:none;" data-produto="">
-        <td class="produto-name"></td>
-        <td>
-          {{ formset.empty_form.nome_produto }}
-          {{ formset.empty_form.porcentagem }}
-        </td>
-        <td>{{ formset.empty_form.destino }}</td>
-        <td>
-          <button type="button" class="btn btn-success add-row">+</button>
-          <button type="button" class="btn btn-danger remove-row">-</button>
-        </td>
-      </tr>
-
-    </tbody>
+    <table class="table">
+      <thead>
+          <tr>
+              <th>Produto</th>
+              <th>Porcentagem</th>
+              <th>Destino</th>
+              <th>Ação</th>
+          </tr>
+      </thead>
+      <tbody>
+          {{ formset.management_form }}
+          {% for form in formset %}
+              <tr>
+                  <td>{{ form.nome_produto }}</td>
+                  <td>{{ form.porcentagem }}</td>
+                  <td>{{ form.destino }}</td>
+                  <td>
+                      {% if form.DELETE %}
+                          {{ form.DELETE }} <label>Excluir</label>
+                      {% endif %}
+                  </td>
+              </tr>
+          {% endfor %}
+      </tbody>
   </table>
-  <button id="btn-flow" class="btn btn-success" type="submit">Salvar</button>
+  <button type="submit" class="btn btn-success">Salvar</button>
 </form>
 {% else %}
     <table class="table">
@@ -104,6 +79,10 @@
         {% endfor %} 
     </tbody>
     </table>
+    <button class="btn btn-success" onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">
+      <i class="fa-solid fa-shuffle"></i>
+                Adicionar Fluxo
+    </button>
 {% endif %}
 {% endblock %}
 {% block extra_js %}

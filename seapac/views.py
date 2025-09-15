@@ -218,15 +218,47 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
     destino_choices = [(s.nome_subsistema, s.nome_subsistema) for s in subsystems_destino]
     destino_choices.insert(0, ('', '---------'))
 
-    class FluxoForm(forms.Form):
-        nome_produto = forms.CharField(widget=forms.HiddenInput())
-        porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2)
-        destino = forms.ChoiceField(choices=destino_choices, widget=forms.Select(attrs={'class': 'form-select'}))
+    produto_choices = [(p['nome'], p['nome']) for p in family_subsystem.produtos_saida]
 
-    FluxoFormSet = formset_factory(FluxoForm, extra=0)
+    class FluxoForm(forms.Form):
+        nome_produto = forms.ChoiceField(choices=(), required=True, label="Produto")
+        porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2, label="Porcentagem")
+        destino = forms.ChoiceField(choices=(), required=False, label="Destino")
+
+    FluxoFormSet = formset_factory(FluxoForm, extra=1, can_delete=True)
 
     if request.method == 'POST':
         formset = FluxoFormSet(request.POST, prefix='fluxo')
+        # garantir que choices sejam aplicados em cada form
+        for form in formset:
+            form.fields['nome_produto'].choices = produto_choices
+            form.fields['destino'].choices = destino_choices
+
+        if formset.is_valid():
+            produtos_saida_atualizados = list(family_subsystem.produtos_saida)
+            novos_fluxos = {p['nome']: [] for p in produtos_saida_atualizados}
+
+            for form in formset:
+                if not form.cleaned_data:
+                    continue
+                nome_produto = form.cleaned_data['nome_produto']
+                porcentagem = form.cleaned_data.get('porcentagem') or 0
+                destino = form.cleaned_data.get('destino') or ''
+
+                novos_fluxos[nome_produto].append({
+                    'porcentagem': float(porcentagem),
+                    'destino': destino,
+                })
+
+            for produto in produtos_saida_atualizados:
+                nome = produto['nome']
+                produto['fluxos'] = novos_fluxos.get(nome, [])
+
+            family_subsystem.produtos_saida = produtos_saida_atualizados
+            family_subsystem.save()
+
+            return redirect('subsystem_panel', family_id=family.id, subsystem_id=family_subsystem.subsystem.id)
+
     else:
         initial_data = []
         for produto in family_subsystem.produtos_saida:
@@ -237,73 +269,11 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                         'porcentagem': fluxo['porcentagem'],
                         'destino': fluxo['destino'],
                     })
-            else:
-                initial_data.append({
-                    'nome_produto': produto['nome'],
-                    'porcentagem': None,
-                    'destino': None,
-                })
 
         formset = FluxoFormSet(initial=initial_data, prefix='fluxo')
-
-    for form in formset:
-        form.fields['destino'].choices = destino_choices
-
-    if request.method == 'POST' and formset.is_valid():
-        produtos_saida_atualizados = list(family_subsystem.produtos_saida)
-        produto_map = {p['nome']: i for i, p in enumerate(produtos_saida_atualizados)}
-
-        # prepara estrutura para novos fluxos
-        novos_fluxos = {p['nome']: [] for p in produtos_saida_atualizados}
-
-        # percorre forms e agrupa por produto
         for form in formset:
-            if not form.cleaned_data:
-                continue
-            nome_produto = form.cleaned_data['nome_produto']
-            porcentagem = form.cleaned_data.get('porcentagem') or 0
-            destino = form.cleaned_data.get('destino') or ''
-
-            # valida duplicidade de destino por produto
-            if destino and any(f['destino'] == destino for f in novos_fluxos[nome_produto]):
-                form.add_error('destino', 'Destino duplicado para este produto.')
-                continue
-
-            # valida soma não ultrapassar 100
-            soma_atual = sum((f.get('porcentagem') or 0) for f in novos_fluxos[nome_produto])
-            if soma_atual + float(porcentagem or 0) > 100:
-                form.add_error('porcentagem', 'A soma das porcentagens não pode passar de 100%.')
-                continue
-
-            novos_fluxos[nome_produto].append({
-                'porcentagem': float(porcentagem),
-                'destino': destino,
-            })
-
-        # se houver erros adicionados manualmente, re-renderiza com formset (Django mostrará os errors)
-        if any(form.errors for form in formset):
-            return render(request, "seapac/subsystem_panel.html", {
-                'subsystem': family_subsystem.subsystem,
-                'family': family,
-                'family_subsystem': family_subsystem,
-                'title': 'Editar Painel do Subsistema',
-                'type': 'edit',
-                'formset': formset,
-            })
-
-        # monta produtos_saida com os novos fluxos
-        for produto in produtos_saida_atualizados:
-            nome = produto['nome']
-            produto['fluxos'] = novos_fluxos.get(nome, [])
-
-        family_subsystem.produtos_saida = produtos_saida_atualizados
-        family_subsystem.save()
-
-        return redirect('subsystem_panel', family_id=family.id, subsystem_id=family_subsystem.subsystem.id)
-
-    if not family_subsystem.produtos_saida:
-        family_subsystem.produtos_saida = family_subsystem.subsystem.produtos_base
-        family_subsystem.save()
+            form.fields['nome_produto'].choices = produto_choices
+            form.fields['destino'].choices = destino_choices
 
     return render(request, "seapac/subsystem_panel.html", {
         'subsystem': family_subsystem.subsystem,
@@ -314,17 +284,7 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
         'formset': formset,
     })
 
-def edit_conections(request, id):
-    family = get_object_or_404(Family, id=id)
-    subsystems = Subsystem.objects.filter(family=family)
-    if request.method == 'POST':
-        family.save()
-        return redirect('flow', id=family.id)
-    return render(request, "seapac/edit_conections.html", {
-        'family': family,
-        'subsystems': subsystems,
-        'title': 'Editar Conexões'
-    })
+
 
 def timeline(request, id):
     family = get_object_or_404(Family, id=id)
