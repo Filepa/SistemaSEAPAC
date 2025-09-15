@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Family, Subsystem, Evento, Terrain, FamilySubsystem, Project
-from .forms import FamilyForm, TerrainForm, FluxoForm
+from .forms import FamilyForm, TerrainForm
 from django.forms import formset_factory
+from django import forms
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
@@ -216,6 +217,11 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
     subsystems_destino = family.subsistemas.all()
     destino_choices = [(s.nome_subsistema, s.nome_subsistema) for s in subsystems_destino]
     destino_choices.insert(0, ('', '---------'))
+
+    class FluxoForm(forms.Form):
+        nome_produto = forms.CharField(widget=forms.HiddenInput())
+        porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2)
+        destino = forms.ChoiceField(choices=destino_choices, widget=forms.Select(attrs={'class': 'form-select'}))
 
     FluxoFormSet = formset_factory(FluxoForm, extra=0)
 

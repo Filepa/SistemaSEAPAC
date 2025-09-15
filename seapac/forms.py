@@ -26,12 +26,7 @@ class TerrainForm(ModelForm):
             'comunidade': forms.TextInput(attrs={'class': 'form-control'}),
             'tamanho_m2': forms.NumberInput(attrs={'class': 'form-control'}),
         }
-
-class FluxoForm(forms.Form):
-    nome_produto = forms.CharField(widget=forms.HiddenInput())
-    porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2)
-    destino = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-select'}))
-
+        
 class FamilyForm(ModelForm):
 
     class Meta:

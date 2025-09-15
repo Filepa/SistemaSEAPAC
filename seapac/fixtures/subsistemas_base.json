@@ -1,0 +1,469 @@
+[
+    {
+    "model": "seapac.subsystem",
+    "pk": 1,
+    "fields": {
+        "nome_subsistema": "UFPA",
+        "produtos_base": []
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 2,
+    "fields": {
+      "nome_subsistema": "Caprinocultura",
+      "produtos_base": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        },
+        {
+          "nome": "Couro",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 3,
+    "fields": {
+      "nome_subsistema": "Avinocultura",
+      "produtos_base": [
+        {
+          "nome": "Pinto",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Carne de aves",
+          "fluxos": []
+        },
+        {
+          "nome": "Ovo",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 4,
+    "fields": {
+      "nome_subsistema": "Bovinocultura",
+      "produtos_base": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        },
+        {
+          "nome": "Couro",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 5,
+    "fields": {
+      "nome_subsistema": "Suinocultura",
+      "produtos_base": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 6,
+    "fields": {
+      "nome_subsistema": "Quintal",
+      "produtos_base": [
+        {
+          "nome": "Fruta",
+          "fluxos": []
+        },
+        {
+          "nome": "Hortaliça",
+          "fluxos": []
+        },
+        {
+          "nome": "Forragem",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 7,
+    "fields": {
+      "nome_subsistema": "Apicultura",
+      "produtos_base": [
+        {
+          "nome": "Mel",
+          "fluxos": []
+        },
+        {
+          "nome": "Cera",
+          "fluxos": []
+        },
+        {
+          "nome": "Geleia real",
+          "fluxos": []
+        },
+        {
+          "nome": "Própolis",
+          "fluxos": []
+        },
+        {
+          "nome": "Enxames",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 8,
+    "fields": {
+      "nome_subsistema": "Meliponicultura",
+      "produtos_base": [
+        {
+          "nome": "Mel",
+          "fluxos": []
+        },
+        {
+          "nome": "Cera",
+          "fluxos": []
+        },
+        {
+          "nome": "Enxames",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 9,
+    "fields": {
+      "nome_subsistema": "Horticultura",
+      "produtos_base": [
+        {
+          "nome": "Coentro",
+          "fluxos": []
+        },
+        {
+          "nome": "Cebolinha",
+          "fluxos": []
+        },
+        {
+          "nome": "Pimentão",
+          "fluxos": []
+        },
+        {
+          "nome": "Tomate",
+          "fluxos": []
+        },
+        {
+          "nome": "Tomate cereja",
+          "fluxos": []
+        },
+        {
+          "nome": "Beringela",
+          "fluxos": []
+        },
+        {
+          "nome": "Pimenta de cheiro",
+          "fluxos": []
+        },
+        {
+          "nome": "Repolho",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 10,
+    "fields": {
+      "nome_subsistema": "Fruticultura",
+      "produtos_base": [
+        {
+          "nome": "Banana",
+          "fluxos": []
+        },
+        {
+          "nome": "Mamão",
+          "fluxos": []
+        },
+        {
+          "nome": "Coco",
+          "fluxos": []
+        },
+        {
+          "nome": "Limão",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 11,
+    "fields": {
+      "nome_subsistema": "Roçado",
+      "produtos_base": [
+        {
+          "nome": "Milho",
+          "fluxos": []
+        },
+        {
+          "nome": "Feijão",
+          "fluxos": []
+        },
+        {
+          "nome": "Jerimum",
+          "fluxos": []
+        },
+        {
+          "nome": "Melância",
+          "fluxos": []
+        },
+        {
+          "nome": "Feijão guandu",
+          "fluxos": []
+        },
+        {
+          "nome": "Fava",
+          "fluxos": []
+        },
+        {
+          "nome": "Arroz",
+          "fluxos": []
+        },
+        {
+          "nome": "Amendoim",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 12,
+    "fields": {
+      "nome_subsistema": "Forragem",
+      "produtos_base": [
+        {
+          "nome": "Palma",
+          "fluxos": []
+        },
+        {
+          "nome": "Moringa",
+          "fluxos": []
+        },
+        {
+          "nome": "Leucena",
+          "fluxos": []
+        },
+        {
+          "nome": "Gliricídia",
+          "fluxos": []
+        },
+        {
+          "nome": "Margaridão",
+          "fluxos": []
+        },
+        {
+          "nome": "Capiaçu",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 13,
+    "fields": {
+      "nome_subsistema": "Plantas medicinais",
+      "produtos_base": [
+        {
+          "nome": "Hortelã",
+          "fluxos": []
+        },
+        {
+          "nome": "Cidreira",
+          "fluxos": []
+        },
+        {
+          "nome": "Capim santo",
+          "fluxos": []
+        },
+        {
+          "nome": "Urucum",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 14,
+    "fields": {
+      "nome_subsistema": "Viveiro de mudas",
+      "produtos_base": [
+        {
+          "nome": "Coco",
+          "fluxos": []
+        },
+        {
+          "nome": "Limão",
+          "fluxos": []
+        },
+        {
+          "nome": "Banana",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 15,
+    "fields": {
+      "nome_subsistema": "Banco de sementes",
+      "produtos_base": [
+        {
+          "nome": "Feijão",
+          "fluxos": []
+        },
+        {
+          "nome": "Milho",
+          "fluxos": []
+        },
+        {
+          "nome": "Fava",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 16,
+    "fields": {
+      "nome_subsistema": "Piscicultura",
+      "produtos_base": [
+        {
+          "nome": "Tilápia",
+          "fluxos": []
+        },
+        {
+          "nome": "Tambaqui",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 17,
+    "fields": {
+      "nome_subsistema": "Cacinicultura",
+      "produtos_base": [
+        {
+          "nome": "Camarão",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 18,
+    "fields": {
+      "nome_subsistema": "Floricultura",
+      "produtos_base": [
+        {
+          "nome": "Tulipa",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 19,
+    "fields": {
+      "nome_subsistema": "Compostagem",
+      "produtos_base": [
+        {
+          "nome": "Composto orgânico",
+          "fluxos": []
+        },
+        {
+          "nome": "Biofertilizante",
+          "fluxos": []
+        },
+        {
+          "nome": "EM4",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 20,
+    "fields": {
+      "nome_subsistema": "Artesanato",
+      "produtos_base": [
+        {
+          "nome": "Doces",
+          "fluxos": []
+        },
+        {
+          "nome": "Bolos",
+          "fluxos": []
+        },
+        {
+          "nome": "Queijos",
+          "fluxos": []
+        }
+      ]
+    }
+  }
+]
