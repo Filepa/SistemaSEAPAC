@@ -186,7 +186,7 @@ def flow(request, id):
     context = {
         "id": id,
         "family": family,
-        "family_subsystems": family_subsystems,  # Renamed for clarity
+        "family_subsystems": family_subsystems,
         "total_subsystems": family_subsystems.count(),
         "title": "Fluxo",
         "json_subsystems": json_subsystems
@@ -229,7 +229,6 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
 
     if request.method == 'POST':
         formset = FluxoFormSet(request.POST, prefix='fluxo')
-        # garantir que choices sejam aplicados em cada form
         for form in formset:
             form.fields['nome_produto'].choices = produto_choices
             form.fields['destino'].choices = destino_choices
@@ -283,8 +282,6 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
         'type': 'edit',
         'formset': formset,
     })
-
-
 
 def timeline(request, id):
     family = get_object_or_404(Family, id=id)
