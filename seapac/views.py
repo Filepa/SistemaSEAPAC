@@ -238,8 +238,9 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
             novos_fluxos = {p['nome']: [] for p in produtos_saida_atualizados}
 
             for form in formset:
-                if not form.cleaned_data:
+                if not form.cleaned_data or form.cleaned_data.get('DELETE'):
                     continue
+
                 nome_produto = form.cleaned_data['nome_produto']
                 porcentagem = form.cleaned_data.get('porcentagem') or 0
                 destino = form.cleaned_data.get('destino') or ''
