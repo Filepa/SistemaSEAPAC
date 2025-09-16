@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import User, Family, Terrain, Project, Subsystem
+from .models import User, Family, Terrain, Project, Subsystem, Tecnicos
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -25,7 +25,11 @@ class TerrainAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('nome_projeto', 'descricao', 'data_inicio', 'data_fim')
+    list_display = ('nome_projeto', 'descricao', 'data_inicio', 'data_fim', 'orcamento')
+
+@admin.register(Tecnicos)
+class TecnicostAdmin(admin.ModelAdmin):
+    list_display = ('nome_tecnico', 'descricao', 'telefone', 'cpf', 'email', 'data_nascimento') #'foto',
 
 @admin.register(Subsystem)
 class SubsystemAdmin(admin.ModelAdmin):

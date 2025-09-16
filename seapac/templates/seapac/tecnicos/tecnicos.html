@@ -1,92 +1,76 @@
 {% extends 'base.html' %}
 
+
 {% block center %}
-<h1 class='title'>Lista de projetos</h1>
+<h1 class='title'>Lista de Técnicos cadastrados no sistema</h1>
 
 <div class="controls-section">
 
     <div class="control-group">
         <i class="fas fa-filter"></i>
-        <label for="projectStatusFilter">Status do projeto</label>
+        <label for="projectStatusFilter">Especialidade</label>
         <select id="projectStatusFilter" class="control-select">
-            <option value="">Todos os status</option>
-            <option value="em-execucao">Em Execução</option>
-            <option value="concluido">Concluído</option>
-            <option value="planejamento">Em Planejamento</option>
+            <option value="">Todos as especialidades</option>
+            <option value="em-execucao">Veterinária</option>
+            <option value="concluido">Agropecuária</option>
         </select>
     </div>
 
     <div class="search-group">
         <i class="fas fa-search"></i>
-        <input type="text" id="projectSearchInput" placeholder="Pesquisar projetos..." class="search-input">
+        <input type="text" id="projectSearchInput" placeholder="Pesquisar técnicos..." class="search-input">
     </div>
 
-    <a href="{% url 'create_projects' %}" class="btn btn-primary" id="addProjectBtn">
-        <i class="fas fa-plus"></i> Novo Projeto
+    <a href="{% url 'create_tecs' %}" class="btn btn-primary" id="addProjectBtn">
+        <i class="fas fa-plus"></i> Cadastrar Técnicos
     </a>
 </div>
 
 <div class="container-fluid px-md-3 px-0">
-    {% if projects %}
+    {% if tecs %}
         <div class="row g-2">
-            {% for project in projects|slice:":4" %}
+            {% for tec in tecs|slice:":4" %}
                 <div class="col-md-6 mb-2 cards-list">
                     {% load static %}
                     <div class="family-card">
                         <div class="family-header">
-                            <h3 class="family-name">{{ project.nome_projeto}}</h3>
+                            <h3 class="family-name">{{ tec.nome_tecnico}}</h3>
                         </div>
                         
                         <div class="project-info">
                             <p>
                                 <div class="descricao">
                                     <i class="fas fa-bookmark"></i>
-                                    <span>Descrição: {{ project.descricao }}</span>
+                                    <span>Descrição: {{ tec.descricao }}</span>
                                 </div>
                             </p>
                             
                             <div class="info-item">
-                                <i class="fas fa-user"></i>
-                                <span>Famílias:
-                                    {% for familia in project.familias.all %}
-                                        {{ familia.nome_titular }}{% if not forloop.last %}, {% endif %}
-                                    {% empty %}
-                                        Nenhuma família
-                                    {% endfor %}
-                                </span>
+                                <i class="fas fa-phone"></i>
+                                <span>Telefone: {{ tec.telefone }}</span>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-user"></i>
-                                <span>Técnicos:
-                                    {% for tecnico in project.tecnicos.all %}
-                                        {{ tecnico.nome_tecnico }}{% if not forloop.last %}, {% endif %}
-                                    {% empty %}
-                                        Nenhum técnico
-                                    {% endfor %}
-                                </span>
+                                <span>CPF: {{ tec.cpf }}</span>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-calendar-check"></i>
-                                <span>Data de Início: {{ project.data_inicio }}</span>
+                                <span>Email: {{ tec.email }}</span>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-calendar-check"></i>
-                                <span>Data de Finalização: {{ project.data_fim }}</span>
+                                <span>Data de nascimento: {{ tec.data_nascimento }}</span>
                             </div>
-                            <div class="info-item">
-                                <i class="fas fa-money-bill"></i>
-                                <span>Orçamento: {{ project.orcamento }}</span>
-                            </div>
-                            </div>
+                        
                             
                             <P></P>
 
                             <div class="project-actions">
-                                <a href = "{% url 'detail_projects' project.pk %}" class="btn btn-outline btn-sm">
+                                <a href = "{% url 'detail_tecs' tec.pk %}" class="btn btn-outline btn-sm">
                                     <i class="fas fa-eye"></i>
                                     Visualizar
                                 </a>
-                                <a href = "{% url 'edit_projects' project.pk %}" class="btn btn-outline btn-sm">
+                                <a href = "{% url 'edit_tecs' tec.pk %}" class="btn btn-outline btn-sm">
                                     <i class="fas fa-edit"></i>
                                     Editar
                                 </a>                       
@@ -110,7 +94,7 @@
             </div>
         </div>
     {% else %}
-        <p class="no-results">Nenhum projeto encontrado.</p>
+        <p class="no-results">Nenhum Técnico encontrado.</p>
     {% endif %}
 </div>
 {% endblock %}

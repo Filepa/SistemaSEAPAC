@@ -1116,3 +1116,32 @@ tbody > tr:nth-of-type(even) {
     float: left;
     margin-right: 20px;
 }
+
+/*LISTA DE PROJETOS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+.descricao {
+    width: 100%;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.project-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+    text-align: center;
+    justify-content: center;
+}
+
+.project-actions {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.project-actions {
+        flex-wrap: wrap;
+    }
+
+/*TECNICOS */*

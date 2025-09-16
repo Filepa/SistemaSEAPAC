@@ -1,1 +1,81 @@
-Em desenvolvimento --> Ana
+{% extends 'base.html' %}
+
+{% block title %} Mais Informações... {% endblock %}
+
+{% block center %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 style="font-family: 'Arial'; font-weight: 600; font-size: 32px; color: rgb(0, 0, 0);">
+                        <i class="bi bi-tags"></i> {{ projetos.nome_projeto }}
+                    </h1>
+                    <p style="font-family: 'Arial', sans-serif; font-size: 24px; color: gray;">
+                        Detalhes do projeto:
+                    </p>
+                </div>
+                <div>
+                    <a href="{% url 'edit_projects' projetos.pk %}" class="btn btn-primary" id="addProjectBtn">
+                        <i class="fas fa-pencil-alt"></i> Editar
+                    </a>
+                     <a href="{% url 'delete_projects' projetos.pk %}" class="btn btn-primary" id="addProjectBtn">
+                        <i class="fas fa-pencil-alt"></i> Deletar
+                    </a>
+                    <a href="{% url 'list_projects' %}" class="btn btn-primary" id="addProjectBtn">
+                         <i class="	fas fa-step-backward"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header" style="color: rgb(231, 237, 231); background-color: rgb(39, 129, 39);">
+                    <h5 class="mb-0"><i class="	fas fa-info-circle"></i> Informações</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Descrição:</dt>
+                        <dd class="col-sm-9 text-success">{{ projetos.descricao }}</dd>
+                        
+                        <dt class="col-sm-3">Técnicos envolvidos:</dt>
+                        <dd class="col-sm-9">
+                            {% for tecnico in projetos.tecnicos.all %}
+                                {{ tecnico.nome_tecnico }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                Nenhum técnico cadastrado
+                            {% endfor %}
+                        </dd>
+                        
+                        <dt class="col-sm-3">Famílias envolvidas:</dt>
+                        <dd class="col-sm-9">
+                            {% for familia in projetos.familias.all %}
+                                {{ familia.nome_titular }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                Nenhuma família cadastrada
+                            {% endfor %}
+                        </dd>
+                        
+                        <dt class="col-sm-3">Municípios de atuação:</dt>
+                        <dd class="col-sm-9"> #ta faltando</dd>
+
+                        <dt class="col-sm-3">Orçamento:</dt>
+                        <dd class="col-sm-9"> R$ {{ projetos.orcamento }}</dd>
+
+                        <dt class="col-sm-3">Data de início:</dt>
+                        <dd class="col-sm-9"> {{ projetos.data_inicio }}</dd>
+
+                        <dt class="col-sm-3">Data de finalização:</dt>
+                        <dd class="col-sm-9"> {{ projetos.data_fim }}</dd>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

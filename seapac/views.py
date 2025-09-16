@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento, Terrain, Project
-from .forms import FamilyForm, TerrainForm, SubsystemForm
+from .models import Family, Subsystem, Evento, Terrain, Project, Tecnicos
+from .forms import FamilyForm, TerrainForm, SubsystemForm, ProjectForm, TecnicosForm
 from django.http import JsonResponse
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
 import json
@@ -77,47 +78,102 @@ def edit_flow(request, id):
         'title': 'Fluxo'
     })
 
-#crud projetos: fazendo
+#crud projetos: 
 
-#def list_projects(request):
-   # projects = Project.objects.all()
-    #return render(request, 'seapac/projetos/projects.html', {'projects': projects})
+def list_projects(request):
+    projects = Project.objects.all()
+    return render(request, 'seapac/projetos/projects.html', {'projects': projects})
 
-#def create_projects(request, id): 
-   # if request.method == 'POST':
-     #   form = ProjectForm(request.POST)
-       # if form.is_valid():
-         #   projetos = form.save()
-          #  return redirect('list_projects')
+def create_projects(request): 
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            projetos = form.save()
+            return redirect('list_projects')
 
-    #else: 
-     #   form = ProjectForm()
+    else: 
+        form = ProjectForm()
+        
+    return render(request, 'seapac/projetos/projects_form.html', {
+        'form': form
+    })
 
-    #return render(request, 'seapac/projetos/projects_form.html', {'form': form, 'projetos': None})
-
-#def edit_projects(request, pk): 
-    #projetos = get_object_or_404(Project, pk=pk)
+def edit_projects(request, pk): 
+    projetos = get_object_or_404(Project, pk=pk)
     
-    #if request.method == 'POST':
-      #  form = ProjectForm(request.POST, instance=projetos)
-       # if form.is_valid():
-        #    form.save()
-         #   return redirect('detail_projects', pk=projetos.pk)
-   # else:
-        #form = ProjetcForm(instance=projetos)
-    #
-   # return render(request, 'seapac/projetos/projects_detail.html', {
-      # 'form': form,
-       # 'projeto': projetos
-    #})
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, instance=projetos)
+        if form.is_valid():
+            form.save()
+            return redirect('detail_projects', pk=projetos.pk)
+    else:
+        form = ProjectForm(instance=projetos)
+    
+    return render(request, 'seapac/projetos/projects_form.html', {
+       'form': form,
+        'projetos': projetos
+    })
 
-#def detail_projects(request, pk):
-   # projetos = get_object_or_404(Project, pk=pk)
-   # context= {
-       # 'projetos': projetos
-   # }
-   # return render(request, 'seapac/projetos/projects_detail.html', context) 
+def detail_projects(request, pk):
+    projetos = get_object_or_404(Project, pk=pk)
+    context= {
+        'projetos': projetos
+    }
+    return render(request, 'seapac/projetos/projects_detail.html', context) 
 
+def delete_projects(request, pk):
+    projetos = get_object_or_404(Project, pk=pk)
+    projetos.delete()
+    messages.success(request, f'O projeto "{projetos.nome_projeto}" foi excluído com sucesso!')
+    return redirect('list_projects')
+
+#CRUD de técnicos:
+def list_tecs(request):
+    tecs = Tecnicos.objects.all()
+    return render(request, 'seapac/tecnicos/tecnicos.html', {'tecs': tecs})
+
+def create_tecs(request): 
+    if request.method == 'POST':
+        form = TecnicosForm(request.POST)
+        if form.is_valid():
+            tecs = form.save()
+            return redirect('list_tecs')
+
+    else: 
+        form = TecnicosForm()
+        
+    return render(request, 'seapac/tecnicos/tecnicos_form.html', {
+        'form': form
+    })
+
+def edit_tecs(request, pk): 
+    tecs = get_object_or_404(Tecnicos, pk=pk)
+    
+    if request.method == 'POST':
+        form = TecnicosForm(request.POST, instance=tecs)
+        if form.is_valid():
+            form.save()
+            return redirect('detail_tecs', pk=tecs.pk)
+    else:
+        form = TecnicosForm(instance=tecs)
+    
+    return render(request, 'seapac/tecnicos/tecnicos_form.html', {
+       'form': form,
+        'tecs': tecs
+    })
+
+def detail_tecs(request, pk):
+    tecs = get_object_or_404(Tecnicos, pk=pk)
+    context= {
+        'tecs': tecs
+    }
+    return render(request, 'seapac/tecnicos/tecnicos_detail.html', context)
+
+def delete_tecs(request, pk):
+    tecs = get_object_or_404(Tecnicos, pk=pk)
+    tecs.delete()
+    messages.success(request, f'Técnico {tecs.nome_tecnico} excluído com sucesso!')
+    return redirect('list_tecs')
 
 def edit_family(request, id):
     family = get_object_or_404(Family, id=id)

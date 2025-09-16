@@ -24,14 +24,28 @@ class Terrain(models.Model):
 
 class Project(models.Model):
     nome_projeto = models.CharField(max_length=30)
-    #familias = models.ManyToManyField('Family', on_delete=models.CASCADE)
-    #tecnicos = models.CharField(max_length=40) #pretendo deixar isso aqui como um select e obviamente uma chave estrangeira do model de ténicos (cujo irei fzr)
+    familias = models.ManyToManyField('Family')
+    tecnicos = models.ManyToManyField('Tecnicos')
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_fim = models.DateField(blank=True, null=True)
+    orcamento = models.CharField(blank=True, null=True)
 
     def __str__(self):
         return self.nome_projeto
+
+class Tecnicos(models.Model):
+    nome_tecnico = models.CharField(max_length=30)
+    descricao = models.TextField()
+    telefone = models.CharField()
+    cpf = models.CharField()
+    email = models.EmailField()
+    data_nascimento = models.DateField(blank=True, null=True)
+    #foto = models.ImageField(upload_to='tecnicos/fotos_perfil', blank=True) ---> está dando erros seríssimos
+    
+
+    def __str__(self):
+        return self.nome_tecnico
 
 class Subsystem(models.Model):
     nome_subsistema = models.CharField(max_length=20)
@@ -77,7 +91,7 @@ class Family(models.Model):
     auxilio = models.BooleanField(default=False)
     escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1)
     terra = models.OneToOneField('Terrain', on_delete=models.CASCADE)
-    projeto = models.ForeignKey('Project', on_delete=models.CASCADE)
+    projeto = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True)
     subsistemas = models.ManyToManyField('Subsystem', blank=True)
 
     def __str__(self):

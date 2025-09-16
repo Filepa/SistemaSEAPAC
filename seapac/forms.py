@@ -1,20 +1,37 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Family, Subsystem, Terrain, Project
+from .models import Family, Subsystem, Terrain, Project, Tecnicos
 
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
         fields = '__all__'
-        widgets = {
+        widgets = { #falta aprimorar o select de técnicos, famílias e municípios (n sei como fzr o multiselect, estou vendo)
             'nome_projeto': forms.TextInput(attrs={'class': 'form-control'}),
-            'descricao': forms.Textarea(attrs={'class': 'form-control'}),
-            #'tecnicos': forms.Textarea(attrs={'class': 'form-control'}), #vai virar um select ainda
-            #'familias': forms.Select(attrs={'class': 'form-select'}),
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'stle': 'max-width:400px;'}),
+            'tecnicos': forms.SelectMultiple(attrs={'class': 'form-select', 'size': 5}), 
+            'familias': forms.SelectMultiple(attrs={'class': 'form-select', 'size': 5}),
+            'orcamento': forms.Textarea(attrs={'class': 'form-control'}),
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'data_fim': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
         }
 
+    
+class TecnicosForm(ModelForm):
+    class Meta:
+        model = Tecnicos
+        fields = [
+            "nome_tecnico",
+            "descricao",
+            "email",
+            "telefone",
+            "cpf",
+            "data_nascimento",
+        ]
+        widgets = {
+            "descricao": forms.Textarea(attrs={"rows": 3, "placeholder": "Descreva a experiência e área de atuação do técnico..."})
+            #"foto": forms.FileInput(attrs={'class': 'form-control-file'}),
+        }
 class TerrainForm(ModelForm):
     class Meta:
         model = Terrain
