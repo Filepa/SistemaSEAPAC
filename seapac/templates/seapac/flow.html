@@ -9,10 +9,6 @@
         </a>
     </div>
     <div>
-        <button class="btn btn-primary btn-timeline" onclick="redirect('{% url 'edit_conections' family.id %}')">
-            <i class="fa-solid fa-shuffle"></i>
-            Editar Conexões
-        </button>
         <button class="btn btn-primary btn-timeline" onclick="redirect('{% url 'timeline' family.id %}')">
             <i class="fa-solid fa-timeline"></i>
             Timeline
@@ -20,13 +16,24 @@
     </div>
 </div>
 
-<div class="sandbox">
-    {% for subsystem in subsystems %}
-        <div class='subsystem-block' id="block{{ forloop.counter }}" onclick="redirect('{% url 'subsystem_panel' family.id subsystem.id %}')">
-            {{ subsystem.nome_subsistema }}
-            <img src="{% static 'img/fotos_subsistemas/default.png' %}" alt="imagem aleatória" width='200' height='100' class="subsystem-image">
+<div class="sandbox"
+     id="sandbox"
+     data-subsystems="{{ json_subsystems }}">
+    {% for family_subsystem in family_subsystems %}
+        <div class='subsystem-block'
+             id="block{{ forloop.counter }}"
+             data-name="{{ family_subsystem.subsystem.nome_subsistema }}"
+             onclick="redirect('{% url 'subsystem_panel' family.id family_subsystem.subsystem.id %}')">
+            {{ family_subsystem.subsystem.nome_subsistema }}
+            <img src="{% static 'img/fotos_subsistemas/default.png' %}"
+                 alt="imagem aleatória"
+                 width='200' height='100'
+                 class="subsystem-image">
         </div>
     {% endfor %}
 </div>
 
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'js/flow.js' %}"></script>
 {% endblock %}

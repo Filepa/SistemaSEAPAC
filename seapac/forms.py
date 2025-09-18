@@ -43,21 +43,7 @@ class TerrainForm(ModelForm):
             'comunidade': forms.TextInput(attrs={'class': 'form-control'}),
             'tamanho_m2': forms.NumberInput(attrs={'class': 'form-control'}),
         }
-
-class SubsystemForm(ModelForm):
-
-    class Meta:
-        model = Subsystem
-        fields = '__all__'
-        widgets = {
-            'nome_subsistema': forms.TextInput(attrs={'class': 'form-control'}),
-            'produtos_entrada': forms.Select(attrs={'class': 'form-select'}),
-            'produtos_saida': forms.Select(attrs={'class': 'form-select'}),
-            'destino_produtos_entrada': forms.Select(attrs={'class': 'form-select'}),
-            'destino_produtos_saida': forms.Select(attrs={'class': 'form-select'}),
-            'foto_subsistema': forms.FileInput(attrs={'class': 'form-control-file'}),
-        }
-
+        
 class FamilyForm(ModelForm):
 
     class Meta:

@@ -43,7 +43,6 @@ urlpatterns = [
     path('calendario-visitas/', calendar, name='calendar'),
     path('<str:id>/editar-fluxo/', edit_flow, name='edit_flow'),
     path('<str:id>/perfil-familia/', family_profile, name='family_profile'),
-    path('<str:id>/editar-conexoes/', edit_conections, name='edit_conections'),
     path('api/events/', eventos_json),
     path('api/events/create/', criar_evento),
     path('api/events/delete/<int:event_id>/', deletar_evento),

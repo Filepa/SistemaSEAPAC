@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block center %}
 
 <h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
@@ -12,4 +12,7 @@
 </div>
 <div id='calendar'></div>
 
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}

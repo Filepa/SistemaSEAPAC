@@ -31,15 +31,15 @@ class ProjectAdmin(admin.ModelAdmin):
 class TecnicostAdmin(admin.ModelAdmin):
     list_display = ('nome_tecnico', 'descricao', 'telefone', 'cpf', 'email', 'data_nascimento') #'foto',
 
-@admin.register(Subsystem)
-class SubsystemAdmin(admin.ModelAdmin):
-    list_display = ('nome_subsistema', 'foto_subsistema', 'produtos_entrada', 'produtos_saida', 'destino_produtos_entrada', 'destino_produtos_saida', 'produtos_entrada_opcoes', 'produtos_saida_opcoes')
-
-    def foto_subsistema(self, obj):
-        if obj.foto_subsistema:
-            return format_html(
-                '<img src="{}" width="50" height="50" style="border-radius: 50%; object-fit: cover;" />',
-                obj.foto_subsistema.url
-            )
-        return "Sem foto"
-    foto_subsistema.short_description = 'Foto do Subsistema'
+#@admin.register(Subsystem)
+#class SubsystemAdmin(admin.ModelAdmin):
+#    list_display = ('nome_subsistema', 'foto_subsistema', 'produtos_entrada', 'produtos_saida', 'destino_produtos_entrada', 'destino_produtos_saida', 'produtos_entrada_opcoes', 'produtos_saida_opcoes')
+#
+#    def foto_subsistema(self, obj):
+#        if obj.foto_subsistema:
+#            return format_html(
+#                '<img src="{}" width="50" height="50" style="border-radius: 50%; object-fit: cover;" />',
+#                obj.foto_subsistema.url
+#            )
+#        return "Sem foto"
+#    foto_subsistema.short_description = 'Foto do Subsistema'
