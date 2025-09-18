@@ -157,6 +157,7 @@ def edit_tecs(request, pk):
             form.save()
             return redirect('detail_tecs', pk=tecs.pk)
     else:
+        print('vem pra ca')
         form = TecnicosForm(instance=tecs)
     
     return render(request, 'seapac/tecnicos/tecnicos_form.html', {

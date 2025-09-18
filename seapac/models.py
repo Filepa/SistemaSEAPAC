@@ -29,7 +29,7 @@ class Project(models.Model):
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_fim = models.DateField(blank=True, null=True)
-    orcamento = models.CharField(blank=True, null=True)
+    orcamento = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return self.nome_projeto
@@ -37,28 +37,14 @@ class Project(models.Model):
 class Tecnicos(models.Model):
     nome_tecnico = models.CharField(max_length=30)
     descricao = models.TextField()
-    telefone = models.CharField()
-    cpf = models.CharField()
+    telefone = models.CharField(max_length=30)
+    cpf = models.CharField(max_length=30)
     email = models.EmailField()
     data_nascimento = models.DateField(blank=True, null=True)
     #foto = models.ImageField(upload_to='tecnicos/fotos_perfil', blank=True) ---> está dando erros seríssimos
-    
 
     def __str__(self):
         return self.nome_tecnico
-
-class Subsystem(models.Model):
-    nome_subsistema = models.CharField(max_length=20)
-    foto_subsistema = models.ImageField(upload_to='fotos_subsistemas/', blank=True)
-    produtos_entrada = models.CharField(max_length=20, null=True)
-    produtos_saida = models.CharField(max_length=20, null=True)
-    destino_produtos_entrada = models.CharField(max_length=20, null=True)
-    destino_produtos_saida = models.CharField(max_length=20, null=True)
-    produtos_entrada_opcoes = models.JSONField(null=True, blank=True)
-    produtos_saida_opcoes = models.JSONField(null=True, blank=True)
-
-    def __str__(self):
-        return self.nome_subsistema
     
 ESCOLAR_CHOICES = [
     (1, "nenhum"),
@@ -92,7 +78,7 @@ class Family(models.Model):
     escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1)
     terra = models.OneToOneField('Terrain', on_delete=models.CASCADE)
     projeto = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True)
-    subsistemas = models.ManyToManyField('Subsystem', blank=True)
+    subsistemas = models.ManyToManyField('Subsystem', through='FamilySubsystem', blank=True)
 
     def __str__(self):
         return self.nome_titular
