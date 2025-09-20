@@ -1,0 +1,37 @@
+[
+  {
+    "model": "seapac.municipality",
+    "pk": 1,
+    "fields": {
+      "nome": "Encanto"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 2,
+    "fields": {
+      "nome": "Pau dos Ferros"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 3,
+    "fields": {
+      "nome": "Apodi"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 4,
+    "fields": {
+      "nome": "São Miguel"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 5,
+    "fields": {
+      "nome": "Luis Gomes"
+    }
+  }
+]
