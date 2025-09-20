@@ -14,11 +14,11 @@
                 <i class="fas fa-users"></i>
                 <span>Lista de Famílias</span>
             </a>
-            <a href="{% url 'list_projects' %}"  class="nav-item {% if request.resolver_match.url_name == 'list_families' %}active{% endif %}" data-page="familias">
+            <a href="{% url 'list_projects' %}"  class="nav-item {% if request.resolver_match.url_name == 'list_projects' %}active{% endif %}" data-page="projetos">
                 <i class="fas fa-project-diagram"></i>
                 <span>Projetos</span>
             </a>
-            <a href="{% url 'list_tecs' %}" class="nav-item {% if request.resolver_match.url_name == 'list_families' %}active{% endif %}" data-page="familias">
+            <a href="{% url 'list_tecs' %}" class="nav-item {% if request.resolver_match.url_name == 'list_tecs' %}active{% endif %}" data-page="tecnicos">
                 <i class="fas fa-user-tie"></i>
                 <span>Técnicos</span>
             </a>
