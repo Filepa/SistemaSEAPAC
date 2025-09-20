@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Family, Subsystem, Terrain, Project, Tecnicos
+from .models import Family, Subsystem, Terrain, Project, TechnicianProfile
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -15,33 +15,22 @@ class ProjectForm(ModelForm):
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'data_fim': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
         }
-
     
-class TecnicosForm(ModelForm):
+class TechnicianProfileForm(ModelForm):
     class Meta:
-        model = Tecnicos
-        fields = [
-            "nome_tecnico",
-            "descricao",
-            "email",
-            "telefone",
-            "cpf",
-            "data_nascimento",
-        ]
+        model = TechnicianProfile
+        fields = ["funcao"]
         widgets = {
-            "descricao": forms.Textarea(attrs={"rows": 3, "placeholder": "Descreva a experiência e área de atuação do técnico..."})
-            #"foto": forms.FileInput(attrs={'class': 'form-control-file'}),
+            "funcao": forms.TextInput(attrs={"class": "form-control"}),
         }
+
 class TerrainForm(ModelForm):
     class Meta:
         model = Terrain
         fields = '__all__'
         widgets = {
-            'municipio': forms.TextInput(attrs={'class': 'form-control'}),
-            'latitude': forms.NumberInput(attrs={'class': 'form-control'}),
-            'longitude': forms.NumberInput(attrs={'class': 'form-control'}),
+            'municipio': forms.Select(attrs={'class': 'form-control'}),
             'comunidade': forms.TextInput(attrs={'class': 'form-control'}),
-            'tamanho_m2': forms.NumberInput(attrs={'class': 'form-control'}),
         }
         
 class FamilyForm(ModelForm):
@@ -52,17 +41,8 @@ class FamilyForm(ModelForm):
         fields = '__all__'
         widgets = {
             'nome_titular': forms.TextInput(attrs={'class': 'form-control'}),
-            'nome_conjuge': forms.TextInput(attrs={'class': 'form-control'}),
-            'cpf': forms.TextInput(attrs={'class': 'form-control'}),
-            'data_nascimento': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'contato': forms.TextInput(attrs={'class': 'form-control'}),
-            'bpc': forms.TextInput(attrs={'class': 'form-control'}),
-            'nis': forms.TextInput(attrs={'class': 'form-control'}),
-            'dap': forms.TextInput(attrs={'class': 'form-control'}),
-            'aposentadoria': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'auxilio': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'escolaridade': forms.Select(attrs={'class': 'form-select'}),
             'nivel': forms.Select(attrs={'class': 'form-select'}),
             'terra': forms.Select(attrs={'class': 'form-select'}),
             'projeto': forms.Select(attrs={'class': 'form-select'}),

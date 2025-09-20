@@ -1,61 +1,52 @@
 from django.db import models #coloquei um monte de null pq tava dando erro essa bosta
 from django.core.serializers import serialize
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class User(models.Model):
+class User(AbstractUser):
+    TIPOS = [
+        ("ADMIN", "Administrador"),
+        ("TECH", "Técnico"),
+    ]
+    tipo = models.CharField(max_length=10, choices=TIPOS)
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='seapac_user_set',
+        related_query_name='seapac_user',
+        blank=True,
+        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+        verbose_name='groups',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='seapac_user_set',
+        related_query_name='seapac_user',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        verbose_name='user permissions',
+    )
+
+class AdministratorProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nivel_administrativo = models.BooleanField(default=True)
+
+class TechnicianProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    funcao = models.CharField(max_length=100)
+    
+class Municipality(models.Model):
     nome = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
-    senha = models.CharField(max_length=200) #tem que deixar privado depois
-    contato = models.CharField(max_length=30)
-    foto_perfil = models.ImageField(upload_to='fotos_perfil/', blank=True)
 
     def __str__(self):
         return self.nome
 
 class Terrain(models.Model):
-    municipio = models.CharField(max_length=30)
-    latitude = models.FloatField(null=True)
-    longitude = models.FloatField(null=True)
+    municipio = models.ForeignKey(Municipality, on_delete=models.CASCADE)
     comunidade = models.CharField(max_length=30, null=True)
-    tamanho_m2 = models.FloatField(max_length=30, null=True)
 
     def __str__(self):
         return self.municipio
-
-class Project(models.Model):
-    nome_projeto = models.CharField(max_length=30)
-    familias = models.ManyToManyField('Family')
-    tecnicos = models.ManyToManyField('Tecnicos')
-    descricao = models.TextField()
-    data_inicio = models.DateField()
-    data_fim = models.DateField(blank=True, null=True)
-    orcamento = models.CharField(max_length=30, blank=True, null=True)
-
-    def __str__(self):
-        return self.nome_projeto
-
-class Tecnicos(models.Model):
-    nome_tecnico = models.CharField(max_length=30)
-    descricao = models.TextField()
-    telefone = models.CharField(max_length=30)
-    cpf = models.CharField(max_length=30)
-    email = models.EmailField()
-    data_nascimento = models.DateField(blank=True, null=True)
-    #foto = models.ImageField(upload_to='tecnicos/fotos_perfil', blank=True) ---> está dando erros seríssimos
-
-    def __str__(self):
-        return self.nome_tecnico
-    
-ESCOLAR_CHOICES = [
-    (1, "nenhum"),
-    (2, "fundamental incompleto"),
-    (3, "fundamental completo"),
-    (4, "ensino médio incompleto"),
-    (5, "ensino médio completo"),
-    (6, "ensino superior incompleto"),
-    (7, "ensino superior completo"),
-    (8, "pós-graduação"),
-]
 
 LEVEL_CHOICES = [
     (1, "Inicial"),
@@ -65,17 +56,8 @@ LEVEL_CHOICES = [
 
 class Family(models.Model):
     nome_titular = models.CharField(max_length=30)
-    nome_conjuge = models.CharField(max_length=30)
-    data_nascimento = models.DateField()
     data_inicio = models.DateField()
-    cpf = models.CharField(max_length=30)
     contato = models.CharField(max_length=30)
-    bpc = models.CharField(max_length=50)
-    nis = models.CharField(max_length=50)
-    dap = models.CharField(max_length=50)
-    aposentadoria = models.BooleanField(default=False)
-    auxilio = models.BooleanField(default=False)
-    escolaridade = models.IntegerField(choices=ESCOLAR_CHOICES, default=1)
     terra = models.OneToOneField('Terrain', on_delete=models.CASCADE)
     projeto = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True)
     subsistemas = models.ManyToManyField('Subsystem', through='FamilySubsystem', blank=True)
@@ -103,9 +85,6 @@ class Family(models.Model):
         except IndexError:
             return "Família " + self.nome_titular
         
-    def get_escolaridade_display(self):
-        return dict(ESCOLAR_CHOICES).get(self.escolaridade)
-
     def get_subsistemas_list(self):
         return ", ".join(
             f"{fs.subsystem.nome_subsistema} ({len(fs.produtos_saida)} produtos)"
@@ -139,7 +118,19 @@ class FamilySubsystem(models.Model):
 
     def __str__(self):
         return f"{self.family.get_nome_familia()} - {self.subsystem.nome_subsistema}"
-    
+
+class Project(models.Model):
+    nome_projeto = models.CharField(max_length=30)
+    familias = models.ManyToManyField(Family)
+    tecnicos = models.ManyToManyField(TechnicianProfile)
+    descricao = models.TextField()
+    data_inicio = models.DateField()
+    data_fim = models.DateField(blank=True, null=True)
+    orcamento = models.CharField(max_length=30, blank=True, null=True) #nao tem no diagrama mas eu mantive
+
+    def __str__(self):
+        return self.nome_projeto
+
 class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas #tá bom
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()
