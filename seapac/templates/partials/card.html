@@ -36,6 +36,10 @@
     </div>
     
     <div class="family-actions">
+        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'family_profile' family.id %}')">
+            <i class="fas fa-eye"></i>
+            Visualizar
+        </button>
         <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'edit_family' family.id %}')">
             <i class="fas fa-edit"></i>
             Editar

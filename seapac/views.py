@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento, Terrain, Project, TechnicianProfile, FamilySubsystem
-from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianProfileForm
+from .models import Family, Subsystem, Evento, Terrain, Project, Tecnicos, FamilySubsystem
+from .forms import FamilyForm, TerrainForm, ProjectForm, TecnicosForm
 from django.forms import formset_factory
 from django import forms
 from django.http import JsonResponse
@@ -131,33 +131,34 @@ def delete_projects(request, pk):
 
 #CRUD de técnicos:
 def list_tecs(request):
-    tecs = TechnicianProfile.objects.all()
+    tecs = Tecnicos.objects.all()
     return render(request, 'seapac/tecnicos/tecnicos.html', {'tecs': tecs})
 
 def create_tecs(request): 
     if request.method == 'POST':
-        form = TechnicianProfileForm(request.POST)
+        form = TecnicosForm(request.POST)
         if form.is_valid():
             tecs = form.save()
             return redirect('list_tecs')
 
     else: 
-        form = TechnicianProfileForm()
+        form = TecnicosForm()
         
     return render(request, 'seapac/tecnicos/tecnicos_form.html', {
         'form': form
     })
 
 def edit_tecs(request, pk): 
-    tecs = get_object_or_404(TechnicianProfile, pk=pk)
+    tecs = get_object_or_404(Tecnicos, pk=pk)
     
     if request.method == 'POST':
-        form = TechnicianProfileForm(request.POST, instance=tecs)
+        form = TecnicosForm(request.POST, instance=tecs)
         if form.is_valid():
             form.save()
             return redirect('detail_tecs', pk=tecs.pk)
     else:
-        form = TechnicianProfileForm(instance=tecs)
+        print('vem pra ca')
+        form = TecnicosForm(instance=tecs)
     
     return render(request, 'seapac/tecnicos/tecnicos_form.html', {
        'form': form,
@@ -165,16 +166,16 @@ def edit_tecs(request, pk):
     })
 
 def detail_tecs(request, pk):
-    tecs = get_object_or_404(TechnicianProfile, pk=pk)
+    tecs = get_object_or_404(Tecnicos, pk=pk)
     context= {
         'tecs': tecs
     }
     return render(request, 'seapac/tecnicos/tecnicos_detail.html', context)
 
 def delete_tecs(request, pk):
-    tecs = get_object_or_404(TechnicianProfile, pk=pk)
+    tecs = get_object_or_404(Tecnicos, pk=pk)
     tecs.delete()
-    messages.success(request, f'Técnico {tecs.nome} excluído com sucesso!')
+    messages.success(request, f'Técnico {tecs.nome_tecnico} excluído com sucesso!')
     return redirect('list_tecs')
 
 def edit_family(request, id):
