@@ -1,299 +1,245 @@
 [
   {
-    "model": "seapac.user",
+    "model": "seapac.municipality",
     "pk": 1,
     "fields": {
-        "nome": "Adm",
-        "email": "adm@exemplo.com",
-        "senha": "123",
-        "contato": "(84) 94002-8922",
-        "foto_perfil": null
+      "nome": "Encanto"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 2,
+    "fields": {
+      "nome": "Pau dos Ferros"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 3,
+    "fields": {
+      "nome": "Apodi"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 4,
+    "fields": {
+      "nome": "São Miguel"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 5,
+    "fields": {
+      "nome": "Luis Gomes"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 1,
     "fields": {
-      "municipio": "Mossoró",
-      "latitude": 5.189,
-      "longitude": -37.349,
-      "comunidade": "Comunidade A",
-      "tamanho_m2": 1000.0
+      "municipio": 1,
+      "comunidade": "Comunidade A"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 2,
     "fields": {
-      "municipio": "Natal",
-      "latitude": -5.794,
-      "longitude": -35.211,
-      "comunidade": "Comunidade B",
-      "tamanho_m2": 1200.0
+      "municipio": 2,
+      "comunidade": "Comunidade B"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 3,
     "fields": {
-      "municipio": "Parnamirim",
-      "latitude": -5.917,
-      "longitude": -35.262,
-      "comunidade": "Comunidade C",
-      "tamanho_m2": 950.0
+      "municipio": 3,
+      "comunidade": "Comunidade C"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 4,
     "fields": {
-      "municipio": "Caicó",
-      "latitude": -6.454,
-      "longitude": -37.106,
-      "comunidade": "Comunidade D",
-      "tamanho_m2": 1100.0
+      "municipio": 4,
+      "comunidade": "Comunidade D"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 5,
     "fields": {
-      "municipio": "Assu",
-      "latitude": -5.583,
-      "longitude": -37.962,
-      "comunidade": "Comunidade E",
-      "tamanho_m2": 1050.0
+      "municipio": 5,
+      "comunidade": "Comunidade E"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 6,
     "fields": {
-      "municipio": "Currais Novos",
-      "latitude": -6.254,
-      "longitude": -36.517,
-      "comunidade": "Comunidade F",
-      "tamanho_m2": 980.0
+      "municipio": 1,
+      "comunidade": "Comunidade F"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 7,
     "fields": {
-      "municipio": "Macau",
-      "latitude": -5.107,
-      "longitude": -36.633,
-      "comunidade": "Comunidade G",
-      "tamanho_m2": 1020.0
+      "municipio": 2,
+      "comunidade": "Comunidade G"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 8,
     "fields": {
-      "municipio": "Pau dos Ferros",
-      "latitude": -6.112,
-      "longitude": -38.207,
-      "comunidade": "Comunidade H",
-      "tamanho_m2": 1150.0
+      "municipio": 3,
+      "comunidade": "Comunidade H"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 9,
     "fields": {
-      "municipio": "São Gonçalo do Amarante",
-      "latitude": -5.790,
-      "longitude": -35.325,
-      "comunidade": "Comunidade I",
-      "tamanho_m2": 990.0
+      "municipio": 4,
+      "comunidade": "Comunidade I"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 10,
     "fields": {
-      "municipio": "Ceará-Mirim",
-      "latitude": -5.634,
-      "longitude": -35.424,
-      "comunidade": "Comunidade J",
-      "tamanho_m2": 1080.0
+      "municipio": 5,
+      "comunidade": "Comunidade J"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 11,
     "fields": {
-      "municipio": "Nova Cruz",
-      "latitude": -6.478,
-      "longitude": -35.430,
-      "comunidade": "Comunidade K",
-      "tamanho_m2": 1010.0
+      "municipio": 1,
+      "comunidade": "Comunidade K"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 12,
     "fields": {
-      "municipio": "Santa Cruz",
-      "latitude": -6.224,
-      "longitude": -36.019,
-      "comunidade": "Comunidade L",
-      "tamanho_m2": 970.0
+      "municipio": 2,
+      "comunidade": "Comunidade L"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 13,
     "fields": {
-      "municipio": "Apodi",
-      "latitude": -5.653,
-      "longitude": -37.794,
-      "comunidade": "Comunidade M",
-      "tamanho_m2": 1040.0
+      "municipio": 3,
+      "comunidade": "Comunidade M"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 14,
     "fields": {
-      "municipio": "João Câmara",
-      "latitude": -5.540,
-      "longitude": -35.813,
-      "comunidade": "Comunidade N",
-      "tamanho_m2": 1120.0
+      "municipio": 4,
+      "comunidade": "Comunidade N"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 15,
     "fields": {
-      "municipio": "Goianinha",
-      "latitude": -6.264,
-      "longitude": -35.204,
-      "comunidade": "Comunidade O",
-      "tamanho_m2": 1060.0
+      "municipio": 5,
+      "comunidade": "Comunidade O"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 16,
     "fields": {
-      "municipio": "Areia Branca",
-      "latitude": -4.953,
-      "longitude": -37.125,
-      "comunidade": "Comunidade P",
-      "tamanho_m2": 1090.0
+      "municipio": 1,
+      "comunidade": "Comunidade P"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 17,
     "fields": {
-      "municipio": "São Paulo do Potengi",
-      "latitude": -5.899,
-      "longitude": -35.764,
-      "comunidade": "Comunidade Q",
-      "tamanho_m2": 1005.0
+      "municipio": 2,
+      "comunidade": "Comunidade Q"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 18,
     "fields": {
-      "municipio": "Touros",
-      "latitude": -5.201,
-      "longitude": -35.462,
-      "comunidade": "Comunidade R",
-      "tamanho_m2": 1075.0
+      "municipio": 3,
+      "comunidade": "Comunidade R"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 19,
     "fields": {
-      "municipio": "Jardim de Piranhas",
-      "latitude": -6.376,
-      "longitude": -37.262,
-      "comunidade": "Comunidade S",
-      "tamanho_m2": 1030.0
+      "municipio": 4,
+      "comunidade": "Comunidade S"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 20,
     "fields": {
-      "municipio": "São Miguel",
-      "latitude": -6.202,
-      "longitude": -38.494,
-      "comunidade": "Comunidade T",
-      "tamanho_m2": 1115.0
+      "municipio": 5,
+      "comunidade": "Comunidade T"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 21,
     "fields": {
-      "municipio": "Ipanguaçu",
-      "latitude": -5.489,
-      "longitude": -36.850,
-      "comunidade": "Comunidade U",
-      "tamanho_m2": 1025.0
+      "municipio": 1,
+      "comunidade": "Comunidade U"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 22,
     "fields": {
-      "municipio": "Açu",
-      "latitude": -5.583,
-      "longitude": -37.162,
-      "comunidade": "Comunidade V",
-      "tamanho_m2": 1130.0
+      "municipio": 2,
+      "comunidade": "Comunidade V"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 23,
     "fields": {
-      "municipio": "Monte Alegre",
-      "latitude": -6.070,
-      "longitude": -35.325,
-      "comunidade": "Comunidade W",
-      "tamanho_m2": 990.0
+      "municipio": 3,
+      "comunidade": "Comunidade W"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 24,
     "fields": {
-      "municipio": "Extremoz",
-      "latitude": -5.702,
-      "longitude": -35.304,
-      "comunidade": "Comunidade X",
-      "tamanho_m2": 1085.0
+      "municipio": 4,
+      "comunidade": "Comunidade X"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 25,
     "fields": {
-      "municipio": "Lajes",
-      "latitude": -5.693,
-      "longitude": -36.247,
-      "comunidade": "Comunidade Y",
-      "tamanho_m2": 1015.0
+      "municipio": 5,
+      "comunidade": "Comunidade Y"
     }
   },
   {
     "model": "seapac.terrain",
     "pk": 26,
     "fields": {
-      "municipio": "Pedro Avelino",
-      "latitude": -5.516,
-      "longitude": -36.386,
-      "comunidade": "Comunidade Z",
-      "tamanho_m2": 995.0
+      "municipio": 1,
+      "comunidade": "Comunidade Z"
     }
   },
   {
@@ -305,18 +251,6 @@
       "orcamento": "10.000",
       "data_inicio": "2015-01-01",
       "data_fim": "2016-01-01"
-    }
-  },
-  {
-    "model": "seapac.tecnicos",
-    "pk": 1,
-    "fields": {
-      "nome_tecnico": "Raposo",
-      "descricao": "Especializado em veterinária e cuidado com o meio ambiente",
-      "telefone": "(84) 9957-9325",
-      "cpf": "913.100.100-10",
-      "email": "zeffinho@exemplo.com",
-      "data_nascimento": "2015-01-01"
     }
   }
 ]
