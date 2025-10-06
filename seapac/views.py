@@ -3,7 +3,7 @@ from .models import Family, Subsystem, Evento, Terrain, Project, Technician, Fam
 from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm
 from django.forms import formset_factory
 from django import forms
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
@@ -14,6 +14,43 @@ LEVEL_CHOICES = [
     (2, "Intermediario"),
     (3, "Avancado")
 ]
+
+def gerar_markdown(id):
+    family = get_object_or_404(Family, id=id)
+    family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
+    
+    subsystems_data = []
+    for family_subsystem in family_subsystems:
+        subsystems_data.append({
+            'nome_subsistema': family_subsystem.subsystem.nome_subsistema,
+            'produtos_saida': family_subsystem.produtos_saida,
+        })
+
+    fluxos = []
+
+    for subsystem in subsystems_data:
+        nome_subsistema = subsystem["nome_subsistema"]
+        for produto in subsystem["produtos_saida"]:
+            nome_produto = produto['nome']
+            for fluxo in produto.get('fluxos', []):
+                destino = fluxo['destino']
+
+                fluxos.append((nome_subsistema, nome_produto, destino))
+
+    text_list = [
+        f'{origem} --> {destino}: "{produto}"'
+        for origem, produto, destino in fluxos
+    ]
+    diagram_lines = '\n'.join(text_list)
+    conteudo_md = f"""```mermaid
+stateDiagram-v2
+
+{diagram_lines}
+"""
+            
+    caminho_arquivo = "seapac/mermaid.md"
+    with open(caminho_arquivo, "w", encoding="utf-8") as arquivo:
+        arquivo.write(conteudo_md)
 
 # Create your views here.
 def index(request):
@@ -231,6 +268,8 @@ def flow(request, id):
     family = get_object_or_404(Family, id=id)
     family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
     
+    gerar_markdown(id=id)
+
     subsystems_data = []
     for family_subsystem in family_subsystems:
         subsystems_data.append({
@@ -257,7 +296,6 @@ def subsystem_panel(request, family_id, subsystem_id):
     if not family_subsystem.produtos_saida:
         family_subsystem.produtos_saida = family_subsystem.subsystem.produtos_base
         family_subsystem.save()
-
 
     return render(request, "seapac/subsystem_panel.html", {
         'subsystem': family_subsystem.subsystem,
@@ -314,6 +352,7 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
             family_subsystem.produtos_saida = produtos_saida_atualizados
             family_subsystem.save()
 
+            gerar_markdown(id=family_id)
             return redirect('subsystem_panel', family_id=family.id, subsystem_id=family_subsystem.subsystem.id)
 
     else:
@@ -399,29 +438,3 @@ def deletar_evento(request, event_id):
         except Evento.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Evento não encontrado'}, status=404)
         
-def gerar_markdown(request, id):
-    print('carregou')
-    family = get_object_or_404(Family, id=id)
-    family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
-    
-    print(family_subsystems)
-
-    subsystems_data = []
-    for family_subsystem in family_subsystems:
-        subsystems_data.append({
-            'nome_subsistema': family_subsystem.subsystem.nome_subsistema,
-            'produtos_saida': family_subsystem.produtos_saida,
-        })
-
-    print(subsystems_data.filter('Quital'))
-
-    conteudo_md = """
-stateDiagram-v2
-
-{nome_subsistema} --> {produtos_saida.fluxos.destino}: "{produtos_saida.nome}"
-"""
-    caminho_arquivo = "seapac/mermaid.md"
-    with open(caminho_arquivo, "w", encoding="utf-8") as arquivo:
-        arquivo.write(conteudo_md)
-
-    return HttpResponse(f"Arquivo '{caminho_arquivo}' criado com sucesso!")

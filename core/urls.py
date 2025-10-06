@@ -46,7 +46,6 @@ urlpatterns = [
     path('api/events/', eventos_json),
     path('api/events/create/', criar_evento),
     path('api/events/delete/<int:event_id>/', deletar_evento),
-    path('fluxo/<str:id>/', gerar_markdown, name='gerar_markdown')
 ]
 
 if settings.DEBUG:
