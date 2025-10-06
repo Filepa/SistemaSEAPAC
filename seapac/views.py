@@ -3,7 +3,7 @@ from .models import Family, Subsystem, Evento, Terrain, Project, Technician, Fam
 from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm
 from django.forms import formset_factory
 from django import forms
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
@@ -398,3 +398,30 @@ def deletar_evento(request, event_id):
             return JsonResponse({'status': 'ok'})
         except Evento.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Evento não encontrado'}, status=404)
+        
+def gerar_markdown(request, id):
+    print('carregou')
+    family = get_object_or_404(Family, id=id)
+    family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
+    
+    print(family_subsystems)
+
+    subsystems_data = []
+    for family_subsystem in family_subsystems:
+        subsystems_data.append({
+            'nome_subsistema': family_subsystem.subsystem.nome_subsistema,
+            'produtos_saida': family_subsystem.produtos_saida,
+        })
+
+    print(subsystems_data.filter('Quital'))
+
+    conteudo_md = """
+stateDiagram-v2
+
+{nome_subsistema} --> {produtos_saida.fluxos.destino}: "{produtos_saida.nome}"
+"""
+    caminho_arquivo = "seapac/mermaid.md"
+    with open(caminho_arquivo, "w", encoding="utf-8") as arquivo:
+        arquivo.write(conteudo_md)
+
+    return HttpResponse(f"Arquivo '{caminho_arquivo}' criado com sucesso!")
