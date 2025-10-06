@@ -288,7 +288,6 @@ def flow(request, id):
         "id": id,
         "family": family,
         "family_subsystems": family_subsystems,
-        "total_subsystems": family_subsystems.count(),
         "title": "Fluxo",
         "conteudo_mermaid": conteudo_mermaid
     }
@@ -384,12 +383,24 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
         'formset': formset,
     })
 
-def timeline(request, id):
+def timeline(request, id): #falta terminar
     family = get_object_or_404(Family, id=id)
+
+    conteudo_mermaid = f"""timeline
+        section Começo da Transição
+          21/02/23 : Primeira Visita da Seapac à família {family.nome_titular}.
+          23/02/23 : Mapeamento do terreno e coleta de dados.
+        section Visitas Técnicas
+          01/03/23 : Segunda Visita - Análise do solo e recursos hídricos.
+          15/03/23 : Terceira Visita - Planejamento do sistema agroflorestal.
+          29/03/23 : Quarta Visita - Início da implementação do sistema agroflorestal.
+    """
+
     context = {
         "id": id,
         "family": family,
-        "title": "Linha do Tempo"
+        "title": "Linha do Tempo",
+        "conteudo_mermaid": conteudo_mermaid,
     }
     return render(request, "seapac/timeline.html", context)
 

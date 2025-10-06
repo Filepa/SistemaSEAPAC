@@ -18,4 +18,10 @@
     </div>
 </div>
 
+<div class="sandbox" id="sandbox">
+    {% load mermaid %}
+    {% startmermaid %}
+        {{ conteudo_mermaid|safe }}
+    {% endmermaid %}
+</div>
 {% endblock %}

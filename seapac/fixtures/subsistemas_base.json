@@ -465,5 +465,282 @@
         }
       ]
     }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 21,
+    "fields": {
+      "nome_subsistema": "Cisterna P1MC",
+      "produtos_base": [
+        {
+          "nome": "Água para beber e cozinhar",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 22,
+    "fields": {
+      "nome_subsistema": "Cisterna P1+2",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        },
+        {
+          "nome": "Água para o multiuso da UPF",
+          "fluxos": []
+        },
+        {
+          "nome": "Água para os animais",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 23,
+    "fields": {
+      "nome_subsistema": "Barreiro Trincheira",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        },
+        {
+          "nome": "Água para os animais",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 24,
+    "fields": {
+      "nome_subsistema": "Barragem Subterranea",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        },
+        {
+          "nome": "Água para os animais",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 25,
+    "fields": {
+      "nome_subsistema": "Reuso de Água Cinza",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 26,
+    "fields": {
+      "nome_subsistema": "Reuso de Água Total",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 27,
+    "fields": {
+      "nome_subsistema": "Biodigestor",
+      "produtos_base": [
+        {
+          "nome": "Biogás",
+          "fluxos": []
+        },
+        {
+          "nome": "Biofertilizante",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 28,
+    "fields": {
+      "nome_subsistema": "Secador Solar",
+      "produtos_base": [
+        {
+          "nome": "Feno",
+          "fluxos": []
+        },
+        {
+          "nome": "Semente",
+          "fluxos": []
+        },
+        {
+          "nome": "Fruta desidratada",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.destino",
+    "pk": 1,
+    "fields": {
+      "nome_destino": "PNAE"
+    }
+  },
+  {
+    "model": "seapac.destino",
+    "pk": 2,
+    "fields": {
+      "nome_destino": "Feira Livre"
+    }
+  },
+  {
+    "model": "seapac.destino",
+    "pk": 3,
+    "fields": {
+      "nome_destino": "Feira Agroecológica"
+    }
+  },
+  {
+    "model": "seapac.destino",
+    "pk": 4,
+    "fields": {
+      "nome_destino": "Mercado"
+    }
+  },
+  {
+    "model": "seapac.destino",
+    "pk": 5,
+    "fields": {
+      "nome_destino": "Porta a Porta"
+    }
+  },
+  {
+    "model": "seapac.destino",
+    "pk": 6,
+    "fields": {
+      "nome_destino": "Atravessador"
+    }
+  },
+  {
+    "model": "seapac.entrada",
+    "pk": 1,
+    "fields": {
+      "nome_entrada": "Farmácia",
+      "produtos_base": [
+        {
+          "nome": "Medicamento",
+          "fluxos": []
+        },
+        {
+          "nome": "Vacina",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.entrada",
+    "pk": 2,
+    "fields": {
+      "nome_entrada": "Armazém",
+      "produtos_base": [
+        {
+          "nome": "Ração",
+          "fluxos": []
+        },
+        {
+          "nome": "Sal mineral",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.entrada",
+    "pk": 3,
+    "fields": {
+      "nome_entrada": "Mercado",
+      "produtos_base": [
+        {
+          "nome": "Máquina",
+          "fluxos": []
+        },
+        {
+          "nome": "Ferramentas",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.entrada",
+    "pk": 4,
+    "fields": {
+      "nome_entrada": "Banco do Nordeste",
+      "produtos_base": [
+        {
+          "nome": "Crédito AGROAMIGO",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.entrada",
+    "pk": 5,
+    "fields": {
+      "nome_entrada": "Banco do Brasil",
+      "produtos_base": [
+        {
+          "nome": "Crédito",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.entrada",
+    "pk": 6,
+    "fields": {
+      "nome_entrada": "EMATER",
+      "produtos_base": [
+        {
+          "nome": "Projeto",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.entrada",
+    "pk": 7,
+    "fields": {
+      "nome_entrada": "SEAPAC",
+      "produtos_base": [
+        {
+          "nome": "Projeto",
+          "fluxos": []
+        }
+      ]
+    }
   }
 ]

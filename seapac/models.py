@@ -108,6 +108,19 @@ class FamilySubsystem(models.Model):
     def __str__(self):
         return f"{self.family.get_nome_familia()} - {self.subsystem.nome_subsistema}"
 
+class Entrada(models.Model):
+    nome_entrada = models.CharField(max_length=30)
+    produtos_base = models.JSONField(default=list, blank=True)
+
+    def __str__(self):
+        return self.nome_entrada
+
+class Destino(models.Model):
+    nome_destino = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nome_destino
+
 class Project(models.Model):
     nome_projeto = models.CharField(max_length=30)
     familias = models.ManyToManyField(Family)
