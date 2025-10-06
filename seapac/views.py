@@ -3,6 +3,7 @@ from .models import Family, Subsystem, Evento, Terrain, Project, Technician, Fam
 from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm
 from django.forms import formset_factory
 from django import forms
+from django.urls import reverse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
@@ -14,43 +15,6 @@ LEVEL_CHOICES = [
     (2, "Intermediario"),
     (3, "Avancado")
 ]
-
-def gerar_markdown(id):
-    family = get_object_or_404(Family, id=id)
-    family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
-    
-    subsystems_data = []
-    for family_subsystem in family_subsystems:
-        subsystems_data.append({
-            'nome_subsistema': family_subsystem.subsystem.nome_subsistema,
-            'produtos_saida': family_subsystem.produtos_saida,
-        })
-
-    fluxos = []
-
-    for subsystem in subsystems_data:
-        nome_subsistema = subsystem["nome_subsistema"]
-        for produto in subsystem["produtos_saida"]:
-            nome_produto = produto['nome']
-            for fluxo in produto.get('fluxos', []):
-                destino = fluxo['destino']
-
-                fluxos.append((nome_subsistema, nome_produto, destino))
-
-    text_list = [
-        f'{origem} --> {destino}: "{produto}"'
-        for origem, produto, destino in fluxos
-    ]
-    diagram_lines = '\n'.join(text_list)
-    conteudo_md = f"""```mermaid
-stateDiagram-v2
-
-{diagram_lines}
-"""
-            
-    caminho_arquivo = "seapac/mermaid.md"
-    with open(caminho_arquivo, "w", encoding="utf-8") as arquivo:
-        arquivo.write(conteudo_md)
 
 # Create your views here.
 def index(request):
@@ -267,25 +231,66 @@ def family_profile(request, id):
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
     family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
-    
-    gerar_markdown(id=id)
 
     subsystems_data = []
     for family_subsystem in family_subsystems:
         subsystems_data.append({
+            'id': family_subsystem.subsystem.id,
             'nome_subsistema': family_subsystem.subsystem.nome_subsistema,
             'produtos_saida': family_subsystem.produtos_saida,
         })
 
-    json_subsystems = json.dumps(subsystems_data, separators=(',', ':'))
+    fluxos = []
+    for subsystem in subsystems_data:
+        nome_subsistema = subsystem["nome_subsistema"]
+        for produto in subsystem["produtos_saida"]:
+            nome_produto = produto['nome']
+            for fluxo in produto.get('fluxos', []):
+                destino = fluxo['destino']
+                fluxos.append((nome_subsistema, nome_produto, destino))
 
+    text_list = [
+        f'{origem} --{produto}--> {destino}'
+        for origem, produto, destino in fluxos
+    ]
+
+    subsystems_com_fluxo = {
+        nome for fluxo in fluxos for nome in (fluxo[0], fluxo[2])
+    }
+
+    subsystems_sem_fluxo = [
+        s['nome_subsistema']
+        for s in subsystems_data
+        if s['nome_subsistema'] not in subsystems_com_fluxo
+    ]
+
+    click_lines = []
+    for s in subsystems_data:
+        subsystem_id = s['id']
+        nome_subsistema = s['nome_subsistema']
+        url = request.build_absolute_uri(
+            reverse('subsystem_panel', args=[family.id, subsystem_id])
+        )
+        click_lines.append(f'click {nome_subsistema} href "{url}" "Abrir painel de {nome_subsistema}"')
+
+    for nome in subsystems_sem_fluxo:
+        text_list.append(f"{nome}")
+
+    diagram_lines = '\n'.join(text_list)
+
+    conteudo_mermaid = f"""flowchart LR
+
+{diagram_lines}
+
+{'\n'.join(click_lines)}
+"""
     context = {
         "id": id,
         "family": family,
         "family_subsystems": family_subsystems,
         "total_subsystems": family_subsystems.count(),
         "title": "Fluxo",
-        "json_subsystems": json_subsystems
+        "conteudo_mermaid": conteudo_mermaid
     }
     return render(request, "seapac/flow.html", context)
 
@@ -352,7 +357,6 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
             family_subsystem.produtos_saida = produtos_saida_atualizados
             family_subsystem.save()
 
-            gerar_markdown(id=family_id)
             return redirect('subsystem_panel', family_id=family.id, subsystem_id=family_subsystem.subsystem.id)
 
     else:
