@@ -42,7 +42,7 @@ urlpatterns = [
     path('lista-tecnicos/deletar/<int:pk>/', delete_tecs, name='delete_tecs'),
     path('calendario-visitas/', calendar, name='calendar'),
     path('<str:id>/editar-fluxo/', edit_flow, name='edit_flow'),
-    path('<str:id>/perfil-familia/', family_profile, name='family_profile'),
+    path('lista-subsistemas/', list_subsystems, name='list_subsystems'),
     path('api/events/', eventos_json),
     path('api/events/create/', criar_evento),
     path('api/events/delete/<int:event_id>/', deletar_evento),

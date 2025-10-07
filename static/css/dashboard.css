@@ -922,7 +922,9 @@ tbody > tr:nth-of-type(even) {
 /* FORMFLOW */
 
 .form-sandbox {
-    position: relative;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    row-gap: 20px;
     height: 720px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -932,7 +934,6 @@ tbody > tr:nth-of-type(even) {
 }
 
 .form-subsystem-block {
-    position: absolute;
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 2px;
@@ -960,29 +961,9 @@ tbody > tr:nth-of-type(even) {
     margin: 4px auto 0;
     border-radius: 6px;
     width: 120px;
-    height: 60px;
+    height: 100px;
     object-fit: cover;
 }
-#form-block1 { top: 300px; left: 650px; }
-#form-block6 { top: 470px; left: 850px; }
-#form-block11 { top: 470px; left: 650px; }
-#form-block12 { top: 470px; left: 450px; }
-#form-block17 { top: 130px; left: 950px; }
-#form-block18 { top: 130px; left: 750px; }
-#form-block19 { top: 130px; left: 550px; }
-#form-block20 { top: 130px; left: 350px; }
-#form-block2 { top: 570px; left: 25px; }
-#form-block3 { top: 460px; left: 25px; }
-#form-block4 { top: 350px; left: 25px; }
-#form-block5 { top: 240px; left: 25px; }
-#form-block7 { top: 130px; left: 25px; }
-#form-block8 { top: 20px; left: 25px; }
-#form-block9 { top: 20px; left: 1300px; }
-#form-block10 { top: 130px; left: 1300px; }
-#form-block13 { top: 240px; left: 1300px; }
-#form-block14 { top: 350px; left: 1300px; }
-#form-block15 { top: 460px; left: 1300px; }
-#form-block16 { top: 570px; left: 1300px; }
 
 .form-subsystem-block input[type="checkbox"] {
     display: none;

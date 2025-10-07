@@ -220,13 +220,13 @@ def list_families(request):
     }
     return render(request, "seapac/list_families.html", context)
 
-def family_profile(request, id):
-    family = get_object_or_404(Family, id=id)
+def list_subsystems(request):
+    subsistemas = Subsystem.objects.all()
     context = {
-        "family": family,
-        "title": "Perfil da Família"
+        "subsistemas": subsistemas,
+        'title': 'Lista de Subsistemas',
     }
-    return render(request, "seapac/family_profile.html", context)
+    return render(request, "seapac/subsistemas/list_subsystems.html", context)
 
 def flow(request, id):
     family = get_object_or_404(Family, id=id)

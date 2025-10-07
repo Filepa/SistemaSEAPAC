@@ -14,6 +14,10 @@
                 <i class="fas fa-users"></i>
                 <span>Lista de Famílias</span>
             </a>
+            <a href="{% url 'list_subsystems' %}" class="nav-item {% if request.resolver_match.url_name == 'list_subsystems' %}active{% endif %}" data-page="subsitemas">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Subsistemas</span>
+            </a>
             <a href="{% url 'list_projects' %}"  class="nav-item {% if request.resolver_match.url_name == 'list_projects' %}active{% endif %}" data-page="projetos">
                 <i class="fas fa-project-diagram"></i>
                 <span>Projetos</span>

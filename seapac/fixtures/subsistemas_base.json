@@ -521,7 +521,7 @@
     "model": "seapac.subsystem",
     "pk": 24,
     "fields": {
-      "nome_subsistema": "Barragem Subterranea",
+      "nome_subsistema": "Barragem",
       "produtos_base": [
         {
           "nome": "Água para produção",
