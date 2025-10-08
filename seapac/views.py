@@ -249,17 +249,18 @@ def flow(request, id):
                 destino = fluxo['destino']
                 fluxos.append((nome_subsistema, nome_produto, destino))
 
-    text_list = [
-        f'{origem} --{produto}--> {destino}'
-        for origem, produto, destino in fluxos
-    ]
+    text_list = []
+    for origem, produto, destino in fluxos:
+        origem_corrigida = origem.replace(" ", "_")
+        destino_corrigida = destino.replace(" ", "_")
+        text_list.append(f"{origem_corrigida} --{produto}--> {destino_corrigida}")
 
     subsystems_com_fluxo = {
         nome for fluxo in fluxos for nome in (fluxo[0], fluxo[2])
     }
 
     subsystems_sem_fluxo = [
-        s['nome_subsistema']
+        s['nome_subsistema'].replace(" ", "_")
         for s in subsystems_data
         if s['nome_subsistema'] not in subsystems_com_fluxo
     ]
@@ -268,6 +269,7 @@ def flow(request, id):
     for s in subsystems_data:
         subsystem_id = s['id']
         nome_subsistema = s['nome_subsistema']
+        nome_subsistema = nome_subsistema.replace(" ", "_")
         url = request.build_absolute_uri(
             reverse('subsystem_panel', args=[family.id, subsystem_id])
         )
