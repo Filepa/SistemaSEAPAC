@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Family, Terrain, Project, Technician
+from .models import Family, Terrain, Project, Technician, Subsystem
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -55,4 +55,13 @@ class FamilyForm(ModelForm):
             'terra': forms.Select(attrs={'class': 'form-select'}),
             'projeto': forms.Select(attrs={'class': 'form-select'}),
             'subsistemas': forms.SelectMultiple(attrs={'class': 'form-select'}),
+        }
+
+class SubsystemForm(ModelForm):
+    class Meta:
+        model = Subsystem
+        fields = ['nome_subsistema', 'produtos_base']
+        widgets = {
+            'nome_subsistema': forms.TextInput(attrs={'class': 'form-control'}),
+            'produtos_base': forms.Textarea(attrs={'class': 'form-select'})
         }

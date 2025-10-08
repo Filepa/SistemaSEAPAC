@@ -4,11 +4,12 @@
 <div class="flow-header">
     <div class="flow-header-main">
         <h1 class='title'>{% block title %}{{ title }}{% endblock title %} da {{ family.get_nome_familia }}</h1>
-        <a class='edit-flow' href="{% url 'edit_flow' id %}">
-            <i class="fas fa-edit"></i>
-        </a>
     </div>
     <div>
+        <button class="btn btn-primary btn-timeline" onclick="redirect('{% url 'edit_flow' id %}')">
+            <i class="fas fa-edit"></i>
+            Editar Subsistemas
+        </button>
         <button class="btn btn-primary btn-timeline" onclick="redirect('{% url 'timeline' family.id %}')">
             <i class="fa-solid fa-timeline"></i>
             Timeline

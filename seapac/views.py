@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem
-from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm
+from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm, SubsystemForm
 from django.forms import formset_factory
 from django import forms
 from django.urls import reverse
@@ -221,12 +221,52 @@ def list_families(request):
     return render(request, "seapac/list_families.html", context)
 
 def list_subsystems(request):
+    query = request.GET.get('q')
     subsistemas = Subsystem.objects.all()
+    if query:
+        subsistemas = subsistemas.filter(nome_subsistema__icontains=query)
     context = {
         "subsistemas": subsistemas,
         'title': 'Lista de Subsistemas',
+        "query": query
     }
     return render(request, "seapac/subsistemas/list_subsystems.html", context)
+
+def create_subsystems(request): 
+    if request.method == 'POST':
+        form = SubsystemForm(request.POST)
+        if form.is_valid():
+            subsistema = form.save()
+            return redirect('list_subsystems')
+    else: 
+        form = SubsystemForm()
+        
+    return render(request, 'seapac/subsistemas/subsystem_form.html', {
+        'form': form,
+        'title': 'Cadastrar Subsistema'
+    })
+
+def edit_subsystems(request, id):
+    subsistema = get_object_or_404(Subsystem, id=id)
+    if request.method == 'POST':
+        form = SubsystemForm(request.POST, instance=subsistema)
+        if form.is_valid():
+            form.save()
+            return redirect('list_subsystems')
+    else:
+        form = SubsystemForm(instance=subsistema)
+    
+    return render(request, 'seapac/subsistemas/subsystem_form.html', {
+        'title': 'Editar Subsistema',
+        'form': form,
+        'subsistema': subsistema
+        })
+
+def delete_subsystems(request, id):
+    subsistema = get_object_or_404(Subsystem, id=id)
+    subsistema.delete()
+    messages.success(request, f'Subsistema "{subsistema.nome_subsistema}" excluído com sucesso!')
+    return redirect('list_subsystems')
 
 def flow(request, id):
     family = get_object_or_404(Family, id=id)

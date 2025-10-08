@@ -1,5 +1,5 @@
 [
-    {
+  {
     "model": "seapac.subsystem",
     "pk": 1,
     "fields": {
@@ -599,146 +599,16 @@
     }
   },
   {
-    "model": "seapac.destino",
-    "pk": 1,
+    "model": "seapac.subsystem",
+    "pk": 29,
     "fields": {
-      "nome_destino": "PNAE"
-    }
-  },
-  {
-    "model": "seapac.destino",
-    "pk": 2,
-    "fields": {
-      "nome_destino": "Feira Livre"
-    }
-  },
-  {
-    "model": "seapac.destino",
-    "pk": 3,
-    "fields": {
-      "nome_destino": "Feira Agroecológica"
-    }
-  },
-  {
-    "model": "seapac.destino",
-    "pk": 4,
-    "fields": {
-      "nome_destino": "Mercado"
-    }
-  },
-  {
-    "model": "seapac.destino",
-    "pk": 5,
-    "fields": {
-      "nome_destino": "Porta a Porta"
-    }
-  },
-  {
-    "model": "seapac.destino",
-    "pk": 6,
-    "fields": {
-      "nome_destino": "Atravessador"
-    }
-  },
-  {
-    "model": "seapac.entrada",
-    "pk": 1,
-    "fields": {
-      "nome_entrada": "Farmácia",
+      "nome_subsistema": "Mundo Externo",
       "produtos_base": [
         {
-          "nome": "Medicamento",
-          "fluxos": []
-        },
-        {
-          "nome": "Vacina",
-          "fluxos": []
-        }
-      ]
-    }
-  },
-  {
-    "model": "seapac.entrada",
-    "pk": 2,
-    "fields": {
-      "nome_entrada": "Armazém",
-      "produtos_base": [
-        {
-          "nome": "Ração",
-          "fluxos": []
-        },
-        {
-          "nome": "Sal mineral",
-          "fluxos": []
-        }
-      ]
-    }
-  },
-  {
-    "model": "seapac.entrada",
-    "pk": 3,
-    "fields": {
-      "nome_entrada": "Mercado",
-      "produtos_base": [
-        {
-          "nome": "Máquina",
-          "fluxos": []
-        },
-        {
-          "nome": "Ferramentas",
-          "fluxos": []
-        }
-      ]
-    }
-  },
-  {
-    "model": "seapac.entrada",
-    "pk": 4,
-    "fields": {
-      "nome_entrada": "Banco do Nordeste",
-      "produtos_base": [
-        {
-          "nome": "Crédito AGROAMIGO",
-          "fluxos": []
-        }
-      ]
-    }
-  },
-  {
-    "model": "seapac.entrada",
-    "pk": 5,
-    "fields": {
-      "nome_entrada": "Banco do Brasil",
-      "produtos_base": [
-        {
-          "nome": "Crédito",
-          "fluxos": []
-        }
-      ]
-    }
-  },
-  {
-    "model": "seapac.entrada",
-    "pk": 6,
-    "fields": {
-      "nome_entrada": "EMATER",
-      "produtos_base": [
-        {
-          "nome": "Projeto",
-          "fluxos": []
-        }
-      ]
-    }
-  },
-  {
-    "model": "seapac.entrada",
-    "pk": 7,
-    "fields": {
-      "nome_entrada": "SEAPAC",
-      "produtos_base": [
-        {
-          "nome": "Projeto",
-          "fluxos": []
+          "nome" :"",
+          "fluxos": [],
+          "valor": "",
+          "descricao": ""
         }
       ]
     }
