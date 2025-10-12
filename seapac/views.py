@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem
-from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm, SubsystemForm
+from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem, TimelineEvent
+from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm
 from django.forms import formset_factory
 from django import forms
 from django.urls import reverse
@@ -16,7 +16,7 @@ LEVEL_CHOICES = [
     (3, "Avancado")
 ]
 
-# Create your views here.
+#--------------DASHBOARD--------------
 def index(request):
     level = request.GET.get('nivel')
     query = request.GET.get('q')
@@ -43,6 +43,8 @@ def index(request):
     }
     return render(request, "seapac/index.html", context)
 
+#--------------CRUD FAMILIAS--------------
+
 def register(request):
     if request.method == 'POST':
         terrainform = TerrainForm(request.POST)
@@ -65,23 +67,48 @@ def register(request):
         'title': 'Cadastrar Família'
     })
 
-def edit_flow(request, id):
+def edit_family(request, id):
     family = get_object_or_404(Family, id=id)
-    subsystems = Subsystem.objects.all()
-    selected_ids = list(family.subsistemas.values_list('id', flat=True))
+    try:
+        terrain = Terrain.objects.get(family=family)
+    except Terrain.DoesNotExist:
+        terrain = None
+
     if request.method == 'POST':
-        selected = request.POST.getlist('subsistemas')
-        family.subsistemas.set(selected)
-        family.save()
-        return redirect('index')
-    return render(request, "seapac/formflow.html", {
-        'family': family,
-        'subsystems': subsystems,
-        'selected_ids': selected_ids,
-        'title': 'Fluxo'
+        familyform = FamilyForm(request.POST, request.FILES, instance=family)
+        terrainform = TerrainForm(request.POST, instance=terrain)
+        if familyform.is_valid() and terrainform.is_valid():
+            family = familyform.save()
+            terrain = terrainform.save(commit=False)
+            terrain.family = family
+            terrain.save()
+            return redirect('index')
+    else:
+        familyform = FamilyForm(instance=family)
+        terrainform = TerrainForm(instance=terrain)
+    return render(request, "seapac/form.html", {
+        'familyform': familyform,
+        'terrainform': terrainform,
+        'title': 'Editar Família'
     })
 
-#crud projetos: 
+def list_families(request):
+    level = request.GET.get('nivel')
+    query = request.GET.get('q')
+    families = Family.objects.all()
+    if level:
+        families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
+    if query:
+        families = families.filter(nome_titular__icontains=query)
+    context ={
+        'families': families, 
+        'title': 'Lista de Famílias',
+        "nivel_selecionado": level,
+        "query": query
+    }
+    return render(request, "seapac/list_families.html", context)
+
+#--------------CRUD PROJETOS------------------
 
 def list_projects(request):
     projects = Project.objects.all()
@@ -130,7 +157,8 @@ def delete_projects(request, pk):
     messages.success(request, f'O projeto "{projetos.nome_projeto}" foi excluído com sucesso!')
     return redirect('list_projects')
 
-#CRUD de técnicos:
+#--------------CRUD TECNICOS--------------
+
 def list_tecs(request):
     tecs = Technician.objects.all()
     return render(request, 'seapac/tecnicos/tecnicos.html', {'tecs': tecs})
@@ -179,46 +207,7 @@ def delete_tecs(request, pk):
     messages.success(request, f'Técnico {tecs.nome_tecnico} excluído com sucesso!')
     return redirect('list_tecs')
 
-def edit_family(request, id):
-    family = get_object_or_404(Family, id=id)
-    try:
-        terrain = Terrain.objects.get(family=family)
-    except Terrain.DoesNotExist:
-        terrain = None
-
-    if request.method == 'POST':
-        familyform = FamilyForm(request.POST, request.FILES, instance=family)
-        terrainform = TerrainForm(request.POST, instance=terrain)
-        if familyform.is_valid() and terrainform.is_valid():
-            family = familyform.save()
-            terrain = terrainform.save(commit=False)
-            terrain.family = family
-            terrain.save()
-            return redirect('index')
-    else:
-        familyform = FamilyForm(instance=family)
-        terrainform = TerrainForm(instance=terrain)
-    return render(request, "seapac/form.html", {
-        'familyform': familyform,
-        'terrainform': terrainform,
-        'title': 'Editar Família'
-    })
-
-def list_families(request):
-    level = request.GET.get('nivel')
-    query = request.GET.get('q')
-    families = Family.objects.all()
-    if level:
-        families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
-    if query:
-        families = families.filter(nome_titular__icontains=query)
-    context ={
-        'families': families, 
-        'title': 'Lista de Famílias',
-        "nivel_selecionado": level,
-        "query": query
-    }
-    return render(request, "seapac/list_families.html", context)
+#--------------CRUD SUBSISTEMAS--------------
 
 def list_subsystems(request):
     query = request.GET.get('q')
@@ -267,6 +256,8 @@ def delete_subsystems(request, id):
     subsistema.delete()
     messages.success(request, f'Subsistema "{subsistema.nome_subsistema}" excluído com sucesso!')
     return redirect('list_subsystems')
+
+#--------------CRUD FLUXO+SUBSISTEMAS--------------
 
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
@@ -319,12 +310,13 @@ def flow(request, id):
         text_list.append(f"{nome}")
 
     diagram_lines = '\n'.join(text_list)
+    click_lines_str = '\n'.join(click_lines)
 
     conteudo_mermaid = f"""flowchart LR
 
 {diagram_lines}
 
-{'\n'.join(click_lines)}
+{click_lines_str}
 """
     context = {
         "id": id,
@@ -334,6 +326,22 @@ def flow(request, id):
         "conteudo_mermaid": conteudo_mermaid
     }
     return render(request, "seapac/flow.html", context)
+
+def edit_flow(request, id):
+    family = get_object_or_404(Family, id=id)
+    subsystems = Subsystem.objects.all()
+    selected_ids = list(family.subsistemas.values_list('id', flat=True))
+    if request.method == 'POST':
+        selected = request.POST.getlist('subsistemas')
+        family.subsistemas.set(selected)
+        family.save()
+        return redirect('index')
+    return render(request, "seapac/formflow.html", {
+        'family': family,
+        'subsystems': subsystems,
+        'selected_ids': selected_ids,
+        'title': 'Fluxo'
+    })
 
 def subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
@@ -425,18 +433,25 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
         'formset': formset,
     })
 
-def timeline(request, id): #falta terminar
-    family = get_object_or_404(Family, id=id)
+#--------------CRUD TIMELINE--------------
 
-    conteudo_mermaid = f"""timeline
-        section Começo da Transição
-          21/02/23 : Primeira Visita da Seapac à família {family.nome_titular}.
-          23/02/23 : Mapeamento do terreno e coleta de dados.
-        section Visitas Técnicas
-          01/03/23 : Segunda Visita - Análise do solo e recursos hídricos.
-          15/03/23 : Terceira Visita - Planejamento do sistema agroflorestal.
-          29/03/23 : Quarta Visita - Início da implementação do sistema agroflorestal.
-    """
+def timeline(request, id):
+    family = get_object_or_404(Family, id=id)
+    timeline_events = family.timeline_events.all().order_by('data')
+
+    # Agrupar eventos por seção (secao)
+    secoes = {}
+    for evento in timeline_events:
+        if evento.secao not in secoes:
+            secoes[evento.secao] = []
+        secoes[evento.secao].append(evento)
+
+    # Construir o conteúdo Mermaid
+    conteudo_mermaid = "timeline\n"
+    for secao, eventos in secoes.items():
+        conteudo_mermaid += f"    section {secao}\n"
+        for evento in eventos:
+            conteudo_mermaid += f"        {evento.data} : {evento.titulo} - {evento.descricao}\n"
 
     context = {
         "id": id,
@@ -444,7 +459,65 @@ def timeline(request, id): #falta terminar
         "title": "Linha do Tempo",
         "conteudo_mermaid": conteudo_mermaid,
     }
-    return render(request, "seapac/timeline.html", context)
+    return render(request, "seapac/timeline/timeline.html", context)
+
+def add_timeline(request, id):
+    family = get_object_or_404(Family, id=id)
+
+    if request.method == 'POST':
+        form = TimelineEventForm(request.POST)
+        if form.is_valid():
+            timeline_event = form.save(commit=False)
+            timeline_event.family = family
+            timeline_event.save()
+            return redirect('timeline', id=family.id)
+    else:
+        form = TimelineEventForm()
+
+    return render(request, "seapac/timeline/form_timeline.html", {
+        'form': form,
+        'title': 'Adicionar Evento à Timeline',
+        'family': family
+    })
+
+def edit_timeline(request, id, event_id):
+    family = get_object_or_404(Family, id=id)
+    event = get_object_or_404(TimelineEvent, id=event_id, family=family)
+    timeline_events = family.timeline_events.all().order_by('-data')
+
+    if request.method == 'POST':
+        form = TimelineEventForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('timeline', id=family.id)
+    else:
+        form = TimelineEventForm(instance=event)
+
+    return render(request, "seapac/timeline/form_timeline.html", {
+        'form': form,
+        'title': 'Editar Evento da Timeline',
+        'family': family,
+        'timeline_events': timeline_events,
+        'event': event,
+    })
+
+def search_timeline_event(request, id):
+    family = get_object_or_404(Family, id=id)
+
+    if request.method == 'POST':
+        termo = request.POST.get('termo')
+        if termo:
+            try:
+                evento = family.timeline_events.get(titulo__icontains=termo)
+                return redirect('edit_timeline', id=family.id, event_id=evento.id)
+            except TimelineEvent.DoesNotExist:
+                messages.error(request, f"Nenhum evento encontrado com o título '{termo}'.")
+        else:
+            messages.error(request, "Por favor, digite um título para pesquisar.")
+
+    return redirect('timeline', id=family.id)
+
+#--------------CRUD CALENDARIO--------------
 
 def calendar(request):
     level = request.GET.get('nivel')

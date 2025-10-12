@@ -47,6 +47,9 @@ urlpatterns = [
     path('lista-tecnicos/deletar/<int:pk>/', delete_tecs, name='delete_tecs'),
     #timeline
     path('<str:id>/timeline/', timeline, name='timeline'),
+    path('<str:id>/timeline/novo/', add_timeline, name='add_timeline'),
+    path('<str:id>/timeline/editar/<str:event_id>/', edit_timeline, name='edit_timeline'),
+    path("<str:id>/timeline/buscar/", search_timeline_event, name="search_timeline_event"),
     #subsistemas
     path('lista-subsistemas/', list_subsystems, name='list_subsystems'),
     path('lista-subsistemas/novo/', create_subsystems, name='create_subsystems'),

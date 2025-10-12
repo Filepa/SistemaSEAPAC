@@ -120,6 +120,16 @@ class Project(models.Model):
     def __str__(self):
         return self.nome_projeto
 
+class TimelineEvent(models.Model):
+    family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name='timeline_events')
+    secao = models.CharField(max_length=100, blank=True)
+    titulo = models.CharField(max_length=100)
+    descricao = models.TextField(blank=True)
+    data = models.DateField()
+
+    def __str__(self):
+        return f"{self.titulo} - {self.family.get_nome_familia()}"
+
 class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas #tá bom
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()

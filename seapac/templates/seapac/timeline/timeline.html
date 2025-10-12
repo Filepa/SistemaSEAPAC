@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<div class="flow-header">
+    <div class="flow-header-main">
+        <h1 class='title'>{% block title %}{{ title }}{% endblock title %} da {{ family.get_nome_familia }}</h1>
+    </div>
+    <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
+        <form method="POST" action="{% url 'search_timeline_event' family.id %}">
+            {% csrf_token %}
+            <input type="text" name="termo" placeholder="Buscar título..." style="padding: 5px;">
+            <button type="submit" class="btn btn-primary" style="margin-bottom: 3px;">Editar Evento</button>
+        </form>
+        <a href="{% url 'add_timeline' family.id %}" class="btn btn-primary">+ Adicionar Ponto</a>
+    </div>
+</div>
+
+<div class="sandbox" id="sandbox">
+    {% load mermaid %}
+    {% startmermaid %}
+        {{ conteudo_mermaid|safe }}
+    {% endmermaid %}
+</div>
+{% endblock %}

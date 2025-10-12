@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Family, Terrain, Project, Technician, Subsystem
+from .models import Family, Terrain, Project, Technician, Subsystem, TimelineEvent
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -64,4 +64,15 @@ class SubsystemForm(ModelForm):
         widgets = {
             'nome_subsistema': forms.TextInput(attrs={'class': 'form-control'}),
             'produtos_base': forms.Textarea(attrs={'class': 'form-select'})
+        }
+
+class TimelineEventForm(ModelForm):
+    class Meta:
+        model = TimelineEvent
+        fields = ['titulo', 'data', 'descricao', 'secao']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'data': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'secao': forms.TextInput(attrs={'class': 'form-control'}),
         }
