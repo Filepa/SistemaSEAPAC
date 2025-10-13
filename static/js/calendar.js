@@ -24,20 +24,20 @@ document.addEventListener('DOMContentLoaded', function() {
     events: '/api/events/',
     
     eventClick: function(info) {
-      if (confirm("Deseja deletar este evento?")) {
-        fetch(`/api/events/delete/${info.event.id}/`, {
-          method: 'DELETE',
+      if (confirm("Marcar esta visita como realizada?")) {
+        fetch(`/api/events/confirm/${info.event.id}/`, {
+          method: 'POST',
           headers: {
             'X-CSRFToken': '{{ csrf_token }}',
-            'Content-Type': 'application/json',
-          }
-        }).then(response => {
-          if (response.ok) {
-            info.event.remove();
-          } else {
-            alert('Erro ao deletar evento');
-          }
-        });
+          },
+        }).then(response => response.json())
+          .then(data => {
+            if (data.status === 'ok') {
+              info.event.setProp('backgroundColor', '#4CAF50');
+            } else {
+              alert('Erro ao confirmar evento');
+            }
+          });
       }
     },
 

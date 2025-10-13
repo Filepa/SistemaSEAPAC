@@ -89,6 +89,9 @@ class Family(models.Model):
             family_subsystem.produtos_saida = subsystem.produtos_base
             family_subsystem.save()
         return family_subsystem
+    
+    def get_visitas_confirmadas(self):
+        return self.eventos.filter(confirmado=True).count()
 
 class Subsystem(models.Model):
     nome_subsistema = models.CharField(max_length=50)
@@ -130,19 +133,11 @@ class TimelineEvent(models.Model):
     def __str__(self):
         return f"{self.titulo} - {self.family.get_nome_familia()}"
 
-class Evento(models.Model): #nao mexa ainda aninha esse aqui é o das visitas #tá bom
+class Evento(models.Model):
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()
+    familia = models.ForeignKey('Family', on_delete=models.CASCADE, null=True, blank=True, related_name='eventos')
+    confirmado = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.titulo} - {self.inicio}"
-
-    @classmethod
-    def save_as_fixture(cls):
-        eventos = cls.objects.all()
-        fixture_data = serialize('json', eventos)
-        
-        fixture_path = 'seapac/fixtures/eventos.json'
-        
-        with open(fixture_path, 'w') as f:
-            f.write(fixture_data)
+        return f"{self.titulo} - {self.inicio.strftime('%d/%m/%Y %H:%M')}"

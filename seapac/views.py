@@ -28,9 +28,11 @@ def index(request):
         families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
     total_municipios = Municipality.objects.filter(terrain__family__isnull=False).distinct().count()
     total_families = Family.objects.count()
+    total_tecnicos = Technician.objects.count()
     total_avancado = len([f for f in Family.objects.all() if f.get_nivel() == "Avancado"])
     total_intermediario = len([f for f in Family.objects.all() if f.get_nivel() == "Intermediario"])
     total_inicial = len([f for f in Family.objects.all() if f.get_nivel() == "Inicial"])
+    total_visitas = sum(f.get_visitas_confirmadas() for f in Family.objects.all())
     context = {
         "families": families,
         "total_families": total_families,
@@ -40,7 +42,9 @@ def index(request):
         "title": "Página Inicial - Dashboard",
         "nivel_selecionado": level,
         "query": query,
-        "total_municipios": total_municipios
+        "total_municipios": total_municipios,
+        "total_visitas": total_visitas,
+        "total_tecnicos": total_tecnicos,
     }
     return render(request, "seapac/index.html", context)
 
@@ -567,7 +571,8 @@ def eventos_json(request):
     data = [{
         'id': e.id,
         'title': e.titulo,
-        'start': e.inicio.isoformat()
+        'start': e.inicio.isoformat(),
+        'backgroundColor': '#4CAF50' if e.confirmado else '#f44336',
     } for e in eventos]
     return JsonResponse(data, safe=False)
 
@@ -576,22 +581,34 @@ def criar_evento(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         start_datetime = parse_datetime(data['start'])
-        
+        titulo = data['title']
+        familia_id = data.get('familia')  # opcional
+
         evento = Evento.objects.create(
-            titulo=data['title'],
-            inicio=start_datetime
+            titulo=titulo,
+            inicio=start_datetime,
+            familia_id=familia_id,
         )
-        Evento.save_as_fixture()
         return JsonResponse({'status': 'ok', 'id': evento.id})
-    
+    return JsonResponse({'status': 'error'}, status=400)
+
 @csrf_exempt
 def deletar_evento(request, event_id):
     if request.method == 'DELETE':
         try:
             evento = Evento.objects.get(id=event_id)
             evento.delete()
-            Evento.save_as_fixture()
             return JsonResponse({'status': 'ok'})
         except Evento.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Evento não encontrado'}, status=404)
         
+@csrf_exempt
+def confirmar_evento(request, event_id):
+    if request.method == 'POST':
+        try:
+            evento = Evento.objects.get(id=event_id)
+            evento.confirmado = True
+            evento.save()
+            return JsonResponse({'status': 'ok'})
+        except Evento.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Evento não encontrado'}, status=404)
