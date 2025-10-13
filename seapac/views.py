@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
+from django.contrib.auth.decorators import login_required
 import json
 
 LEVEL_CHOICES = [
@@ -82,10 +83,12 @@ def edit_flow(request, id):
 
 #crud projetos: 
 
+@login_required
 def list_projects(request):
     projects = Project.objects.all()
     return render(request, 'seapac/projetos/projects.html', {'projects': projects})
 
+@login_required
 def create_projects(request): 
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
@@ -100,6 +103,7 @@ def create_projects(request):
         'form': form
     })
 
+@login_required
 def edit_projects(request, pk): 
     projetos = get_object_or_404(Project, pk=pk)
     
@@ -116,6 +120,7 @@ def edit_projects(request, pk):
         'projetos': projetos
     })
 
+@login_required
 def detail_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
     context= {
@@ -123,6 +128,7 @@ def detail_projects(request, pk):
     }
     return render(request, 'seapac/projetos/projects_detail.html', context) 
 
+@login_required
 def delete_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
     projetos.delete()
@@ -130,10 +136,13 @@ def delete_projects(request, pk):
     return redirect('list_projects')
 
 #CRUD de técnicos:
+
+@login_required
 def list_tecs(request):
     tecs = Tecnicos.objects.all()
     return render(request, 'seapac/tecnicos/tecnicos.html', {'tecs': tecs})
 
+@login_required
 def create_tecs(request): 
     if request.method == 'POST':
         form = TecnicosForm(request.POST)
@@ -148,6 +157,7 @@ def create_tecs(request):
         'form': form
     })
 
+@login_required
 def edit_tecs(request, pk): 
     tecs = get_object_or_404(Tecnicos, pk=pk)
     
@@ -165,6 +175,7 @@ def edit_tecs(request, pk):
         'tecs': tecs
     })
 
+@login_required
 def detail_tecs(request, pk):
     tecs = get_object_or_404(Tecnicos, pk=pk)
     context= {
@@ -172,6 +183,7 @@ def detail_tecs(request, pk):
     }
     return render(request, 'seapac/tecnicos/tecnicos_detail.html', context)
 
+@login_required
 def delete_tecs(request, pk):
     tecs = get_object_or_404(Tecnicos, pk=pk)
     tecs.delete()

@@ -21,82 +21,76 @@
         <input type="text" id="projectSearchInput" placeholder="Pesquisar técnicos..." class="search-input">
     </div>
 
-    <a href="{% url 'create_tecs' %}" class="btn btn-primary" id="addProjectBtn">
-        <i class="fas fa-plus"></i> Cadastrar Técnicos
-    </a>
+    {% if user.is_administrador %}
+        <a href="{% url 'create_tecs' %}" class="btn btn-primary" id="addProjectBtn">
+            <i class="fas fa-plus"></i> Cadastrar Técnicos
+        </a>
+    {% endif %}
 </div>
 
 <div class="container-fluid px-md-3 px-0">
     {% if tecs %}
-        <div class="row g-2">
-            {% for tec in tecs|slice:":4" %}
-                <div class="col-md-6 mb-2 cards-list">
-                    {% load static %}
-                    <div class="family-card">
-                        <div class="family-header">
-                            <h3 class="family-name">{{ tec.nome_tecnico}}</h3>
-                        </div>
-                        
-                        <div class="project-info">
-                            <p>
-                                <div class="descricao">
-                                    <i class="fas fa-bookmark"></i>
-                                    <span>Descrição: {{ tec.descricao }}</span>
-                                </div>
-                            </p>
+        <div class="row g-4">
+            {% for tec in tecs %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm border-0 rounded-3 h-100">
+                        <div class="card-body d-flex flex-column justify-content-between">
                             
-                            <div class="info-item">
-                                <i class="fas fa-phone"></i>
-                                <span>Telefone: {{ tec.telefone }}</span>
+                            <!-- Cabeçalho -->
+                            <div>
+                                <h5 class="card-title text-success fw-bold mb-2">
+                                    <i class="fas fa-user-circle me-2"></i>{{ tec.nome_tecnico }}
+                                </h5>
+                                <p class="text-muted small mb-3">
+                                    <i class="fas fa-bookmark me-2"></i>{{ tec.descricao }}
+                                </p>
                             </div>
-                            <div class="info-item">
-                                <i class="fas fa-user"></i>
-                                <span>CPF: {{ tec.cpf }}</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar-check"></i>
-                                <span>Email: {{ tec.email }}</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar-check"></i>
-                                <span>Data de nascimento: {{ tec.data_nascimento }}</span>
-                            </div>
-                        
-                            
-                            <P></P>
 
-                            <div class="project-actions">
-                                <a href = "{% url 'detail_tecs' tec.pk %}" class="btn btn-outline btn-sm">
-                                    <i class="fas fa-eye"></i>
-                                    Visualizar
+                            <!-- Informações -->
+                            <ul class="list-unstyled mb-3 small">
+                                <li><i class="fas fa-id-card me-2 text-secondary"></i><strong>CPF:</strong> {{ tec.cpf }}</li>
+                                <li><i class="fas fa-phone me-2 text-secondary"></i><strong>Telefone:</strong> {{ tec.telefone }}</li>
+                                <li><i class="fas fa-envelope me-2 text-secondary"></i><strong>Email:</strong> {{ tec.email }}</li>
+                                <li><i class="fas fa-calendar-day me-2 text-secondary"></i><strong>Nascimento:</strong> {{ tec.data_nascimento }}</li>
+                            </ul>
+
+                            <!-- Ações -->
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <a href="{% url 'detail_tecs' tec.pk %}" class="btn btn-outline-success btn-sm">
+                                    <i class="fas fa-eye me-1"></i>Visualizar
                                 </a>
-                                <a href = "{% url 'edit_tecs' tec.pk %}" class="btn btn-outline btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                    Editar
-                                </a>                       
+
+                                {% if user.is_administrador %}
+                                <a href="{% url 'edit_tecs' tec.pk %}" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-edit me-1"></i>Editar
+                                </a>
+                                {% endif %}
                             </div>
-                           
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        
-        <div class="row mt-2">
+
+        <!-- Paginação -->
+        <div class="row mt-4">
             <div class="col-12 d-flex justify-content-center">
-                <div class="pages-div">
-                    <div class="first-page">1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div class="last-page">»</div>
-                </div>
+                <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     {% else %}
-        <p class="no-results">Nenhum Técnico encontrado.</p>
+        <p class="text-center text-muted mt-4">Nenhum Técnico encontrado.</p>
     {% endif %}
 </div>
+
 {% endblock %}
 
 

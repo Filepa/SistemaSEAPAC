@@ -1,0 +1,284 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Meu Perfil - Sistema SEAPAC{% endblock %}
+
+
+{% block extra_css %}
+<style>
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+        padding: 15px 20px;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 25px;
+    }
+
+    .form-label {
+        color: #2C3E50;
+        margin-bottom: 8px;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+    }
+
+    .btn-success {
+        background-color: #4CAF50;
+        border-color: #4CAF50;
+        padding: 10px 25px;
+        font-weight: 500;
+    }
+
+    .btn-success:hover {
+        background-color: #45a049;
+        border-color: #45a049;
+    }
+
+    .btn-secondary {
+        padding: 10px 25px;
+        font-weight: 500;
+    }
+
+    .img-thumbnail {
+        border: 2px solid #4CAF50;
+        padding: 5px;
+    }
+
+    .badge {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+        margin: 2px;
+    }
+
+    .section-title h6 {
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .rounded-circle {
+        border: 3px solid #4CAF50;
+    }
+</style>
+{% endblock %}
+
+{% block center %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h2 class="mb-4">
+                <i class="bi bi-person-circle text-success"></i> Meu Perfil
+            </h2>
+
+            <div class="row g-4">
+                <!-- Coluna da Esquerda - Informações do Usuário -->
+                <div class="col-lg-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body text-center">
+                            {% if user.foto_perfil %}
+                                <img src="{{ user.foto_perfil.url }}" alt="Foto de perfil" class="rounded-circle img-thumbnail mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                            {% else %}
+                                <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 150px; height: 150px;">
+                                    <i class="bi bi-person-circle text-muted" style="font-size: 5rem;"></i>
+                                </div>
+                            {% endif %}
+                            
+                            <h4 class="mb-1">{{ user.get_full_name|default:user.username }}</h4>
+                            <p class="text-muted mb-3">@{{ user.username }}</p>
+
+                            <div class="mb-3">
+                                {% if user.is_superuser %}
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="bi bi-star-fill"></i> Superusuário
+                                    </span>
+                                {% else %}
+                                    {% for group in user.groups.all %}
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-people-fill"></i> {{ group.name }}
+                                        </span>
+                                    {% empty %}
+                                        <span class="badge bg-secondary">Sem grupo</span>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+
+                            <hr>
+
+                            <div class="text-start">
+                                <p class="mb-2">
+                                    <i class="bi bi-envelope text-success"></i>
+                                    <strong>E-mail:</strong><br>
+                                    <span class="text-muted">{{ user.email|default:"Não informado" }}</span>
+                                </p>
+                                <p class="mb-2">
+                                    <i class="bi bi-card-text text-success"></i>
+                                    <strong>CPF:</strong><br>
+                                    <span class="text-muted">{{ user.cpf }}</span>
+                                </p>
+                                <p class="mb-2">
+                                    <i class="bi bi-geo-alt text-success"></i>
+                                    <strong>Cidade:</strong><br>
+                                    <span class="text-muted">{{ user.nome_cidade|default:"Não informado" }}</span>
+                                </p>
+                                <p class="mb-2">
+                                    <i class="bi bi-calendar-check text-success"></i>
+                                    <strong>Membro desde:</strong><br>
+                                    <span class="text-muted">{{ user.date_joined|date:"d/m/Y" }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+        
+                </div>
+
+                <!-- Coluna da Direita - Formulário de Edição -->
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="bi bi-pencil-square"></i> Editar Informações
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <!-- Dados Pessoais -->
+                                <div class="section-title mb-3">
+                                    <h6 class="text-success border-bottom pb-2">
+                                        <i class="bi bi-person"></i> Dados Pessoais
+                                    </h6>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="{{ form.first_name.id_for_label }}" class="form-label fw-bold">
+                                            Primeiro Nome
+                                        </label>
+                                        {{ form.first_name }}
+                                        {% if form.first_name.errors %}
+                                            <div class="text-danger small mt-1">{{ form.first_name.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="{{ form.last_name.id_for_label }}" class="form-label fw-bold">
+                                            Sobrenome
+                                        </label>
+                                        {{ form.last_name }}
+                                        {% if form.last_name.errors %}
+                                            <div class="text-danger small mt-1">{{ form.last_name.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">
+                                        <i class="bi bi-envelope text-success"></i> E-mail
+                                    </label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        <div class="text-danger small mt-1">{{ form.email.errors }}</div>
+                                    {% endif %}
+                                </div>
+
+
+                                <!-- Foto de Perfil -->
+                                <div class="section-title mb-3 mt-4">
+                                    <h6 class="text-success border-bottom pb-2">
+                                        <i class="bi bi-image"></i> Foto de Perfil
+                                    </h6>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="{{ form.foto_perfil.id_for_label }}" class="form-label fw-bold">
+                                        Escolher Foto
+                                    </label>
+                                    
+                                    {% if user.foto_perfil %}
+                                        <div class="mb-3">
+                                            <img src="{{ user.foto_perfil.url }}" alt="Foto atual" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover;">
+                                            <p class="text-muted small mt-2">Foto atual. Envie uma nova para substituir.</p>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    {{ form.foto_perfil }}
+                                    {% if form.foto_perfil.errors %}
+                                        <div class="text-danger small mt-1">{{ form.foto_perfil.errors }}</div>
+                                    {% endif %}
+                                    <small class="text-muted">Formatos aceitos: JPG, PNG. Tamanho máximo: 2MB</small>
+                                </div>
+
+                                <!-- Endereço -->
+                                <div class="section-title mb-3 mt-4">
+                                    <h6 class="text-success border-bottom pb-2">
+                                        <i class="bi bi-geo-alt"></i> Endereço
+                                    </h6>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="{{ form.endereco.id_for_label }}" class="form-label fw-bold">
+                                        Endereço Completo
+                                    </label>
+                                    {{ form.endereco }}
+                                    {% if form.endereco.errors %}
+                                        <div class="text-danger small mt-1">{{ form.endereco.errors }}</div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="{{ form.nome_bairro.id_for_label }}" class="form-label fw-bold">
+                                            Bairro
+                                        </label>
+                                        {{ form.nome_bairro }}
+                                        {% if form.nome_bairro.errors %}
+                                            <div class="text-danger small mt-1">{{ form.nome_bairro.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="{{ form.nome_cidade.id_for_label }}" class="form-label fw-bold">
+                                            Cidade
+                                        </label>
+                                        {{ form.nome_cidade }}
+                                        {% if form.nome_cidade.errors %}
+                                            <div class="text-danger small mt-1">{{ form.nome_cidade.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <!-- Erros gerais -->
+                                {% if form.non_field_errors %}
+                                    <div class="alert alert-danger">
+                                        {{ form.non_field_errors }}
+                                    </div>
+                                {% endif %}
+
+                                <!-- Botões -->
+                                <div class="d-flex gap-2 justify-content-end mt-4 pt-3 border-top">
+                                    <a href="{% url 'index' %}" class="btn btn-secondary">
+                                        <i class="bi bi-x-circle"></i> Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="bi bi-check-circle"></i> Salvar Alterações
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -16,12 +16,14 @@
                     </p>
                 </div>
                 <div>
-                    <a href="{% url 'edit_tecs' tecs.pk %}" class="btn btn-primary" id="addProjectBtn">
-                        <i class="fas fa-pencil-alt"></i> Editar
-                    </a>
-                    <a href="{% url 'delete_tecs' tecs.pk %}" class="btn btn-primary" id="addProjectBtn">
-                        <i class="fas fa-pencil-alt"></i> Deletar
-                    </a>
+                    {% if user.is_administrador %}
+                        <a href="{% url 'edit_tecs' tecs.pk %}" class="btn btn-primary" id="addProjectBtn">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                        </a>
+                        <a href="{% url 'delete_tecs' tecs.pk %}" class="btn btn-primary" id="addProjectBtn">
+                            <i class="fas fa-pencil-alt"></i> Deletar
+                        </a>
+                    {% endif %}
                     <a href="{% url 'list_tecs' %}" class="btn btn-primary" id="addProjectBtn">
                          <i class="	fas fa-step-backward"></i> Voltar
                     </a>
