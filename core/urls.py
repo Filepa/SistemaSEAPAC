@@ -15,13 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from seapac.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='adm'),
     path('', index, name='index'),
     path('cadastrar/', register, name='register'),
     path('<str:id>/fluxo/', flow, name='flow'),
@@ -46,6 +46,7 @@ urlpatterns = [
     path('api/events/', eventos_json),
     path('api/events/create/', criar_evento),
     path('api/events/delete/<int:event_id>/', deletar_evento),
+    path('usuarios/', include('usuarios.urls')),
 ]
 
 if settings.DEBUG:
