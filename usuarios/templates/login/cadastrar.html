@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Sistema SEAPAC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-green: #4CAF50;
+            --light-green: #E8F5E9;
+            --dark-gray: #2C3E50;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-gray) 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .cadastro-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cadastro-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .cadastro-header i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .cadastro-body {
+            padding: 40px;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+        }
+
+        .btn-cadastrar {
+            background-color: var(--primary-green);
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-cadastrar:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .link-login {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .link-login:hover {
+            text-decoration: underline;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .form-section {
+            background-color: var(--light-green);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-section h5 {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="cadastro-container">
+
+            <div class="cadastro-header">
+
+                <i class="bi bi-person-plus-fill"></i>
+                <h2>Cadastro de Usuário</h2>
+                <p class="mb-0">Preencha os dados para criar sua conta</p>
+
+            </div>
+
+            <div class="cadastro-body">
+
+                {% if messages %}
+                    {% for message in messages %}
+
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- Cadastro efetivo de novos usuários -->
+                    <div class="form-section">
+
+                        <h5><i class="bi bi-key"></i> Dados de Acesso</h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.username.id_for_label }}" class="form-label required-field">
+                                    Usuário
+                                </label>
+
+                                {{ form.username }}
+                                {% if form.username.errors %}
+
+                                    <div class="text-danger small mt-1">{{ form.username.errors }}</div>
+
+                                {% endif %}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.email.id_for_label }}" class="form-label required-field">
+                                    E-mail
+                                </label>
+
+                                {{ form.email }}
+                                {% if form.email.errors %}
+
+                                    <div class="text-danger small mt-1">{{ form.email.errors }}</div>
+
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.password1.id_for_label }}" class="form-label required-field">
+                                    Senha
+                                </label>
+
+                                {{ form.password1 }}
+                                {% if form.password1.errors %}
+
+                                    <div class="text-danger small mt-1">{{ form.password1.errors }}</div>
+
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.password2.id_for_label }}" class="form-label required-field">
+                                    Confirmar Senha
+                                </label>
+
+                                {{ form.password2 }}
+                                {% if form.password2.errors %}
+
+                                    <div class="text-danger small mt-1">{{ form.password2.errors }}</div>
+
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="form-section">
+
+                        <h5><i class="bi bi-person"></i> Dados Pessoais</h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.cpf.id_for_label }}" class="form-label required-field">
+                                    CPF
+                                </label>
+
+                                {{ form.cpf }}
+                                {% if form.cpf.errors %}
+
+                                    <div class="text-danger small mt-1">{{ form.cpf.errors }}</div>
+
+                                {% endif %}
+
+                                <small class="text-muted">Apenas números</small>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="form-section">
+
+                        <h5><i class="bi bi-geo-alt"></i> Endereço</h5>
+                        <div class="mb-3">
+
+                            <label for="{{ form.endereco.id_for_label }}" class="form-label">
+                                Endereço Completo
+                            </label>
+
+                            {{ form.endereco }}
+                            {% if form.endereco.errors %}
+                                <div class="text-danger small mt-1">{{ form.endereco.errors }}</div>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.nome_bairro.id_for_label }}" class="form-label">
+                                    Bairro
+                                </label>
+
+                                {{ form.nome_bairro }}
+                                {% if form.nome_bairro.errors %}
+                                    <div class="text-danger small mt-1">{{ form.nome_bairro.errors }}</div>
+                                {% endif %}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="{{ form.nome_cidade.id_for_label }}" class="form-label">
+                                    Cidade
+                                </label>
+
+                                {{ form.nome_cidade }}
+                                {% if form.nome_cidade.errors %}
+                                    <div class="text-danger small mt-1">{{ form.nome_cidade.errors }}</div>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <div class="d-grid mb-3">
+
+                        <button type="submit" class="btn btn-success btn-cadastrar">
+                            <i class="bi bi-check-circle"></i> Cadastrar
+                        </button>
+
+                    </div>
+
+                    <div class="text-center">
+
+                        <p class="mb-0">Já tem uma conta? 
+                            <a href="{% url 'login' %}" class="link-login">
+                                Faça login aqui
+                            </a>
+                        </p>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

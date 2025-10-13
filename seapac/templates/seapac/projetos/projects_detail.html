@@ -16,12 +16,15 @@
                     </p>
                 </div>
                 <div>
+                    {% if user.is_administrador %}
                     <a href="{% url 'edit_projects' projetos.pk %}" class="btn btn-primary" id="addProjectBtn">
                         <i class="fas fa-pencil-alt"></i> Editar
                     </a>
                      <a href="{% url 'delete_projects' projetos.pk %}" class="btn btn-primary" id="addProjectBtn">
                         <i class="fas fa-pencil-alt"></i> Deletar
                     </a>
+                    {% endif %}
+                    
                     <a href="{% url 'list_projects' %}" class="btn btn-primary" id="addProjectBtn">
                          <i class="	fas fa-step-backward"></i> Voltar
                     </a>

@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
+from django.contrib.auth.decorators import login_required
 import json
 
 LEVEL_CHOICES = [
@@ -45,6 +46,7 @@ def index(request):
 
 #--------------CRUD FAMILIAS--------------
 
+@login_required
 def register(request):
     if request.method == 'POST':
         terrainform = TerrainForm(request.POST)
@@ -67,6 +69,7 @@ def register(request):
         'title': 'Cadastrar Família'
     })
 
+@login_required
 def edit_family(request, id):
     family = get_object_or_404(Family, id=id)
     try:
@@ -92,6 +95,7 @@ def edit_family(request, id):
         'title': 'Editar Família'
     })
 
+@login_required
 def list_families(request):
     level = request.GET.get('nivel')
     query = request.GET.get('q')
@@ -110,10 +114,12 @@ def list_families(request):
 
 #--------------CRUD PROJETOS------------------
 
+@login_required
 def list_projects(request):
     projects = Project.objects.all()
     return render(request, 'seapac/projetos/projects.html', {'projects': projects})
 
+@login_required
 def create_projects(request): 
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
@@ -128,6 +134,7 @@ def create_projects(request):
         'form': form
     })
 
+@login_required
 def edit_projects(request, pk): 
     projetos = get_object_or_404(Project, pk=pk)
     
@@ -144,6 +151,7 @@ def edit_projects(request, pk):
         'projetos': projetos
     })
 
+@login_required
 def detail_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
     context= {
@@ -151,6 +159,7 @@ def detail_projects(request, pk):
     }
     return render(request, 'seapac/projetos/projects_detail.html', context) 
 
+@login_required
 def delete_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
     projetos.delete()
@@ -159,10 +168,12 @@ def delete_projects(request, pk):
 
 #--------------CRUD TECNICOS--------------
 
+@login_required
 def list_tecs(request):
     tecs = Technician.objects.all()
     return render(request, 'seapac/tecnicos/tecnicos.html', {'tecs': tecs})
 
+@login_required
 def create_tecs(request): 
     if request.method == 'POST':
         form = TechnicianForm(request.POST)
@@ -177,6 +188,7 @@ def create_tecs(request):
         'form': form
     })
 
+@login_required
 def edit_tecs(request, pk): 
     tecs = get_object_or_404(Technician, pk=pk)
     
@@ -194,6 +206,7 @@ def edit_tecs(request, pk):
         'tecs': tecs
     })
 
+@login_required
 def detail_tecs(request, pk):
     tecs = get_object_or_404(Technician, pk=pk)
     context= {
@@ -201,6 +214,7 @@ def detail_tecs(request, pk):
     }
     return render(request, 'seapac/tecnicos/tecnicos_detail.html', context)
 
+@login_required
 def delete_tecs(request, pk):
     tecs = get_object_or_404(Technician, pk=pk)
     tecs.delete()
@@ -209,6 +223,7 @@ def delete_tecs(request, pk):
 
 #--------------CRUD SUBSISTEMAS--------------
 
+@login_required
 def list_subsystems(request):
     query = request.GET.get('q')
     subsistemas = Subsystem.objects.all()
@@ -221,6 +236,7 @@ def list_subsystems(request):
     }
     return render(request, "seapac/subsistemas/list_subsystems.html", context)
 
+@login_required
 def create_subsystems(request): 
     if request.method == 'POST':
         form = SubsystemForm(request.POST)
@@ -235,6 +251,7 @@ def create_subsystems(request):
         'title': 'Cadastrar Subsistema'
     })
 
+@login_required
 def edit_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
     if request.method == 'POST':
@@ -251,6 +268,7 @@ def edit_subsystems(request, id):
         'subsistema': subsistema
         })
 
+@login_required
 def delete_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
     subsistema.delete()
@@ -259,6 +277,7 @@ def delete_subsystems(request, id):
 
 #--------------CRUD FLUXO+SUBSISTEMAS--------------
 
+@login_required
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
     family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
@@ -327,6 +346,7 @@ def flow(request, id):
     }
     return render(request, "seapac/flow.html", context)
 
+@login_required
 def edit_flow(request, id):
     family = get_object_or_404(Family, id=id)
     subsystems = Subsystem.objects.all()
@@ -343,6 +363,7 @@ def edit_flow(request, id):
         'title': 'Fluxo'
     })
 
+@login_required
 def subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
     family_subsystem = get_object_or_404(FamilySubsystem, family=family, subsystem_id=subsystem_id)
@@ -359,6 +380,7 @@ def subsystem_panel(request, family_id, subsystem_id):
         'type': 'readonly'
     })
 
+@login_required
 def edit_subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
     family_subsystem = get_object_or_404(FamilySubsystem, family=family, subsystem_id=subsystem_id)
@@ -435,6 +457,7 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
 
 #--------------CRUD TIMELINE--------------
 
+@login_required
 def timeline(request, id):
     family = get_object_or_404(Family, id=id)
     timeline_events = family.timeline_events.all().order_by('data')
@@ -461,6 +484,7 @@ def timeline(request, id):
     }
     return render(request, "seapac/timeline/timeline.html", context)
 
+@login_required
 def add_timeline(request, id):
     family = get_object_or_404(Family, id=id)
 
@@ -480,6 +504,7 @@ def add_timeline(request, id):
         'family': family
     })
 
+@login_required
 def edit_timeline(request, id, event_id):
     family = get_object_or_404(Family, id=id)
     event = get_object_or_404(TimelineEvent, id=event_id, family=family)
@@ -501,6 +526,7 @@ def edit_timeline(request, id, event_id):
         'event': event,
     })
 
+@login_required
 def search_timeline_event(request, id):
     family = get_object_or_404(Family, id=id)
 
@@ -519,6 +545,7 @@ def search_timeline_event(request, id):
 
 #--------------CRUD CALENDARIO--------------
 
+@login_required
 def calendar(request):
     level = request.GET.get('nivel')
     query = request.GET.get('q')
