@@ -1,16 +1,4 @@
 from django.db import models
-from django.core.serializers import serialize
-
-# Create your models here.
-class User(models.Model):
-    nome = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
-    senha = models.CharField(max_length=200) #tem que deixar privado depois
-    contato = models.CharField(max_length=30)
-    foto_perfil = models.ImageField(upload_to='fotos_perfil/', blank=True)
-
-    def __str__(self):
-        return self.nome
     
 class Technician(models.Model):
     nome_tecnico = models.CharField(max_length=30)

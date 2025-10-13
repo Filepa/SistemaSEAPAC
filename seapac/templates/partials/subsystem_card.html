@@ -1,21 +1,26 @@
 {% load static %}
-<div class="family-card">
-    <div class="family-header">
-        <h3 class="family-name">{{ subsistema.nome_subsistema}}</h3>
+<div class="family-card" style="display: flex;">
+    <div>
+        <div class="subsystem-image">
+            <img src="{% static 'img/fotos_subsistemas/default.png' %}" alt="" class="form-subsystem-image" style="width: 150px; height: 170px; margin: -24px;">
+        </div>
     </div>
-    
-    <div class="family-info">
-
-    </div>
-    
-    <div class="family-actions">
-        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'edit_subsystems' subsistema.id %}')">
-            <i class="fas fa-edit"></i>
-            Editar
-        </button>
-        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'delete_subsystems' subsistema.id %}')">
-            <i class="fa-solid fa-trash"></i>
-            Remover
-        </button>
+    <div style="margin-left: 50px; flex-grow: 1;">
+        <div class="family-header">
+            <h3 class="family-name">{{ subsistema.nome_subsistema}}</h3>
+        </div>
+        
+        <p>Descrição do painel. Aqui você pode adicionar informações relevantes sobre o subsistema</p>
+        
+        <div class="family-actions">
+            <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'edit_subsystems' subsistema.id %}')">
+                <i class="fas fa-edit"></i>
+                Editar
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'delete_subsystems' subsistema.id %}')">
+                <i class="fa-solid fa-trash"></i>
+                Remover
+            </button>
+        </div>
     </div>
 </div>
