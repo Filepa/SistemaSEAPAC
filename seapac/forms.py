@@ -45,16 +45,14 @@ class FamilyForm(ModelForm):
 
     class Meta:
         model = Family
-        exclude = ['terra']
+        exclude = ['terra', 'subsistemas']
         fields = '__all__'
         widgets = {
             'nome_titular': forms.TextInput(attrs={'class': 'form-control'}),
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'contato': forms.TextInput(attrs={'class': 'form-control'}),
-            'nivel': forms.Select(attrs={'class': 'form-select'}),
             'terra': forms.Select(attrs={'class': 'form-select'}),
             'projeto': forms.Select(attrs={'class': 'form-select'}),
-            'subsistemas': forms.SelectMultiple(attrs={'class': 'form-select'}),
         }
 
 class SubsystemForm(ModelForm):

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem, TimelineEvent
+from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem, TimelineEvent, Municipality
 from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm
 from django.forms import formset_factory
 from django import forms
@@ -26,7 +26,7 @@ def index(request):
         families = families.filter(nome_titular__icontains=query)
     if level:
         families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
-    total_municipios = Terrain.objects.values('municipio').distinct().count()
+    total_municipios = Municipality.objects.filter(terrain__family__isnull=False).distinct().count()
     total_families = Family.objects.count()
     total_avancado = len([f for f in Family.objects.all() if f.get_nivel() == "Avancado"])
     total_intermediario = len([f for f in Family.objects.all() if f.get_nivel() == "Intermediario"])
