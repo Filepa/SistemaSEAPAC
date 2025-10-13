@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem, TimelineEvent, Municipality
+from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem, TimelineEvent, Municipality, Evento
 from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm
 from django.forms import formset_factory
 from django import forms
@@ -32,7 +32,8 @@ def index(request):
     total_avancado = len([f for f in Family.objects.all() if f.get_nivel() == "Avancado"])
     total_intermediario = len([f for f in Family.objects.all() if f.get_nivel() == "Intermediario"])
     total_inicial = len([f for f in Family.objects.all() if f.get_nivel() == "Inicial"])
-    total_visitas = sum(f.get_visitas_confirmadas() for f in Family.objects.all())
+    total_visitas = Evento.objects.count()
+
     context = {
         "families": families,
         "total_families": total_families,
@@ -582,12 +583,12 @@ def criar_evento(request):
         data = json.loads(request.body)
         start_datetime = parse_datetime(data['start'])
         titulo = data['title']
-        familia_id = data.get('familia')  # opcional
+        familia_id = Family.objects.filter(nome_titular=titulo.split()[1]).first()
 
         evento = Evento.objects.create(
             titulo=titulo,
             inicio=start_datetime,
-            familia_id=familia_id,
+            familia=familia_id,
         )
         return JsonResponse({'status': 'ok', 'id': evento.id})
     return JsonResponse({'status': 'error'}, status=400)
@@ -609,6 +610,6 @@ def confirmar_evento(request, event_id):
             evento = Evento.objects.get(id=event_id)
             evento.confirmado = True
             evento.save()
-            return JsonResponse({'status': 'ok'})
+            return JsonResponse({'status': 'ok', 'message': 'Evento confirmado'})
         except Evento.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Evento não encontrado'}, status=404)

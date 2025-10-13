@@ -60,6 +60,7 @@ urlpatterns = [
     path('api/events/', eventos_json),
     path('api/events/create/', criar_evento),
     path('api/events/delete/<int:event_id>/', deletar_evento),
+    path('api/events/confirm/<int:event_id>/', confirmar_evento),
     path('usuarios/', include('usuarios.urls')),
 ]
 
