@@ -55,6 +55,8 @@ urlpatterns = [
     path('lista-subsistemas/novo/', create_subsystems, name='create_subsystems'),
     path('lista-subsistemas/editar/<str:id>/', edit_subsystems, name='edit_subsystems'),
     path('lista-subsistemas/deletar/<str:id>/', delete_subsystems, name='delete_subsystems'),
+    #renda
+    path('<str:id>/renda/', renda, name='renda'),
     #calendario
     path('calendario-visitas/', calendar, name='calendar'),
     path('api/events/', eventos_json),

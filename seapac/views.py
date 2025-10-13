@@ -117,6 +117,8 @@ def list_families(request):
     }
     return render(request, "seapac/list_families.html", context)
 
+#falta o detail e o delete
+
 #--------------CRUD PROJETOS------------------
 
 @login_required
@@ -335,9 +337,13 @@ def flow(request, id):
 
     diagram_lines = '\n'.join(text_list)
     click_lines_str = '\n'.join(click_lines)
+    mundo_externo = """subgraph Mundo Externo
+    Mundo_Externo
+    end"""
 
     conteudo_mermaid = f"""flowchart LR
-
+{mundo_externo}
+    
 {diagram_lines}
 
 {click_lines_str}
@@ -467,14 +473,12 @@ def timeline(request, id):
     family = get_object_or_404(Family, id=id)
     timeline_events = family.timeline_events.all().order_by('data')
 
-    # Agrupar eventos por seção (secao)
     secoes = {}
     for evento in timeline_events:
         if evento.secao not in secoes:
             secoes[evento.secao] = []
         secoes[evento.secao].append(evento)
 
-    # Construir o conteúdo Mermaid
     conteudo_mermaid = "timeline\n"
     for secao, eventos in secoes.items():
         conteudo_mermaid += f"    section {secao}\n"
@@ -547,6 +551,17 @@ def search_timeline_event(request, id):
             messages.error(request, "Por favor, digite um título para pesquisar.")
 
     return redirect('timeline', id=family.id)
+
+#--------------RENDA FAMILIAR--------------
+
+@login_required
+def renda(request, id):
+    family = get_object_or_404(Family, id=id)
+    # Implementar a lógica para exibir e editar informações de renda familiar
+    return render(request, "seapac/renda.html", {
+        'family': family,
+        'title': 'Renda'
+    })
 
 #--------------CRUD CALENDARIO--------------
 

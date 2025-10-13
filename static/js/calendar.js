@@ -24,22 +24,51 @@ document.addEventListener('DOMContentLoaded', function() {
     events: '/api/events/',
     
     eventClick: function(info) {
-      if (confirm("Marcar esta visita como realizada?")) {
-        fetch(`/api/events/confirm/${info.event.id}/`, {
-          method: 'POST',
-          headers: {
-            'X-CSRFToken': '{{ csrf_token }}',
-          },
-        }).then(response => response.json())
-          .then(data => {
-            if (data.status === 'ok') {
-              info.event.setProp('backgroundColor', '#4CAF50');
-            } else {
-              alert('Erro ao confirmar evento');
-            }
-          });
-      }
-    },
+      const escolha = prompt(
+        "Escolha uma ação para este evento:\n" +
+        "1 - Confirmar visita\n" +
+        "2 - Deletar visita\n" +
+        "3 - Cancelar"
+      );
+
+  if (escolha === '1') {
+    fetch(`/api/events/confirm/${info.event.id}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}',
+      },
+    }).then(response => response.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          info.event.setProp('backgroundColor', '#4CAF50');
+          alert('Visita confirmada!');
+        } else {
+          alert('Erro ao confirmar visita.');
+        }
+      });
+
+  } else if (escolha === '2') {
+    if (confirm("Tem certeza que deseja deletar esta visita?")) {
+      fetch(`/api/events/delete/${info.event.id}/`, {
+        method: 'DELETE',
+        headers: {
+          'X-CSRFToken': '{{ csrf_token }}',
+          'Content-Type': 'application/json',
+        }
+      }).then(response => {
+        if (response.ok) {
+          info.event.remove();
+          alert('Visita deletada.');
+        } else {
+          alert('Erro ao deletar visita.');
+        }
+      });
+    }
+
+    } else {
+      alert("Ação cancelada.");
+    }
+  },
 
     drop: function (info) {
       const dateStr = info.date.toISOString();

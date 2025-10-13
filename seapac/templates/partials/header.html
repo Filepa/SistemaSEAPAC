@@ -9,7 +9,6 @@
                 <img src="{% static "img/sistemaseapaclogo.png" %}" alt="Logo Sistema SEAPAC" height="50" width="100">
             </a>
         </div>
-
         
         <div class="dropdown">
             <button class="btn dropdown-toggle user-btn d-flex align-items-center gap-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -20,12 +19,12 @@
                         <i class="bi bi-person-circle fs-4"></i>
                     {% endif %}
                     <div class="user-info text-start">
-                        <div class="user-name">{{ user.email }}</div>
+                        <div class="user-name" style="color: white;">{{ user.email }}</div>
                     </div>
                 {% else %}
                     <i class="bi bi-person-circle fs-4"></i>
                     <div class="user-info text-start">
-                        <div class="user-name">Visitante</div>
+                        <div class="user-name" style="color: white;">Visitante</div>
                     </div>
                 {% endif %}
             </button>
