@@ -1,16 +1,16 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from .models import Family, Subsystem, Evento, Project, Technician, FamilySubsystem, TimelineEvent, Municipality, Evento
 from .forms import FamilyForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, ProdutoFormSet
-from django.forms import formset_factory
-from django import forms
-from django.urls import reverse
-from django.http import JsonResponse
-from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
-from django.contrib.auth.decorators import login_required
-import json
 from django.core.paginator import Paginator
+from django.forms import formset_factory
+from django.http import JsonResponse
+from django.contrib import messages
+from django.urls import reverse
+from django import forms
+import json
 
 LEVEL_CHOICES = [
     (1, "Inicial"),
@@ -203,7 +203,15 @@ def delete_projects(request, pk):
 def list_tecs(request):
     #falta os filtros de busca
     tecs = Technician.objects.all()
-    return render(request, 'seapac/tecnicos/tecnicos.html', {'tecs': tecs})
+    paginator = Paginator(tecs, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj': page_obj,
+        'tecs': page_obj,
+        'objeto':'técnicos',
+    }
+    return render(request, 'seapac/tecnicos/tecnicos.html', context)
 
 @login_required
 def create_tecs(request): 
@@ -666,12 +674,13 @@ def criar_evento(request):
         data = json.loads(request.body)
         start_datetime = parse_datetime(data['start'])
         titulo = data['title']
-        familia_id = Family.objects.filter(nome_titular=titulo.split()[1]).first()
+        familia_id = titulo.split()[0]
+        family = get_object_or_404(Family, id=familia_id)
 
         evento = Evento.objects.create(
             titulo=titulo,
             inicio=start_datetime,
-            familia=familia_id,
+            familia=family,
         )
         return JsonResponse({'status': 'ok', 'id': evento.id})
     return JsonResponse({'status': 'error'}, status=400)

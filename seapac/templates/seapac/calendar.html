@@ -3,11 +3,13 @@
 {% block center %}
 
 <h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
-{% include "partials/search.html" %}
+<div class="controls-section">
+  {% include "partials/search.html" %}
+</div>
 <div id='external-events'>
   <p><strong>Famílias:</strong></p>
   {% for family in families|slice:":10" %}
-    <div class='external-event'>{{family.get_nome_familia}} ({{family.get_nivel}})</div>
+    <div class='external-event'> {{family.id}} {{family.get_nome_familia}} ({{family.get_nivel}})</div>
   {% endfor %}
 </div>
 <div id='calendar'></div>
