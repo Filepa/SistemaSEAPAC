@@ -84,8 +84,14 @@ class Family(models.Model):
         return self.eventos.filter(confirmado=True).count()
 
 class Subsystem(models.Model):
+    TIPO_CHOICES = [
+        ('TS', 'Tecnologia Social'),
+        ('SS', 'Subsistema'),
+    ]
+
     nome_subsistema = models.CharField(max_length=50)
     descricao = models.TextField()
+    tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default='SS')
     produtos_base = models.JSONField(default=list, blank=True)
     foto_subsistema = models.ImageField(upload_to='subsistemas/', null=True, blank=True, verbose_name="Foto do Subsistema")
 

@@ -82,11 +82,12 @@ class SubsystemForm(forms.ModelForm):
 
     class Meta:
         model = Subsystem
-        fields = ['nome_subsistema', 'descricao', 'produtos_base', 'foto_subsistema']
+        fields = ['nome_subsistema', 'descricao', 'produtos_base', 'foto_subsistema', 'tipo']
         widgets = {
             'nome_subsistema': forms.TextInput(attrs={'class': 'form-control'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control'}),
             'foto_subsistema': forms.FileInput(attrs={'class': 'form-control'}),
+            'tipo': forms.Select(attrs={'class': 'form-select'}),
         }
 
     def clean_produtos_base(self):

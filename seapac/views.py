@@ -307,8 +307,20 @@ def flow(request, id):
         for produto in subsystem["produtos_saida"]:
             nome_produto = produto['nome']
             for fluxo in produto.get('fluxos', []):
-                destino = fluxo['destino']
-                fluxos.append((nome_subsistema, nome_produto, destino))
+                destino = fluxo.get('destino', 'Mundo Externo')
+                qtd = fluxo.get('qtd')
+                valor = fluxo.get('valor')
+                porcentagem = fluxo.get('porcentagem')
+
+                rotulo_fluxo = nome_produto
+                if qtd is not None:
+                    rotulo_fluxo += f" {qtd}"
+                if valor is not None:
+                    rotulo_fluxo += f" R${valor:.2f}"
+                if porcentagem is not None:
+                    rotulo_fluxo += f" {porcentagem:.0f}%"
+            
+                fluxos.append((nome_subsistema, rotulo_fluxo, destino))
 
     text_list = []
     for origem, produto, destino in fluxos:
@@ -352,6 +364,7 @@ def flow(request, id):
 
 {click_lines_str}
 """
+    #print(conteudo_mermaid)  # Debug: Verifique o conteúdo gerado do Mermaid
     context = {
         "id": id,
         "family": family,

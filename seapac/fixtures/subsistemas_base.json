@@ -4,6 +4,8 @@
     "pk": 1,
     "fields": {
         "nome_subsistema": "UFPA",
+        "descricao": "Unidade Familiar de Produção Agroecológica",
+        "tipo": "SS",
         "produtos_base": []
     }
   },
@@ -13,6 +15,7 @@
     "fields": {
       "nome_subsistema": "Caprinocultura",
       "descricao": "Criação de cabras para produção de carne, leite e outros derivados.",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Carne",
@@ -40,6 +43,7 @@
     "pk": 3,
     "fields": {
       "nome_subsistema": "Avinocultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Pinto",
@@ -65,6 +69,7 @@
     "pk": 4,
     "fields": {
       "nome_subsistema": "Bovinocultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Carne",
@@ -90,6 +95,7 @@
     "pk": 5,
     "fields": {
       "nome_subsistema": "Suinocultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Carne",
@@ -111,6 +117,7 @@
     "pk": 6,
     "fields": {
       "nome_subsistema": "Quintal",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Fruta",
@@ -132,6 +139,7 @@
     "pk": 7,
     "fields": {
       "nome_subsistema": "Apicultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Mel",
@@ -161,6 +169,7 @@
     "pk": 8,
     "fields": {
       "nome_subsistema": "Meliponicultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Mel",
@@ -182,6 +191,7 @@
     "pk": 9,
     "fields": {
       "nome_subsistema": "Horticultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Coentro",
@@ -223,6 +233,7 @@
     "pk": 10,
     "fields": {
       "nome_subsistema": "Fruticultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Banana",
@@ -248,6 +259,7 @@
     "pk": 11,
     "fields": {
       "nome_subsistema": "Roçado",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Milho",
@@ -289,6 +301,7 @@
     "pk": 12,
     "fields": {
       "nome_subsistema": "Forragem",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Palma",
@@ -322,6 +335,7 @@
     "pk": 13,
     "fields": {
       "nome_subsistema": "Plantas medicinais",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Hortelã",
@@ -347,6 +361,7 @@
     "pk": 14,
     "fields": {
       "nome_subsistema": "Viveiro de mudas",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Coco",
@@ -368,6 +383,7 @@
     "pk": 15,
     "fields": {
       "nome_subsistema": "Banco de sementes",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Feijão",
@@ -389,6 +405,7 @@
     "pk": 16,
     "fields": {
       "nome_subsistema": "Piscicultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Tilápia",
@@ -406,6 +423,7 @@
     "pk": 17,
     "fields": {
       "nome_subsistema": "Cacinicultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Camarão",
@@ -419,6 +437,7 @@
     "pk": 18,
     "fields": {
       "nome_subsistema": "Floricultura",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Tulipa",
@@ -432,6 +451,7 @@
     "pk": 19,
     "fields": {
       "nome_subsistema": "Compostagem",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Composto orgânico",
@@ -453,6 +473,7 @@
     "pk": 20,
     "fields": {
       "nome_subsistema": "Artesanato",
+      "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Doces",
@@ -474,6 +495,7 @@
     "pk": 21,
     "fields": {
       "nome_subsistema": "Cisterna P1MC",
+      "tipo": "TS",
       "produtos_base": [
         {
           "nome": "Água para beber e cozinhar",
@@ -487,6 +509,7 @@
     "pk": 22,
     "fields": {
       "nome_subsistema": "Cisterna P1+2",
+      "tipo": "TS",
       "produtos_base": [
         {
           "nome": "Água para produção",
@@ -508,6 +531,7 @@
     "pk": 23,
     "fields": {
       "nome_subsistema": "Barreiro Trincheira",
+      "tipo": "TS",
       "produtos_base": [
         {
           "nome": "Água para produção",
@@ -525,6 +549,7 @@
     "pk": 24,
     "fields": {
       "nome_subsistema": "Barragem",
+      "tipo": "TS",
       "produtos_base": [
         {
           "nome": "Água para produção",
@@ -542,6 +567,7 @@
     "pk": 25,
     "fields": {
       "nome_subsistema": "Reuso de Água Cinza",
+      "tipo": "TS",
       "produtos_base": [
         {
           "nome": "Água para produção",
@@ -555,6 +581,7 @@
     "pk": 26,
     "fields": {
       "nome_subsistema": "Reuso de Água Total",
+      "tipo": "TS",
       "produtos_base": [
         {
           "nome": "Água para produção",
@@ -568,6 +595,7 @@
     "pk": 27,
     "fields": {
       "nome_subsistema": "Biodigestor",
+      "tipo": "TS",
       "produtos_base": [
         {
           "nome": "Biogás",
@@ -585,6 +613,7 @@
     "pk": 28,
     "fields": {
       "nome_subsistema": "Secador Solar",
+      "tipo": "TS",
       "produtos_base": [
         {
           "nome": "Feno",
@@ -606,12 +635,27 @@
     "pk": 29,
     "fields": {
       "nome_subsistema": "Mundo Externo",
+      "tipo": "SS",
       "produtos_base": [
         {
-          "nome" :"",
-          "fluxos": [],
-          "valor": "",
-          "descricao": ""
+          "nome": "Dinheiro",
+          "fluxos": []
+        },
+        {
+          "nome": "Insumos",
+          "fluxos": []
+        },
+        {
+          "nome": "Equipamentos",
+          "fluxos": []
+        },
+        {
+          "nome": "Serviços",
+          "fluxos": []
+        },
+        {
+          "nome": "Vacinas",
+          "fluxos": []
         }
       ]
     }
