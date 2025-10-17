@@ -1,21 +1,19 @@
-<div class="controls-section">
-    <div class="control-group">
-        <i class="fas fa-filter"></i>
-        <label for="levelFilter">Filtrar por nível</label>
-        <form method="GET" class="filter-form">
-            <select id="levelFilter" class="control-select" name="nivel" onchange="this.form.submit()">
-                <option value="">Todos os níveis</option>
-                <option value="1" {% if nivel_selecionado == '1' %}selected{% endif %}>Inicial</option>
-                <option value="2" {% if nivel_selecionado == '2' %}selected{% endif %}>Intermediário</option>
-                <option value="3" {% if nivel_selecionado == '3' %}selected{% endif %}>Avançado</option>
-            </select>
-        </form>
-    </div>
+<div class="control-group">
+    <i class="fas fa-filter"></i>
+    <label for="levelFilter">Filtrar por nível</label>
+    <form method="GET" class="filter-form">
+        <select id="levelFilter" class="control-select" name="nivel" onchange="this.form.submit()">
+            <option value="">Todos os níveis</option>
+            <option value="1" {% if nivel_selecionado == '1' %}selected{% endif %}>Inicial</option>
+            <option value="2" {% if nivel_selecionado == '2' %}selected{% endif %}>Intermediário</option>
+            <option value="3" {% if nivel_selecionado == '3' %}selected{% endif %}>Avançado</option>
+        </select>
+    </form>
+</div>
 
-    <div class="search-group">
-        <i class="fas fa-search"></i>
-        <form action="" method="GET" class="search-form">
-            <input type="search" id="searchInput" name="q" value="{{ query|default:'' }}" placeholder="Buscar por nome..." class="search-input">
-        </form>
-    </div>
+<div class="search-group">
+    <i class="fas fa-search"></i>
+    <form action="" method="GET" class="search-form">
+        <input type="search" id="searchInput" name="q" value="{{ query|default:'' }}" placeholder="Buscar por nome..." class="search-input">
+    </form>
 </div>

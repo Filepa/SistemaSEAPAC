@@ -89,22 +89,28 @@ def edit_family(request, id):
 def list_families(request):
     level = request.GET.get('nivel')
     query = request.GET.get('q')
+    subsystem_name = request.GET.get('subsystem')
 
     families = Family.objects.all()
 
     if level:
         try:
             level_label = dict(LEVEL_CHOICES).get(int(level))
-            families = [f for f in families if str(f.get_nivel()) == str(level_label)]
+            families = [f for f in families if f.get_nivel() == level_label]
         except (ValueError, TypeError):
-            pass 
+            pass
 
     if query:
         families = families.filter(nome_titular__icontains=query)
 
+    if subsystem_name:
+        families = families.filter(subsistemas__nome_subsistema=subsystem_name).distinct()
+
     paginator = Paginator(families, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
+    subsystems = Subsystem.objects.all()
 
     context = {
         'title': 'Lista de Famílias',
@@ -112,7 +118,9 @@ def list_families(request):
         'query': query,
         'page_obj': page_obj,
         'families': page_obj,
-        'objeto':'familias'
+        'subsystems': subsystems,
+        'subsystem_selected': subsystem_name,
+        'objeto': 'familias'
     }
     return render(request, "seapac/familias/list_families.html", context)
 

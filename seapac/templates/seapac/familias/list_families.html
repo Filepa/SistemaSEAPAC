@@ -3,7 +3,42 @@
 {% block center %}
 
 <h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
-{% include "partials/search.html" %}
+<div class="controls-section">
+    <form method="GET" class="filter-form" style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
+        <div class="control-group">
+            <i class="fas fa-filter"></i>
+            <label for="levelFilter">Nível</label>
+            <select id="levelFilter" class="control-select" name="nivel">
+                <option value="">Todos os níveis</option>
+                <option value="1" {% if nivel_selecionado == '1' %}selected{% endif %}>Inicial</option>
+                <option value="2" {% if nivel_selecionado == '2' %}selected{% endif %}>Intermediário</option>
+                <option value="3" {% if nivel_selecionado == '3' %}selected{% endif %}>Avançado</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <i class="fas fa-filter"></i>
+            <label for="subsystemFilter">Subsistema</label>
+            <select id="subsystemFilter" class="control-select" name="subsystem">
+                <option value="">Todos os subsistemas</option>
+                {% for subsystem in subsystems %}
+                    <option value="{{ subsystem.nome_subsistema }}" 
+                            {% if subsystem_selected == subsystem.nome_subsistema %}selected{% endif %}>
+                        {{ subsystem.nome_subsistema }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="search-group">
+            <i class="fas fa-search"></i>
+            <input type="search" id="searchInput" name="q" value="{{ query|default:'' }}" placeholder="Buscar por nome..." class="search-input">
+        </div>
+
+        <button type="submit" class="btn btn-success">Aplicar filtros</button>
+        <a href="{% url 'list_families' %}" class="btn btn-secondary">Limpar</a>
+    </form>
+</div>
 <div class="container-fluid px-md-3 px-0">
     {% if families %}
         <div class="row g-2">
@@ -13,7 +48,7 @@
                 </div>
             {% endfor %}
         </div>
-        
+
         {% include "partials/pagination.html" %}
     {% else %}
         <p class="no-results">Nenhuma família encontrada.</p>
