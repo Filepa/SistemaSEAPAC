@@ -21,7 +21,7 @@
                         <i class="fas fa-pencil-alt"></i> Editar
                     </a>
                      <a href="{% url 'delete_projects' projetos.pk %}" class="btn btn-primary" id="addProjectBtn">
-                        <i class="fas fa-pencil-alt"></i> Deletar
+                        <i class="fas fa-trash-alt"></i> Deletar
                     </a>
                     {% endif %}
                     
@@ -63,7 +63,7 @@
                         </dd>
                         
                         <dt class="col-sm-3">Municípios de atuação:</dt>
-                        <dd class="col-sm-9"> #ta faltando</dd>
+                        <dd class="col-sm-9"> {{projetos.get_municipios_atuacao}}</dd>
 
                         <dt class="col-sm-3">Orçamento:</dt>
                         <dd class="col-sm-9"> R$ {{ projetos.orcamento }}</dd>

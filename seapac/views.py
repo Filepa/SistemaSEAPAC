@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem, TimelineEvent, Municipality, Evento
-from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, ProdutoFormSet
+from .models import Family, Subsystem, Evento, Project, Technician, FamilySubsystem, TimelineEvent, Municipality, Evento
+from .forms import FamilyForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, ProdutoFormSet
 from django.forms import formset_factory
 from django import forms
 from django.urls import reverse
@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
 from django.contrib.auth.decorators import login_required
 import json
+from django.core.paginator import Paginator
 
 LEVEL_CHOICES = [
     (1, "Inicial"),
@@ -26,7 +27,7 @@ def index(request):
         families = families.filter(nome_titular__icontains=query)
     if level:
         families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
-    total_municipios = Municipality.objects.filter(terrain__family__isnull=False).distinct().count()
+    total_municipios = Municipality.objects.filter(family__isnull=False).distinct().count()
     total_families = Family.objects.count()
     total_tecnicos = Technician.objects.count()
     total_avancado = len([f for f in Family.objects.all() if f.get_nivel() == "Avancado"])
@@ -54,49 +55,33 @@ def index(request):
 @login_required
 def register(request):
     if request.method == 'POST':
-        terrainform = TerrainForm(request.POST)
-        familyform = FamilyForm(request.POST, request.FILES)
-        if terrainform.is_valid() and familyform.is_valid():
-            terrain = terrainform.save()
-            family = familyform.save(commit=False)
-            family.terra = terrain
+        form = FamilyForm(request.POST, request.FILES)
+        if form.is_valid():
+            family = form.save(commit=False)
             family.save()
-            familyform.save_m2m()
             return redirect('edit_flow', id=family.id)
         else:
-            print(terrainform.errors, familyform.errors)
+            print(form.errors)
     else:
-        terrainform = TerrainForm()
-        familyform = FamilyForm()
-    return render(request, "seapac/form.html", {
-        'familyform': familyform,
-        'terrainform': terrainform,
+        form = FamilyForm()
+    return render(request, "seapac/familias/form.html", {
+        'form': form,
         'title': 'Cadastrar Família'
     })
 
 @login_required
 def edit_family(request, id):
     family = get_object_or_404(Family, id=id)
-    try:
-        terrain = Terrain.objects.get(family=family)
-    except Terrain.DoesNotExist:
-        terrain = None
 
     if request.method == 'POST':
-        familyform = FamilyForm(request.POST, request.FILES, instance=family)
-        terrainform = TerrainForm(request.POST, instance=terrain)
-        if familyform.is_valid() and terrainform.is_valid():
-            family = familyform.save()
-            terrain = terrainform.save(commit=False)
-            terrain.family = family
-            terrain.save()
+        form = FamilyForm(request.POST, request.FILES, instance=family)
+        if form.is_valid():
+            form.save()
             return redirect('index')
     else:
-        familyform = FamilyForm(instance=family)
-        terrainform = TerrainForm(instance=terrain)
-    return render(request, "seapac/form.html", {
-        'familyform': familyform,
-        'terrainform': terrainform,
+        form = FamilyForm(instance=family)
+    return render(request, "seapac/familias/form.html", {
+        'form': form,
         'title': 'Editar Família'
     })
 
@@ -104,18 +89,32 @@ def edit_family(request, id):
 def list_families(request):
     level = request.GET.get('nivel')
     query = request.GET.get('q')
+
     families = Family.objects.all()
+
     if level:
-        families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
+        try:
+            level_label = dict(LEVEL_CHOICES).get(int(level))
+            families = [f for f in families if str(f.get_nivel()) == str(level_label)]
+        except (ValueError, TypeError):
+            pass 
+
     if query:
         families = families.filter(nome_titular__icontains=query)
-    context ={
-        'families': families, 
+
+    paginator = Paginator(families, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
         'title': 'Lista de Famílias',
-        "nivel_selecionado": level,
-        "query": query
+        'nivel_selecionado': level,
+        'query': query,
+        'page_obj': page_obj,
+        'families': page_obj,
+        'objeto':'familias'
     }
-    return render(request, "seapac/list_families.html", context)
+    return render(request, "seapac/familias/list_families.html", context)
 
 #falta o detail e o delete
 
@@ -123,17 +122,34 @@ def list_families(request):
 
 @login_required
 def list_projects(request):
+    status = request.GET.get('status')
+    query = request.GET.get('q')
+
     projects = Project.objects.all()
-    return render(request, 'seapac/projetos/projects.html', {'projects': projects})
+    if status:
+        projects = projects.filter(status=status)
+    if query:
+        projects = projects.filter(nome_projeto__icontains=query)
+    
+    paginator = Paginator(projects, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'query': query,
+        'page_obj': page_obj,
+        'projects': page_obj,
+        'objeto':'projetos',
+        'status': status,
+    }
+    return render(request, 'seapac/projetos/projects.html', context)
 
 @login_required
 def create_projects(request): 
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
-            projetos = form.save()
+            form.save()
             return redirect('list_projects')
-
     else: 
         form = ProjectForm()
         
@@ -177,6 +193,7 @@ def delete_projects(request, pk):
 
 @login_required
 def list_tecs(request):
+    #falta os filtros de busca
     tecs = Technician.objects.all()
     return render(request, 'seapac/tecnicos/tecnicos.html', {'tecs': tecs})
 

@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Family, Terrain, Project, Technician, Subsystem, TimelineEvent
+from .models import Family, Project, Technician, Subsystem, TimelineEvent
 from django.forms import formset_factory
 import json
 
@@ -16,35 +16,24 @@ class ProjectForm(ModelForm):
             'orcamento': forms.Textarea(attrs={'class': 'form-control'}),
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'data_fim': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
+            'status': forms.Select(attrs={'class': 'form-select'}),
         }
     
 class TechnicianForm(ModelForm):
     class Meta:
         model = Technician
-        fields = [
-            "nome_tecnico",
-            "descricao",
-            "email",
-            "telefone",
-            "cpf",
-            "data_nascimento",
-        ]
-        widgets = {
-            "descricao": forms.Textarea(attrs={"rows": 3, "placeholder": "Descreva a experiência e área de atuação do técnico..."})
-            #"foto": forms.FileInput(attrs={'class': 'form-control-file'}),
-        }
-
-class TerrainForm(ModelForm):
-    class Meta:
-        model = Terrain
         fields = '__all__'
         widgets = {
-            'municipio': forms.Select(attrs={'class': 'form-control'}),
-            'comunidade': forms.TextInput(attrs={'class': 'form-control'}),
+            "descricao": forms.Textarea(attrs={"rows": 3, "placeholder": "Descreva a experiência e área de atuação do técnico...",'class': 'form-control'}),
+            "nome_tecnico": forms.TextInput(attrs={'class': 'form-control'}),
+            "email": forms.EmailInput(attrs={'class': 'form-control'}),
+            "telefone": forms.TextInput(attrs={'class': 'form-control'}),
+            "cpf": forms.TextInput(attrs={'class': 'form-control'}),
+            "data_nascimento": forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
+            #"foto": forms.FileInput(attrs={'class': 'form-control-file'}),
         }
         
 class FamilyForm(ModelForm):
-
     class Meta:
         model = Family
         exclude = ['terra', 'subsistemas']
@@ -53,7 +42,7 @@ class FamilyForm(ModelForm):
             'nome_titular': forms.TextInput(attrs={'class': 'form-control'}),
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'contato': forms.TextInput(attrs={'class': 'form-control'}),
-            'terra': forms.Select(attrs={'class': 'form-select'}),
+            'municipio': forms.Select(attrs={'class': 'form-select'}),
             'projeto': forms.Select(attrs={'class': 'form-select'}),
         }
 
@@ -109,7 +98,7 @@ class SubsystemForm(forms.ModelForm):
 class TimelineEventForm(ModelForm):
     class Meta:
         model = TimelineEvent
-        fields = ['titulo', 'data', 'descricao', 'secao']
+        fields = '__all__'
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'data': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),

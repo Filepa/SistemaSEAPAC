@@ -12,32 +12,23 @@
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="nome_titular" class="form-label">Nome</label>
-                    {{ familyform.nome_titular }}
+                    {{ form.nome_titular }}
                 </div>
                 <div class="mb-3">
                     <label for="data_inicio" class="form-label">Data de Iniciação</label>
-                    {{ familyform.data_inicio }}
+                    {{ form.data_inicio }}
                 </div>
                 <div class="mb-3">
                     <label for="contato" class="form-label">Contato</label>
-                    {{ familyform.contato }}
+                    {{ form.contato }}
                 </div>
                 <div class="mb-3">
                     <label for="projeto" class="form-label">Projeto</label>
-                    {{ familyform.projeto }}
-                </div>
-            </div>
-            <div class="forms-info-terra">
-                <div class="section-header form-header">
-                    <h2>Informações da Terra</h2>
+                    {{ form.projeto }}
                 </div>
                 <div class="mb-3">
                     <label for="municipio" class="form-label">Município</label>
-                    {{ terrainform.municipio }}
-                </div>
-                <div class="mb-3">
-                    <label for="comunidade" class="form-label">Comunidade</label>
-                    {{ terrainform.comunidade }}
+                    {{ form.municipio }}
                 </div>
             </div>
         </section>

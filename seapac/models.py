@@ -20,13 +20,6 @@ class Municipality(models.Model):
     def __str__(self):
         return self.nome
 
-class Terrain(models.Model):
-    municipio = models.ForeignKey(Municipality, on_delete=models.CASCADE)
-    comunidade = models.CharField(max_length=30, null=True)
-
-    def __str__(self):
-        return self.municipio
-
 LEVEL_CHOICES = [
     (1, "Inicial"),
     (2, "Intermediario"),
@@ -37,7 +30,7 @@ class Family(models.Model):
     nome_titular = models.CharField(max_length=30)
     data_inicio = models.DateField()
     contato = models.CharField(max_length=30)
-    terra = models.OneToOneField('Terrain', on_delete=models.CASCADE)
+    municipio = models.ForeignKey(Municipality, on_delete=models.CASCADE)
     projeto = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True)
     subsistemas = models.ManyToManyField('Subsystem', through='FamilySubsystem', blank=True)
 
@@ -121,16 +114,27 @@ class FamilySubsystem(models.Model):
         return f"{self.family.get_nome_familia()} - {self.subsystem.nome_subsistema}"
 
 class Project(models.Model):
-    nome_projeto = models.CharField(max_length=30)
+    STATUS_CHOICES = [
+        ('em-execucao', 'Em Execução'),
+        ('concluido', 'Concluído'),
+        ('planejamento', 'Em Planejamento'),
+    ]
+
+    nome_projeto = models.CharField(max_length=200)
     familias = models.ManyToManyField(Family)
     tecnicos = models.ManyToManyField(Technician)
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_fim = models.DateField(blank=True, null=True)
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='planejamento')
     orcamento = models.CharField(max_length=30, blank=True, null=True) #nao tem no diagrama mas eu mantive
 
     def __str__(self):
         return self.nome_projeto
+    
+    def get_municipios_atuacao(self):
+        municipios = self.familias.values_list('municipio__nome', flat=True).distinct()
+        return ", ".join(municipios)
 
 class TimelineEvent(models.Model):
     family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name='timeline_events')

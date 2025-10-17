@@ -14,14 +14,12 @@
     "pk": 2,
     "fields": {
       "nome_subsistema": "Caprinocultura",
-      "descricao": "Criação de cabras para produção de carne, leite e outros derivados.",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
           "nome": "Carne",
-          "fluxos": [
-            {"qtd": 3, "custo": 10.0, "valor": 10.0, "destino": "Mundo Externo", "porcentagem": 23.0}
-          ]
+          "fluxos": []
         },
         {
           "nome": "Esterco",
@@ -43,6 +41,7 @@
     "pk": 3,
     "fields": {
       "nome_subsistema": "Avinocultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -69,6 +68,7 @@
     "pk": 4,
     "fields": {
       "nome_subsistema": "Bovinocultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -95,6 +95,7 @@
     "pk": 5,
     "fields": {
       "nome_subsistema": "Suinocultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -117,6 +118,7 @@
     "pk": 6,
     "fields": {
       "nome_subsistema": "Quintal",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -139,6 +141,7 @@
     "pk": 7,
     "fields": {
       "nome_subsistema": "Apicultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -169,6 +172,7 @@
     "pk": 8,
     "fields": {
       "nome_subsistema": "Meliponicultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -191,6 +195,7 @@
     "pk": 9,
     "fields": {
       "nome_subsistema": "Horticultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -233,6 +238,7 @@
     "pk": 10,
     "fields": {
       "nome_subsistema": "Fruticultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -259,6 +265,7 @@
     "pk": 11,
     "fields": {
       "nome_subsistema": "Roçado",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -301,6 +308,7 @@
     "pk": 12,
     "fields": {
       "nome_subsistema": "Forragem",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -335,6 +343,7 @@
     "pk": 13,
     "fields": {
       "nome_subsistema": "Plantas medicinais",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -361,6 +370,7 @@
     "pk": 14,
     "fields": {
       "nome_subsistema": "Viveiro de mudas",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -383,6 +393,7 @@
     "pk": 15,
     "fields": {
       "nome_subsistema": "Banco de sementes",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -405,6 +416,7 @@
     "pk": 16,
     "fields": {
       "nome_subsistema": "Piscicultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -423,6 +435,7 @@
     "pk": 17,
     "fields": {
       "nome_subsistema": "Cacinicultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -437,6 +450,7 @@
     "pk": 18,
     "fields": {
       "nome_subsistema": "Floricultura",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -451,6 +465,7 @@
     "pk": 19,
     "fields": {
       "nome_subsistema": "Compostagem",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -473,6 +488,7 @@
     "pk": 20,
     "fields": {
       "nome_subsistema": "Artesanato",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -495,6 +511,7 @@
     "pk": 21,
     "fields": {
       "nome_subsistema": "Cisterna P1MC",
+      "descricao": "",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -509,6 +526,7 @@
     "pk": 22,
     "fields": {
       "nome_subsistema": "Cisterna P1+2",
+      "descricao": "",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -531,6 +549,7 @@
     "pk": 23,
     "fields": {
       "nome_subsistema": "Barreiro Trincheira",
+      "descricao": "",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -549,6 +568,7 @@
     "pk": 24,
     "fields": {
       "nome_subsistema": "Barragem",
+      "descricao": "",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -567,6 +587,7 @@
     "pk": 25,
     "fields": {
       "nome_subsistema": "Reuso de Água Cinza",
+      "descricao": "",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -581,6 +602,7 @@
     "pk": 26,
     "fields": {
       "nome_subsistema": "Reuso de Água Total",
+      "descricao": "",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -595,6 +617,7 @@
     "pk": 27,
     "fields": {
       "nome_subsistema": "Biodigestor",
+      "descricao": "",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -613,6 +636,7 @@
     "pk": 28,
     "fields": {
       "nome_subsistema": "Secador Solar",
+      "descricao": "",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -635,6 +659,7 @@
     "pk": 29,
     "fields": {
       "nome_subsistema": "Mundo Externo",
+      "descricao": "",
       "tipo": "SS",
       "produtos_base": [
         {

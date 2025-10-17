@@ -4,21 +4,24 @@
 <h1 class='title'>Lista de projetos</h1>
 
 <div class="controls-section">
-
     <div class="control-group">
         <i class="fas fa-filter"></i>
         <label for="projectStatusFilter">Status do projeto</label>
-        <select id="projectStatusFilter" class="control-select">
-            <option value="">Todos os status</option>
-            <option value="em-execucao">Em Execução</option>
-            <option value="concluido">Concluído</option>
-            <option value="planejamento">Em Planejamento</option>
-        </select>
+        <form method="GET" class="filter-form">
+            <select id="projectStatusFilter" class="control-select" name="status" onchange="this.form.submit()">
+                <option value="">Todos os status</option>
+                <option value="em-execucao" {% if status == 'em-execucao' %}selected{% endif %}>Em Execução</option>
+                <option value="concluido" {% if status == 'concluido' %}selected{% endif %}>Concluído</option>
+                <option value="planejamento" {% if status == 'planejamento' %}selected{% endif %}>Em Planejamento</option>
+            </select>
+        </form>
     </div>
 
     <div class="search-group">
         <i class="fas fa-search"></i>
-        <input type="text" id="projectSearchInput" placeholder="Pesquisar projetos..." class="search-input">
+        <form action="" method="GET" class="search-form">
+            <input type="search" id="searchInput" name="q" value="{{ query|default:'' }}" placeholder="Buscar por nome..." class="search-input">
+        </form>
     </div>
 
     {% if user.is_administrador %}
@@ -78,6 +81,18 @@
                                     <i class="fas fa-money-bill-wave me-2 text-secondary"></i>
                                     <strong>Orçamento:</strong> {{ project.orcamento }}
                                 </li>
+                                <li>
+                                    <i class="fas fa-info-circle me-2 text-secondary"></i>
+                                    <strong>Status:</strong> 
+                                    {% if project.status == 'em-execucao' %}
+                                        Em Execução
+                                    {% elif project.status == 'concluido' %}
+                                        Concluído
+                                    {% elif project.status == 'planejamento' %}
+                                        Em Planejamento
+                                    {% else %}
+                                        Desconhecido
+                                    {% endif %}
                             </ul>
 
                             <!-- Ações -->
@@ -97,21 +112,9 @@
                 </div>
             {% endfor %}
         </div>
-
+        <br>
         <!-- Paginação -->
-        <div class="row mt-4">
-            <div class="col-12 d-flex justify-content-center">
-                <nav>
-                    <ul class="pagination pagination-sm mb-0">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">»</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        {% include "partials/pagination.html" %}
     {% else %}
         <p class="text-center text-muted mt-4">Nenhum projeto encontrado.</p>
     {% endif %}

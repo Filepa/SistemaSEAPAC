@@ -1,0 +1,45 @@
+{% if page_obj.has_other_pages %}
+<nav aria-label="Navegação de páginas">
+    <ul class="pagination justify-content-center"> 
+        
+        {% if page_obj.has_previous %}
+            <li class="page-item"> 
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+                    &laquo; Anterior
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled"> 
+                <span class="page-link" aria-hidden="true">&laquo; Anterior</span>
+            </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                {% if page_obj.number == num %}
+                    <span class="page-link">{{ num }}</span> 
+                {% else %}
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
+                    Próxima &raquo;
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link" aria-hidden="true">Próxima &raquo;</span>
+            </li>
+        {% endif %}
+    </ul>
+
+    <p class="text-muted text-center mt-2">
+        Mostrando {{ page_obj.start_index }}-{{ page_obj.end_index }}
+        de {{ page_obj.paginator.count }} {{objeto}}.
+    </p>
+</nav>
+{% endif %}
