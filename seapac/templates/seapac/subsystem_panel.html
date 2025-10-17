@@ -22,29 +22,34 @@
 <form method="post">
   {% csrf_token %}
     <table class="table">
-      <thead>
-          <tr>
-              <th>Produto</th>
-              <th>Porcentagem</th>
-              <th>Destino</th>
-              <th>Ação</th>
-          </tr>
-      </thead>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Qtd</th>
+                <th>Custo</th>
+                <th>Valor</th>
+                <th>Porcentagem</th>
+                <th>Destino</th>
+            </tr>
+        </thead>
       <tbody>
-          {{ formset.management_form }}
-          {% for form in formset %}
-              <tr>
-                  <td>{{ form.nome_produto }}</td>
-                  <td>{{ form.porcentagem }}</td>
-                  <td>{{ form.destino }}</td>
-                  <td>
-                      {% if form.DELETE %}
-                          {{ form.DELETE }} <label>Excluir</label>
-                      {% endif %}
-                  </td>
-              </tr>
-          {% endfor %}
-      </tbody>
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <tr>
+                <td>{{ form.nome_produto }}</td>
+                <td>{{ form.qtd }}</td>
+                <td>{{ form.custo }}</td>
+                <td>{{ form.valor }}</td>
+                <td>{{ form.porcentagem }}</td>
+                <td>{{ form.destino }}</td>
+                <td>
+                    {% if form.DELETE %}
+                        {{ form.DELETE }} <label>Excluir</label>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
   </table>
   <button type="submit" class="btn btn-success">Salvar</button>
 </form>
@@ -53,30 +58,39 @@
         <thead>
             <tr>
                 <th>Produto</th>
+                <th>Qtd</th>
+                <th>Custo</th>
+                <th>Valor</th>
                 <th>Porcentagem</th>
                 <th>Destino</th>
             </tr>
         </thead>
-    <tbody> 
-        {% for produto in family_subsystem.produtos_saida %} 
-            {% if produto.fluxos %} 
-                {% for fluxo in produto.fluxos %} 
-                    <tr> 
-                        {% if forloop.first %} 
-                            <td rowspan="{{ produto.fluxos|length }}">{{ produto.nome }}</td> 
-                        {% endif %} 
-                            <td>{{ fluxo.porcentagem|default:"0" }}%</td> 
-                            <td>{{ fluxo.destino|default:"Sem Destino" }}</td> 
-                        </tr> 
-                {% endfor %} 
-            {% else %} 
-                <tr> 
-                    <td>{{ produto.nome }}</td> 
-                    <td>0%</td> 
-                    <td>Sem Destino</td> 
-                </tr> 
+    <tbody>
+        {% for produto in family_subsystem.produtos_saida %}
+            {% if produto.fluxos %}
+                {% for fluxo in produto.fluxos %}
+                    <tr>
+                        {% if forloop.first %}
+                            <td rowspan="{{ produto.fluxos|length }}">{{ produto.nome }}</td>
+                        {% endif %}
+                        <td>{{ fluxo.qtd|default:"-" }}</td>
+                        <td>{{ fluxo.custo|default:"-" }}</td>
+                        <td>{{ fluxo.valor|default:"-" }}</td>
+                        <td>{{ fluxo.porcentagem|default:"0" }}%</td>
+                        <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>0%</td>
+                    <td>Sem Destino</td>
+                </tr>
             {% endif %}
-        {% endfor %} 
+        {% endfor %}
     </tbody>
     </table>
     <button class="btn btn-success" onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">

@@ -1,6 +1,8 @@
 from django.forms import ModelForm
 from django import forms
 from .models import Family, Terrain, Project, Technician, Subsystem, TimelineEvent
+from django.forms import formset_factory
+import json
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -55,14 +57,53 @@ class FamilyForm(ModelForm):
             'projeto': forms.Select(attrs={'class': 'form-select'}),
         }
 
-class SubsystemForm(ModelForm):
+class ProdutoForm(forms.Form):
+    nome = forms.CharField(label="Nome do Produto", required=True)
+    qtd = forms.FloatField(label="Quantidade", required=False)
+    custo = forms.FloatField(label="Custo", required=False)
+    valor = forms.FloatField(label="Valor", required=False)
+    destino = forms.CharField(label="Destino", required=False)
+    porcentagem = forms.FloatField(label="Porcentagem", required=False)
+
+ProdutoFormSet = formset_factory(ProdutoForm, extra=1)
+
+class SubsystemForm(forms.ModelForm):
+    produtos_base = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Digite um produto por linha:\nCarne\nLeite\nEsterco',
+                'rows': 5
+            }
+        ),
+        label='Produtos Base'
+    )
+
     class Meta:
         model = Subsystem
-        fields = ['nome_subsistema', 'produtos_base']
+        fields = ['nome_subsistema', 'descricao', 'produtos_base', 'foto_subsistema']
         widgets = {
             'nome_subsistema': forms.TextInput(attrs={'class': 'form-control'}),
-            'produtos_base': forms.Textarea(attrs={'class': 'form-select'})
+            'descricao': forms.Textarea(attrs={'class': 'form-control'}),
+            'foto_subsistema': forms.FileInput(attrs={'class': 'form-control'}),
         }
+
+    def clean_produtos_base(self):
+        data = self.cleaned_data.get('produtos_base', '')
+
+        if isinstance(data, str) and data.strip().startswith('['):
+            try:
+                parsed = json.loads(data)
+                if isinstance(parsed, list):
+                    return parsed
+            except json.JSONDecodeError:
+                raise forms.ValidationError("JSON inválido. Use uma lista ou uma linha por produto.")
+
+        linhas = [linha.strip() for linha in str(data).splitlines() if linha.strip()]
+        produtos = [{"nome": linha, "fluxos": []} for linha in linhas]
+
+        return produtos
 
 class TimelineEventForm(ModelForm):
     class Meta:

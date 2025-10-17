@@ -12,10 +12,13 @@
     "pk": 2,
     "fields": {
       "nome_subsistema": "Caprinocultura",
+      "descricao": "Criação de cabras para produção de carne, leite e outros derivados.",
       "produtos_base": [
         {
           "nome": "Carne",
-          "fluxos": []
+          "fluxos": [
+            {"qtd": 3, "custo": 10.0, "valor": 10.0, "destino": "Mundo Externo", "porcentagem": 23.0}
+          ]
         },
         {
           "nome": "Esterco",

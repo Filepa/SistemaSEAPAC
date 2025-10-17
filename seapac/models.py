@@ -83,7 +83,9 @@ class Family(models.Model):
 
 class Subsystem(models.Model):
     nome_subsistema = models.CharField(max_length=50)
+    descricao = models.TextField()
     produtos_base = models.JSONField(default=list, blank=True)
+    foto_subsistema = models.ImageField(upload_to='subsistemas/', null=True, blank=True, verbose_name="Foto do Subsistema")
 
     def __str__(self):
         return self.nome_subsistema

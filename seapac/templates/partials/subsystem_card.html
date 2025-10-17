@@ -2,7 +2,11 @@
 <div class="family-card" style="display: flex;">
     <div>
         <div class="subsystem-image">
-            <img src="{% static 'img/fotos_subsistemas/default.png' %}" alt="" class="form-subsystem-image" style="width: 150px; height: 170px; margin: -24px;">
+            {% if subsistema.foto_subsistema and subsistema.foto_subsistema.url %}
+                <img src="{{ subsistema.foto_subsistema.url }}" alt="{{ subsistema.nome_subsistema }}" class="form-subsystem-image" style="width: 150px; height: 170px; margin: -24px;">
+            {% else %}
+                <img src="{% static 'img/fotos_subsistemas/default.png' %}" alt="Foto Padrão" class="form-subsystem-image" style="width: 150px; height: 170px; margin: -24px;">
+            {% endif %}
         </div>
     </div>
     <div style="margin-left: 50px; flex-grow: 1;">
@@ -10,7 +14,7 @@
             <h3 class="family-name">{{ subsistema.nome_subsistema}}</h3>
         </div>
         
-        <p>Descrição do painel. Aqui você pode adicionar informações relevantes sobre o subsistema</p>
+        <p>{{subsistema.descricao}}</p>
         
         <div class="family-actions">
             <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'edit_subsystems' subsistema.id %}')">

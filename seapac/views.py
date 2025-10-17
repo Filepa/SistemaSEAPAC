@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Family, Subsystem, Evento, Terrain, Project, Technician, FamilySubsystem, TimelineEvent, Municipality, Evento
-from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm
+from .forms import FamilyForm, TerrainForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, ProdutoFormSet
 from django.forms import formset_factory
 from django import forms
 from django.urls import reverse
@@ -244,15 +244,17 @@ def list_subsystems(request):
     return render(request, "seapac/subsistemas/list_subsystems.html", context)
 
 @login_required
-def create_subsystems(request): 
+def create_subsystems(request):
     if request.method == 'POST':
-        form = SubsystemForm(request.POST)
+        form = SubsystemForm(request.POST, request.FILES)
         if form.is_valid():
-            subsistema = form.save()
+            form.save()
             return redirect('list_subsystems')
-    else: 
+        else:
+            print("Erros do formulário:", form.errors.as_text())
+    else:
         form = SubsystemForm()
-        
+
     return render(request, 'seapac/subsistemas/subsystem_form.html', {
         'form': form,
         'title': 'Cadastrar Subsistema'
@@ -261,19 +263,21 @@ def create_subsystems(request):
 @login_required
 def edit_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
+
     if request.method == 'POST':
-        form = SubsystemForm(request.POST, instance=subsistema)
+        form = SubsystemForm(request.POST, request.FILES, instance=subsistema)
         if form.is_valid():
             form.save()
             return redirect('list_subsystems')
     else:
-        form = SubsystemForm(instance=subsistema)
-    
+        initial = form_data = '\n'.join([p.get('nome', '') for p in subsistema.produtos_base])
+        form = SubsystemForm(instance=subsistema, initial={'produtos_base': form_data})
+
     return render(request, 'seapac/subsistemas/subsystem_form.html', {
         'title': 'Editar Subsistema',
         'form': form,
         'subsistema': subsistema
-        })
+    })
 
 @login_required
 def delete_subsystems(request, id):
@@ -404,6 +408,9 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
 
     class FluxoForm(forms.Form):
         nome_produto = forms.ChoiceField(choices=(), required=True, label="Produto")
+        qtd = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Qtd")
+        custo = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Custo")
+        valor = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Valor")
         porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2, label="Porcentagem")
         destino = forms.ChoiceField(choices=(), required=False, label="Destino")
 
@@ -424,12 +431,13 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                     continue
 
                 nome_produto = form.cleaned_data['nome_produto']
-                porcentagem = form.cleaned_data.get('porcentagem') or 0
-                destino = form.cleaned_data.get('destino') or ''
 
                 novos_fluxos[nome_produto].append({
-                    'porcentagem': float(porcentagem),
-                    'destino': destino,
+                    'qtd': float(form.cleaned_data.get('qtd') or 0),
+                    'custo': float(form.cleaned_data.get('custo') or 0),
+                    'valor': float(form.cleaned_data.get('valor') or 0),
+                    'porcentagem': float(form.cleaned_data.get('porcentagem') or 0),
+                    'destino': form.cleaned_data.get('destino') or '',
                 })
 
             for produto in produtos_saida_atualizados:
@@ -448,8 +456,11 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                 for fluxo in produto['fluxos']:
                     initial_data.append({
                         'nome_produto': produto['nome'],
-                        'porcentagem': fluxo['porcentagem'],
-                        'destino': fluxo['destino'],
+                        'qtd': fluxo.get('qtd', ''),
+                        'custo': fluxo.get('custo', ''),
+                        'valor': fluxo.get('valor', ''),
+                        'porcentagem': fluxo.get('porcentagem', ''),
+                        'destino': fluxo.get('destino', ''),
                     })
 
         formset = FluxoFormSet(initial=initial_data, prefix='fluxo')
