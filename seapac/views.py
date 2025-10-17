@@ -298,6 +298,7 @@ def flow(request, id):
         subsystems_data.append({
             'id': family_subsystem.subsystem.id,
             'nome_subsistema': family_subsystem.subsystem.nome_subsistema,
+            'tipo': family_subsystem.subsystem.tipo,
             'produtos_saida': family_subsystem.produtos_saida,
         })
 
@@ -313,11 +314,11 @@ def flow(request, id):
                 porcentagem = fluxo.get('porcentagem')
 
                 rotulo_fluxo = nome_produto
-                if qtd is not None:
+                if qtd is not None and qtd != 0:
                     rotulo_fluxo += f" {qtd}"
-                if valor is not None:
+                if valor is not None and valor != 0:
                     rotulo_fluxo += f" R${valor:.2f}"
-                if porcentagem is not None:
+                if porcentagem is not None and porcentagem != 0:
                     rotulo_fluxo += f" {porcentagem:.0f}%"
             
                 fluxos.append((nome_subsistema, rotulo_fluxo, destino))
@@ -327,6 +328,10 @@ def flow(request, id):
         origem_corrigida = origem.replace(" ", "_")
         destino_corrigida = destino.replace(" ", "_")
         text_list.append(f"{origem_corrigida} --{produto}--> {destino_corrigida}")
+
+    flux_count = {}
+    for origem, produto, destino in fluxos:
+        flux_count[origem] = flux_count.get(origem, 0) + 1
 
     subsystems_com_fluxo = {
         nome for fluxo in fluxos for nome in (fluxo[0], fluxo[2])
@@ -351,18 +356,32 @@ def flow(request, id):
     for nome in subsystems_sem_fluxo:
         text_list.append(f"{nome}")
 
+    classDefSS = "classDef cssFlowSS fill:#28a74526,stroke:#333,stroke-width:1px;"
+    classDefTS = "classDef cssFlowTS fill:#007bff26,stroke:#333,stroke-width:1px;"
+    style_lines = []
+    for s in subsystems_data:
+        nome = s['nome_subsistema'].replace(" ", "_")
+        tipo = s.get('tipo', 'SS')
+
+        style_lines.append(f"class {nome} {'cssFlowSS' if tipo == 'SS' else 'cssFlowTS'};")
+
     diagram_lines = '\n'.join(text_list)
+    style_lines_str = '\n'.join(style_lines)
     click_lines_str = '\n'.join(click_lines)
     mundo_externo = """subgraph Mundo Externo
-    Mundo_Externo
-    end"""
+Mundo_Externo
+end"""
 
     conteudo_mermaid = f"""flowchart LR
 {mundo_externo}
     
+{classDefSS}
+{classDefTS}
 {diagram_lines}
 
 {click_lines_str}
+
+{style_lines_str}
 """
     #print(conteudo_mermaid)  # Debug: Verifique o conteúdo gerado do Mermaid
     context = {

@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block center %}
+
+<style>
+  .cssFlowTS > rect {
+    fill: #ff0000;
+    stroke: #ffff00;
+    stroke-width: 4px;
+  }
+  .cssFlowSS > rect {
+    fill: #00ff00;
+    stroke: #0000ff;
+    stroke-width: 4px;
+  }
+</style>
+
 <div class="flow-header">
     <div class="flow-header-main">
         <h1 class='title'>{% block title %}{{ title }}{% endblock title %} da {{ family.get_nome_familia }}</h1>
