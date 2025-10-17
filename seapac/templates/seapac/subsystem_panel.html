@@ -17,7 +17,7 @@
     {% endif %}
 </div>
 
-<p>Descrição do painel. Aqui você pode adicionar informações relevantes sobre o subsistema</p>
+<p>{{subsystem.descricao}}</p>
 {% if type == 'edit' %}
 <form method="post">
   {% csrf_token %}

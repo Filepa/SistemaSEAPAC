@@ -1,5 +1,7 @@
 from django.db import models
-    
+import os
+from django.conf import settings
+
 class Technician(models.Model):
     nome_tecnico = models.CharField(max_length=30)
     descricao = models.TextField()
@@ -89,6 +91,17 @@ class Subsystem(models.Model):
 
     def __str__(self):
         return self.nome_subsistema
+    
+    def has_valid_photo(self):
+        if self.foto_subsistema and self.foto_subsistema.name:
+            caminho = os.path.join(settings.MEDIA_ROOT, self.foto_subsistema.name)
+            return os.path.exists(caminho)
+        return False
+
+    def get_photo_url(self):
+        if self.has_valid_photo():
+            return self.foto_subsistema.url
+        return None
 
 class FamilySubsystem(models.Model):
     family = models.ForeignKey('Family', on_delete=models.CASCADE)

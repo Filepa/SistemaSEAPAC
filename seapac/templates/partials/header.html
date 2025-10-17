@@ -13,10 +13,10 @@
         <div class="dropdown">
             <button class="btn dropdown-toggle user-btn d-flex align-items-center gap-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {% if user.is_authenticated %}
-                    {% if user.foto_perfil %}
+                    {% if user.get_photo_url %}
                         <img src="{{ user.foto_perfil.url }}" alt="{{ user.username }}" class="user-avatar" style="width: 32px; height: 32px; border-radius: 50%;">
                     {% else %}
-                        <i class="bi bi-person-circle fs-4"></i>
+                        <img src="{% static "img/fotos_perfil/default.jpg" %}" alt="Imagem Padrão" class="user-avatar" style="width: 32px; height: 32px; border-radius: 50%;">
                     {% endif %}
                     <div class="user-info text-start">
                         <div class="user-name" style="color: white;">{{ user.email }}</div>
@@ -32,10 +32,10 @@
             <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownMenuButton">
                 {% if user.is_authenticated %}
                     <li class="dropdown-header d-flex align-items-center gap-2">
-                        {% if user.foto_perfil %}
+                        {% if user.get_photo_url %}
                             <img src="{{ user.foto_perfil.url }}" alt="{{ user.username }}" class="dropdown-avatar" style="width: 32px; height: 32px; border-radius: 50%;">
                         {% else %}
-                            <i class="bi bi-person-badge fs-4"></i>
+                            <img src="{% static "img/fotos_perfil/default.jpg" %}" alt="Imagem Padrão" class="dropdown-avatar" style="width: 32px; height: 32px; border-radius: 50%;">
                         {% endif %}
                         <span>{{ user.get_full_name|default:user.username }}</span>
                     </li>

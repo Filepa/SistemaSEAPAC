@@ -84,11 +84,11 @@
                 <div class="col-lg-4">
                     <div class="card shadow-sm mb-4">
                         <div class="card-body text-center">
-                            {% if user.foto_perfil %}
+                            {% if user.get_photo_url %}
                                 <img src="{{ user.foto_perfil.url }}" alt="Foto de perfil" class="rounded-circle img-thumbnail mb-3" style="width: 150px; height: 150px; object-fit: cover;">
                             {% else %}
                                 <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center mb-3" style="width: 150px; height: 150px;">
-                                    <i class="bi bi-person-circle text-muted" style="font-size: 5rem;"></i>
+                                    <img src="{% static "img/fotos_perfil/default.jpg" %}" alt="Imagem Padrão" class="dropdown-avatar" style="width: 140px; height: 140px; border-radius: 50%;">
                                 </div>
                             {% endif %}
                             
@@ -204,7 +204,7 @@
                                         Escolher Foto
                                     </label>
                                     
-                                    {% if user.foto_perfil %}
+                                    {% if user.get_photo_url %}
                                         <div class="mb-3">
                                             <img src="{{ user.foto_perfil.url }}" alt="Foto atual" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover;">
                                             <p class="text-muted small mt-2">Foto atual. Envie uma nova para substituir.</p>
