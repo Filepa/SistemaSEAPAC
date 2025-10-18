@@ -33,6 +33,8 @@ urlpatterns = [
     path('cadastrar/', register, name='register'),
     path('<str:id>/editar-familia/', edit_family, name='edit_family'),
     path('lista-familias/', list_families, name='list_families'),
+    path('<str:id>/visualizar-familia/', detail_family, name='detail_family'),
+    path('<str:id>visualizar-familia/deletar', delete_family, name='delete_family'),
     #projetos
     path('lista-projetos/', list_projects, name='list_projects'),
     path('lista-projetos/novo/', create_projects, name='create_projects'),

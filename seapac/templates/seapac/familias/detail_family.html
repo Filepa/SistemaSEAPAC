@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<h1 class='title'>{% block title %}{{ title }}{% endblock title %}{{family.get_nome_familia}}</h1>
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p style="font-family: 'Arial', sans-serif; font-size: 24px; color: gray;">
+                        Informações sobre a família cadastrada:
+                    </p>
+                </div>
+                <div>
+                    <a href="{% url 'edit_family' family.id %}" class="btn btn-primary" id="addProjectBtn">
+                        <i class="fas fa-pencil-alt"></i> Editar
+                    </a>
+                    {% if user.is_administrador %}
+                        <a href="{% url 'delete_family' family.id %}" class="btn btn-primary" id="addProjectBtn">
+                            <i class="fas fa-trash-alt"></i> Deletar
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'index' %}" class="btn btn-primary" id="addProjectBtn">
+                         <i class="	fas fa-step-backward"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header" style="color: rgb(231, 237, 231); background-color: rgb(39, 129, 39);">
+                    <h5 class="mb-0"><i class="	fas fa-info-circle"></i> Informações</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Nome da Família:</dt>
+                        <dd class="col-sm-9 text-success">{{ family.get_nome_familia }}</dd>
+                        
+                        <dt class="col-sm-3">Responsável:</dt>
+                        <dd class="col-sm-9">{{ family.nome_titular}}</dd>
+
+                        <dt class="col-sm-3">Município:</dt>
+                        <dd class="col-sm-9">{{ family.municipio }}</dd>
+
+                        <dt class="col-sm-3">Contato:</dt>
+                        <dd class="col-sm-9">{{ family.contato }}</dd>
+
+                        <dt class="col-sm-3">Nível:</dt>
+                        <dd class="col-sm-9">{{ family.get_nivel }}</dd>
+
+                        <dt class="col-sm-3">Pontuação:</dt>
+                        <dd class="col-sm-9">{{ family.get_pontuacao }}/100</dd>
+
+                        <dt class="col-sm-3">Visitas Confirmadas:</dt>
+                        <dd class="col-sm-9">{{ family.get_visitas_confirmadas }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

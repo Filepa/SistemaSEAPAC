@@ -50,7 +50,7 @@ def index(request):
     }
     return render(request, "seapac/index.html", context)
 
-#--------------CRUD FAMILIAS--------------
+#--------------CRUD FAMILIAS (COMPLETO)--------------
 
 @login_required
 def register(request):
@@ -68,6 +68,15 @@ def register(request):
         'form': form,
         'title': 'Cadastrar Família'
     })
+
+@login_required
+def detail_family(request, id):
+    family = get_object_or_404(Family, id=id)
+    context= {
+        'family': family,
+        'title': 'Detalhes da '
+    }
+    return render(request, 'seapac/familias/detail_family.html', context)
 
 @login_required
 def edit_family(request, id):
@@ -93,18 +102,18 @@ def list_families(request):
 
     families = Family.objects.all()
 
+    if query:
+        families = families.filter(nome_titular__icontains=query)
+
+    if subsystem_name:
+        families = families.filter(subsistemas__nome_subsistema=subsystem_name).distinct()
+
     if level:
         try:
             level_label = dict(LEVEL_CHOICES).get(int(level))
             families = [f for f in families if f.get_nivel() == level_label]
         except (ValueError, TypeError):
             pass
-
-    if query:
-        families = families.filter(nome_titular__icontains=query)
-
-    if subsystem_name:
-        families = families.filter(subsistemas__nome_subsistema=subsystem_name).distinct()
 
     paginator = Paginator(families, 4)
     page_number = request.GET.get('page')
@@ -124,9 +133,25 @@ def list_families(request):
     }
     return render(request, "seapac/familias/list_families.html", context)
 
-#falta o detail e o delete
+@login_required
+def delete_family(request, id):
+    family = get_object_or_404(Family, id=id)
+    family.delete()
+    messages.success(request, f'A família "{family.get_nome_familia}" foi excluída com sucesso!')
+    return redirect('list_families')
 
-#--------------CRUD PROJETOS------------------
+#--------------RENDA FAMILIAR--------------
+
+@login_required
+def renda(request, id):
+    family = get_object_or_404(Family, id=id)
+    # Implementar a lógica para exibir e editar informações de renda familiar
+    return render(request, "seapac/renda.html", {
+        'family': family,
+        'title': 'Renda da '
+    })
+
+#--------------CRUD PROJETOS (COMPLETO)------------------
 
 @login_required
 def list_projects(request):
@@ -197,7 +222,7 @@ def delete_projects(request, pk):
     messages.success(request, f'O projeto "{projetos.nome_projeto}" foi excluído com sucesso!')
     return redirect('list_projects')
 
-#--------------CRUD TECNICOS--------------
+#--------------CRUD TECNICOS (COMPLETO)--------------
 
 @login_required
 def list_tecs(request):
@@ -261,7 +286,7 @@ def delete_tecs(request, pk):
     messages.success(request, f'Técnico {tecs.nome_tecnico} excluído com sucesso!')
     return redirect('list_tecs')
 
-#--------------CRUD SUBSISTEMAS--------------
+#--------------CRUD SUBSISTEMAS (COMPLETO)--------------
 
 @login_required
 def list_subsystems(request):
@@ -627,17 +652,6 @@ def search_timeline_event(request, id):
             messages.error(request, "Por favor, digite um título para pesquisar.")
 
     return redirect('timeline', id=family.id)
-
-#--------------RENDA FAMILIAR--------------
-
-@login_required
-def renda(request, id):
-    family = get_object_or_404(Family, id=id)
-    # Implementar a lógica para exibir e editar informações de renda familiar
-    return render(request, "seapac/renda.html", {
-        'family': family,
-        'title': 'Renda'
-    })
 
 #--------------CRUD CALENDARIO--------------
 
