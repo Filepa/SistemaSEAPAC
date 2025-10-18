@@ -35,6 +35,7 @@ urlpatterns = [
     path('lista-familias/', list_families, name='list_families'),
     path('<str:id>/visualizar-familia/', detail_family, name='detail_family'),
     path('<str:id>visualizar-familia/deletar', delete_family, name='delete_family'),
+    path('<str:id>/renda_familiar/', renda_familiar, name='renda_familiar'),
     #projetos
     path('lista-projetos/', list_projects, name='list_projects'),
     path('lista-projetos/novo/', create_projects, name='create_projects'),
@@ -57,8 +58,6 @@ urlpatterns = [
     path('lista-subsistemas/novo/', create_subsystems, name='create_subsystems'),
     path('lista-subsistemas/editar/<str:id>/', edit_subsystems, name='edit_subsystems'),
     path('lista-subsistemas/deletar/<str:id>/', delete_subsystems, name='delete_subsystems'),
-    #renda
-    path('<str:id>/renda/', renda, name='renda'),
     #calendario
     path('calendario-visitas/', calendar, name='calendar'),
     path('api/events/', eventos_json),

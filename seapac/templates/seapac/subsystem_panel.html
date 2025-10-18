@@ -21,6 +21,15 @@
 {% if type == 'edit' %}
 <form method="post">
   {% csrf_token %}
+    {% if formset.non_form_errors %}
+    <div class="alert alert-danger">
+        <ul>
+        {% for err in formset.non_form_errors %}
+            <li>{{ err }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
     <table class="table">
         <thead>
             <tr>

@@ -1,5 +1,5 @@
 from .models import Family, Subsystem, Evento, Project, Technician, FamilySubsystem, TimelineEvent, Municipality, Evento
-from .forms import FamilyForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, ProdutoFormSet
+from .forms import FamilyForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, ProdutoFormSet, FluxoForm, BaseFluxoFormSet
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -143,13 +143,17 @@ def delete_family(request, id):
 #--------------RENDA FAMILIAR--------------
 
 @login_required
-def renda(request, id):
+def renda_familiar(request, id):
     family = get_object_or_404(Family, id=id)
-    # Implementar a lógica para exibir e editar informações de renda familiar
-    return render(request, "seapac/renda.html", {
-        'family': family,
-        'title': 'Renda da '
-    })
+    resultado = family.calcular_renda()
+
+    context = {
+        "family": family,
+        "produtos": resultado["produtos"],
+        "renda_total": resultado["renda_total"],
+        "title": f"Renda de {family.get_nome_familia()}",
+    }
+    return render(request, "seapac/familias/renda_familiar.html", context)
 
 #--------------CRUD PROJETOS (COMPLETO)------------------
 
@@ -492,22 +496,15 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
 
     subsystems_destino = family.subsistemas.all()
     destino_choices = [(s.nome_subsistema, s.nome_subsistema) for s in subsystems_destino]
-    destino_choices.insert(0, ('', '---------'))
+    destino_choices.insert(0, ('', '---------'))  # opção vazia
 
     produto_choices = [(p['nome'], p['nome']) for p in family_subsystem.produtos_saida]
 
-    class FluxoForm(forms.Form):
-        nome_produto = forms.ChoiceField(choices=(), required=True, label="Produto")
-        qtd = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Qtd")
-        custo = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Custo")
-        valor = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Valor")
-        porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2, label="Porcentagem")
-        destino = forms.ChoiceField(choices=(), required=False, label="Destino")
-
-    FluxoFormSet = formset_factory(FluxoForm, extra=1, can_delete=True)
+    FluxoFormSet = formset_factory(FluxoForm, formset=BaseFluxoFormSet, extra=1, can_delete=True)
 
     if request.method == 'POST':
         formset = FluxoFormSet(request.POST, prefix='fluxo')
+
         for form in formset:
             form.fields['nome_produto'].choices = produto_choices
             form.fields['destino'].choices = destino_choices
@@ -521,7 +518,6 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                     continue
 
                 nome_produto = form.cleaned_data['nome_produto']
-
                 novos_fluxos[nome_produto].append({
                     'qtd': float(form.cleaned_data.get('qtd') or 0),
                     'custo': float(form.cleaned_data.get('custo') or 0),
@@ -554,6 +550,7 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                     })
 
         formset = FluxoFormSet(initial=initial_data, prefix='fluxo')
+
         for form in formset:
             form.fields['nome_produto'].choices = produto_choices
             form.fields['destino'].choices = destino_choices

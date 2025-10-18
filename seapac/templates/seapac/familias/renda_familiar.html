@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<h1 class='title'>{% block title %}{{ title }}{% endblock title %} da {{ family.get_nome_familia }}</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Subsistema</th>
+            <th>Produto</th>
+            <th>Qtd</th>
+            <th>Valor (R$)</th>
+            <th>Custo (R$)</th>
+            <th>Lucro (R$)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in produtos %}
+        <tr>
+            <td>{{ p.subsistema }}</td>
+            <td>{{ p.produto }}</td>
+            <td>{{ p.qtd }}</td>
+            <td>{{ p.valor|floatformat:2 }}</td>
+            <td>{{ p.custo|floatformat:2 }}</td>
+            <td><strong>{{ p.lucro|floatformat:2 }}</strong></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h4 class="mt-4 text-end">
+    Renda total: <strong>R$ {{ renda_total|floatformat:2 }}</strong>
+</h4>
+{% endblock %}

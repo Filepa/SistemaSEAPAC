@@ -33,6 +33,7 @@ class Family(models.Model):
     municipio = models.ForeignKey(Municipality, on_delete=models.CASCADE)
     projeto = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True)
     subsistemas = models.ManyToManyField('Subsystem', through='FamilySubsystem', blank=True)
+    renda = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return self.nome_titular
@@ -75,6 +76,39 @@ class Family(models.Model):
     
     def get_visitas_confirmadas(self):
         return self.eventos.filter(confirmado=True).count()
+    
+    def calcular_renda(self):
+        dados_produtos = []
+        renda_total = 0
+
+        for fs in FamilySubsystem.objects.filter(family=self):
+            for produto in fs.produtos_saida:
+                nome = produto.get("nome", "Produto sem nome")
+
+                # Percorre os fluxos do produto
+                for fluxo in produto.get("fluxos", []):
+                    qtd = fluxo.get("qtd") or 0
+                    valor = fluxo.get("valor") or 0
+                    custo = fluxo.get("custo") or 0
+
+                    # Lucro do fluxo (ajustado por quantidade)
+                    lucro = (valor - custo) * qtd
+
+                    dados_produtos.append({
+                        "subsistema": fs.subsystem.nome_subsistema,
+                        "produto": nome,
+                        "valor": valor,
+                        "custo": custo,
+                        "qtd": qtd,
+                        "lucro": lucro,
+                    })
+
+                    renda_total += lucro
+
+        return {
+            "produtos": dados_produtos,
+            "renda_total": renda_total
+        }
 
 class Subsystem(models.Model):
     TIPO_CHOICES = [

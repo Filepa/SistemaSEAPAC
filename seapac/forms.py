@@ -1,8 +1,10 @@
 from django.forms import ModelForm
 from django import forms
 from .models import Family, Project, Technician, Subsystem, TimelineEvent
-from django.forms import formset_factory
+from django.forms import formset_factory, BaseFormSet
 import json
+from django.core.exceptions import ValidationError
+from decimal import Decimal, InvalidOperation
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -55,6 +57,54 @@ class ProdutoForm(forms.Form):
     porcentagem = forms.FloatField(label="Porcentagem", required=False)
 
 ProdutoFormSet = formset_factory(ProdutoForm, extra=1)
+
+class FluxoForm(forms.Form):
+    nome_produto = forms.ChoiceField(choices=(), required=True, label="Produto")
+    qtd = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Qtd")
+    custo = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Custo")
+    valor = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Valor")
+    porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2, label="Porcentagem")
+    destino = forms.ChoiceField(choices=(), required=False, label="Destino")
+    DELETE = forms.BooleanField(required=False)
+
+class BaseFluxoFormSet(BaseFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+
+        produtos_fluxos = {}
+        for form in self.forms:
+            if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
+                nome = form.cleaned_data.get('nome_produto')
+                if not nome:
+                    continue
+                destino = form.cleaned_data.get('destino') or ''
+                try:
+                    porcentagem = Decimal(form.cleaned_data.get('porcentagem') or 0)
+                except (InvalidOperation, TypeError):
+                    porcentagem = Decimal('0')
+
+                produtos_fluxos.setdefault(nome, []).append({
+                    'destino': destino.strip() if isinstance(destino, str) else destino,
+                    'porcentagem': porcentagem,
+                })
+
+        erros = []
+        for nome_produto, lista in produtos_fluxos.items():
+            soma = sum(item['porcentagem'] for item in lista)
+            if soma > Decimal('100') + Decimal('0.0001'):
+                erros.append(f"O produto '{nome_produto}' ultrapassa 100% de distribuição ({soma}%).")
+
+            destinos = [item['destino'] for item in lista if item['destino']]
+            duplicados = set(d for d in destinos if destinos.count(d) > 1)
+            if duplicados:
+                erros.append(
+                    f"O produto '{nome_produto}' tem destinos duplicados: {', '.join(sorted(duplicados))}."
+                )
+
+        if erros:
+            raise ValidationError(erros)
+
 
 class SubsystemForm(forms.ModelForm):
     produtos_base = forms.CharField(
