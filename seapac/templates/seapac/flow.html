@@ -18,13 +18,31 @@
     </div>
 </div>
 
-<div class="sandbox"> 
-  {% load mermaid %} 
-  {% startmermaid %} 
-    {{ conteudo_mermaid|safe }} 
-  {% endmermaid %} 
-</div> 
+<div class="sandbox-wrapper" style="background-color: #f7f7f7ff;">
+  <div id="sandbox">
+    {% load mermaid %}
+    {% startmermaid %}
+      {{ conteudo_mermaid|safe }}
+    {% endmermaid %}
+  </div>
+</div>
 {% endblock %}
 {% block extra_js %}
+  <script src="https://unpkg.com/@panzoom/panzoom/dist/panzoom.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const element = document.getElementById('sandbox');
+      const panzoom = Panzoom(element, {
+        maxScale: 5,
+        minScale: 0.2,
+        step: 0.2,
+        contain: 'none',
+        startScale: 1,
+      });
 
+      element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel, { passive: false });
+
+      panzoom.pan(0, 0);
+    });
+  </script>
 {% endblock %}
