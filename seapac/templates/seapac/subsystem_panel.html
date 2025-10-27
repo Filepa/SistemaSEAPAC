@@ -34,11 +34,11 @@
         <thead>
             <tr>
                 <th>Produto</th>
-                <th>Qtd</th>
-                <th>Custo</th>
-                <th>Valor</th>
-                <th>Porcentagem</th>
+                <th>Quantidade</th>
+                <th>Custo Unitário</th>
+                <th>Valor Unitário</th>
                 <th>Destino</th>
+                <th>Porcentagem</th>
             </tr>
         </thead>
       <tbody>
@@ -49,8 +49,8 @@
                 <td>{{ form.qtd }}</td>
                 <td>{{ form.custo }}</td>
                 <td>{{ form.valor }}</td>
-                <td>{{ form.porcentagem }}</td>
                 <td>{{ form.destino }}</td>
+                <td>{{ form.porcentagem }}</td>
                 <td>
                     {% if form.DELETE %}
                         {{ form.DELETE }} <label>Excluir</label>
@@ -67,11 +67,11 @@
         <thead>
             <tr>
                 <th>Produto</th>
-                <th>Qtd</th>
-                <th>Custo</th>
-                <th>Valor</th>
-                <th>Porcentagem</th>
+                <th>Quantidade</th>
+                <th>Custo Unitário</th>
+                <th>Valor Unitário</th>
                 <th>Destino</th>
+                <th>Porcentagem</th>
             </tr>
         </thead>
     <tbody>
@@ -85,8 +85,8 @@
                         <td>{{ fluxo.qtd|default:"-" }}</td>
                         <td>{{ fluxo.custo|default:"-" }}</td>
                         <td>{{ fluxo.valor|default:"-" }}</td>
-                        <td>{{ fluxo.porcentagem|default:"0" }}%</td>
                         <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
+                        <td>{{ fluxo.porcentagem|default:"0" }}%</td>
                     </tr>
                 {% endfor %}
             {% else %}
@@ -95,8 +95,8 @@
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>0%</td>
                     <td>Sem Destino</td>
+                    <td>0%</td>
                 </tr>
             {% endif %}
         {% endfor %}

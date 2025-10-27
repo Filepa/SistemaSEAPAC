@@ -2,17 +2,21 @@
 
 {% block center %}
 
-<h1 class='title'>{% block title %}{{ title }}{% endblock title %} da {{ family.get_nome_familia }}</h1>
+<h1 class='title'>
+    {% block title %}{{ title }}{% endblock title %} {{ family.get_nome_familia }}
+</h1>
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th>Subsistema</th>
             <th>Produto</th>
-            <th>Qtd</th>
-            <th>Valor (R$)</th>
-            <th>Custo (R$)</th>
-            <th>Lucro (R$)</th>
+            <th>Quantidade </th>
+            <th>Valor Unitário (R$)</th>
+            <th>Custo Unitário (R$)</th>
+            <th>Receita Total (R$)</th>
+            <th>Custo Total (R$)</th>
+            <th><strong>Lucro (R$)</strong></th>
         </tr>
     </thead>
     <tbody>
@@ -23,13 +27,20 @@
             <td>{{ p.qtd }}</td>
             <td>{{ p.valor|floatformat:2 }}</td>
             <td>{{ p.custo|floatformat:2 }}</td>
+            <td>{{ p.receita|floatformat:2 }}</td>
+            <td>{{ p.custo_total|floatformat:2 }}</td>
             <td><strong>{{ p.lucro|floatformat:2 }}</strong></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<h4 class="mt-4 text-end">
-    Renda total: <strong>R$ {{ renda_total|floatformat:2 }}</strong>
-</h4>
+<hr>
+
+<div class="text-end mt-4">
+    <p><strong>Total recebido (receita):</strong> R$ {{ total_receita|floatformat:2 }}</p>
+    <p><strong>Total gasto (custo):</strong> R$ {{ total_custo|floatformat:2 }}</p>
+    <h4><strong>Renda total (lucro líquido):</strong> R$ {{ renda_total|floatformat:2 }}</h4>
+</div>
+
 {% endblock %}

@@ -39,8 +39,11 @@ class Family(models.Model):
         return self.nome_titular
 
     def get_pontuacao(self):
-        pontuacao = self.subsistemas.count() * 5
-        return pontuacao
+        pontuacao = self.subsistemas.count() * 3
+        if pontuacao == 6:
+            return 0
+        else:
+            return pontuacao - 6
 
     def get_nivel(self):
         pontos = self.get_pontuacao()
@@ -79,35 +82,46 @@ class Family(models.Model):
     
     def calcular_renda(self):
         dados_produtos = []
+        total_receita = 0
+        total_custo = 0
         renda_total = 0
 
         for fs in FamilySubsystem.objects.filter(family=self):
             for produto in fs.produtos_saida:
                 nome = produto.get("nome", "Produto sem nome")
 
-                # Percorre os fluxos do produto
                 for fluxo in produto.get("fluxos", []):
                     qtd = fluxo.get("qtd") or 0
                     valor = fluxo.get("valor") or 0
                     custo = fluxo.get("custo") or 0
 
-                    # Lucro do fluxo (ajustado por quantidade)
-                    lucro = (valor - custo) * qtd
+                    # Receita = valor × quantidade
+                    receita = valor * qtd
+                    # Custo total = custo × quantidade
+                    custo_total = custo * qtd
+                    # Lucro = receita - custo_total
+                    lucro = receita - custo_total
 
                     dados_produtos.append({
                         "subsistema": fs.subsystem.nome_subsistema,
                         "produto": nome,
+                        "qtd": qtd,
                         "valor": valor,
                         "custo": custo,
-                        "qtd": qtd,
+                        "receita": receita,
+                        "custo_total": custo_total,
                         "lucro": lucro,
                     })
 
+                    total_receita += receita
+                    total_custo += custo_total
                     renda_total += lucro
 
         return {
             "produtos": dados_produtos,
-            "renda_total": renda_total
+            "total_receita": total_receita,
+            "total_custo": total_custo,
+            "renda_total": renda_total,
         }
 
 class Subsystem(models.Model):

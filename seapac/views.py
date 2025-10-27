@@ -150,8 +150,10 @@ def renda_familiar(request, id):
     context = {
         "family": family,
         "produtos": resultado["produtos"],
+        "total_receita": resultado["total_receita"],
+        "total_custo": resultado["total_custo"],
         "renda_total": resultado["renda_total"],
-        "title": f"Renda de {family.get_nome_familia()}",
+        "title": f"Renda da ",
     }
     return render(request, "seapac/familias/renda_familiar.html", context)
 
@@ -267,7 +269,6 @@ def edit_tecs(request, pk):
             form.save()
             return redirect('detail_tecs', pk=tecs.pk)
     else:
-        print('vem pra ca')
         form = TechnicianForm(instance=tecs)
     
     return render(request, 'seapac/tecnicos/tecnicos_form.html', {
