@@ -1,5 +1,5 @@
 from .models import Family, Subsystem, Evento, Project, Technician, FamilySubsystem, TimelineEvent, Municipality, Evento
-from .forms import FamilyForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, ProdutoFormSet, FluxoForm, BaseFluxoFormSet
+from .forms import FamilyForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, FluxoForm, BaseFluxoFormSet
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -9,7 +9,6 @@ from django.forms import formset_factory
 from django.http import JsonResponse
 from django.contrib import messages
 from django.urls import reverse
-from django import forms
 import json
 
 LEVEL_CHOICES = [

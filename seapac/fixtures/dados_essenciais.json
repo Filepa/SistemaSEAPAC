@@ -1,0 +1,1857 @@
+[
+  {
+    "model": "seapac.municipality",
+    "pk": 1,
+    "fields": {
+      "nome": "ACARI"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 2,
+    "fields": {
+      "nome": "AFONSO BEZERRA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 3,
+    "fields": {
+      "nome": "AGUA NOVA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 4,
+    "fields": {
+      "nome": "ALEXANDRIA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 5,
+    "fields": {
+      "nome": "ALMINO AFONSO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 6,
+    "fields": {
+      "nome": "ALTO DO RODRIGUES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 7,
+    "fields": {
+      "nome": "ANGICOS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 8,
+    "fields": {
+      "nome": "ANTONIO MARTINS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 9,
+    "fields": {
+      "nome": "APODI"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 10,
+    "fields": {
+      "nome": "AREIA BRANCA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 11,
+    "fields": {
+      "nome": "ARES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 12,
+    "fields": {
+      "nome": "ASSU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 13,
+    "fields": {
+      "nome": "BAIA FORMOSA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 14,
+    "fields": {
+      "nome": "BARAUNA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 15,
+    "fields": {
+      "nome": "BARCELONA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 16,
+    "fields": {
+      "nome": "BENTO FERNANDES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 17,
+    "fields": {
+      "nome": "BOA SAUDE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 18,
+    "fields": {
+      "nome": "BODO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 19,
+    "fields": {
+      "nome": "BOM JESUS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 20,
+    "fields": {
+      "nome": "BREJINHO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 21,
+    "fields": {
+      "nome": "CAICARA DO NORTE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 22,
+    "fields": {
+      "nome": "CAICARA RIO DO VENTO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 23,
+    "fields": {
+      "nome": "CAICO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 24,
+    "fields": {
+      "nome": "CAMPO GRANDE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 25,
+    "fields": {
+      "nome": "CAMPO REDONDO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 26,
+    "fields": {
+      "nome": "CANGUARETAMA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 27,
+    "fields": {
+      "nome": "CARAUBAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 28,
+    "fields": {
+      "nome": "CARNAUBA DOS DANTAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 29,
+    "fields": {
+      "nome": "CARNAUBAIS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 30,
+    "fields": {
+      "nome": "CEARA MIRIM"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 31,
+    "fields": {
+      "nome": "CEL EZEQUIEL"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 32,
+    "fields": {
+      "nome": "CEL JOAO PESSOA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 33,
+    "fields": {
+      "nome": "CERRO CORA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 34,
+    "fields": {
+      "nome": "CRUZETA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 35,
+    "fields": {
+      "nome": "CURRAIS NOVOS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 36,
+    "fields": {
+      "nome": "DOUTOR SEVERIANO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 37,
+    "fields": {
+      "nome": "ENCANTO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 38,
+    "fields": {
+      "nome": "EQUADOR"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 39,
+    "fields": {
+      "nome": "ESPIRITO SANTO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 40,
+    "fields": {
+      "nome": "EXTREMOZ"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 41,
+    "fields": {
+      "nome": "FELIPE GUERRA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 42,
+    "fields": {
+      "nome": "FERNANDO PEDROZA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 43,
+    "fields": {
+      "nome": "FLORANIA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 44,
+    "fields": {
+      "nome": "FRANCISCO DANTAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 45,
+    "fields": {
+      "nome": "FRUTUOSO GOMES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 46,
+    "fields": {
+      "nome": "GALINHOS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 47,
+    "fields": {
+      "nome": "GOIANINHA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 48,
+    "fields": {
+      "nome": "GOV DIX SEPT ROSADO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 49,
+    "fields": {
+      "nome": "GROSSOS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 50,
+    "fields": {
+      "nome": "GUAMARE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 51,
+    "fields": {
+      "nome": "IELMO MARINHO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 52,
+    "fields": {
+      "nome": "IPANGUACU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 53,
+    "fields": {
+      "nome": "IPUEIRA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 54,
+    "fields": {
+      "nome": "ITAJA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 55,
+    "fields": {
+      "nome": "ITAU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 56,
+    "fields": {
+      "nome": "JACANA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 57,
+    "fields": {
+      "nome": "JANDAIRA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 58,
+    "fields": {
+      "nome": "JANDUIS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 59,
+    "fields": {
+      "nome": "JAPI"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 60,
+    "fields": {
+      "nome": "JARDIM DE ANGICOS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 61,
+    "fields": {
+      "nome": "JARDIM DE PIRANHAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 62,
+    "fields": {
+      "nome": "JARDIM DO SERIDO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 63,
+    "fields": {
+      "nome": "JOAO CAMARA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 64,
+    "fields": {
+      "nome": "JOAO DIAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 65,
+    "fields": {
+      "nome": "JOSE DA PENHA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 66,
+    "fields": {
+      "nome": "JUCURUTU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 67,
+    "fields": {
+      "nome": "JUNDIA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 68,
+    "fields": {
+      "nome": "LAGOA D'ANTA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 69,
+    "fields": {
+      "nome": "LAGOA DE PEDRAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 70,
+    "fields": {
+      "nome": "LAGOA DE VELHOS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 71,
+    "fields": {
+      "nome": "LAGOA NOVA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 72,
+    "fields": {
+      "nome": "LAGOA SALGADA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 73,
+    "fields": {
+      "nome": "LAJES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 74,
+    "fields": {
+      "nome": "LAJES PINTADA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 75,
+    "fields": {
+      "nome": "LUCRECIA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 76,
+    "fields": {
+      "nome": "LUIZ GOMES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 77,
+    "fields": {
+      "nome": "MACAIBA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 78,
+    "fields": {
+      "nome": "MACAU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 79,
+    "fields": {
+      "nome": "MAJOR SALES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 80,
+    "fields": {
+      "nome": "MARCELINO VIEIRA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 81,
+    "fields": {
+      "nome": "MARTINS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 82,
+    "fields": {
+      "nome": "MAXARANGUAPE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 83,
+    "fields": {
+      "nome": "MESSIAS TARGINO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 84,
+    "fields": {
+      "nome": "MONTANHAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 85,
+    "fields": {
+      "nome": "MONTE ALEGRE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 86,
+    "fields": {
+      "nome": "MONTE DAS GAMELEIRAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 87,
+    "fields": {
+      "nome": "MOSSORO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 88,
+    "fields": {
+      "nome": "NATAL"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 89,
+    "fields": {
+      "nome": "NISIA FLORESTA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 90,
+    "fields": {
+      "nome": "NOVA CRUZ"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 91,
+    "fields": {
+      "nome": "OLHO D'AGUA DOS BORG"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 92,
+    "fields": {
+      "nome": "OURO BRANCO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 93,
+    "fields": {
+      "nome": "PARANA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 94,
+    "fields": {
+      "nome": "PARAU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 95,
+    "fields": {
+      "nome": "PARAZINHO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 96,
+    "fields": {
+      "nome": "PARELHAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 97,
+    "fields": {
+      "nome": "PARNAMIRIM"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 98,
+    "fields": {
+      "nome": "PASSA E FICA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 99,
+    "fields": {
+      "nome": "PASSAGEM"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 100,
+    "fields": {
+      "nome": "PATU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 101,
+    "fields": {
+      "nome": "PAU DOS FERROS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 102,
+    "fields": {
+      "nome": "PEDRA GRANDE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 103,
+    "fields": {
+      "nome": "PEDRA PRETA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 104,
+    "fields": {
+      "nome": "PEDRO AVELINO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 105,
+    "fields": {
+      "nome": "PEDRO VELHO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 106,
+    "fields": {
+      "nome": "PENDENCIAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 107,
+    "fields": {
+      "nome": "PILOES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 108,
+    "fields": {
+      "nome": "POCO BRANCO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 109,
+    "fields": {
+      "nome": "PORTALEGRE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 110,
+    "fields": {
+      "nome": "PORTO DO MANGUE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 111,
+    "fields": {
+      "nome": "PUREZA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 112,
+    "fields": {
+      "nome": "RAFAEL FERNANDES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 113,
+    "fields": {
+      "nome": "RAFAEL GODEIRO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 114,
+    "fields": {
+      "nome": "RIACHO DA CRUZ"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 115,
+    "fields": {
+      "nome": "RIACHO DE SANTANA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 116,
+    "fields": {
+      "nome": "RIACHUELO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 117,
+    "fields": {
+      "nome": "RIO DO FOGO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 118,
+    "fields": {
+      "nome": "RODOLFO FERNANDES"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 119,
+    "fields": {
+      "nome": "RUI BARBOSA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 120,
+    "fields": {
+      "nome": "SANTA CRUZ"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 121,
+    "fields": {
+      "nome": "SANTA MARIA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 122,
+    "fields": {
+      "nome": "SANTANA DO MATOS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 123,
+    "fields": {
+      "nome": "SANTANA DO SERIDO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 124,
+    "fields": {
+      "nome": "SANTO ANTONIO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 125,
+    "fields": {
+      "nome": "SAO BENTO DO NORTE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 126,
+    "fields": {
+      "nome": "SAO BENTO DO TRAIRI"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 127,
+    "fields": {
+      "nome": "SAO FERNANDO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 128,
+    "fields": {
+      "nome": "SAO FRANC DO OESTE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 129,
+    "fields": {
+      "nome": "SAO G DO AMARANTE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 130,
+    "fields": {
+      "nome": "SAO J DE CAMPESTRE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 131,
+    "fields": {
+      "nome": "SAO JOAO DO SABUGI"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 132,
+    "fields": {
+      "nome": "SAO JOSE DE MIPIBU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 133,
+    "fields": {
+      "nome": "SAO JOSE DO SERIDO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 134,
+    "fields": {
+      "nome": "SAO MIGUEL"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 135,
+    "fields": {
+      "nome": "SAO MIGUEL DE TOUROS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 136,
+    "fields": {
+      "nome": "SAO PAULO DO POTENGI"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 137,
+    "fields": {
+      "nome": "SAO PEDRO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 138,
+    "fields": {
+      "nome": "SAO RAFAEL"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 139,
+    "fields": {
+      "nome": "SAO TOME"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 140,
+    "fields": {
+      "nome": "SAO VICENTE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 141,
+    "fields": {
+      "nome": "SEN ELOI DE SOUZA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 142,
+    "fields": {
+      "nome": "SEN GEORGINO AVELINO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 143,
+    "fields": {
+      "nome": "SERRA CAIADA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 144,
+    "fields": {
+      "nome": "SERRA DE SAO BENTO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 145,
+    "fields": {
+      "nome": "SERRA DO MEL"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 146,
+    "fields": {
+      "nome": "SERRA NEGRA DO NORTE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 147,
+    "fields": {
+      "nome": "SERRINHA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 148,
+    "fields": {
+      "nome": "SERRINHA DOS PINTOS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 149,
+    "fields": {
+      "nome": "SEVERIANO MELO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 150,
+    "fields": {
+      "nome": "SITIO NOVO"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 151,
+    "fields": {
+      "nome": "TABULEIRO GRANDE"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 152,
+    "fields": {
+      "nome": "TAIPU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 153,
+    "fields": {
+      "nome": "TANGARA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 154,
+    "fields": {
+      "nome": "TEN. LAURENTINO CRUZ"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 155,
+    "fields": {
+      "nome": "TENENTE ANANIAS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 156,
+    "fields": {
+      "nome": "TIBAU"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 157,
+    "fields": {
+      "nome": "TIBAU DO SUL"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 158,
+    "fields": {
+      "nome": "TIMBAUBA DOS BATISTA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 159,
+    "fields": {
+      "nome": "TOUROS"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 160,
+    "fields": {
+      "nome": "TRIUNFO POTIGUAR"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 161,
+    "fields": {
+      "nome": "UMARIZAL"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 162,
+    "fields": {
+      "nome": "UPANEMA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 163,
+    "fields": {
+      "nome": "VARZEA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 164,
+    "fields": {
+      "nome": "VENHA VER"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 165,
+    "fields": {
+      "nome": "VERA CRUZ"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 166,
+    "fields": {
+      "nome": "VICOSA"
+    }
+  },
+  {
+    "model": "seapac.municipality",
+    "pk": 167,
+    "fields": {
+      "nome": "VILA FLOR"
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 1,
+    "fields": {
+        "nome_subsistema": "UFPA",
+        "descricao": "Unidade Familiar de Produção Agroecológica",
+        "tipo": "SS",
+        "produtos_base": []
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 2,
+    "fields": {
+      "nome_subsistema": "Caprinocultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        },
+        {
+          "nome": "Couro",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 3,
+    "fields": {
+      "nome_subsistema": "Avinocultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Pinto",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Carne de aves",
+          "fluxos": []
+        },
+        {
+          "nome": "Ovo",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 4,
+    "fields": {
+      "nome_subsistema": "Bovinocultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        },
+        {
+          "nome": "Couro",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 5,
+    "fields": {
+      "nome_subsistema": "Suinocultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Carne",
+          "fluxos": []
+        },
+        {
+          "nome": "Esterco",
+          "fluxos": []
+        },
+        {
+          "nome": "Animais para reprodução",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 6,
+    "fields": {
+      "nome_subsistema": "Quintal",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Fruta",
+          "fluxos": []
+        },
+        {
+          "nome": "Hortaliça",
+          "fluxos": []
+        },
+        {
+          "nome": "Forragem",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 7,
+    "fields": {
+      "nome_subsistema": "Apicultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Mel",
+          "fluxos": []
+        },
+        {
+          "nome": "Cera",
+          "fluxos": []
+        },
+        {
+          "nome": "Geleia real",
+          "fluxos": []
+        },
+        {
+          "nome": "Própolis",
+          "fluxos": []
+        },
+        {
+          "nome": "Enxames",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 8,
+    "fields": {
+      "nome_subsistema": "Meliponicultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Mel",
+          "fluxos": []
+        },
+        {
+          "nome": "Cera",
+          "fluxos": []
+        },
+        {
+          "nome": "Enxames",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 9,
+    "fields": {
+      "nome_subsistema": "Horticultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Coentro",
+          "fluxos": []
+        },
+        {
+          "nome": "Cebolinha",
+          "fluxos": []
+        },
+        {
+          "nome": "Pimentão",
+          "fluxos": []
+        },
+        {
+          "nome": "Tomate",
+          "fluxos": []
+        },
+        {
+          "nome": "Tomate cereja",
+          "fluxos": []
+        },
+        {
+          "nome": "Beringela",
+          "fluxos": []
+        },
+        {
+          "nome": "Pimenta de cheiro",
+          "fluxos": []
+        },
+        {
+          "nome": "Repolho",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 10,
+    "fields": {
+      "nome_subsistema": "Fruticultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Banana",
+          "fluxos": []
+        },
+        {
+          "nome": "Mamão",
+          "fluxos": []
+        },
+        {
+          "nome": "Coco",
+          "fluxos": []
+        },
+        {
+          "nome": "Limão",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 11,
+    "fields": {
+      "nome_subsistema": "Roçado",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Milho",
+          "fluxos": []
+        },
+        {
+          "nome": "Feijão",
+          "fluxos": []
+        },
+        {
+          "nome": "Jerimum",
+          "fluxos": []
+        },
+        {
+          "nome": "Melância",
+          "fluxos": []
+        },
+        {
+          "nome": "Feijão guandu",
+          "fluxos": []
+        },
+        {
+          "nome": "Fava",
+          "fluxos": []
+        },
+        {
+          "nome": "Arroz",
+          "fluxos": []
+        },
+        {
+          "nome": "Amendoim",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 12,
+    "fields": {
+      "nome_subsistema": "Forragem",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Palma",
+          "fluxos": []
+        },
+        {
+          "nome": "Moringa",
+          "fluxos": []
+        },
+        {
+          "nome": "Leucena",
+          "fluxos": []
+        },
+        {
+          "nome": "Gliricídia",
+          "fluxos": []
+        },
+        {
+          "nome": "Margaridão",
+          "fluxos": []
+        },
+        {
+          "nome": "Capiaçu",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 13,
+    "fields": {
+      "nome_subsistema": "Plantas medicinais",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Hortelã",
+          "fluxos": []
+        },
+        {
+          "nome": "Cidreira",
+          "fluxos": []
+        },
+        {
+          "nome": "Capim santo",
+          "fluxos": []
+        },
+        {
+          "nome": "Urucum",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 14,
+    "fields": {
+      "nome_subsistema": "Viveiro de mudas",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Coco",
+          "fluxos": []
+        },
+        {
+          "nome": "Limão",
+          "fluxos": []
+        },
+        {
+          "nome": "Banana",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 15,
+    "fields": {
+      "nome_subsistema": "Banco de sementes",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Feijão",
+          "fluxos": []
+        },
+        {
+          "nome": "Milho",
+          "fluxos": []
+        },
+        {
+          "nome": "Fava",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 16,
+    "fields": {
+      "nome_subsistema": "Piscicultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Tilápia",
+          "fluxos": []
+        },
+        {
+          "nome": "Tambaqui",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 17,
+    "fields": {
+      "nome_subsistema": "Cacinicultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Camarão",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 18,
+    "fields": {
+      "nome_subsistema": "Floricultura",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Tulipa",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 19,
+    "fields": {
+      "nome_subsistema": "Compostagem",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Composto orgânico",
+          "fluxos": []
+        },
+        {
+          "nome": "Biofertilizante",
+          "fluxos": []
+        },
+        {
+          "nome": "EM4",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 20,
+    "fields": {
+      "nome_subsistema": "Artesanato",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Doces",
+          "fluxos": []
+        },
+        {
+          "nome": "Bolos",
+          "fluxos": []
+        },
+        {
+          "nome": "Queijos",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 21,
+    "fields": {
+      "nome_subsistema": "Cisterna P1MC",
+      "descricao": "",
+      "tipo": "TS",
+      "produtos_base": [
+        {
+          "nome": "Água para beber e cozinhar",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 22,
+    "fields": {
+      "nome_subsistema": "Cisterna P1+2",
+      "descricao": "",
+      "tipo": "TS",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        },
+        {
+          "nome": "Água para o multiuso da UPF",
+          "fluxos": []
+        },
+        {
+          "nome": "Água para os animais",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 23,
+    "fields": {
+      "nome_subsistema": "Barreiro Trincheira",
+      "descricao": "",
+      "tipo": "TS",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        },
+        {
+          "nome": "Água para os animais",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 24,
+    "fields": {
+      "nome_subsistema": "Barragem",
+      "descricao": "",
+      "tipo": "TS",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        },
+        {
+          "nome": "Água para os animais",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 25,
+    "fields": {
+      "nome_subsistema": "Reuso de Água Cinza",
+      "descricao": "",
+      "tipo": "TS",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 26,
+    "fields": {
+      "nome_subsistema": "Reuso de Água Total",
+      "descricao": "",
+      "tipo": "TS",
+      "produtos_base": [
+        {
+          "nome": "Água para produção",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 27,
+    "fields": {
+      "nome_subsistema": "Biodigestor",
+      "descricao": "",
+      "tipo": "TS",
+      "produtos_base": [
+        {
+          "nome": "Biogás",
+          "fluxos": []
+        },
+        {
+          "nome": "Biofertilizante",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 28,
+    "fields": {
+      "nome_subsistema": "Secador Solar",
+      "descricao": "",
+      "tipo": "TS",
+      "produtos_base": [
+        {
+          "nome": "Feno",
+          "fluxos": []
+        },
+        {
+          "nome": "Semente",
+          "fluxos": []
+        },
+        {
+          "nome": "Fruta desidratada",
+          "fluxos": []
+        }
+      ]
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 29,
+    "fields": {
+      "nome_subsistema": "Mundo Externo",
+      "descricao": "",
+      "tipo": "SS",
+      "produtos_base": [
+        {
+          "nome": "Dinheiro",
+          "fluxos": []
+        },
+        {
+          "nome": "Insumos",
+          "fluxos": []
+        },
+        {
+          "nome": "Equipamentos",
+          "fluxos": []
+        },
+        {
+          "nome": "Serviços",
+          "fluxos": []
+        },
+        {
+          "nome": "Vacinas",
+          "fluxos": []
+        }
+      ]
+    }
+  }
+]

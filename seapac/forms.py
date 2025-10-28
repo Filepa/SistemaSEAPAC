@@ -13,12 +13,12 @@ class ProjectForm(ModelForm):
         widgets = {
             'nome_projeto': forms.TextInput(attrs={'class': 'form-control'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control', 'stle': 'max-width:400px;'}),
-            'tecnicos': forms.SelectMultiple(attrs={'class': 'form-select', 'size': 5}), 
-            'familias': forms.SelectMultiple(attrs={'class': 'form-select', 'size': 5}),
-            'orcamento': forms.Textarea(attrs={'class': 'form-control'}),
+            'tecnicos': forms.SelectMultiple(attrs={'class': 'form-control', 'size': 5}), 
+            'familias': forms.SelectMultiple(attrs={'class': 'form-control', 'size': 5}),
+            'orcamento': forms.TextInput(attrs={'class': 'form-control'}),
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'data_fim': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
-            'status': forms.Select(attrs={'class': 'form-select'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
         }
     
 class TechnicianForm(ModelForm):
@@ -44,8 +44,8 @@ class FamilyForm(ModelForm):
             'nome_titular': forms.TextInput(attrs={'class': 'form-control'}),
             'data_inicio': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'contato': forms.TextInput(attrs={'class': 'form-control'}),
-            'municipio': forms.Select(attrs={'class': 'form-select'}),
-            'projeto': forms.Select(attrs={'class': 'form-select'}),
+            'municipio': forms.Select(attrs={'class': 'form-control'}),
+            'projetos': forms.SelectMultiple(attrs={'class': 'form-control', 'size': 5}),
         }
 
 class ProdutoForm(forms.Form):

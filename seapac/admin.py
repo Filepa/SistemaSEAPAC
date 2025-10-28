@@ -70,14 +70,17 @@ class SubsystemAdmin(admin.ModelAdmin):
 
 @admin.register(Family)
 class FamilyAdmin(admin.ModelAdmin):
-    list_display = ('nome_titular', 'municipio', 'projeto', 'get_nivel', 'get_pontuacao')
-    list_filter = ('municipio', 'projeto')
+    list_display = ('nome_titular', 'municipio', 'get_projetos', 'get_nivel', 'get_pontuacao')
+    list_filter = ('municipio', 'projetos')
     search_fields = ('nome_titular', 'municipio__nome')
     inlines = [FamilySubsystemInline]
-    list_select_related = ('municipio', 'projeto')
+    list_select_related = ('municipio',)
     ordering = ['nome_titular']
     list_per_page = 10
 
+    def get_projetos(self, obj):
+        return ", ".join([p.nome for p in obj.projetos.all()])
+    get_projetos.short_description = "Projetos"
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):

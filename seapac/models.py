@@ -31,7 +31,7 @@ class Family(models.Model):
     data_inicio = models.DateField()
     contato = models.CharField(max_length=30)
     municipio = models.ForeignKey(Municipality, on_delete=models.CASCADE)
-    projeto = models.ForeignKey('Project', on_delete=models.CASCADE, blank=True)
+    projetos = models.ManyToManyField('Project', blank=True)
     subsistemas = models.ManyToManyField('Subsystem', through='FamilySubsystem', blank=True)
     renda = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
