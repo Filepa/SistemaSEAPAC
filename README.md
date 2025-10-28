@@ -1,10 +1,13 @@
 # Sistema SEAPAC
 
-Sistema SEAPAC é uma aplicação django focada no monitoramento de pequenos agricultores e suas práticas para atingir a transição agroecológica. Faz parte do Trabalho de Conclusão de Curso dos alunos Felipe Raposo e Ana Maria do curso de informática do IFRN Pau dos Ferros.
+Sistema SEAPAC é uma aplicação web desenvolvida com o framework Django, voltada para o monitoramento dos processos de transição agroecológica de pequenos agricultores do Alto Oeste Potiguar.
+O projeto integra o Trabalho de Conclusão de Curso (TCC) dos alunos Felipe Raposo e Ana Maria Rafael Dias da Silva, do curso Técnico Integrado em Informática do Instituto Federal do Rio Grande do Norte (IFRN) - Campus Pau dos Ferros.
 
 ## Sobre o Sistema
 
-Este é um projeto desenvolvido para as disciplinas **Programação para Internet**, **Projeto de Desenvolvimento de Software** e **Fundamentos de Sistemas Operacionais e Sistemas Operacionais de Rede**, as quais têm como projeto final o vigente trabalho. 
+O Sistema SEAPAC surgiu a partir de uma parceria com o Serviço de Apoio a Projetos Comunitários (SEAPAC), organização civil sem fins lucrativos que atua em projetos de convivência com o Semiárido e promoção da agroecologia.
+
+A ferramenta tem como objetivo facilitar o gerenciamento de informações das famílias assistidas pela instituição, oferecendo visões gráficas e dinâmicas sobre os processos produtivos e os estágios de transição agroecológica de cada agricultor.
 
 ## Recursos Utilizados
 
@@ -12,11 +15,26 @@ Este é um projeto desenvolvido para as disciplinas **Programação para Interne
 * Python 3.x
 * SQLite
 * HTML/CSS/Bootstrap
+* Django Mermaid
+* Panzoom
+* Calendar
 
 ## Funcionalidades
 
-* CRUD de Famílias
-* CRUD de Subsistemas
+* CRUD completo para
+    * Famílias 
+    * Subsistemas
+    * Projetos
+    * Técnicos
+    * Visitas
+    * Eventos (timeline)
+    * Fluxo
+* Visualização dinâmica dos sistemas produtivos familiares através de fluxogramas interativos (via Django Mermaid).
+* Linha do tempo das atividades e visitas.
+* Painel de administração customizado com níveis de acesso (técnico e administrador).
+* Design responsivo e intuitivo, com foco na simplicidade e na acessibilidade.
+
+
 
 ## Instalação
 
@@ -61,13 +79,19 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. **Carregue os dados iniciais de famílias, usuários e subsistemas**
+6. **Carregue os dados iniciais de muncípios e subsistemas**
 
 ```bash
-python manage.py loaddata dados_iniciais.json
+python manage.py loaddata dados_essenciais.json
 ```
 
-7. **Inicie o servidor**
+7. **(opcional) Popule com dados de famílias e projetos**
+
+```bash
+python manage.py loaddata dados_popular.json
+```
+
+8. **Inicie o servidor**
 
 ```bash
 python manage.py runserver
