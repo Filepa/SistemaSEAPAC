@@ -671,6 +671,9 @@ body {
     .family-actions p {
         display: none;
     }
+    .form-sandbox {
+        grid-template-columns: auto auto auto auto auto !important;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -696,6 +699,10 @@ body {
 
     .stats-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .form-sandbox {
+        grid-template-columns: auto auto auto auto !important;
     }
 }
 
@@ -728,6 +735,9 @@ body {
     
     .user-menu span {
         display: none;
+    }
+    .form-sandbox {
+        grid-template-columns: auto auto auto !important;
     }
 }
 
