@@ -36,25 +36,25 @@
     </div>
     
     <div class="family-actions">
-        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'detail_family' family.id %}')">
+        <button class="btn btn-outline btn-sm act-btn" onclick="redirect('{% url 'detail_family' family.id %}')">
             <i class="fas fa-eye"></i>
-            Visualizar
+            <p>Visualizar</p> 
         </button>
-        <button class="btn btn-outline btn-sm" onclick="window.location.href='{% url 'calendar' %}?q={{ family.nome_titular }}'">
+        <button class="btn btn-outline btn-sm act-btn" onclick="window.location.href='{% url 'calendar' %}?q={{ family.nome_titular }}'">
             <i class="fas fa-calendar-plus"></i>
-            Agendar Visita
+            <p>Agendar Visita</p> 
         </button>
-        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'flow' family.id %}')">
+        <button class="btn btn-outline btn-sm act-btn" onclick="redirect('{% url 'flow' family.id %}')">
             <i class="fa-solid fa-shuffle"></i>
-            Fluxograma
+            <p>Fluxograma</p> 
         </button>
-        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'timeline' family.id %}')">
+        <button class="btn btn-outline btn-sm act-btn" onclick="redirect('{% url 'timeline' family.id %}')">
             <i class="fa-solid fa-timeline"></i>
-            Timeline
+            <p>Timeline</p> 
         </button>
-        <button class="btn btn-outline btn-sm" onclick="redirect('{% url 'renda_familiar' family.id %}')">
+        <button class="btn btn-outline btn-sm act-btn" onclick="redirect('{% url 'renda_familiar' family.id %}')">
             <i class="fas fa-dollar-sign"></i>
-            Renda
+            <p>Renda</p> 
         </button>
     </div>
 </div>

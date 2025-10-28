@@ -657,6 +657,22 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1292px) {
+    .container-forms {
+        flex-direction: column !important;
+    }
+    .box-save-cancel {
+        position: static !important;
+        margin-left: 16px !important;
+    }
+}
+
+@media (max-width: 1512px) {
+    .family-actions p {
+        display: none;
+    }
+}
+
 @media (max-width: 1024px) {
     .sidebar {
         transform: translateX(-100%);
@@ -674,6 +690,10 @@ body {
         display: block;
     }
     
+    .logo {
+        margin-left: 8px;
+    }
+
     .stats-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
@@ -1083,4 +1103,11 @@ tbody > tr:nth-of-type(even) {
 .btn-outline-success, .btn-outline-secondary {
     border-radius: 20px;
     font-size: 0.85rem;
+}
+
+.act-btn{
+    display: flex !important;
+    p {
+        margin-top: 14px !important;
+    }
 }
