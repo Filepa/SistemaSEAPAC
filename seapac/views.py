@@ -416,14 +416,38 @@ def flow(request, id):
     for nome in subsystems_sem_fluxo:
         text_list.append(f"{nome}")
 
-    classDefSS = "classDef cssFlowSS fill:#28a74526,stroke:#333,stroke-width:1px;"
-    classDefTS = "classDef cssFlowTS fill:#007bff26,stroke:#333,stroke-width:1px;"
+    def get_color_intensity(n, tipo):
+        if tipo == "TS":
+            if n <= 2:
+                return "#b7d8f5" 
+            elif n <= 5:
+                return "#6eb5e7" 
+            elif n <= 9:
+                return "#3690c2" 
+            else:
+                return "#125877"
+        else:
+            if n <= 2:
+                return "#b7f5b7" 
+            elif n <= 5:
+                return "#6ee76e"
+            elif n <= 9:
+                return "#36c236" 
+            else:
+                return "#127712"
+
+    classDefSS = "classDef cssFlowSS stroke:#333,stroke-width:1px;"
+    classDefTS = "classDef cssFlowTS stroke:#333,stroke-width:1px;"
+
     style_lines = []
     for s in subsystems_data:
         nome = s['nome_subsistema'].replace(" ", "_")
         tipo = s.get('tipo', 'SS')
 
-        style_lines.append(f"class {nome} {'cssFlowSS' if tipo == 'SS' else 'cssFlowTS'};")
+        n_fluxos = flux_count.get(s['nome_subsistema'], 0)
+        fill_color = get_color_intensity(n_fluxos, tipo)
+
+        style_lines.append(f"style {nome} fill:{fill_color},stroke:#333,stroke-width:1px;")
 
     diagram_lines = '\n'.join(text_list)
     style_lines_str = '\n'.join(style_lines)
