@@ -148,7 +148,7 @@ class SubsystemForm(forms.ModelForm):
 class TimelineEventForm(ModelForm):
     class Meta:
         model = TimelineEvent
-        fields = '__all__'
+        exclude = ('family',)
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'data': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),

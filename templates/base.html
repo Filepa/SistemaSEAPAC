@@ -15,7 +15,28 @@
 
         {% endblock center %}
     </main>
-    {% block extra_js %}{% endblock %}
-   
+    {% block extra_js %}
+    <script>
+        const toggleButton = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        if (toggleButton && sidebar) {
+        toggleButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sidebar.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (
+            sidebar.classList.contains('open') &&
+            !sidebar.contains(e.target) &&
+            !toggleButton.contains(e.target)
+            ) {
+            sidebar.classList.remove('open');
+            }
+        });
+        }
+        </script>
+    {% endblock %}
 </body>
 </html>

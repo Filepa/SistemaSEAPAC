@@ -60,8 +60,6 @@ def register(request):
             family = form.save(commit=False)
             family.save()
             return redirect('edit_flow', id=family.id)
-        else:
-            print(form.errors)
     else:
         form = FamilyForm()
     return render(request, "seapac/familias/form.html", {
@@ -138,7 +136,7 @@ def delete_family(request, id):
     family = get_object_or_404(Family, id=id)
     family.delete()
     messages.success(request, f'A família "{family.get_nome_familia}" foi excluída com sucesso!')
-    return redirect('list_families')
+    return redirect('index')
 
 #--------------RENDA FAMILIAR--------------
 

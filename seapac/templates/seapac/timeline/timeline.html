@@ -6,7 +6,7 @@
     <div class="flow-header-main">
         <h1 class='title'>{% block title %}{{ title }}{% endblock title %} da {{ family.get_nome_familia }}</h1>
     </div>
-    <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
+    <div class='search-timeline'>
         <form method="POST" action="{% url 'search_timeline_event' family.id %}">
             {% csrf_token %}
             <input type="text" name="termo" placeholder="Buscar título..." style="padding: 5px;">

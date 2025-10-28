@@ -674,6 +674,12 @@ body {
     .form-sandbox {
         grid-template-columns: auto auto auto auto auto !important;
     }
+    .flow-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: var(--space-4) !important;
+        margin-bottom: var(--space-4) !important;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -1120,4 +1126,11 @@ tbody > tr:nth-of-type(even) {
     p {
         margin-top: 14px !important;
     }
+}
+
+.search-timeline{
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center; 
+    gap: 10px;
 }
