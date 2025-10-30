@@ -52,9 +52,11 @@ class ProdutoForm(forms.Form):
     nome = forms.CharField(label="Nome do Produto", required=True)
     qtd = forms.FloatField(label="Quantidade", required=False)
     custo = forms.FloatField(label="Custo", required=False)
-    valor = forms.FloatField(label="Valor", required=False)
+    valor = forms.FloatField(label="Valor Unitário", required=False)
+    valor_potencial = forms.FloatField(label="Valor Potencial", required=False)
     destino = forms.CharField(label="Destino", required=False)
     porcentagem = forms.FloatField(label="Porcentagem", required=False)
+    descricao = forms.CharField(label="Descrição (Mundo Externo)", required=False)
 
 ProdutoFormSet = formset_factory(ProdutoForm, extra=1)
 
@@ -62,7 +64,9 @@ class FluxoForm(forms.Form):
     nome_produto = forms.ChoiceField(choices=(), required=True, label="Produto")
     qtd = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Qtd")
     custo = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Custo")
-    valor = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Valor")
+    valor = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Valor Unitário")
+    valor_potencial = forms.DecimalField(required=False, max_digits=10, decimal_places=2, label="Valor Potencial")
+    descricao = forms.CharField(required=False, label="Descrição (Mundo Externo)")
     porcentagem = forms.DecimalField(required=False, max_digits=6, decimal_places=2, label="Porcentagem")
     destino = forms.ChoiceField(choices=(), required=False, label="Destino")
     DELETE = forms.BooleanField(required=False)

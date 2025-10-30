@@ -86,6 +86,9 @@ class Family(models.Model):
         total_custo = 0
         renda_total = 0
 
+        total_receita_potencial = 0
+        renda_total_potencial = 0
+
         for fs in FamilySubsystem.objects.filter(family=self):
             for produto in fs.produtos_saida:
                 nome = produto.get("nome", "Produto sem nome")
@@ -93,35 +96,45 @@ class Family(models.Model):
                 for fluxo in produto.get("fluxos", []):
                     qtd = fluxo.get("qtd") or 0
                     valor = fluxo.get("valor") or 0
+                    valor_potencial = fluxo.get("valor_potencial") or 0
                     custo = fluxo.get("custo") or 0
 
-                    # Receita = valor × quantidade
+                    # Receita e lucro reais
                     receita = valor * qtd
-                    # Custo total = custo × quantidade
                     custo_total = custo * qtd
-                    # Lucro = receita - custo_total
                     lucro = receita - custo_total
+
+                    # Receita e lucro potenciais
+                    receita_potencial = valor_potencial * qtd
+                    lucro_potencial = receita_potencial - custo_total
 
                     dados_produtos.append({
                         "subsistema": fs.subsystem.nome_subsistema,
                         "produto": nome,
                         "qtd": qtd,
                         "valor": valor,
+                        "valor_potencial": valor_potencial,
                         "custo": custo,
                         "receita": receita,
+                        "receita_potencial": receita_potencial,
                         "custo_total": custo_total,
                         "lucro": lucro,
+                        "lucro_potencial": lucro_potencial,
                     })
 
                     total_receita += receita
                     total_custo += custo_total
                     renda_total += lucro
+                    total_receita_potencial += receita_potencial
+                    renda_total_potencial += lucro_potencial
 
         return {
             "produtos": dados_produtos,
             "total_receita": total_receita,
             "total_custo": total_custo,
             "renda_total": renda_total,
+            "total_receita_potencial": total_receita_potencial,
+            "renda_total_potencial": renda_total_potencial,
         }
 
 class Subsystem(models.Model):

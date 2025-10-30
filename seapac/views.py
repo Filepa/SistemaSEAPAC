@@ -150,6 +150,8 @@ def renda_familiar(request, id):
         "total_receita": resultado["total_receita"],
         "total_custo": resultado["total_custo"],
         "renda_total": resultado["renda_total"],
+        "total_receita_potencial": resultado["total_receita_potencial"],
+        "renda_total_potencial": resultado["renda_total_potencial"],
         "title": f"Renda da ",
     }
     return render(request, "seapac/familias/renda_familiar.html", context)
@@ -553,6 +555,8 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                     'qtd': float(form.cleaned_data.get('qtd') or 0),
                     'custo': float(form.cleaned_data.get('custo') or 0),
                     'valor': float(form.cleaned_data.get('valor') or 0),
+                    'valor_potencial': float(form.cleaned_data.get('valor_potencial') or 0),
+                    'descricao': form.cleaned_data.get('descricao') or '',
                     'porcentagem': float(form.cleaned_data.get('porcentagem') or 0),
                     'destino': form.cleaned_data.get('destino') or '',
                 })
@@ -576,6 +580,8 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                         'qtd': fluxo.get('qtd', ''),
                         'custo': fluxo.get('custo', ''),
                         'valor': fluxo.get('valor', ''),
+                        'valor_potencial': fluxo.get('valor_potencial', ''),
+                        'descricao': fluxo.get('descricao', ''),
                         'porcentagem': fluxo.get('porcentagem', ''),
                         'destino': fluxo.get('destino', ''),
                     })

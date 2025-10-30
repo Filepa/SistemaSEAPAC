@@ -11,27 +11,33 @@
         <tr>
             <th>Subsistema</th>
             <th>Produto</th>
-            <th>Quantidade </th>
+            <th>Quantidade</th>
             <th>Valor Unitário (R$)</th>
+            <th>Valor Potencial (R$)</th>
             <th>Custo Unitário (R$)</th>
             <th>Receita Total (R$)</th>
+            <th>Receita Potencial (R$)</th>
             <th>Custo Total (R$)</th>
             <th><strong>Lucro (R$)</strong></th>
+            <th><strong>Lucro Potencial (R$)</strong></th>
         </tr>
     </thead>
     <tbody>
-        {% for p in produtos %}
-        <tr>
-            <td>{{ p.subsistema }}</td>
-            <td>{{ p.produto }}</td>
-            <td>{{ p.qtd }}</td>
-            <td>{{ p.valor|floatformat:2 }}</td>
-            <td>{{ p.custo|floatformat:2 }}</td>
-            <td>{{ p.receita|floatformat:2 }}</td>
-            <td>{{ p.custo_total|floatformat:2 }}</td>
-            <td><strong>{{ p.lucro|floatformat:2 }}</strong></td>
-        </tr>
-        {% endfor %}
+    {% for p in produtos %}
+    <tr>
+        <td>{{ p.subsistema }}</td>
+        <td>{{ p.produto }}</td>
+        <td>{{ p.qtd }}</td>
+        <td>{{ p.valor|floatformat:2 }}</td>
+        <td>{{ p.valor_potencial|floatformat:2 }}</td>
+        <td>{{ p.custo|floatformat:2 }}</td>
+        <td>{{ p.receita|floatformat:2 }}</td>
+        <td>{{ p.receita_potencial|floatformat:2 }}</td>
+        <td>{{ p.custo_total|floatformat:2 }}</td>
+        <td><strong>{{ p.lucro|floatformat:2 }}</strong></td>
+        <td><strong>{{ p.lucro_potencial|floatformat:2 }}</strong></td>
+    </tr>
+    {% endfor %}
     </tbody>
 </table>
 
@@ -41,6 +47,14 @@
     <p><strong>Total recebido (receita):</strong> R$ {{ total_receita|floatformat:2 }}</p>
     <p><strong>Total gasto (custo):</strong> R$ {{ total_custo|floatformat:2 }}</p>
     <h4><strong>Renda total (lucro líquido):</strong> R$ {{ renda_total|floatformat:2 }}</h4>
+
+    <hr>
+
+    <p><strong>Receita potencial (se vendido pelo valor potencial):</strong> R$ {{ total_receita_potencial|floatformat:2 }}</p>
+    <h4><strong>Renda potencial (lucro líquido potencial):</strong> R$ {{ renda_total_potencial|floatformat:2 }}</h4>
+    <p class="text-muted">
+        Diferença de <strong>R$ {{ renda_total_potencial|floatformat:2|add:"-"|add:renda_total|floatformat:2 }}</strong> entre o valor real e o potencial.
+    </p>
 </div>
 
 {% endblock %}

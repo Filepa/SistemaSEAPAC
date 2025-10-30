@@ -21,90 +21,135 @@
 {% if type == 'edit' %}
 <form method="post">
   {% csrf_token %}
-    {% if formset.non_form_errors %}
+  {% if formset.non_form_errors %}
     <div class="alert alert-danger">
-        <ul>
+      <ul>
         {% for err in formset.non_form_errors %}
-            <li>{{ err }}</li>
+          <li>{{ err }}</li>
         {% endfor %}
-        </ul>
+      </ul>
     </div>
-    {% endif %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Custo Unitário</th>
-                <th>Valor Unitário</th>
-                <th>Destino</th>
-                <th>Porcentagem</th>
-            </tr>
-        </thead>
-      <tbody>
-        {{ formset.management_form }}
-        {% for form in formset %}
-            <tr>
-                <td>{{ form.nome_produto }}</td>
-                <td>{{ form.qtd }}</td>
-                <td>{{ form.custo }}</td>
-                <td>{{ form.valor }}</td>
-                <td>{{ form.destino }}</td>
-                <td>{{ form.porcentagem }}</td>
-                <td>
-                    {% if form.DELETE %}
-                        {{ form.DELETE }} <label>Excluir</label>
-                    {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
+  {% endif %}
+
+  <table class="table">
+    <thead>
+      {% if subsystem.nome_subsistema == "Mundo Externo" %}
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Custo Unitário</th>
+          <th>Descrição</th>
+          <th>Destino</th>
+          <th>Porcentagem</th>
+        </tr>
+      {% else %}
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Custo Unitário</th>
+          <th>Valor Unitário</th>
+          <th>Valor Potencial</th>
+          <th>Destino</th>
+          <th>Porcentagem</th>
+        </tr>
+      {% endif %}
+    </thead>
+    <tbody>
+      {{ formset.management_form }}
+      {% for form in formset %}
+      <tr>
+        <td>{{ form.nome_produto }}</td>
+        <td>{{ form.qtd }}</td>
+        <td>{{ form.custo }}</td>
+
+        {% if subsystem.nome_subsistema == "Mundo Externo" %}
+          <td>{{ form.descricao }}</td>
+        {% else %}
+          <td>{{ form.valor }}</td>
+          <td>{{ form.valor_potencial }}</td>
+        {% endif %}
+
+        <td>{{ form.destino }}</td>
+        <td>{{ form.porcentagem }}</td>
+        <td>
+          {% if form.DELETE %}
+            {{ form.DELETE }} <label>Excluir</label>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
     </tbody>
   </table>
   <button type="submit" class="btn btn-success">Salvar</button>
 </form>
 {% else %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Custo Unitário</th>
-                <th>Valor Unitário</th>
-                <th>Destino</th>
-                <th>Porcentagem</th>
-            </tr>
-        </thead>
+  <table class="table">
+    <thead>
+      {% if subsystem.nome_subsistema == "Mundo Externo" %}
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Custo Unitário</th>
+          <th>Descrição</th>
+          <th>Destino</th>
+          <th>Porcentagem</th>
+        </tr>
+      {% else %}
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Custo Unitário</th>
+          <th>Valor Unitário</th>
+          <th>Valor Potencial</th>
+          <th>Destino</th>
+          <th>Porcentagem</th>
+        </tr>
+      {% endif %}
+    </thead>
     <tbody>
-        {% for produto in family_subsystem.produtos_saida %}
-            {% if produto.fluxos %}
-                {% for fluxo in produto.fluxos %}
-                    <tr>
-                        {% if forloop.first %}
-                            <td rowspan="{{ produto.fluxos|length }}">{{ produto.nome }}</td>
-                        {% endif %}
-                        <td>{{ fluxo.qtd|default:"-" }}</td>
-                        <td>{{ fluxo.custo|default:"-" }}</td>
-                        <td>{{ fluxo.valor|default:"-" }}</td>
-                        <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
-                        <td>{{ fluxo.porcentagem|default:"0" }}%</td>
-                    </tr>
-                {% endfor %}
+      {% for produto in family_subsystem.produtos_saida %}
+        {% if produto.fluxos %}
+          {% for fluxo in produto.fluxos %}
+            <tr>
+              {% if forloop.first %}
+                <td rowspan="{{ produto.fluxos|length }}">{{ produto.nome }}</td>
+              {% endif %}
+              <td>{{ fluxo.qtd|default:"-" }}</td>
+              <td>{{ fluxo.custo|default:"-" }}</td>
+
+              {% if subsystem.nome_subsistema == "Mundo Externo" %}
+                <td>{{ fluxo.descricao|default:"-" }}</td>
+              {% else %}
+                <td>{{ fluxo.valor|default:"-" }}</td>
+                <td>{{ fluxo.valor_potencial|default:"-" }}</td>
+              {% endif %}
+
+              <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
+              <td>{{ fluxo.porcentagem|default:"0" }}%</td>
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td>{{ produto.nome }}</td>
+            <td>-</td>
+            <td>-</td>
+            {% if subsystem.nome_subsistema == "Mundo Externo" %}
+              <td>-</td>
             {% else %}
-                <tr>
-                    <td>{{ produto.nome }}</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>Sem Destino</td>
-                    <td>0%</td>
-                </tr>
+              <td>-</td>
+              <td>-</td>
             {% endif %}
-        {% endfor %}
+            <td>Sem Destino</td>
+            <td>0%</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
     </tbody>
-    </table>
-    <button class="btn btn-success" onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">
-      <i class="fa-solid fa-shuffle"></i>
-                Adicionar Fluxo
-    </button>
+  </table>
+
+  <button class="btn btn-success" onclick="redirect('{% url 'edit_subsystem_panel' family.id subsystem.id %}')">
+    <i class="fa-solid fa-shuffle"></i> Adicionar Fluxo
+  </button>
 {% endif %}
+
 {% endblock %}
