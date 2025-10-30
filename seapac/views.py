@@ -352,6 +352,7 @@ def delete_subsystems(request, id):
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
     family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
+    style_mode = request.GET.get('style', 'default')
 
     subsystems_data = []
     for family_subsystem in family_subsystems:
@@ -383,11 +384,18 @@ def flow(request, id):
             
                 fluxos.append((nome_subsistema, rotulo_fluxo, destino))
 
-    text_list = []
-    for origem, produto, destino in fluxos:
-        origem_corrigida = origem.replace(" ", "_")
-        destino_corrigida = destino.replace(" ", "_")
-        text_list.append(f"{origem_corrigida} --{produto}--> {destino_corrigida}")
+    if style_mode == "notext":
+        text_list = []
+        for origem, _, destino in fluxos:
+            origem_corrigida = origem.replace(" ", "_")
+            destino_corrigida = destino.replace(" ", "_")
+            text_list.append(f"{origem_corrigida} --> {destino_corrigida}")
+    else:
+        text_list = []
+        for origem, produto, destino in fluxos:
+            origem_corrigida = origem.replace(" ", "_")
+            destino_corrigida = destino.replace(" ", "_")
+            text_list.append(f"{origem_corrigida} --{produto}--> {destino_corrigida}")
 
     flux_count = {}
     for origem, produto, destino in fluxos:
@@ -472,6 +480,7 @@ end"""
         "id": id,
         "family": family,
         "family_subsystems": family_subsystems,
+        'style_mode': style_mode,
         "title": "Fluxo",
         "conteudo_mermaid": conteudo_mermaid
     }

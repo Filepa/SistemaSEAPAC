@@ -17,7 +17,23 @@
         </button>
     </div>
 </div>
+<div style="margin-top: 10px;">
+  <div class="flow-op d-flex align-items-center gap-3 mt-2">
+    <p class="fw-semibold mb-0">Estilo:</p>
 
+    <div class="form-check form-check-inline">
+      <input style='margin-top: 4px;' class="form-check-input" type="radio" name="style" id="default" value="default"
+            {% if style_mode == 'default' %}checked{% endif %}>
+      <label class="form-check-label" for="default">Padrão</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+      <input style='margin-top: 4px;' class="form-check-input" type="radio" name="style" id="notext" value="notext"
+            {% if style_mode == 'notext' %}checked{% endif %}>
+      <label class="form-check-label" for="notext">Sem texto</label>
+    </div>
+  </div>
+</div>
 <div class="sandbox-wrapper" style="background-color: #f7f7f7ff;">
   <div id="sandbox">
     {% load mermaid %}
@@ -30,8 +46,9 @@
 {% block extra_js %}
   <script src="https://unpkg.com/@panzoom/panzoom/dist/panzoom.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const element = document.getElementById('sandbox');
+  document.addEventListener('DOMContentLoaded', function () {
+    const element = document.getElementById('sandbox');
+    if (element) {
       const panzoom = Panzoom(element, {
         maxScale: 5,
         minScale: 0.2,
@@ -41,8 +58,21 @@
       });
 
       element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel, { passive: false });
-
       panzoom.pan(0, 0);
-    });
-  </script>
+    }
+
+    // Estilização do fluxo e dos rádios
+    const radiosStyle = document.querySelectorAll('input[name="style"]');
+
+    function updateFlow() {
+      const checked = document.querySelector('input[name="style"]:checked');
+      const style = checked ? checked.value : 'default';
+      const url = new URL(window.location.href);
+      url.searchParams.set('style', style);
+      window.location.href = url.toString();
+    }
+
+    radiosStyle.forEach(r => r.addEventListener('change', updateFlow));
+});
+</script>
 {% endblock %}
