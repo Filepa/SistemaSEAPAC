@@ -3,1169 +3,1169 @@
     "model": "seapac.municipality",
     "pk": 1,
     "fields": {
-      "nome": "ACARI"
+      "nome": "Acari"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 2,
     "fields": {
-      "nome": "AFONSO BEZERRA"
+      "nome": "Afonso Bezerra"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 3,
     "fields": {
-      "nome": "AGUA NOVA"
+      "nome": "Água Nova"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 4,
     "fields": {
-      "nome": "ALEXANDRIA"
+      "nome": "Alexandria"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 5,
     "fields": {
-      "nome": "ALMINO AFONSO"
+      "nome": "Almino Afonso"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 6,
     "fields": {
-      "nome": "ALTO DO RODRIGUES"
+      "nome": "Alto do Rodrigues"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 7,
     "fields": {
-      "nome": "ANGICOS"
+      "nome": "Angicos"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 8,
     "fields": {
-      "nome": "ANTONIO MARTINS"
+      "nome": "Antônio Martins"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 9,
     "fields": {
-      "nome": "APODI"
+      "nome": "Apodi"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 10,
     "fields": {
-      "nome": "AREIA BRANCA"
+      "nome": "Areia Branca"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 11,
     "fields": {
-      "nome": "ARES"
+      "nome": "Ares"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 12,
     "fields": {
-      "nome": "ASSU"
+      "nome": "Assú"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 13,
     "fields": {
-      "nome": "BAIA FORMOSA"
+      "nome": "Baía Formoso"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 14,
     "fields": {
-      "nome": "BARAUNA"
+      "nome": "Baraúna"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 15,
     "fields": {
-      "nome": "BARCELONA"
+      "nome": "Barcelona"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 16,
     "fields": {
-      "nome": "BENTO FERNANDES"
+      "nome": "Bento Fernandes"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 17,
     "fields": {
-      "nome": "BOA SAUDE"
+      "nome": "Boa Saúde"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 18,
     "fields": {
-      "nome": "BODO"
+      "nome": "Bodó"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 19,
     "fields": {
-      "nome": "BOM JESUS"
+      "nome": "Bom Jesus"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 20,
     "fields": {
-      "nome": "BREJINHO"
+      "nome": "Brejinho"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 21,
     "fields": {
-      "nome": "CAICARA DO NORTE"
+      "nome": "Caiçara do Norte"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 22,
     "fields": {
-      "nome": "CAICARA RIO DO VENTO"
+      "nome": "Caiçara Rio do Vento"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 23,
     "fields": {
-      "nome": "CAICO"
+      "nome": "Caicó"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 24,
     "fields": {
-      "nome": "CAMPO GRANDE"
+      "nome": "Campo Grande"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 25,
     "fields": {
-      "nome": "CAMPO REDONDO"
+      "nome": "Campo Redondo"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 26,
     "fields": {
-      "nome": "CANGUARETAMA"
+      "nome": "Canguaretama"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 27,
     "fields": {
-      "nome": "CARAUBAS"
+      "nome": "Caraúbas"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 28,
     "fields": {
-      "nome": "CARNAUBA DOS DANTAS"
+      "nome": "Carnaúba dos Dantas"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 29,
     "fields": {
-      "nome": "CARNAUBAIS"
+      "nome": "Carnaubais"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 30,
     "fields": {
-      "nome": "CEARA MIRIM"
+      "nome": "Ceará-mirim"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 31,
     "fields": {
-      "nome": "CEL EZEQUIEL"
+      "nome": "Cel Ezequiel"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 32,
     "fields": {
-      "nome": "CEL JOAO PESSOA"
+      "nome": "Cel João Pessoa"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 33,
     "fields": {
-      "nome": "CERRO CORA"
+      "nome": "Cerro Cora"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 34,
     "fields": {
-      "nome": "CRUZETA"
+      "nome": "Cruzeta"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 35,
     "fields": {
-      "nome": "CURRAIS NOVOS"
+      "nome": "Currais Novos"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 36,
     "fields": {
-      "nome": "DOUTOR SEVERIANO"
+      "nome": "Doutor Severiano"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 37,
     "fields": {
-      "nome": "ENCANTO"
+      "nome": "Encanto"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 38,
     "fields": {
-      "nome": "EQUADOR"
+      "nome": "Equador"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 39,
     "fields": {
-      "nome": "ESPIRITO SANTO"
+      "nome": "Espírito Santo"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 40,
     "fields": {
-      "nome": "EXTREMOZ"
+      "nome": "Extremoz"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 41,
     "fields": {
-      "nome": "FELIPE GUERRA"
+      "nome": "Felipe Guerra"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 42,
     "fields": {
-      "nome": "FERNANDO PEDROZA"
+      "nome": "Fernando Pedroza"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 43,
     "fields": {
-      "nome": "FLORANIA"
+      "nome": "Florania"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 44,
     "fields": {
-      "nome": "FRANCISCO DANTAS"
+      "nome": "Francisco Dantas"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 45,
     "fields": {
-      "nome": "FRUTUOSO GOMES"
+      "nome": "Frutuoso Gomes"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 46,
     "fields": {
-      "nome": "GALINHOS"
+      "nome": "Galinhos"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 47,
     "fields": {
-      "nome": "GOIANINHA"
+      "nome": "Goianinha"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 48,
     "fields": {
-      "nome": "GOV DIX SEPT ROSADO"
+      "nome": "Gov Dix Sept Rosado"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 49,
     "fields": {
-      "nome": "GROSSOS"
+      "nome": "Grossos"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 50,
     "fields": {
-      "nome": "GUAMARE"
+      "nome": "Guamaré"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 51,
     "fields": {
-      "nome": "IELMO MARINHO"
+      "nome": "Ielmo Marinho"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 52,
     "fields": {
-      "nome": "IPANGUACU"
+      "nome": "Ipanguaçu"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 53,
     "fields": {
-      "nome": "IPUEIRA"
+      "nome": "Ipueira"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 54,
     "fields": {
-      "nome": "ITAJA"
+      "nome": "Itajá"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 55,
     "fields": {
-      "nome": "ITAU"
+      "nome": "Itaú"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 56,
     "fields": {
-      "nome": "JACANA"
+      "nome": "Jaçanã"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 57,
     "fields": {
-      "nome": "JANDAIRA"
+      "nome": "Jandaíra"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 58,
     "fields": {
-      "nome": "JANDUIS"
+      "nome": "Janduís"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 59,
     "fields": {
-      "nome": "JAPI"
+      "nome": "Japi"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 60,
     "fields": {
-      "nome": "JARDIM DE ANGICOS"
+      "nome": "Jardim de Angicos"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 61,
     "fields": {
-      "nome": "JARDIM DE PIRANHAS"
+      "nome": "Jardim de Piranhas"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 62,
     "fields": {
-      "nome": "JARDIM DO SERIDO"
+      "nome": "Jardim do Seridó"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 63,
     "fields": {
-      "nome": "JOAO CAMARA"
+      "nome": "João Câmara"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 64,
     "fields": {
-      "nome": "JOAO DIAS"
+      "nome": "João Dias"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 65,
     "fields": {
-      "nome": "JOSE DA PENHA"
+      "nome": "José da Penha"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 66,
     "fields": {
-      "nome": "JUCURUTU"
+      "nome": "Jucurutu"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 67,
     "fields": {
-      "nome": "JUNDIA"
+      "nome": "Jundia"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 68,
     "fields": {
-      "nome": "LAGOA D'ANTA"
+      "nome": "Lagoa d'Anta"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 69,
     "fields": {
-      "nome": "LAGOA DE PEDRAS"
+      "nome": "Lagoa de Pedras"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 70,
     "fields": {
-      "nome": "LAGOA DE VELHOS"
+      "nome": "Lagoa de Velhos"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 71,
     "fields": {
-      "nome": "LAGOA NOVA"
+      "nome": "Lagoa Nova"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 72,
     "fields": {
-      "nome": "LAGOA SALGADA"
+      "nome": "Lagoa Salgada"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 73,
     "fields": {
-      "nome": "LAJES"
+      "nome": "Lajes"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 74,
     "fields": {
-      "nome": "LAJES PINTADA"
+      "nome": "Lajes Pintada"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 75,
     "fields": {
-      "nome": "LUCRECIA"
+      "nome": "Lucrécia"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 76,
     "fields": {
-      "nome": "LUIZ GOMES"
+      "nome": "Luís Gomes"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 77,
     "fields": {
-      "nome": "MACAIBA"
+      "nome": "Macaíba"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 78,
     "fields": {
-      "nome": "MACAU"
+      "nome": "Macau"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 79,
     "fields": {
-      "nome": "MAJOR SALES"
+      "nome": "Major Sales"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 80,
     "fields": {
-      "nome": "MARCELINO VIEIRA"
+      "nome": "Marcelino Vieira"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 81,
     "fields": {
-      "nome": "MARTINS"
+      "nome": "Martins"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 82,
     "fields": {
-      "nome": "MAXARANGUAPE"
+      "nome": "Maxaranguape"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 83,
     "fields": {
-      "nome": "MESSIAS TARGINO"
+      "nome": "Messias Targino"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 84,
     "fields": {
-      "nome": "MONTANHAS"
+      "nome": "Montanhas"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 85,
     "fields": {
-      "nome": "MONTE ALEGRE"
+      "nome": "Monte Alegre"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 86,
     "fields": {
-      "nome": "MONTE DAS GAMELEIRAS"
+      "nome": "Monte das Gameleiras"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 87,
     "fields": {
-      "nome": "MOSSORO"
+      "nome": "Mossoró"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 88,
     "fields": {
-      "nome": "NATAL"
+      "nome": "Natal"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 89,
     "fields": {
-      "nome": "NISIA FLORESTA"
+      "nome": "Nísia Floresta"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 90,
     "fields": {
-      "nome": "NOVA CRUZ"
+      "nome": "Nova Cruz"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 91,
     "fields": {
-      "nome": "OLHO D'AGUA DOS BORG"
+      "nome": "Olho d'Água dos Borg"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 92,
     "fields": {
-      "nome": "OURO BRANCO"
+      "nome": "Ouro Branco"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 93,
     "fields": {
-      "nome": "PARANA"
+      "nome": "Paraná"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 94,
     "fields": {
-      "nome": "PARAU"
+      "nome": "Paraú"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 95,
     "fields": {
-      "nome": "PARAZINHO"
+      "nome": "Parazinho"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 96,
     "fields": {
-      "nome": "PARELHAS"
+      "nome": "Parelhas"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 97,
     "fields": {
-      "nome": "PARNAMIRIM"
+      "nome": "Parnamirim"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 98,
     "fields": {
-      "nome": "PASSA E FICA"
+      "nome": "Passa e Fica"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 99,
     "fields": {
-      "nome": "PASSAGEM"
+      "nome": "Passagem"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 100,
     "fields": {
-      "nome": "PATU"
+      "nome": "Patu"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 101,
     "fields": {
-      "nome": "PAU DOS FERROS"
+      "nome": "Pau dos Ferros"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 102,
     "fields": {
-      "nome": "PEDRA GRANDE"
+      "nome": "Pedra Grande"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 103,
     "fields": {
-      "nome": "PEDRA PRETA"
+      "nome": "Pedra Preta"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 104,
     "fields": {
-      "nome": "PEDRO AVELINO"
+      "nome": "Pedro Avelino"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 105,
     "fields": {
-      "nome": "PEDRO VELHO"
+      "nome": "Pedro Velho"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 106,
     "fields": {
-      "nome": "PENDENCIAS"
+      "nome": "Pendências"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 107,
     "fields": {
-      "nome": "PILOES"
+      "nome": "Pilões"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 108,
     "fields": {
-      "nome": "POCO BRANCO"
+      "nome": "Poço Branco"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 109,
     "fields": {
-      "nome": "PORTALEGRE"
+      "nome": "Portalegre"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 110,
     "fields": {
-      "nome": "PORTO DO MANGUE"
+      "nome": "Porto do Mangue"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 111,
     "fields": {
-      "nome": "PUREZA"
+      "nome": "Pureza"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 112,
     "fields": {
-      "nome": "RAFAEL FERNANDES"
+      "nome": "Rafael Fernandes"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 113,
     "fields": {
-      "nome": "RAFAEL GODEIRO"
+      "nome": "Rafael Godeiro"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 114,
     "fields": {
-      "nome": "RIACHO DA CRUZ"
+      "nome": "Riacho da Cruz"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 115,
     "fields": {
-      "nome": "RIACHO DE SANTANA"
+      "nome": "Riacho de Santana"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 116,
     "fields": {
-      "nome": "RIACHUELO"
+      "nome": "Riachuelo"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 117,
     "fields": {
-      "nome": "RIO DO FOGO"
+      "nome": "Rio do Fogo"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 118,
     "fields": {
-      "nome": "RODOLFO FERNANDES"
+      "nome": "Rodolfo Fernandes"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 119,
     "fields": {
-      "nome": "RUI BARBOSA"
+      "nome": "Rui Barbosa"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 120,
     "fields": {
-      "nome": "SANTA CRUZ"
+      "nome": "Santa Cruz"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 121,
     "fields": {
-      "nome": "SANTA MARIA"
+      "nome": "Santa Maria"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 122,
     "fields": {
-      "nome": "SANTANA DO MATOS"
+      "nome": "Santana do Matos"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 123,
     "fields": {
-      "nome": "SANTANA DO SERIDO"
+      "nome": "Santana do Seridó"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 124,
     "fields": {
-      "nome": "SANTO ANTONIO"
+      "nome": "Santo Antônio"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 125,
     "fields": {
-      "nome": "SAO BENTO DO NORTE"
+      "nome": "São Bento do Norte"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 126,
     "fields": {
-      "nome": "SAO BENTO DO TRAIRI"
+      "nome": "São Bento Trairi"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 127,
     "fields": {
-      "nome": "SAO FERNANDO"
+      "nome": "São Fernando"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 128,
     "fields": {
-      "nome": "SAO FRANC DO OESTE"
+      "nome": "São Francisco do Oeste"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 129,
     "fields": {
-      "nome": "SAO G DO AMARANTE"
+      "nome": "São Gonçalo do Amarante"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 130,
     "fields": {
-      "nome": "SAO J DE CAMPESTRE"
+      "nome": "São J de Campestre"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 131,
     "fields": {
-      "nome": "SAO JOAO DO SABUGI"
+      "nome": "São João do Sabugi"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 132,
     "fields": {
-      "nome": "SAO JOSE DE MIPIBU"
+      "nome": "São José de Mipibu"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 133,
     "fields": {
-      "nome": "SAO JOSE DO SERIDO"
+      "nome": "São José do Seridó"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 134,
     "fields": {
-      "nome": "SAO MIGUEL"
+      "nome": "São Miguel"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 135,
     "fields": {
-      "nome": "SAO MIGUEL DE TOUROS"
+      "nome": "São Miguel de Touros"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 136,
     "fields": {
-      "nome": "SAO PAULO DO POTENGI"
+      "nome": "São Paulo do Potengi"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 137,
     "fields": {
-      "nome": "SAO PEDRO"
+      "nome": "São Pedro"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 138,
     "fields": {
-      "nome": "SAO RAFAEL"
+      "nome": "São Rafael"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 139,
     "fields": {
-      "nome": "SAO TOME"
+      "nome": "São Tomé"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 140,
     "fields": {
-      "nome": "SAO VICENTE"
+      "nome": "São Vicente"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 141,
     "fields": {
-      "nome": "SEN ELOI DE SOUZA"
+      "nome": "Sen Eloi de Souza"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 142,
     "fields": {
-      "nome": "SEN GEORGINO AVELINO"
+      "nome": "Sen Georgino Avelino"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 143,
     "fields": {
-      "nome": "SERRA CAIADA"
+      "nome": "Serra Caiada"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 144,
     "fields": {
-      "nome": "SERRA DE SAO BENTO"
+      "nome": "Serra de São Bento"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 145,
     "fields": {
-      "nome": "SERRA DO MEL"
+      "nome": "Serra do Mel"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 146,
     "fields": {
-      "nome": "SERRA NEGRA DO NORTE"
+      "nome": "Serra Negra do Norte"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 147,
     "fields": {
-      "nome": "SERRINHA"
+      "nome": "Serrinha"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 148,
     "fields": {
-      "nome": "SERRINHA DOS PINTOS"
+      "nome": "Serrinha dos Pintos"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 149,
     "fields": {
-      "nome": "SEVERIANO MELO"
+      "nome": "Severiano Melo"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 150,
     "fields": {
-      "nome": "SITIO NOVO"
+      "nome": "Sítio Novo"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 151,
     "fields": {
-      "nome": "TABULEIRO GRANDE"
+      "nome": "Tabuleiro Grande"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 152,
     "fields": {
-      "nome": "TAIPU"
+      "nome": "Taipu"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 153,
     "fields": {
-      "nome": "TANGARA"
+      "nome": "Tangara"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 154,
     "fields": {
-      "nome": "TEN. LAURENTINO CRUZ"
+      "nome": "Tenente Laurentino Cruz"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 155,
     "fields": {
-      "nome": "TENENTE ANANIAS"
+      "nome": "Tenente Ananias"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 156,
     "fields": {
-      "nome": "TIBAU"
+      "nome": "Tibau"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 157,
     "fields": {
-      "nome": "TIBAU DO SUL"
+      "nome": "Tibau do Sul"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 158,
     "fields": {
-      "nome": "TIMBAUBA DOS BATISTA"
+      "nome": "Timbauba dos Batista"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 159,
     "fields": {
-      "nome": "TOUROS"
+      "nome": "Touros"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 160,
     "fields": {
-      "nome": "TRIUNFO POTIGUAR"
+      "nome": "Triunfo Potiguar"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 161,
     "fields": {
-      "nome": "UMARIZAL"
+      "nome": "Umarizal"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 162,
     "fields": {
-      "nome": "UPANEMA"
+      "nome": "Upanema"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 163,
     "fields": {
-      "nome": "VARZEA"
+      "nome": "Várzea"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 164,
     "fields": {
-      "nome": "VENHA VER"
+      "nome": "Venha-ver"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 165,
     "fields": {
-      "nome": "VERA CRUZ"
+      "nome": "Vera Cruz"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 166,
     "fields": {
-      "nome": "VICOSA"
+      "nome": "Viçosa"
     }
   },
   {
     "model": "seapac.municipality",
     "pk": 167,
     "fields": {
-      "nome": "VILA FLOR"
+      "nome": "Vila Flor"
     }
   },
   {
@@ -1827,31 +1827,50 @@
     "model": "seapac.subsystem",
     "pk": 29,
     "fields": {
-      "nome_subsistema": "Mundo Externo",
+      "nome_subsistema": "Mercado Local",
       "descricao": "",
-      "tipo": "SS",
-      "produtos_base": [
-        {
-          "nome": "Dinheiro",
-          "fluxos": []
-        },
-        {
-          "nome": "Insumos",
-          "fluxos": []
-        },
-        {
-          "nome": "Equipamentos",
-          "fluxos": []
-        },
-        {
-          "nome": "Serviços",
-          "fluxos": []
-        },
-        {
-          "nome": "Vacinas",
-          "fluxos": []
-        }
-      ]
+      "tipo": "ME",
+      "produtos_base": []
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 30,
+    "fields": {
+      "nome_subsistema": "Feira Agroecológica",
+      "descricao": "",
+      "tipo": "ME",
+      "produtos_base": []
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 31,
+    "fields": {
+      "nome_subsistema": "PNAE",
+      "descricao": "",
+      "tipo": "ME",
+      "produtos_base": []
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 32,
+    "fields": {
+      "nome_subsistema": "Farmacia",
+      "descricao": "",
+      "tipo": "ME",
+      "produtos_base": []
+    }
+  },
+  {
+    "model": "seapac.subsystem",
+    "pk": 33,
+    "fields": {
+      "nome_subsistema": "Atravessador",
+      "descricao": "",
+      "tipo": "ME",
+      "produtos_base": []
     }
   }
 ]

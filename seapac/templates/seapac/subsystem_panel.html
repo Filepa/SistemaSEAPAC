@@ -33,24 +33,23 @@
 
   <table class="table">
     <thead>
-      {% if subsystem.nome_subsistema == "Mundo Externo" %}
+      {% if subsystem.tipo == "ME" %}
         <tr>
           <th>Produto</th>
           <th>Quantidade</th>
+          <th>Unidade</th>
           <th>Custo Unitário</th>
-          <th>Descrição</th>
           <th>Destino</th>
-          <th>Porcentagem</th>
         </tr>
       {% else %}
         <tr>
           <th>Produto</th>
           <th>Quantidade</th>
+          <th>Unidade</th>
           <th>Custo Unitário</th>
           <th>Valor Unitário</th>
           <th>Valor Potencial</th>
           <th>Destino</th>
-          <th>Porcentagem</th>
         </tr>
       {% endif %}
     </thead>
@@ -60,17 +59,15 @@
       <tr>
         <td>{{ form.nome_produto }}</td>
         <td>{{ form.qtd }}</td>
+        <td>{{ form.und }}</td>
         <td>{{ form.custo }}</td>
 
-        {% if subsystem.nome_subsistema == "Mundo Externo" %}
-          <td>{{ form.descricao }}</td>
-        {% else %}
+        {% if subsystem.tipo != "ME" %}
           <td>{{ form.valor }}</td>
           <td>{{ form.valor_potencial }}</td>
         {% endif %}
 
         <td>{{ form.destino }}</td>
-        <td>{{ form.porcentagem }}</td>
         <td>
           {% if form.DELETE %}
             {{ form.DELETE }} <label>Excluir</label>
@@ -85,12 +82,12 @@
 {% else %}
   <table class="table">
     <thead>
-      {% if subsystem.nome_subsistema == "Mundo Externo" %}
+      {% if subsystem.tipo == "ME" %}
         <tr>
           <th>Produto</th>
           <th>Quantidade</th>
+          <th>Unidade</th>
           <th>Custo Unitário</th>
-          <th>Descrição</th>
           <th>Destino</th>
           <th>Porcentagem</th>
         </tr>
@@ -98,6 +95,7 @@
         <tr>
           <th>Produto</th>
           <th>Quantidade</th>
+          <th>Unidade</th>
           <th>Custo Unitário</th>
           <th>Valor Unitário</th>
           <th>Valor Potencial</th>
@@ -115,17 +113,16 @@
                 <td rowspan="{{ produto.fluxos|length }}">{{ produto.nome }}</td>
               {% endif %}
               <td>{{ fluxo.qtd|default:"-" }}</td>
+              <td>{{ fluxo.und|default:"-" }}</td>
               <td>{{ fluxo.custo|default:"-" }}</td>
 
-              {% if subsystem.nome_subsistema == "Mundo Externo" %}
-                <td>{{ fluxo.descricao|default:"-" }}</td>
-              {% else %}
+              {% if subsystem.tipo != "ME" %}
                 <td>{{ fluxo.valor|default:"-" }}</td>
                 <td>{{ fluxo.valor_potencial|default:"-" }}</td>
               {% endif %}
 
               <td>{{ fluxo.destino|default:"Sem Destino" }}</td>
-              <td>{{ fluxo.porcentagem|default:"0" }}%</td>
+              <td>{{ fluxo.porcentagem_calc|default:"0" }}%</td>
             </tr>
           {% endfor %}
         {% else %}
@@ -133,9 +130,8 @@
             <td>{{ produto.nome }}</td>
             <td>-</td>
             <td>-</td>
-            {% if subsystem.nome_subsistema == "Mundo Externo" %}
-              <td>-</td>
-            {% else %}
+            <td>-</td>
+            {% if subsystem.tipo != "ME" %}
               <td>-</td>
               <td>-</td>
             {% endif %}

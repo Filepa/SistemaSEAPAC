@@ -141,6 +141,7 @@ class Subsystem(models.Model):
     TIPO_CHOICES = [
         ('TS', 'Tecnologia Social'),
         ('SS', 'Subsistema'),
+        ('ME', 'Mundo Externo'),
     ]
 
     nome_subsistema = models.CharField(max_length=50)

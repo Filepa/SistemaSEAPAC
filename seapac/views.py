@@ -312,8 +312,6 @@ def create_subsystems(request):
         if form.is_valid():
             form.save()
             return redirect('list_subsystems')
-        else:
-            print("Erros do formulário:", form.errors.as_text())
     else:
         form = SubsystemForm()
 
@@ -332,7 +330,7 @@ def edit_subsystems(request, id):
             form.save()
             return redirect('list_subsystems')
     else:
-        initial = form_data = '\n'.join([p.get('nome', '') for p in subsistema.produtos_base])
+        form_data = '\n'.join([p.get('nome', '') for p in subsistema.produtos_base])
         form = SubsystemForm(instance=subsistema, initial={'produtos_base': form_data})
 
     return render(request, 'seapac/subsistemas/subsystem_form.html', {
@@ -365,40 +363,53 @@ def flow(request, id):
             'produtos_saida': family_subsystem.produtos_saida,
         })
 
+    # -------------------------------
+    # Montagem dos fluxos
+    # -------------------------------
     fluxos = []
     for subsystem in subsystems_data:
         nome_subsistema = subsystem["nome_subsistema"]
         for produto in subsystem["produtos_saida"]:
             nome_produto = produto['nome']
-            for fluxo in produto.get('fluxos', []):
+            fluxos_do_produto = produto.get('fluxos', [])
+
+            # calcula total de qtd pra determinar porcentagem automática
+            total_qtd = sum((f.get('qtd') or 0) for f in fluxos_do_produto)
+
+            for fluxo in fluxos_do_produto:
                 destino = fluxo.get('destino', 'Mundo Externo')
                 qtd = fluxo.get('qtd')
-                valor = fluxo.get('valor')
-                porcentagem = fluxo.get('porcentagem')
+                und = fluxo.get('und', '')
+                porcentagem_calc = round((qtd / total_qtd) * 100, 1) if total_qtd else 0
 
                 rotulo_fluxo = nome_produto
-                if qtd is not None and qtd != 0:
+                if qtd:
                     rotulo_fluxo += f" {qtd}"
-                if valor is not None and valor != 0:
-                    rotulo_fluxo += f" R${valor:.2f}"
-                if porcentagem is not None and porcentagem != 0:
-                    rotulo_fluxo += f" {porcentagem:.0f}%"
-            
+                if und:
+                    rotulo_fluxo += f" {und}"
+                if porcentagem_calc:
+                    rotulo_fluxo += f" {porcentagem_calc:.0f}%"
+
                 fluxos.append((nome_subsistema, rotulo_fluxo, destino))
 
+    # -------------------------------
+    # Geração do texto Mermaid
+    # -------------------------------
+    text_list = []
     if style_mode == "notext":
-        text_list = []
         for origem, _, destino in fluxos:
             origem_corrigida = origem.replace(" ", "_")
             destino_corrigida = destino.replace(" ", "_")
             text_list.append(f"{origem_corrigida} --> {destino_corrigida}")
     else:
-        text_list = []
         for origem, produto, destino in fluxos:
             origem_corrigida = origem.replace(" ", "_")
             destino_corrigida = destino.replace(" ", "_")
             text_list.append(f"{origem_corrigida} --{produto}--> {destino_corrigida}")
 
+    # -------------------------------
+    # Contagem de fluxos
+    # -------------------------------
     flux_count = {}
     for origem, produto, destino in fluxos:
         flux_count[origem] = flux_count.get(origem, 0) + 1
@@ -413,11 +424,13 @@ def flow(request, id):
         if s['nome_subsistema'] not in subsystems_com_fluxo
     ]
 
+    # -------------------------------
+    # Clique nos nós
+    # -------------------------------
     click_lines = []
     for s in subsystems_data:
         subsystem_id = s['id']
-        nome_subsistema = s['nome_subsistema']
-        nome_subsistema = nome_subsistema.replace(" ", "_")
+        nome_subsistema = s['nome_subsistema'].replace(" ", "_")
         url = request.build_absolute_uri(
             reverse('subsystem_panel', args=[family.id, subsystem_id])
         )
@@ -426,49 +439,78 @@ def flow(request, id):
     for nome in subsystems_sem_fluxo:
         text_list.append(f"{nome}")
 
+    # -------------------------------
+    # Definição de cores
+    # -------------------------------
     def get_color_intensity(n, tipo):
         if tipo == "TS":
             if n <= 2:
-                return "#b7d8f5" 
+                return "#b7d8f5"
             elif n <= 5:
-                return "#6eb5e7" 
+                return "#6eb5e7"
             elif n <= 9:
-                return "#3690c2" 
+                return "#3690c2"
             else:
                 return "#125877"
-        else:
+        elif tipo == "ME":
+            # tons contrastantes de amarelo/dourado
             if n <= 2:
-                return "#b7f5b7" 
+                return "#f7d26a"
+            elif n <= 5:
+                return "#f5b900"
+            elif n <= 9:
+                return "#c48f00"
+            else:
+                return "#7a5e00"
+        else:  # SS
+            if n <= 2:
+                return "#b7f5b7"
             elif n <= 5:
                 return "#6ee76e"
             elif n <= 9:
-                return "#36c236" 
+                return "#36c236"
             else:
                 return "#127712"
 
     classDefSS = "classDef cssFlowSS stroke:#333,stroke-width:1px;"
     classDefTS = "classDef cssFlowTS stroke:#333,stroke-width:1px;"
 
+    # -------------------------------
+    # Estilo dos nós
+    # -------------------------------
     style_lines = []
     for s in subsystems_data:
         nome = s['nome_subsistema'].replace(" ", "_")
         tipo = s.get('tipo', 'SS')
-
         n_fluxos = flux_count.get(s['nome_subsistema'], 0)
         fill_color = get_color_intensity(n_fluxos, tipo)
-
         style_lines.append(f"style {nome} fill:{fill_color},stroke:#333,stroke-width:1px;")
 
+    # -------------------------------
+    # Agrupamento dos "ME" em subgraph
+    # -------------------------------
+    me_nodes = [
+        s['nome_subsistema'].replace(" ", "_")
+        for s in subsystems_data if s['tipo'] == "ME"
+    ]
+    if me_nodes:
+        mundo_externo = "subgraph Mundo_Externo\n"
+        for node in me_nodes:
+            mundo_externo += f"    {node}\n"
+        mundo_externo += "end"
+    else:
+        mundo_externo = ""
+
+    # -------------------------------
+    # Gera conteúdo Mermaid
+    # -------------------------------
     diagram_lines = '\n'.join(text_list)
     style_lines_str = '\n'.join(style_lines)
     click_lines_str = '\n'.join(click_lines)
-    mundo_externo = """subgraph Mundo Externo
-Mundo_Externo
-end"""
 
     conteudo_mermaid = f"""flowchart LR
 {mundo_externo}
-    
+
 {classDefSS}
 {classDefTS}
 {diagram_lines}
@@ -477,7 +519,7 @@ end"""
 
 {style_lines_str}
 """
-    #print(conteudo_mermaid)  # Debug: Verifique o conteúdo gerado do Mermaid
+    print(conteudo_mermaid)
     context = {
         "id": id,
         "family": family,
@@ -509,6 +551,13 @@ def edit_flow(request, id):
 def subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
     family_subsystem = get_object_or_404(FamilySubsystem, family=family, subsystem_id=subsystem_id)
+
+    for produto in family_subsystem.produtos_saida:
+        fluxos = produto.get("fluxos", [])
+        total_qtd = sum(f.get("qtd", 0) or 0 for f in fluxos)
+        for fluxo in fluxos:
+            qtd = fluxo.get("qtd", 0) or 0
+            fluxo["porcentagem_calc"] = round((qtd / total_qtd) * 100, 2) if total_qtd else 0
 
     if not family_subsystem.produtos_saida:
         family_subsystem.produtos_saida = family_subsystem.subsystem.produtos_base
@@ -554,9 +603,9 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                 novos_fluxos[nome_produto].append({
                     'qtd': float(form.cleaned_data.get('qtd') or 0),
                     'custo': float(form.cleaned_data.get('custo') or 0),
+                    'und': form.cleaned_data.get('und') or '',
                     'valor': float(form.cleaned_data.get('valor') or 0),
                     'valor_potencial': float(form.cleaned_data.get('valor_potencial') or 0),
-                    'descricao': form.cleaned_data.get('descricao') or '',
                     'porcentagem': float(form.cleaned_data.get('porcentagem') or 0),
                     'destino': form.cleaned_data.get('destino') or '',
                 })
@@ -578,10 +627,10 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
                     initial_data.append({
                         'nome_produto': produto['nome'],
                         'qtd': fluxo.get('qtd', ''),
+                        'und': fluxo.get('und', ''),
                         'custo': fluxo.get('custo', ''),
                         'valor': fluxo.get('valor', ''),
                         'valor_potencial': fluxo.get('valor_potencial', ''),
-                        'descricao': fluxo.get('descricao', ''),
                         'porcentagem': fluxo.get('porcentagem', ''),
                         'destino': fluxo.get('destino', ''),
                     })
