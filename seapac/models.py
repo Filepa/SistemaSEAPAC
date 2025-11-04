@@ -90,43 +90,75 @@ class Family(models.Model):
         renda_total_potencial = 0
 
         for fs in FamilySubsystem.objects.filter(family=self):
+            produtos_dict = {}
+
+            # Agrupar fluxos por produto
             for produto in fs.produtos_saida:
                 nome = produto.get("nome", "Produto sem nome")
+                fluxos = produto.get("fluxos", [])
 
-                for fluxo in produto.get("fluxos", []):
+                if nome not in produtos_dict:
+                    produtos_dict[nome] = {
+                        "nome": nome,
+                        "valor_potencial": 0,
+                        "valor_unitario": 0,
+                        "custo_unitario": 0,
+                        "qtd_total": 0,
+                        "qtd_vendida": 0,
+                        "custo_total": 0,
+                    }
+
+                for fluxo in fluxos:
                     qtd = fluxo.get("qtd") or 0
                     valor = fluxo.get("valor") or 0
                     valor_potencial = fluxo.get("valor_potencial") or 0
                     custo = fluxo.get("custo") or 0
 
-                    # Receita e lucro reais
-                    receita = valor * qtd
-                    custo_total = custo * qtd
-                    lucro = receita - custo_total
+                    produtos_dict[nome]["qtd_total"] += qtd
+                    produtos_dict[nome]["valor_potencial"] = valor_potencial or produtos_dict[nome]["valor_potencial"]
+                    produtos_dict[nome]["custo_unitario"] = custo or produtos_dict[nome]["custo_unitario"]
+                    produtos_dict[nome]["custo_total"] += qtd * custo
 
-                    # Receita e lucro potenciais
-                    receita_potencial = valor_potencial * qtd
-                    lucro_potencial = receita_potencial - custo_total
+                    if valor > 0:  # fluxo vendido
+                        produtos_dict[nome]["valor_unitario"] = valor
+                        produtos_dict[nome]["qtd_vendida"] += qtd
 
-                    dados_produtos.append({
-                        "subsistema": fs.subsystem.nome_subsistema,
-                        "produto": nome,
-                        "qtd": qtd,
-                        "valor": valor,
-                        "valor_potencial": valor_potencial,
-                        "custo": custo,
-                        "receita": receita,
-                        "receita_potencial": receita_potencial,
-                        "custo_total": custo_total,
-                        "lucro": lucro,
-                        "lucro_potencial": lucro_potencial,
-                    })
+            # Agora calcular as métricas finais por produto
+            for nome, dados in produtos_dict.items():
+                qtd_total = dados["qtd_total"]
+                qtd_vendida = dados["qtd_vendida"]
+                valor_unitario = dados["valor_unitario"]
+                valor_potencial = dados["valor_potencial"]
+                custo_unitario = dados["custo_unitario"]
+                custo_total = dados["custo_total"]
 
-                    total_receita += receita
-                    total_custo += custo_total
-                    renda_total += lucro
-                    total_receita_potencial += receita_potencial
-                    renda_total_potencial += lucro_potencial
+                # Receita e lucro reais
+                receita_real = valor_unitario * qtd_vendida
+                lucro_real = receita_real - custo_total
+
+                # Receita e lucro potenciais — caso vendesse tudo
+                receita_potencial = valor_potencial * qtd_total
+                lucro_potencial = receita_potencial - custo_total
+
+                dados_produtos.append({
+                    "subsistema": fs.subsystem.nome_subsistema,
+                    "produto": nome,
+                    "qtd": qtd_total,  # mostra a quantidade total do produto
+                    "valor": valor_unitario,
+                    "valor_potencial": valor_potencial,
+                    "custo": custo_unitario,
+                    "receita": receita_real,
+                    "receita_potencial": receita_potencial,
+                    "custo_total": custo_total,
+                    "lucro": lucro_real,
+                    "lucro_potencial": lucro_potencial,
+                })
+
+                total_receita += receita_real
+                total_custo += custo_total
+                renda_total += lucro_real
+                total_receita_potencial += receita_potencial
+                renda_total_potencial += lucro_potencial
 
         return {
             "produtos": dados_produtos,

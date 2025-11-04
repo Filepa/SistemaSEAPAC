@@ -7,7 +7,7 @@
       "data_inicio": "2025-03-20",
       "contato": "(84) 94002-8922",
       "municipio": 1,
-      "projeto": 1,
+      "projetos": [1],
       "subsistemas": [1, 29]
     }
   },
@@ -19,7 +19,7 @@
       "data_inicio": "2014-03-09",
       "contato": "(84) 94002-8922",
       "municipio": 2,
-      "projeto": 1,
+      "projetos": [1],
       "subsistemas": [1, 29]
     }
   },

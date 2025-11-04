@@ -1209,7 +1209,7 @@
     "model": "seapac.subsystem",
     "pk": 3,
     "fields": {
-      "nome_subsistema": "Avinocultura",
+      "nome_subsistema": "Avicultura",
       "descricao": "",
       "tipo": "SS",
       "produtos_base": [
@@ -1227,6 +1227,10 @@
         },
         {
           "nome": "Ovo",
+          "fluxos": []
+        },
+        {
+          "nome": "Aves vivas",
           "fluxos": []
         }
       ]
@@ -1254,6 +1258,14 @@
         },
         {
           "nome": "Couro",
+          "fluxos": []
+        },
+        {
+          "nome": "Leite",
+          "fluxos": []
+        },
+        {
+          "nome": "Touro",
           "fluxos": []
         }
       ]

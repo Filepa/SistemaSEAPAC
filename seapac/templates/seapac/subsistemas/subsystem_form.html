@@ -43,15 +43,13 @@
                     {{ form.foto_subsistema }}
                 </div>
             </div>
-            {% if user.is_administrador %}
-                <div class="forms-info-titular">
-                    <h3>Produtos Base</h3>
-                    <div class="mb-3">
-                        <label for="produtos_base" class="form-label">Produtos Base</label>
-                        {{ form.produtos_base }}
-                    </div>
+            <div class="forms-info-titular">
+                <h3>Produtos Base</h3>
+                <div class="mb-3">
+                    <label for="produtos_base" class="form-label">Produtos Base</label>
+                    {{ form.produtos_base }}
                 </div>
-            {% endif %}
+            </div>
         </section>
 
         <div class="box-save-cancel">

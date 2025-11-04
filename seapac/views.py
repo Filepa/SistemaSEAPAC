@@ -494,7 +494,7 @@ def flow(request, id):
         for s in subsystems_data if s['tipo'] == "ME"
     ]
     if me_nodes:
-        mundo_externo = "subgraph Mundo_Externo\n"
+        mundo_externo = "subgraph Mundo Externo\n"
         for node in me_nodes:
             mundo_externo += f"    {node}\n"
         mundo_externo += "end"
@@ -519,7 +519,7 @@ def flow(request, id):
 
 {style_lines_str}
 """
-    print(conteudo_mermaid)
+    #print(conteudo_mermaid) #comentário para teste
     context = {
         "id": id,
         "family": family,

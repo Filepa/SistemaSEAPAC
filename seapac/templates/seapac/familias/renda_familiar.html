@@ -50,7 +50,7 @@
 
     <hr>
 
-    <p><strong>Receita potencial (se vendido pelo valor potencial):</strong> R$ {{ total_receita_potencial|floatformat:2 }}</p>
+    <p><strong>Receita potencial (se vendido os produtos potenciais):</strong> R$ {{ total_receita_potencial|floatformat:2 }}</p>
     <h4><strong>Renda potencial (lucro líquido potencial):</strong> R$ {{ renda_total_potencial|floatformat:2 }}</h4>
     <p class="text-muted">
         Diferença de <strong>R$ {{ renda_total_potencial|floatformat:2|add:"-"|add:renda_total|floatformat:2 }}</strong> entre o valor real e o potencial.
