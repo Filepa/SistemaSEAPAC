@@ -1,0 +1,277 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Monitoramento de Transição Agroecológica - Apoiando pequenos agricultores em parceria com a SEAPAC">
+    <title>Sistema de Monitoramento - Transição Agroecológica | SEAPAC</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/homepage.css" >
+</head>
+<body>
+    <!-- Header e Navegação -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">
+                <div class="logo-icon">🌿</div>
+                <div class="logo-text">
+                    <h1>Sistema de Monitoramento</h1>
+                    <p>Transição Agroecológica</p>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#about">O que é o Sistema?</a></li>
+                <li><a href="#howto">Como Utilizar</a></li>
+                <li><a href="#team">Quem Somos</a></li>
+                <li><a href="{% url 'login' %}">Entre | Cadastre-se</a></li>
+            </ul>
+            <button class="menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2>Monitoramento dos Processos de Transição Agroecológica</h2>
+                    <p>Apoiando pequenos agricultores numa jornada rumo a agroecologia</p>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn btn-primary">Saiba Mais ›</a>
+                        <a href="#howto" class="btn btn-secondary">Como Utilizar</a>
+                    </div>
+                </div>
+                <div class="hero-image">🪴</div>
+            </div>
+        </section>
+
+        <!-- Seção "O que é o Sistema" -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <div class="section-title">
+                    <h2>O que é o Sistema?</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <h3>Monitoramento Contínuo</h3>
+                        <p>Acompanhamento sistemático das práticas agroecológicas implementadas nas propriedades rurais.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📋</div>
+                        <h3>Gestão de Dados</h3>
+                        <p>Plataforma integrada para registro, análise e visualização de indicadores agroecológicos.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🫂</div>
+                        <h3>Apoio Técnico</h3>
+                        <p>Suporte especializado para técnicos da SEAPAC durante todo o processo de transição dos agricultores atendidos pela organização.</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p>O Sistema de Monitoramento de Transição Agroecológica é uma ferramenta desenvolvida em parceria com a <a href="https://seapac.org.br" target="_blank">SEAPAC</a>, destinada a apoiar pequenos agricultores na transição de práticas convencionais para sistemas de produção agroecológicos.</p>
+                    <p>Através de metodologias participativas e ferramentas digitais, facilitamos o acompanhamento da evolução das práticas sustentáveis, contribuindo para o fortalecimento da agricultura familiar no semiárido nordestino.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Como Utilizar -->
+        <section id="howto" class="howto-section">
+            <div class="section-container">
+                <div class="section-title">
+                    <h2>Como Utilizar</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="howto-grid">
+                    <div>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Cadastro Inicial</h3>
+                                <p>Registre as informações básicas da família, incluindo localização, nome do titular, telefone para contato, projetos em que ela está inserida e afins.</p>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Diagnóstico Inicial</h3>
+                                <p>Realize uma avaliação completa das condições atuais da propriedade através de nosso fluxograma.</p>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Registro de Atividades</h3>
+                                <p>Documente regularmente as visitas realizadas e os resultados observados.</p>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <p></p>
+                                <h3>Acompanhamento e Análise</h3>
+                                <p>Visualize relatórios e gráficos que mostram a evolução dos indicadores agroecológicos ao longo do tempo.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <p></p>
+                                <h3>Profissionais envolvidos</h3>
+                                <p>Visualize, pesquise e registre os técnicos que trabalham na organização e quais famílias eles atendem.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <div class="step-content">
+                                <p></p>
+                                <h3>Projetos</h3>
+                                <p>Registre e monitore os projetos desenvolvidos pela SEAPAC ao longo dos anos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Quem Somos -->
+        <section id="team" class="team-section">
+            <div class="section-container">
+                <div class="section-title">
+                    <h2>Quem Somos</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="team-max-width">
+                    <div class="partnership-box">
+                        <h3>Parceria SEAPAC</h3>
+                        <p>Este sistema é fruto de uma parceria com a <a href="https://seapac.org.br" target="_blank">SEAPAC (Serviço de Aos Projetos Alternativos Comunitários)</a>, organização sem fins lucrativos que há mais de 30 anos atua no semiárido brasileiro. A SEAPAC, enquanto um serviço da Igreja Católica no Rio Grande do Norte, tem como missão fortalecer agricultoras e agricultores familiares, movimentos populares e organizações da sociedade civil. Além disso, suas ações visam apoiar comunidades rurais no desenvolvimento de práticas sustentáveis e promover a agroecologia como caminho para a transformação social.</p>
+                    </div>
+
+                    <div class="mission-vision">
+                        <div class="mission-box">
+                            <h4>Nossa Missão</h4>
+                            <p>Facilitar a transição agroecológica de pequenos agricultores  pela SEAPAC através de ferramentas digitais acessíveis, dinâmicas e seguras.</p>
+                        </div>
+                        <div class="vision-box">
+                            <h4>Nossa Visão</h4>
+                            <p>Um futuro onde a agricultura familiar seja protagonista de sistemas alimentares sustentáveis e resilientes.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-members">
+                        <h3>Quem fez isso acontecer</h3>
+                        <div class="members-grid">
+                            <div class="member-card">
+                                <div class="member-image">
+                                    <img src= "{% static 'img/fotos_perfil/filipe.jpg' %}" alt="Foto de Felipe">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Felipe Antônio</h4>
+                                    <div class="member-role">Formando em Informática pelo IFRN - Campus Pau dos Ferros</div>
+                                    <p>Programador principal e bolsista deste projeto de extensão, financiado pelo IFRN.</p>
+                                </div>
+                            </div>
+                            <div class="member-card">
+                                <div class="member-image">
+                                     <img src= "{% static 'img/fotos_perfil/ana.jpg' %}" alt="Foto de Ana Maria">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Ana Maria</h4>
+                                    <div class="member-role">Formanda em Informática pelo IFRN - Campus Pau dos Ferros</div>
+                                    <p>Programadora e membro voluntária deste projeto de extensão, financiado IFRN.</p>
+                                </div>
+                            </div>
+                            <div class="member-card">
+                                <div class="member-image">
+                                     <img src= "{% static 'img/fotos_perfil/lucas.jpg' %}" alt="Foto de Lucas">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Lucas Soares Chnaiderman</h4>
+                                    <div class="member-role">Doutor e professor de história no IFRN - Campus Pau dos Ferros</div>
+                                    <p>Orientador principal do projeto e contribuinte assíduo para a melhora formulação deste site.</p>
+                                </div>
+                            </div>
+                            <div class="member-card">
+                                <div class="member-image">
+                                     <img src= "{% static 'img/fotos_perfil/thiago.jpg' %}" alt="Foto de Thiago">
+                                </div>
+                                <div class="member-info">
+                                    <h4>Thiago Henrique</h4>
+                                    <div class="member-role">Doutor e professor de programação no IFRN - Campus Pau dos Ferros</div>
+                                    <p>Orientador do projeto e contribuinte assíduo para a melhora formulação deste site.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">🌿</div>
+                    <div>
+                        <h3>Sistema de Monitoramento</h3>
+                        <p>Transição Agroecológica</p>
+                    </div>
+                </div>
+                <p>Apoiando pequenos agricultores na construção de sistemas sustentáveis.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Links Úteis</h4>
+                <ul class="footer-links">
+                    <li><a href="https://seapac.org.br" target="_blank">SEAPAC</a></li>
+                    <li><a href="#about">Sobre o Sistema</a></li>
+                    <li><a href="#howto">Como Utilizar</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Para mais informações sobre o sistema e como participar, entre em contato com um algum coordenador da SEAPAC através do própio site da organização.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sistema de Monitoramento de Transição Agroecológica. </p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

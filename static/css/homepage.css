@@ -1,0 +1,711 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-green: #5b8324;
+    --dark-gray: #333333;
+    --medium-gray: #7F7F7F;
+    --light-gray: #F5F5F5;
+    --very-light-green: #eaf8c6a3;
+    --white: #FFFFFF;
+    --font-main: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    background-color: var(--white);
+}
+
+/* CSS do header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--dark-gray);
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--white);
+    font-size: 18px;
+}
+
+.logo-text h1 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.logo-text p {
+    font-size: 14px;
+    color: var(--medium-gray);
+    font-weight: 400;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-weight: 500;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-green);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+/* CSS principal */
+.hero {
+    margin-top: 70px;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #fffee6 0%, var(--white) 100%);
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: var(--dark-gray);
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: var(--medium-gray);
+    margin-bottom: 32px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-main);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #a7bb6b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(255, 146, 0, 0.3);
+}
+
+.btn-secondary {
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    background-color: transparent;
+}
+
+.btn-secondary:hover {
+    background-color: var(--very-light-green);
+    transform: translateY(-2px);
+}
+
+.hero-image {
+    background: linear-gradient(135deg, #abd263 0%, #334f1d 100%);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(95, 74, 40, 0.2);
+    text-align: center;
+    color: rgba(105, 92, 75, 0.15);
+    font-size: 200px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CSS da seção "O que é o Sistema?" */
+.about-section {
+    padding: 80px 20px;
+    background-color: var(--white);
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--dark-gray);
+}
+
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-green);
+    margin: 0 auto;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: var(--very-light-green);
+    padding: 32px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--dark-gray);
+}
+
+.card p {
+    font-size: 14px;
+    color: var(--medium-gray);
+    line-height: 1.8;
+}
+
+.info-box {
+    background-color: var(--light-gray);
+    padding: 32px;
+    border-radius: 12px;
+}
+
+.info-box p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--dark-gray);
+    margin-bottom: 16px;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+.info-box a {
+    color: var(--primary-green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.info-box a:hover {
+    text-decoration: underline;
+}
+
+/* CSS da seção "Como Utilizar" */
+.howto-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #fffee6 0%, var(--white) 100%);
+}
+
+.howto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.step {
+    display: flex;
+    gap: 20px;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 18px;
+}
+
+.step-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark-gray);
+}
+
+.step-content p {
+    font-size: 14px;
+    color: var(--medium-gray);
+    line-height: 1.8;
+}
+
+/* CSS da seção "Quem Somos" */
+.team-section {
+    padding: 80px 20px;
+    background-color: var(--white);
+}
+
+.team-max-width {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.partnership-box {
+    background-color: var(--very-light-green);
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.partnership-box h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--dark-gray);
+}
+
+.partnership-box p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--dark-gray);
+    margin-bottom: 16px;
+}
+
+.partnership-box p:last-child {
+    margin-bottom: 0;
+}
+
+.mission-vision {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.mission-box,
+.vision-box {
+    border: 2px solid #E0E0E0;
+    padding: 24px;
+    border-radius: 12px;
+    background-color: var(--white);
+}
+
+.mission-box h4,
+.vision-box h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--dark-gray);
+}
+
+.mission-box p,
+.vision-box p {
+    font-size: 14px;
+    color: var(--medium-gray);
+    line-height: 1.8;
+}
+
+ /* CSS de quem fez esse projeto acontecer (com muito suor e luta né) */
+.team-members {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-members h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--dark-gray);
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.member-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.member-image {
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(135deg, #fffee6 0%, #edfed2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    color: rgba(255, 146, 0, 0.3);
+    overflow: hidden;
+}
+
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.member-info {
+    padding: 24px;
+}
+
+.member-info h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--dark-gray);
+}
+
+.member-role {
+    font-size: 13px;
+    color: var(--primary-green);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.member-info p {
+    font-size: 14px;
+    color: var(--medium-gray);
+    line-height: 1.8;
+}
+
+
+/* Footer */
+footer {
+    background-color: #2C2C2C;
+    color: var(--white);
+    padding: 48px 20px 24px;
+}
+
+footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 32px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-section h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--white);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.footer-logo-icon {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.footer-logo h3 {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.footer-logo p {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-section p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-green);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    nav {
+        height: 60px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-content h2 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-image {
+        font-size: 100px;
+        height: 300px;
+    }
+
+    .howto-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .mission-vision {
+        grid-template-columns: 1fr;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h2 {
+        font-size: 28px;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .about-section,
+    .howto-section,
+    .team-section {
+        padding: 60px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text h1 {
+        font-size: 14px;
+    }
+
+    .hero-content h2 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .section-title h2 {
+        font-size: 24px;
+    }
+
+    .card h3 {
+        font-size: 16px;
+    }
+
+    .card p {
+        font-size: 13px;
+    }
+
+    .step-content h3 {
+        font-size: 15px;
+    }
+
+    .step-content p {
+        font-size: 13px;
+    }
+
+    .partnership-box h3 {
+        font-size: 20px;
+    }
+
+    .partnership-box p {
+        font-size: 14px;
+    }
+
+    footer {
+        padding: 40px 20px 20px;
+    }
+
+    .footer-section h4 {
+        font-size: 13px;
+    }
+}
