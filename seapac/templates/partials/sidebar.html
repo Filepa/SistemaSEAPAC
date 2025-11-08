@@ -2,7 +2,7 @@
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-content">
         <nav class="nav-menu">
-            <a href="{% url 'index' %}" class="nav-item {% if request.resolver_match.url_name == 'index' %}active{% endif %}" data-page="dashboard">
+            <a href="{% url 'dashboard' %}" class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" data-page="dashboard">
                 <i class="fas fa-home"></i>
                 <span>Página Inicial</span>
             </a>

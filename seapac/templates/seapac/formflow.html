@@ -14,7 +14,7 @@
             <div class='form-subsystem-block' id="form-block{{ subsystem.id }}">
                 <label>
                     <input type="checkbox" name="subsistemas" value="{{ subsystem.id }}"
-                        {% if subsystem.id in selected_ids or subsystem.nome_subsistema == "UFPA" or subsystem.nome_subsistema == "Mundo Externo" %}checked{% endif %}>
+                        {% if subsystem.id in selected_ids or subsystem.nome_subsistema == "UFPA" or subsystem.nome_subsistema == "Mercado Local" %}checked{% endif %}>
                     <div class="block-content">
                         <div >{{ subsystem.nome_subsistema }}</div>
                         {% if subsystem.get_photo_url %}

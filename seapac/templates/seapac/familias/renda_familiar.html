@@ -23,20 +23,22 @@
         </tr>
     </thead>
     <tbody>
-    {% for p in produtos %}
-    <tr>
-        <td>{{ p.subsistema }}</td>
-        <td>{{ p.produto }}</td>
-        <td>{{ p.qtd }}</td>
-        <td>{{ p.valor|floatformat:2 }}</td>
-        <td>{{ p.valor_potencial|floatformat:2 }}</td>
-        <td>{{ p.custo|floatformat:2 }}</td>
-        <td>{{ p.receita|floatformat:2 }}</td>
-        <td>{{ p.receita_potencial|floatformat:2 }}</td>
-        <td>{{ p.custo_total|floatformat:2 }}</td>
-        <td><strong>{{ p.lucro|floatformat:2 }}</strong></td>
-        <td><strong>{{ p.lucro_potencial|floatformat:2 }}</strong></td>
-    </tr>
+    {% for p in produtos  %}
+        {% if p.qtd != 0 %}
+        <tr>
+            <td>{{ p.subsistema }}</td>
+            <td>{{ p.produto }}</td>
+            <td>{{ p.qtd }}</td>
+            <td>{{ p.valor|floatformat:2 }}</td>
+            <td>{{ p.valor_potencial|floatformat:2 }}</td>
+            <td>{{ p.custo|floatformat:2 }}</td>
+            <td>{{ p.receita|floatformat:2 }}</td>
+            <td>{{ p.receita_potencial|floatformat:2 }}</td>
+            <td>{{ p.custo_total|floatformat:2 }}</td>
+            <td><strong>{{ p.lucro|floatformat:2 }}</strong></td>
+            <td><strong>{{ p.lucro_potencial|floatformat:2 }}</strong></td>
+        </tr>
+        {% endif %}
     {% endfor %}
     </tbody>
 </table>
