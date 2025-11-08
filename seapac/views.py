@@ -18,7 +18,8 @@ LEVEL_CHOICES = [
 ]
 
 #--------------DASHBOARD--------------
-def index(request):
+@login_required
+def dashboard(request):
     level = request.GET.get('nivel')
     query = request.GET.get('q')
     families = Family.objects.all()
@@ -47,7 +48,7 @@ def index(request):
         "total_visitas": total_visitas,
         "total_tecnicos": total_tecnicos,
     }
-    return render(request, "seapac/index.html", context)
+    return render(request, "seapac/dashboard.html", context)
 
 #--------------CRUD FAMILIAS (COMPLETO)--------------
 
@@ -83,7 +84,7 @@ def edit_family(request, id):
         form = FamilyForm(request.POST, request.FILES, instance=family)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('dashboard')
     else:
         form = FamilyForm(instance=family)
     return render(request, "seapac/familias/form.html", {
@@ -135,7 +136,7 @@ def delete_family(request, id):
     family = get_object_or_404(Family, id=id)
     family.delete()
     messages.success(request, f'A família "{family.get_nome_familia}" foi excluída com sucesso!')
-    return redirect('index')
+    return redirect('dashboard')
 
 #--------------RENDA FAMILIAR--------------
 
@@ -539,7 +540,7 @@ def edit_flow(request, id):
         selected = request.POST.getlist('subsistemas')
         family.subsistemas.set(selected)
         family.save()
-        return redirect('index')
+        return redirect('dashboard')
     return render(request, "seapac/formflow.html", {
         'family': family,
         'subsystems': subsystems,

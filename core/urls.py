@@ -19,10 +19,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from seapac.views import *
+from usuarios.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='adm'),
     path('', index, name='index'),
+    path('dashboard/', dashboard, name='dashboard'),
     #fluxo
     path('<str:id>/fluxo/', flow, name='flow'),
     path('<str:id>/editar-fluxo/', edit_flow, name='edit_flow'),

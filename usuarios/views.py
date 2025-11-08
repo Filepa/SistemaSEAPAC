@@ -26,7 +26,7 @@ def cadastrar_usuario(request):
 #view para login:
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('dashboard')
     
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
@@ -40,7 +40,7 @@ def login_view(request):
                 messages.success(request, f'Bem-vindo ao Sistema SEAPAC, {user.username}!')
                 
                 # Redireciona para a página principal
-                next_page = request.GET.get('next','index')
+                next_page = request.GET.get('next','dashboard')
                 return redirect(next_page)
 
         #quando o login não confere com os dados cadastrados:        
@@ -55,7 +55,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.info(request, 'Você saiu do sistema.')
-    return redirect('login')
+    return redirect('index')
 
 #view para visualizar o perfil do usuário:
 @login_required
@@ -71,3 +71,6 @@ def perfil_view(request):
         form = PerfilForm(instance=request.user)
     
     return render(request, 'login/perfil.html', {'form': form, 'user': user})
+
+def index(request):
+    return render(request, 'homepage/index.html')
