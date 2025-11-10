@@ -17,7 +17,7 @@ services:
   django:
     build: .
     container_name: seapac
-    command: python manage.py runserver 0.0.0.0:8000 
+    command: ./entrypoint.sh
     volumes:
       - .:/app
     ports:
