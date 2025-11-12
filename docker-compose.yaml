@@ -15,11 +15,14 @@ services:
 
 
   django:
-    build: .
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
     container_name: seapac
-    command: ./entrypoint.sh
+    command: ./start
     volumes:
-      - .:/app
+      - media_data:/app/media
+      - static_data:/app/static
     ports:
       - "8000:8000"
     environment:
@@ -32,5 +35,19 @@ services:
       - postgres
     restart: always
 
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/nginx/Dockerfile
+    volumes:
+      - media_data:/app/media
+      - static_data:/app/static
+    ports:
+      - 82:80
+    restart: unless-stopped
+  
+
 volumes:
   pgdata:
+  media_data:
+  static_data:
