@@ -13,7 +13,6 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql
 
-
   django:
     build:
       context: .
@@ -46,7 +45,6 @@ services:
       - 82:80
     restart: unless-stopped
   
-
 volumes:
   pgdata:
   media_data:
