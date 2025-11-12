@@ -79,7 +79,7 @@ class FamilyAdmin(admin.ModelAdmin):
     list_per_page = 10
 
     def get_projetos(self, obj):
-        return ", ".join([p.nome for p in obj.projetos.all()])
+        return ", ".join([p.nome_projeto for p in obj.projetos.all()])
     get_projetos.short_description = "Projetos"
 
 @admin.register(Project)
