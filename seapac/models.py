@@ -209,7 +209,7 @@ class FamilySubsystem(models.Model):
 
 class Project(models.Model):
     STATUS_CHOICES = [
-        ('em-execucao', 'Em Execução'),
+        ('', 'Em Execução'),
         ('concluido', 'Concluído'),
         ('planejamento', 'Em Planejamento'),
     ]

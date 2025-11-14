@@ -82,32 +82,19 @@ class BaseFluxoFormSet(BaseFormSet):
                 if not nome:
                     continue
                 destino = form.cleaned_data.get('destino') or ''
-                try:
-                    porcentagem = Decimal(form.cleaned_data.get('porcentagem') or 0)
-                except (InvalidOperation, TypeError):
-                    porcentagem = Decimal('0')
 
                 produtos_fluxos.setdefault(nome, []).append({
-                    'destino': destino.strip() if isinstance(destino, str) else destino,
-                    'porcentagem': porcentagem,
+                    'destino': destino.strip() if isinstance(destino, str) else destino
                 })
 
         erros = []
         for nome_produto, lista in produtos_fluxos.items():
-            soma = sum(item['porcentagem'] for item in lista)
-            if soma > Decimal('100') + Decimal('0.0001'):
-                erros.append(f"O produto '{nome_produto}' ultrapassa 100% de distribuição ({soma}%).")
-
             destinos = [item['destino'] for item in lista if item['destino']]
             duplicados = set(d for d in destinos if destinos.count(d) > 1)
             if duplicados:
                 erros.append(
                     f"O produto '{nome_produto}' tem destinos duplicados: {', '.join(sorted(duplicados))}."
                 )
-
-        if erros:
-            raise ValidationError(erros)
-
 
 class SubsystemForm(forms.ModelForm):
     produtos_base = forms.CharField(

@@ -1,0 +1,47 @@
+[project]
+name = "AVF"
+version = "0.1.0"
+description = "Sistema de monitoramento de transição agroecológica"
+authors = [
+    { name = "Ana Maria", email = "rafaelanamaria271@gmail.com" },
+    { name = "Felipe Raposo", email = "feliperaposo07@gmail.com" }
+]
+requires-python = ">=3.10"
+
+dependencies = [
+    "asgiref==3.7.2",
+    "Django==4.2.2",
+    "sqlparse==0.4.4",
+    "Pillow==10.0.0",
+    "django-mermaid==0.1.0",
+    "gunicorn==22.0.0",
+    "psycopg2-binary==2.9.11",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "isort",
+    "pytest",
+    "pytest-django",
+    "pytest-asyncio",
+]
+lint = [
+    "black",
+    "flake8",
+    "isort",
+]
+test = [
+    "pytest",
+    "pytest-django",
+    "pytest-asyncio",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]

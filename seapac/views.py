@@ -435,9 +435,10 @@ def flow(request, id):
     for s in subsystems_data:
         subsystem_id = s['id']
         nome_subsistema = s['nome_subsistema'].replace(" ", "_")
-        url = request.build_absolute_uri(
-            reverse('subsystem_panel', args=[family.id, subsystem_id])
-        )
+        host = request.get_host()
+        if ':' not in host:
+            host = f"{host}:82"
+        url = f"{request.scheme}://{host}{reverse('subsystem_panel', args=[family.id, subsystem_id])}"
         click_lines.append(f'click {nome_subsistema} href "{url}" "Abrir painel de {nome_subsistema}"')
 
     for nome in subsystems_sem_fluxo:

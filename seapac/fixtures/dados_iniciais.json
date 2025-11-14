@@ -1462,7 +1462,7 @@
           "fluxos": []
         },
         {
-          "nome": "Melância",
+          "nome": "Melancia",
           "fluxos": []
         },
         {
@@ -1869,7 +1869,7 @@
     "model": "seapac.subsystem",
     "pk": 32,
     "fields": {
-      "nome_subsistema": "Farmacia",
+      "nome_subsistema": "Farmácia",
       "descricao": "",
       "tipo": "ME",
       "produtos_base": []
@@ -1883,6 +1883,30 @@
       "descricao": "",
       "tipo": "ME",
       "produtos_base": []
+    }
+  },
+  { 
+    "model": "seapac.family",
+    "pk": 1,
+    "fields": {
+      "nome_titular": "Teste Júnior",
+      "data_inicio": "2025-01-01",
+      "contato": "(84) 94002-8922",
+      "municipio": 101,
+      "projetos": [1],
+      "subsistemas": [1, 29]
+    }
+  },
+  {
+    "model": "seapac.project",
+    "pk": 1,
+    "fields": {
+      "nome_projeto": "Projeto de Informatização de Monitoramento de Transição Agroecológica SEAPAC",
+      "descricao": "Com apoio de alunos do IFRN Pau dos Ferros e UFERSA Mossoró, a SEAPAC visa informatizar os processos de gestão e monitoramento de transição agroecológica de famílias agricultoras do alto oeste potiguar.",
+      "orcamento": "4.300",
+      "data_inicio": "2025-06-09",
+      "data_fim": "2025-12-19",
+      "status": "em-execucao"
     }
   }
 ]

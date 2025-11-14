@@ -82,16 +82,10 @@ python manage.py migrate
 6. **Carregue os dados iniciais de muncípios e subsistemas**
 
 ```bash
-python manage.py loaddata dados_essenciais.json
+python manage.py loaddata dados_iniciais.json
 ```
 
-7. **(opcional) Popule com dados de famílias e projetos**
-
-```bash
-python manage.py loaddata dados_popular.json
-```
-
-8. **Inicie o servidor**
+7. **Inicie o servidor**
 
 ```bash
 python manage.py runserver
