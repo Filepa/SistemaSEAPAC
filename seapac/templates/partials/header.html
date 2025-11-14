@@ -45,15 +45,10 @@
                             <i class="bi bi-person"></i> Meu Perfil
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="bi bi-gear"></i> Configurações
-                        </a>
-                    </li>
                     {% if user.is_administrador %}
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="/admin/">
                                 <i class="bi bi-shield-lock"></i> Painel Admin
                             </a>
                         </li>
