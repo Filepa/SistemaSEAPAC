@@ -119,6 +119,31 @@ class SubsystemForm(forms.ModelForm):
             'tipo': forms.Select(attrs={'class': 'form-select'}),
         }
 
+    #Função para validar o tipo de imagem enviada pelo usuário
+    def clean_foto_subssistema(self):
+        foto = self.cleaned_data.get('foto_subsistema')
+
+        # Caso o usuário não envie nada (edição sem trocar a foto), retorna normal
+        if not foto:
+            return foto
+
+        # Verificar a extensão permitida
+        extensoes_validas = ['.jpg', '.jpeg', '.png']
+        import os
+        ext = os.path.splitext(foto.name)[1].lower()
+        if ext not in extensoes_validas:
+            raise forms.ValidationError("Envie uma imagem nos formatos JPG, JPEG ou PNG.")
+
+        # Verificar se o arquivo é realmente uma imagem
+        try:
+            img = Image.open(foto)
+            img.verify()  # verifica estrutura interna
+
+        except Exception:
+            raise forms.ValidationError("O arquivo enviado não é uma imagem válida.")
+
+        return foto
+
     def clean_produtos_base(self):
         data = self.cleaned_data.get('produtos_base', '')
 

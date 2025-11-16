@@ -2,7 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Usuario
 from seapac.models import Municipality
+from PIL import Image
 
+#Criando um usuário:
 class UsuarioCreationForm(UserCreationForm):
     nome_cidade = forms.ModelChoiceField(
         queryset=Municipality.objects.all(),
@@ -64,3 +66,28 @@ class PerfilForm(forms.ModelForm):
             'endereco': 'Endereço',
             'nome_bairro': 'Bairro',
         }
+
+    #Função para validar o tipo de imagem enviada pelo usuário
+    def clean_foto_perfil(self):
+        foto = self.cleaned_data.get('foto_perfil')
+
+        # Caso o usuário não envie nada (edição sem trocar a foto), retorna normal
+        if not foto:
+            return foto
+
+        # Verificar a extensão permitida
+        extensoes_validas = ['.jpg', '.jpeg', '.png']
+        import os
+        ext = os.path.splitext(foto.name)[1].lower()
+        if ext not in extensoes_validas:
+            raise forms.ValidationError("Envie uma imagem nos formatos JPG, JPEG ou PNG.")
+
+        # Verificar se o arquivo é realmente uma imagem
+        try:
+            img = Image.open(foto)
+            img.verify()  # verifica estrutura interna
+
+        except Exception:
+            raise forms.ValidationError("O arquivo enviado não é uma imagem válida.")
+
+        return foto

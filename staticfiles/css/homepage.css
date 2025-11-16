@@ -416,7 +416,7 @@ nav {
 .team-members {
     margin-top: 60px;
     width: 100%;
-    max-width: 1300px;
+    max-width: 1900px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -431,7 +431,7 @@ nav {
 
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     justify-items: center;
     width: 100%;
