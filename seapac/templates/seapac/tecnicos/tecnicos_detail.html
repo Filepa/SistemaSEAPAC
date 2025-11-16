@@ -20,7 +20,7 @@
                         <a href="{% url 'edit_tecs' tecs.pk %}" class="btn btn-primary" id="addProjectBtn">
                             <i class="fas fa-pencil-alt"></i> Editar
                         </a>
-                        <a href="{% url 'delete_tecs' tecs.pk %}" class="btn btn-primary" id="addProjectBtn">
+                        <a href="{% url 'delete_tecs' tecs.pk %}" onclick="return confirm('Tem certeza que deseja deletar este técnico?')" class="btn btn-primary" id="addProjectBtn">
                             <i class="fas fa-trash-alt"></i> Deletar
                         </a>
                     {% endif %}

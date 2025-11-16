@@ -55,9 +55,12 @@
                     {% endif %}
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                        <a class="dropdown-item text-danger" href="{% url 'logout' %}">
-                            <i class="bi bi-box-arrow-right"></i> Sair
-                        </a>
+                        <form method="POST" action="{% url 'logout' %}" onclick="return confirm('Tem certeza que deseja sair?')" style="margin: 0;">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="bi bi-box-arrow-right"></i> Sair
+                            </button>
+                        </form>
                     </li>
                 {% endif %}
             </ul>

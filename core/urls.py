@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 from seapac.views import *
 from usuarios.views import *
 
@@ -66,7 +67,8 @@ urlpatterns = [
     path('api/events/create/', criar_evento),
     path('api/events/delete/<int:event_id>/', deletar_evento),
     path('api/events/confirm/<int:event_id>/', confirmar_evento),
-    path('usuarios/', include('usuarios.urls')),
+    #usuários e recuperação de senha
+    path('', include('usuarios.urls')),
 ]
 
 if settings.DEBUG:

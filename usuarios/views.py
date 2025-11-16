@@ -3,6 +3,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UsuarioCreationForm, LoginForm,PerfilForm
+from django.views.decorators.cache import never_cache
+from django.views.decorators.http import require_POST
 from django.contrib.auth.models import Group
 
 #view para novos usuários:
@@ -52,12 +54,16 @@ def login_view(request):
     return render(request, 'login/login.html', {'form': form})
 
 #view para sair da aplicação (ou seja, logout):
+
+@require_POST
 def logout_view(request):
-    logout(request)
+    request.session.flush()  # encerra a sessão com seguranç
     messages.info(request, 'Você saiu do sistema.')
     return redirect('index')
+    
 
 #view para visualizar o perfil do usuário:
+@never_cache
 @login_required
 def perfil_view(request):
     user = request.user
