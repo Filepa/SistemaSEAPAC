@@ -9,16 +9,21 @@
     <div class="control-group">
         <i class="fas fa-filter"></i>
         <label for="projectStatusFilter">Especialidade</label>
-        <select id="projectStatusFilter" class="control-select">
-            <option value="">Todos as especialidades</option>
-            <option value="em-execucao">Veterinária</option>
-            <option value="concluido">Agropecuária</option>
-        </select>
+        <form method="GET" class="filter-form">
+            <select id="projectStatusFilter" class="control-select" name="especialidade" onchange="this.form.submit()">
+                <option value="">Todas as especialidades</option>
+                <option value="agropecuária" {% if especialidade == 'agropecuária' %}selected{% endif %}>Agropecuária</option>
+                <option value="veterinário" {% if especialidade == 'veterinário' %}selected{% endif %}>Veterinário</option>
+                <option value="agronomia" {% if especialidade == 'agronomia' %}selected{% endif %}>Agronomia</option>
+            </select>
+        </form>
     </div>
 
     <div class="search-group">
         <i class="fas fa-search"></i>
-        <input type="text" id="projectSearchInput" placeholder="Pesquisar técnicos..." class="search-input">
+        <form action="" method="GET" class="search-form">
+            <input type="search" id="searchInput" name="q" value="{{ query|default:'' }}" placeholder="Buscar por nome..." class="search-input">
+        </form>
     </div>
 
     {% if user.is_administrador %}
