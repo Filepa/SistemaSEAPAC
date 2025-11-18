@@ -247,8 +247,16 @@ def delete_projects(request, pk):
 @never_cache
 @login_required
 def list_tecs(request):
-    #falta os filtros de busca
+    especialidade = request.GET.get('especialidade')
+    query = request.GET.get('q')
+
     tecs = Technician.objects.all()
+    if especialidade:
+        tecs = tecs.filter(especialidade=especialidade)
+    if query:
+        tecs = tecs.filter(nome_tecnico__icontains=query)
+    
+    
     paginator = Paginator(tecs, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -256,6 +264,7 @@ def list_tecs(request):
         'page_obj': page_obj,
         'tecs': page_obj,
         'objeto':'técnicos',
+        'especialidade': especialidade,
     }
     return render(request, 'seapac/tecnicos/tecnicos.html', context)
 

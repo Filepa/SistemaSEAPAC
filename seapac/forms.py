@@ -32,7 +32,7 @@ class TechnicianForm(ModelForm):
             "telefone": forms.TextInput(attrs={'class': 'form-control'}),
             "cpf": forms.TextInput(attrs={'class': 'form-control'}),
             "data_nascimento": forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
-            #"foto": forms.FileInput(attrs={'class': 'form-control-file'}),
+            'especialidade': forms.Select(attrs={'class': 'form-control'}),
         }
         
 class FamilyForm(ModelForm):

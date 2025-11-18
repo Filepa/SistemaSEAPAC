@@ -1,15 +1,23 @@
 from django.db import models
 import os
 from django.conf import settings
+from PIL import Image
+
 
 class Technician(models.Model):
-    nome_tecnico = models.CharField(max_length=30)
+    STATUS_CHOICES = [
+        ('agropecuária', 'Agropecuária'),
+        ('veterinário', 'Veterinário'),
+        ('agronomia', 'Agronomia'),
+    ]
+
+    nome_tecnico = models.CharField(max_length=50)
     descricao = models.TextField()
     telefone = models.CharField(max_length=30)
     cpf = models.CharField(max_length=30)
     email = models.EmailField()
     data_nascimento = models.DateField(blank=True, null=True)
-    #foto = models.ImageField(upload_to='tecnicos/fotos_perfil', blank=True) ---> está dando erros seríssimos
+    especialidade = models.CharField(max_length=30, choices=STATUS_CHOICES, default='')
 
     def __str__(self):
         return self.nome_tecnico
@@ -195,6 +203,18 @@ class Subsystem(models.Model):
         if self.has_valid_photo():
             return self.foto_subsistema.url
         return None
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  #salva a imagem normalmente
+
+        if self.foto_subsistema.url:
+            caminho = os.path.join(settings.MEDIA_ROOT, self.foto_subsistema.name)
+
+            img = Image.open(caminho)
+            tamanho_max = (400, 400)
+            img.thumbnail(tamanho_max) #Redimensiona mantendo proporção
+            img.save(caminho)
+
 
 class FamilySubsystem(models.Model):
     family = models.ForeignKey('Family', on_delete=models.CASCADE)
