@@ -2,13 +2,14 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from seapac.models import Municipality
 import os
+from PIL import Image
 from django.conf import settings
 
 #Model base para usuários (sejam eles de qualquer grupo)
 class Usuario(AbstractUser):
     username = models.CharField(max_length=50, unique=True, null=False)
     email = models.EmailField(blank=False)
-    cpf = models.CharField(max_length=11, unique=True,null=True, blank=True, verbose_name="CPF")
+    cpf = models.CharField(max_length=18, unique=True,null=True, blank=True, verbose_name="CPF")
     nome_cidade = models.ForeignKey(Municipality, on_delete=models.SET_NULL, null=True, blank=True)
     endereco = models.CharField(max_length=255, blank=True, null=True)
     nome_bairro = models.CharField(max_length=100, blank=True, null=True)
@@ -36,3 +37,17 @@ class Usuario(AbstractUser):
         if self.has_valid_photo():
             return self.foto_perfil.url
         return None
+
+    #redimensionamento de imagem
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  #salva a imagem normalmente
+
+        if self.foto_perfil:
+            caminho = os.path.join(settings.MEDIA_ROOT, self.foto_perfil.name)
+
+            img = Image.open(caminho)
+            tamanho_max = (400, 400)
+            img.thumbnail(tamanho_max) #Redimensiona mantendo proporção
+            img.save(caminho)
+
+   

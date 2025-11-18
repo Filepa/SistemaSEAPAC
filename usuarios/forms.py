@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Usuario
 from seapac.models import Municipality
+from .validators import validate
+import re
 from PIL import Image
 
 #Criando um usuário:
@@ -30,6 +32,15 @@ class UsuarioCreationForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Senha'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Confirme a senha'})
+
+    #validando CPF
+    def clean_cpf(self):
+        cpf = self.cleaned_data['cpf']
+
+        if not validate(cpf):
+            raise forms.ValidationError("CPF inválido.")
+
+        return re.sub(r'\D', '', cpf)
 
 
 #formulário para login

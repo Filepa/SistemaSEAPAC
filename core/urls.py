@@ -68,7 +68,7 @@ urlpatterns = [
     path('api/events/delete/<int:event_id>/', deletar_evento),
     path('api/events/confirm/<int:event_id>/', confirmar_evento),
     #usuários e recuperação de senha
-    path('', include('usuarios.urls')),
+    path('usuarios/', include('usuarios.urls')),
 ]
 
 if settings.DEBUG:

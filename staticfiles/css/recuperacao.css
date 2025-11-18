@@ -16,7 +16,7 @@ body {
 }
 
 .auth-container {
-    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+    background: white;
     width: 380px;
     padding: 30px;
     border-radius: 12px;
