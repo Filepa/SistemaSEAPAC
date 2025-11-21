@@ -9,11 +9,18 @@
         </h1>
     </div>
     {% if type == 'readonly' %}
+    <div>
       <button class="btn btn-primary btn-timeline"
               onclick="redirect('{% url 'flow' family.id %}')">
           <i class="fa-solid fa-shuffle"></i>
           Visualizar Fluxo
       </button>
+      <button class="btn btn-primary btn-timeline"
+              onclick="redirect('{% url 'edit_subsystems' subsystem.id %}')">
+          <i class="fa-solid fa-shuffle"></i>
+          Editar Subsistema
+      </button>
+    </div>
     {% endif %}
 </div>
 
