@@ -7,14 +7,19 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0006_evento_confirmado_evento_familia'),
-        ('usuarios', '0002_alter_usuario_cpf'),
+        ("seapac", "0006_evento_confirmado_evento_familia"),
+        ("usuarios", "0002_alter_usuario_cpf"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='usuario',
-            name='nome_cidade',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='seapac.municipality'),
+            model_name="usuario",
+            name="nome_cidade",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="seapac.municipality",
+            ),
         ),
     ]

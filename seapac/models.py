@@ -6,9 +6,9 @@ from PIL import Image
 
 class Technician(models.Model):
     STATUS_CHOICES = [
-        ('agropecuária', 'Agropecuária'),
-        ('veterinário', 'Veterinário'),
-        ('agronomia', 'Agronomia'),
+        ("agropecuária", "Agropecuária"),
+        ("veterinário", "Veterinário"),
+        ("agronomia", "Agronomia"),
     ]
 
     nome_tecnico = models.CharField(max_length=50)
@@ -16,30 +16,31 @@ class Technician(models.Model):
     cpf = models.CharField(max_length=30)
     email = models.EmailField()
     data_nascimento = models.DateField(blank=True, null=True)
-    especialidade = models.CharField(max_length=30, choices=STATUS_CHOICES, default='')
+    especialidade = models.CharField(max_length=30, choices=STATUS_CHOICES, default="")
 
     def __str__(self):
         return self.nome_tecnico
-    
+
+
 class Municipality(models.Model):
     nome = models.CharField(max_length=30)
 
     def __str__(self):
         return self.nome
 
-LEVEL_CHOICES = [
-    (1, "Inicial"),
-    (2, "Intermediario"),
-    (3, "Avancado")
-]
+
+LEVEL_CHOICES = [(1, "Inicial"), (2, "Intermediario"), (3, "Avancado")]
+
 
 class Family(models.Model):
     nome_titular = models.CharField(max_length=30)
     data_inicio = models.DateField()
     contato = models.CharField(max_length=30)
     municipio = models.ForeignKey(Municipality, on_delete=models.CASCADE)
-    projetos = models.ManyToManyField('Project', blank=True)
-    subsistemas = models.ManyToManyField('Subsystem', through='FamilySubsystem', blank=True)
+    projetos = models.ManyToManyField("Project", blank=True)
+    subsistemas = models.ManyToManyField(
+        "Subsystem", through="FamilySubsystem", blank=True
+    )
     renda = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
@@ -60,20 +61,20 @@ class Family(models.Model):
             return dict(LEVEL_CHOICES).get(2)
         else:
             return dict(LEVEL_CHOICES).get(3)
-    
+
     def get_nome_familia(self):
         try:
             sobrenome = self.nome_titular.split()[1]
             return "Família " + sobrenome
         except IndexError:
             return "Família " + self.nome_titular
-        
+
     def get_subsistemas_list(self):
         return ", ".join(
             f"{fs.subsystem.nome_subsistema} ({len(fs.produtos_saida)} produtos)"
             for fs in FamilySubsystem.objects.filter(family=self)
         )
-    
+
     def add_subsystem_to_family(family, subsystem):
         family_subsystem, created = FamilySubsystem.objects.get_or_create(
             family=family,
@@ -83,10 +84,10 @@ class Family(models.Model):
             family_subsystem.produtos_saida = subsystem.produtos_base
             family_subsystem.save()
         return family_subsystem
-    
+
     def get_visitas_confirmadas(self):
         return self.eventos.filter(confirmado=True).count()
-    
+
     def calcular_renda(self):
         dados_produtos = []
         total_receita = 0
@@ -122,8 +123,12 @@ class Family(models.Model):
                     custo = fluxo.get("custo") or 0
 
                     produtos_dict[nome]["qtd_total"] += qtd
-                    produtos_dict[nome]["valor_potencial"] = valor_potencial or produtos_dict[nome]["valor_potencial"]
-                    produtos_dict[nome]["custo_unitario"] = custo or produtos_dict[nome]["custo_unitario"]
+                    produtos_dict[nome]["valor_potencial"] = (
+                        valor_potencial or produtos_dict[nome]["valor_potencial"]
+                    )
+                    produtos_dict[nome]["custo_unitario"] = (
+                        custo or produtos_dict[nome]["custo_unitario"]
+                    )
                     produtos_dict[nome]["custo_total"] += qtd * custo
 
                     if valor > 0:  # fluxo vendido
@@ -147,19 +152,21 @@ class Family(models.Model):
                 receita_potencial = valor_potencial * qtd_total
                 lucro_potencial = receita_potencial - custo_total
 
-                dados_produtos.append({
-                    "subsistema": fs.subsystem.nome_subsistema,
-                    "produto": nome,
-                    "qtd": qtd_total,  # mostra a quantidade total do produto
-                    "valor": valor_unitario,
-                    "valor_potencial": valor_potencial,
-                    "custo": custo_unitario,
-                    "receita": receita_real,
-                    "receita_potencial": receita_potencial,
-                    "custo_total": custo_total,
-                    "lucro": lucro_real,
-                    "lucro_potencial": lucro_potencial,
-                })
+                dados_produtos.append(
+                    {
+                        "subsistema": fs.subsystem.nome_subsistema,
+                        "produto": nome,
+                        "qtd": qtd_total,  # mostra a quantidade total do produto
+                        "valor": valor_unitario,
+                        "valor_potencial": valor_potencial,
+                        "custo": custo_unitario,
+                        "receita": receita_real,
+                        "receita_potencial": receita_potencial,
+                        "custo_total": custo_total,
+                        "lucro": lucro_real,
+                        "lucro_potencial": lucro_potencial,
+                    }
+                )
 
                 total_receita += receita_real
                 total_custo += custo_total
@@ -176,22 +183,28 @@ class Family(models.Model):
             "renda_total_potencial": renda_total_potencial,
         }
 
+
 class Subsystem(models.Model):
     TIPO_CHOICES = [
-        ('TS', 'Tecnologia Social'),
-        ('SS', 'Subsistema'),
-        ('ME', 'Mundo Externo'),
+        ("TS", "Tecnologia Social"),
+        ("SS", "Subsistema"),
+        ("ME", "Mundo Externo"),
     ]
 
     nome_subsistema = models.CharField(max_length=50)
     descricao = models.TextField()
-    tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default='SS')
+    tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default="SS")
     produtos_base = models.JSONField(default=list, blank=True)
-    foto_subsistema = models.ImageField(upload_to='subsistemas/', null=True, blank=True, verbose_name="Foto do Subsistema")
+    foto_subsistema = models.ImageField(
+        upload_to="subsistemas/",
+        null=True,
+        blank=True,
+        verbose_name="Foto do Subsistema",
+    )
 
     def __str__(self):
         return self.nome_subsistema
-    
+
     def has_valid_photo(self):
         if self.foto_subsistema and self.foto_subsistema.name:
             caminho = os.path.join(settings.MEDIA_ROOT, self.foto_subsistema.name)
@@ -204,33 +217,34 @@ class Subsystem(models.Model):
         return None
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  #salva a imagem normalmente
+        super().save(*args, **kwargs)  # salva a imagem normalmente
 
         if self.foto_subsistema.url:
             caminho = os.path.join(settings.MEDIA_ROOT, self.foto_subsistema.name)
 
             img = Image.open(caminho)
             tamanho_max = (400, 400)
-            img.thumbnail(tamanho_max) #Redimensiona mantendo proporção
+            img.thumbnail(tamanho_max)  # Redimensiona mantendo proporção
             img.save(caminho)
 
 
 class FamilySubsystem(models.Model):
-    family = models.ForeignKey('Family', on_delete=models.CASCADE)
-    subsystem = models.ForeignKey('Subsystem', on_delete=models.CASCADE)
+    family = models.ForeignKey("Family", on_delete=models.CASCADE)
+    subsystem = models.ForeignKey("Subsystem", on_delete=models.CASCADE)
     produtos_saida = models.JSONField(default=list, blank=True)
 
     class Meta:
-        unique_together = ('family', 'subsystem')
+        unique_together = ("family", "subsystem")
 
     def __str__(self):
         return f"{self.family.get_nome_familia()} - {self.subsystem.nome_subsistema}"
 
+
 class Project(models.Model):
     STATUS_CHOICES = [
-        ('', 'Em Execução'),
-        ('concluido', 'Concluído'),
-        ('planejamento', 'Em Planejamento'),
+        ("", "Em Execução"),
+        ("concluido", "Concluído"),
+        ("planejamento", "Em Planejamento"),
     ]
 
     nome_projeto = models.CharField(max_length=200)
@@ -239,18 +253,25 @@ class Project(models.Model):
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_fim = models.DateField(blank=True, null=True)
-    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='planejamento')
-    orcamento = models.CharField(max_length=30, blank=True, null=True) #nao tem no diagrama mas eu mantive
+    status = models.CharField(
+        max_length=30, choices=STATUS_CHOICES, default="planejamento"
+    )
+    orcamento = models.CharField(
+        max_length=30, blank=True, null=True
+    )  # nao tem no diagrama mas eu mantive
 
     def __str__(self):
         return self.nome_projeto
-    
+
     def get_municipios_atuacao(self):
-        municipios = self.familias.values_list('municipio__nome', flat=True).distinct()
+        municipios = self.familias.values_list("municipio__nome", flat=True).distinct()
         return ", ".join(municipios)
 
+
 class TimelineEvent(models.Model):
-    family = models.ForeignKey(Family, on_delete=models.CASCADE, related_name='timeline_events')
+    family = models.ForeignKey(
+        Family, on_delete=models.CASCADE, related_name="timeline_events"
+    )
     secao = models.CharField(max_length=100, blank=True)
     titulo = models.CharField(max_length=100)
     descricao = models.TextField(blank=True)
@@ -259,10 +280,13 @@ class TimelineEvent(models.Model):
     def __str__(self):
         return f"{self.titulo} - {self.family.get_nome_familia()}"
 
+
 class Evento(models.Model):
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()
-    familia = models.ForeignKey(Family, on_delete=models.CASCADE, null=False, related_name='eventos')
+    familia = models.ForeignKey(
+        Family, on_delete=models.CASCADE, null=False, related_name="eventos"
+    )
     confirmado = models.BooleanField(default=False)
 
     def __str__(self):

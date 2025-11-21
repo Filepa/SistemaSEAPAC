@@ -7,21 +7,25 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0013_alter_subsystem_tipo'),
+        ("seapac", "0013_alter_subsystem_tipo"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='family',
-            name='terra',
+            model_name="family",
+            name="terra",
         ),
         migrations.AddField(
-            model_name='family',
-            name='municipio',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='seapac.municipality'),
+            model_name="family",
+            name="municipio",
+            field=models.ForeignKey(
+                default="",
+                on_delete=django.db.models.deletion.CASCADE,
+                to="seapac.municipality",
+            ),
             preserve_default=False,
         ),
         migrations.DeleteModel(
-            name='Terrain',
+            name="Terrain",
         ),
     ]

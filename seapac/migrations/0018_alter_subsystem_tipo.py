@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0017_remove_family_projeto_family_projetos'),
+        ("seapac", "0017_remove_family_projeto_family_projetos"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='subsystem',
-            name='tipo',
-            field=models.CharField(choices=[('TS', 'Tecnologia Social'), ('SS', 'Subsistema'), ('ME', 'Mundo Externo')], default='SS', max_length=2),
+            model_name="subsystem",
+            name="tipo",
+            field=models.CharField(
+                choices=[
+                    ("TS", "Tecnologia Social"),
+                    ("SS", "Subsistema"),
+                    ("ME", "Mundo Externo"),
+                ],
+                default="SS",
+                max_length=2,
+            ),
         ),
     ]

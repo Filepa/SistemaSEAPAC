@@ -7,19 +7,34 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0003_delete_destino_delete_entrada'),
+        ("seapac", "0003_delete_destino_delete_entrada"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TimelineEvent',
+            name="TimelineEvent",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('secao', models.CharField(blank=True, max_length=100)),
-                ('titulo', models.CharField(max_length=100)),
-                ('descricao', models.TextField(blank=True)),
-                ('data_evento', models.DateField()),
-                ('family', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='timeline_events', to='seapac.family')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("secao", models.CharField(blank=True, max_length=100)),
+                ("titulo", models.CharField(max_length=100)),
+                ("descricao", models.TextField(blank=True)),
+                ("data_evento", models.DateField()),
+                (
+                    "family",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="timeline_events",
+                        to="seapac.family",
+                    ),
+                ),
             ],
         ),
     ]

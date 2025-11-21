@@ -6,14 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0011_rename_foto_perfil_subsystem_foto_subsistema'),
+        ("seapac", "0011_rename_foto_perfil_subsystem_foto_subsistema"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='subsystem',
-            name='tipo',
-            field=models.CharField(choices=[('TS', 'Tecnologia Social'), ('SS', 'Subsidio Social')], default='', max_length=30),
+            model_name="subsystem",
+            name="tipo",
+            field=models.CharField(
+                choices=[("TS", "Tecnologia Social"), ("SS", "Subsidio Social")],
+                default="",
+                max_length=30,
+            ),
             preserve_default=False,
         ),
     ]

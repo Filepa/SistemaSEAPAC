@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0010_subsystem_foto_perfil'),
+        ("seapac", "0010_subsystem_foto_perfil"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='subsystem',
-            old_name='foto_perfil',
-            new_name='foto_subsistema',
+            model_name="subsystem",
+            old_name="foto_perfil",
+            new_name="foto_subsistema",
         ),
     ]

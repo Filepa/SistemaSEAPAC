@@ -7,18 +7,24 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0005_rename_data_evento_timelineevent_data'),
+        ("seapac", "0005_rename_data_evento_timelineevent_data"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='evento',
-            name='confirmado',
+            model_name="evento",
+            name="confirmado",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='evento',
-            name='familia',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='eventos', to='seapac.family'),
+            model_name="evento",
+            name="familia",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="eventos",
+                to="seapac.family",
+            ),
         ),
     ]

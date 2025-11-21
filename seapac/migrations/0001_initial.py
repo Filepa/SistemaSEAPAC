@@ -8,111 +8,210 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Evento',
+            name="Evento",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('titulo', models.CharField(max_length=200)),
-                ('inicio', models.DateTimeField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("titulo", models.CharField(max_length=200)),
+                ("inicio", models.DateTimeField()),
             ],
         ),
         migrations.CreateModel(
-            name='Family',
+            name="Family",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome_titular', models.CharField(max_length=30)),
-                ('data_inicio', models.DateField()),
-                ('contato', models.CharField(max_length=30)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome_titular", models.CharField(max_length=30)),
+                ("data_inicio", models.DateField()),
+                ("contato", models.CharField(max_length=30)),
             ],
         ),
         migrations.CreateModel(
-            name='Municipality',
+            name="Municipality",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome', models.CharField(max_length=30)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome", models.CharField(max_length=30)),
             ],
         ),
         migrations.CreateModel(
-            name='Subsystem',
+            name="Subsystem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome_subsistema', models.CharField(max_length=50)),
-                ('produtos_base', models.JSONField(blank=True, default=list)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome_subsistema", models.CharField(max_length=50)),
+                ("produtos_base", models.JSONField(blank=True, default=list)),
             ],
         ),
         migrations.CreateModel(
-            name='Technician',
+            name="Technician",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome_tecnico', models.CharField(max_length=30)),
-                ('descricao', models.TextField()),
-                ('telefone', models.CharField(max_length=30)),
-                ('cpf', models.CharField(max_length=30)),
-                ('email', models.EmailField(max_length=254)),
-                ('data_nascimento', models.DateField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome_tecnico", models.CharField(max_length=30)),
+                ("descricao", models.TextField()),
+                ("telefone", models.CharField(max_length=30)),
+                ("cpf", models.CharField(max_length=30)),
+                ("email", models.EmailField(max_length=254)),
+                ("data_nascimento", models.DateField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome', models.CharField(max_length=30)),
-                ('email', models.EmailField(max_length=30)),
-                ('senha', models.CharField(max_length=200)),
-                ('contato', models.CharField(max_length=30)),
-                ('foto_perfil', models.ImageField(blank=True, upload_to='fotos_perfil/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome", models.CharField(max_length=30)),
+                ("email", models.EmailField(max_length=30)),
+                ("senha", models.CharField(max_length=200)),
+                ("contato", models.CharField(max_length=30)),
+                (
+                    "foto_perfil",
+                    models.ImageField(blank=True, upload_to="fotos_perfil/"),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Terrain',
+            name="Terrain",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('comunidade', models.CharField(max_length=30, null=True)),
-                ('municipio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='seapac.municipality')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("comunidade", models.CharField(max_length=30, null=True)),
+                (
+                    "municipio",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="seapac.municipality",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome_projeto', models.CharField(max_length=30)),
-                ('descricao', models.TextField()),
-                ('data_inicio', models.DateField()),
-                ('data_fim', models.DateField(blank=True, null=True)),
-                ('orcamento', models.CharField(blank=True, max_length=30, null=True)),
-                ('familias', models.ManyToManyField(to='seapac.family')),
-                ('tecnicos', models.ManyToManyField(to='seapac.technician')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome_projeto", models.CharField(max_length=30)),
+                ("descricao", models.TextField()),
+                ("data_inicio", models.DateField()),
+                ("data_fim", models.DateField(blank=True, null=True)),
+                ("orcamento", models.CharField(blank=True, max_length=30, null=True)),
+                ("familias", models.ManyToManyField(to="seapac.family")),
+                ("tecnicos", models.ManyToManyField(to="seapac.technician")),
             ],
         ),
         migrations.AddField(
-            model_name='family',
-            name='projeto',
-            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, to='seapac.project'),
+            model_name="family",
+            name="projeto",
+            field=models.ForeignKey(
+                blank=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="seapac.project",
+            ),
         ),
         migrations.CreateModel(
-            name='FamilySubsystem',
+            name="FamilySubsystem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('produtos_saida', models.JSONField(blank=True, default=list)),
-                ('family', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='seapac.family')),
-                ('subsystem', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='seapac.subsystem')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("produtos_saida", models.JSONField(blank=True, default=list)),
+                (
+                    "family",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="seapac.family"
+                    ),
+                ),
+                (
+                    "subsystem",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="seapac.subsystem",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('family', 'subsystem')},
+                "unique_together": {("family", "subsystem")},
             },
         ),
         migrations.AddField(
-            model_name='family',
-            name='subsistemas',
-            field=models.ManyToManyField(blank=True, through='seapac.FamilySubsystem', to='seapac.subsystem'),
+            model_name="family",
+            name="subsistemas",
+            field=models.ManyToManyField(
+                blank=True, through="seapac.FamilySubsystem", to="seapac.subsystem"
+            ),
         ),
         migrations.AddField(
-            model_name='family',
-            name='terra',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='seapac.terrain'),
+            model_name="family",
+            name="terra",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE, to="seapac.terrain"
+            ),
         ),
     ]

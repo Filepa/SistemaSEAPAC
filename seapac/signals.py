@@ -2,6 +2,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import Subsystem, FamilySubsystem
 
+
 @receiver(post_save, sender=Subsystem)
 def atualizar_familias_com_novos_produtos(sender, instance, **kwargs):
     subsistema = instance
@@ -19,9 +20,12 @@ def atualizar_familias_com_novos_produtos(sender, instance, **kwargs):
                 novos_produtos.append({"nome": nome, "fluxos": []})
 
         # remove produtos que não estão mais no base
-        nomes_produtos_base = {p.get("nome") if isinstance(p, dict) else p for p in produtos_base}
+        nomes_produtos_base = {
+            p.get("nome") if isinstance(p, dict) else p for p in produtos_base
+        }
         fs.produtos_saida = [
-            p for p in (fs.produtos_saida + novos_produtos)
+            p
+            for p in (fs.produtos_saida + novos_produtos)
             if p["nome"] in nomes_produtos_base
         ]
 

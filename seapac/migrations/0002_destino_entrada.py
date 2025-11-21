@@ -6,23 +6,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0001_initial'),
+        ("seapac", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Destino',
+            name="Destino",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome_destino', models.CharField(max_length=30)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome_destino", models.CharField(max_length=30)),
             ],
         ),
         migrations.CreateModel(
-            name='Entrada',
+            name="Entrada",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome_entrada', models.CharField(max_length=30)),
-                ('produtos_base', models.JSONField(blank=True, default=list)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome_entrada", models.CharField(max_length=30)),
+                ("produtos_base", models.JSONField(blank=True, default=list)),
             ],
         ),
     ]

@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0014_remove_family_terra_family_municipio_delete_terrain'),
+        ("seapac", "0014_remove_family_terra_family_municipio_delete_terrain"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='status',
-            field=models.CharField(choices=[('em-execucao', 'Em Execução'), ('concluido', 'Concluído'), ('planejamento', 'Em Planejamento')], default='planejamento', max_length=30),
+            model_name="project",
+            name="status",
+            field=models.CharField(
+                choices=[
+                    ("em-execucao", "Em Execução"),
+                    ("concluido", "Concluído"),
+                    ("planejamento", "Em Planejamento"),
+                ],
+                default="planejamento",
+                max_length=30,
+            ),
         ),
     ]

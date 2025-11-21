@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0018_alter_subsystem_tipo'),
+        ("seapac", "0018_alter_subsystem_tipo"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='status',
-            field=models.CharField(choices=[('', 'Em Execução'), ('concluido', 'Concluído'), ('planejamento', 'Em Planejamento')], default='planejamento', max_length=30),
+            model_name="project",
+            name="status",
+            field=models.CharField(
+                choices=[
+                    ("", "Em Execução"),
+                    ("concluido", "Concluído"),
+                    ("planejamento", "Em Planejamento"),
+                ],
+                default="planejamento",
+                max_length=30,
+            ),
         ),
     ]

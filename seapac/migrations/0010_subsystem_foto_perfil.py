@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0009_subsystem_descricao'),
+        ("seapac", "0009_subsystem_descricao"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='subsystem',
-            name='foto_perfil',
-            field=models.ImageField(blank=True, null=True, upload_to='subsistemas/', verbose_name='Foto do Subsistema'),
+            model_name="subsystem",
+            name="foto_perfil",
+            field=models.ImageField(
+                blank=True,
+                null=True,
+                upload_to="subsistemas/",
+                verbose_name="Foto do Subsistema",
+            ),
         ),
     ]
