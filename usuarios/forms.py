@@ -2,7 +2,11 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Usuario
 from seapac.models import Municipality
+from .validators import validate
+import re
+from PIL import Image
 
+#Criando um usuário:
 class UsuarioCreationForm(UserCreationForm):
     nome_cidade = forms.ModelChoiceField(
         queryset=Municipality.objects.all(),
@@ -28,6 +32,15 @@ class UsuarioCreationForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Senha'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Confirme a senha'})
+
+    #validando CPF
+    def clean_cpf(self):
+        cpf = self.cleaned_data['cpf']
+
+        if not validate(cpf):
+            raise forms.ValidationError("CPF inválido.")
+
+        return re.sub(r'\D', '', cpf)
 
 
 #formulário para login
@@ -64,3 +77,28 @@ class PerfilForm(forms.ModelForm):
             'endereco': 'Endereço',
             'nome_bairro': 'Bairro',
         }
+
+    #Função para validar o tipo de imagem enviada pelo usuário
+    def clean_foto_perfil(self):
+        foto = self.cleaned_data.get('foto_perfil')
+
+        # Caso o usuário não envie nada (edição sem trocar a foto), retorna normal
+        if not foto:
+            return foto
+
+        # Verificar a extensão permitida
+        extensoes_validas = ['.jpg', '.jpeg', '.png']
+        import os
+        ext = os.path.splitext(foto.name)[1].lower()
+        if ext not in extensoes_validas:
+            raise forms.ValidationError("Envie uma imagem nos formatos JPG, JPEG ou PNG.")
+
+        # Verificar se o arquivo é realmente uma imagem
+        try:
+            img = Image.open(foto)
+            img.verify()  # verifica estrutura interna
+
+        except Exception:
+            raise forms.ValidationError("O arquivo enviado não é uma imagem válida.")
+
+        return foto

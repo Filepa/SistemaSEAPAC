@@ -2,6 +2,7 @@ from .models import Family, Subsystem, Evento, Project, Technician, FamilySubsys
 from .forms import FamilyForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, FluxoForm, BaseFluxoFormSet
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
 from django.core.paginator import Paginator
@@ -9,6 +10,7 @@ from django.forms import formset_factory
 from django.http import JsonResponse
 from django.contrib import messages
 from django.urls import reverse
+
 import json
 
 LEVEL_CHOICES = [
@@ -18,6 +20,7 @@ LEVEL_CHOICES = [
 ]
 
 #--------------DASHBOARD--------------
+@never_cache
 @login_required
 def dashboard(request):
     level = request.GET.get('nivel')
@@ -51,7 +54,7 @@ def dashboard(request):
     return render(request, "seapac/dashboard.html", context)
 
 #--------------CRUD FAMILIAS (COMPLETO)--------------
-
+@never_cache
 @login_required
 def register(request):
     if request.method == 'POST':
@@ -67,6 +70,7 @@ def register(request):
         'title': 'Cadastrar Família'
     })
 
+@never_cache
 @login_required
 def detail_family(request, id):
     family = get_object_or_404(Family, id=id)
@@ -76,6 +80,7 @@ def detail_family(request, id):
     }
     return render(request, 'seapac/familias/detail_family.html', context)
 
+@never_cache
 @login_required
 def edit_family(request, id):
     family = get_object_or_404(Family, id=id)
@@ -92,6 +97,7 @@ def edit_family(request, id):
         'title': 'Editar Família'
     })
 
+@never_cache
 @login_required
 def list_families(request):
     level = request.GET.get('nivel')
@@ -131,6 +137,7 @@ def list_families(request):
     }
     return render(request, "seapac/familias/list_families.html", context)
 
+@never_cache
 @login_required
 def delete_family(request, id):
     family = get_object_or_404(Family, id=id)
@@ -140,6 +147,7 @@ def delete_family(request, id):
 
 #--------------RENDA FAMILIAR--------------
 
+@never_cache
 @login_required
 def renda_familiar(request, id):
     family = get_object_or_404(Family, id=id)
@@ -161,7 +169,7 @@ def renda_familiar(request, id):
     return render(request, "seapac/familias/renda_familiar.html", context)
 
 #--------------CRUD PROJETOS (COMPLETO)------------------
-
+@never_cache
 @login_required
 def list_projects(request):
     status = request.GET.get('status')
@@ -185,6 +193,7 @@ def list_projects(request):
     }
     return render(request, 'seapac/projetos/projects.html', context)
 
+@never_cache
 @login_required
 def create_projects(request): 
     if request.method == 'POST':
@@ -199,6 +208,7 @@ def create_projects(request):
         'form': form
     })
 
+@never_cache
 @login_required
 def edit_projects(request, pk): 
     projetos = get_object_or_404(Project, pk=pk)
@@ -216,6 +226,7 @@ def edit_projects(request, pk):
         'projetos': projetos
     })
 
+@never_cache
 @login_required
 def detail_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
@@ -224,6 +235,7 @@ def detail_projects(request, pk):
     }
     return render(request, 'seapac/projetos/projects_detail.html', context) 
 
+@never_cache
 @login_required
 def delete_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
@@ -232,11 +244,19 @@ def delete_projects(request, pk):
     return redirect('list_projects')
 
 #--------------CRUD TECNICOS (COMPLETO)--------------
-
+@never_cache
 @login_required
 def list_tecs(request):
-    #falta os filtros de busca
+    especialidade = request.GET.get('especialidade')
+    query = request.GET.get('q')
+
     tecs = Technician.objects.all()
+    if especialidade:
+        tecs = tecs.filter(especialidade=especialidade)
+    if query:
+        tecs = tecs.filter(nome_tecnico__icontains=query)
+    
+    
     paginator = Paginator(tecs, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -244,9 +264,11 @@ def list_tecs(request):
         'page_obj': page_obj,
         'tecs': page_obj,
         'objeto':'técnicos',
+        'especialidade': especialidade,
     }
     return render(request, 'seapac/tecnicos/tecnicos.html', context)
 
+@never_cache
 @login_required
 def create_tecs(request): 
     if request.method == 'POST':
@@ -262,6 +284,7 @@ def create_tecs(request):
         'form': form
     })
 
+@never_cache
 @login_required
 def edit_tecs(request, pk): 
     tecs = get_object_or_404(Technician, pk=pk)
@@ -279,6 +302,7 @@ def edit_tecs(request, pk):
         'tecs': tecs
     })
 
+@never_cache
 @login_required
 def detail_tecs(request, pk):
     tecs = get_object_or_404(Technician, pk=pk)
@@ -287,6 +311,7 @@ def detail_tecs(request, pk):
     }
     return render(request, 'seapac/tecnicos/tecnicos_detail.html', context)
 
+@never_cache
 @login_required
 def delete_tecs(request, pk):
     tecs = get_object_or_404(Technician, pk=pk)
@@ -294,8 +319,10 @@ def delete_tecs(request, pk):
     messages.success(request, f'Técnico {tecs.nome_tecnico} excluído com sucesso!')
     return redirect('list_tecs')
 
+
 #--------------CRUD SUBSISTEMAS (COMPLETO)--------------
 
+@never_cache
 @login_required
 def list_subsystems(request):
     query = request.GET.get('q')
@@ -309,6 +336,7 @@ def list_subsystems(request):
     }
     return render(request, "seapac/subsistemas/list_subsystems.html", context)
 
+@never_cache
 @login_required
 def create_subsystems(request):
     if request.method == 'POST':
@@ -324,6 +352,7 @@ def create_subsystems(request):
         'title': 'Cadastrar Subsistema'
     })
 
+@never_cache
 @login_required
 def edit_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
@@ -343,6 +372,7 @@ def edit_subsystems(request, id):
         'subsistema': subsistema
     })
 
+@never_cache
 @login_required
 def delete_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
@@ -351,7 +381,7 @@ def delete_subsystems(request, id):
     return redirect('list_subsystems')
 
 #--------------CRUD FLUXO+SUBSISTEMAS--------------
-
+@never_cache
 @login_required
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
@@ -535,6 +565,7 @@ def flow(request, id):
     }
     return render(request, "seapac/flow.html", context)
 
+@never_cache
 @login_required
 def edit_flow(request, id):
     family = get_object_or_404(Family, id=id)
@@ -552,6 +583,7 @@ def edit_flow(request, id):
         'title': 'Fluxo'
     })
 
+@never_cache
 @login_required
 def subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
@@ -576,6 +608,7 @@ def subsystem_panel(request, family_id, subsystem_id):
         'type': 'readonly'
     })
 
+@never_cache
 @login_required
 def edit_subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
@@ -657,6 +690,7 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
 
 #--------------CRUD TIMELINE--------------
 
+@never_cache
 @login_required
 def timeline(request, id):
     family = get_object_or_404(Family, id=id)
@@ -682,6 +716,7 @@ def timeline(request, id):
     }
     return render(request, "seapac/timeline/timeline.html", context)
 
+@never_cache
 @login_required
 def add_timeline(request, id):
     family = get_object_or_404(Family, id=id)
@@ -702,6 +737,7 @@ def add_timeline(request, id):
         'family': family
     })
 
+@never_cache
 @login_required
 def edit_timeline(request, id, event_id):
     family = get_object_or_404(Family, id=id)
@@ -724,6 +760,7 @@ def edit_timeline(request, id, event_id):
         'event': event,
     })
 
+@never_cache
 @login_required
 def search_timeline_event(request, id):
     family = get_object_or_404(Family, id=id)
@@ -743,6 +780,7 @@ def search_timeline_event(request, id):
 
 #--------------CRUD CALENDARIO--------------
 
+@never_cache
 @login_required
 def calendar(request):
     level = request.GET.get('nivel')

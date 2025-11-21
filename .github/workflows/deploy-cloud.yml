@@ -1,0 +1,19 @@
+name: CICD - On AWS environment.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: replace
+    - name: Deploy to host
+      run: ${{ vars.SSH_CMD }} ${{ vars.DEPLOY_CMD }}
