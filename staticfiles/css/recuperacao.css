@@ -48,6 +48,7 @@ input {
     border: 1px solid #ccc;
     margin-bottom: 10px;
     font-size: 15px;
+    box-sizing: border-box;
 }
 
 .btn-auth {
