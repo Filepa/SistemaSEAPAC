@@ -3,8 +3,7 @@ from django import forms
 from .models import Family, Project, Technician, Subsystem, TimelineEvent
 from django.forms import formset_factory, BaseFormSet
 import json
-from django.core.exceptions import ValidationError
-from decimal import Decimal, InvalidOperation
+from PIL import Image
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -26,7 +25,6 @@ class TechnicianForm(ModelForm):
         model = Technician
         fields = '__all__'
         widgets = {
-            "descricao": forms.Textarea(attrs={"rows": 3, "placeholder": "Descreva a experiência e área de atuação do técnico...",'class': 'form-control'}),
             "nome_tecnico": forms.TextInput(attrs={'class': 'form-control'}),
             "email": forms.EmailInput(attrs={'class': 'form-control'}),
             "telefone": forms.TextInput(attrs={'class': 'form-control'}),

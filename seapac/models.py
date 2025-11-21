@@ -12,7 +12,6 @@ class Technician(models.Model):
     ]
 
     nome_tecnico = models.CharField(max_length=50)
-    descricao = models.TextField()
     telefone = models.CharField(max_length=30)
     cpf = models.CharField(max_length=30)
     email = models.EmailField()
