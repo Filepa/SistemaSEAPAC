@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+
+{% block title %}Gerenciar Usuários {% endblock %}
+
+{% block center %}
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">
+                    <i class="bi bi-people text-success"></i> Gerenciar Usuários
+                </h2>
+                <a href="{% url 'criar_usuario_admin' %}" class="btn btn-success">
+                    <i class="bi bi-person-plus"></i> Novo Usuário
+                </a>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Card de Filtros -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light border-bottom border-success border-2">
+                    <h5 class="mb-0">
+                        <i class="bi bi-funnel text-success"></i> Filtros de Busca
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <form method="get" id="filtroForm">
+                        <div class="row g-3">
+                            
+                            <!-- Filtro por Username -->
+                            <div class="col-md-3">
+                                <label for="{{ filtro_form.username.id_for_label }}" class="form-label fw-bold">
+                                    <i class="bi bi-person text-success"></i> Nome de Usuário
+                                </label>
+                                {{ filtro_form.username }}
+                            </div>
+
+                            <!-- Filtro por Email -->
+                            <div class="col-md-3">
+                                <label for="{{ filtro_form.email.id_for_label }}" class="form-label fw-bold">
+                                    <i class="bi bi-envelope text-success"></i> E-mail
+                                </label>
+                                {{ filtro_form.email }}
+                            </div>
+
+                            <!-- Filtro por CPF -->
+                            <div class="col-md-2">
+                                <label for="{{ filtro_form.cpf.id_for_label }}" class="form-label fw-bold">
+                                    <i class="bi bi-card-text text-success"></i> CPF
+                                </label>
+                                {{ filtro_form.cpf }}
+                            </div>
+
+                            <!-- Filtro por Cidade -->
+                            <div class="col-md-2">
+                                <label for="{{ filtro_form.nome_cidade.id_for_label }}" class="form-label fw-bold">
+                                    <i class="bi bi-geo-alt text-success"></i> Cidade
+                                </label>
+                                {{ filtro_form.nome_cidade }}
+                            </div>
+
+                            <!-- Filtro por Grupo -->
+                            <div class="col-md-2">
+                                <label for="{{ filtro_form.grupo.id_for_label }}" class="form-label fw-bold">
+                                    <i class="bi bi-people-fill text-success"></i> Grupo
+                                </label>
+                                {{ filtro_form.grupo }}
+                            </div>
+
+                            <!-- Filtro por Status -->
+                            <div class="col-md-2">
+                                <label for="{{ filtro_form.is_active.id_for_label }}" class="form-label fw-bold">
+                                    <i class="bi bi-toggle-on text-success"></i> Status
+                                </label>
+                                {{ filtro_form.is_active }}
+                            </div>
+                            
+                        </div>
+
+                        <!-- Botões de Ação -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="bi bi-search"></i> Buscar
+                                    </button>
+                                    <a href="{% url 'list_user' %}" class="btn btn-outline-secondary">
+                                        <i class="bi bi-x-circle"></i> Limpar Filtros
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contador de Resultados -->
+    {% if request.GET %}
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="alert alert-info d-flex align-items-center">
+                <i class="bi bi-info-circle me-2 fs-5"></i>
+                <div>
+                    Encontrado(s) <strong>{{ usuarios.paginator.count }}</strong> usuário(s) com os filtros aplicados.
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Tabela de Usuários -->
+    {% if usuarios %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th style="width: 60px;">Foto</th>
+                                        <th>Username</th>
+                                        <th>Nome Completo</th>
+                                        <th>E-mail</th>
+                                        <th>CPF</th>
+                                        <th>Cidade</th>
+                                        <th>Grupos</th>
+                                        <th>Status</th>
+                                        <th style="width: 150px;">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for usuario in usuarios %}
+                                    <tr>
+                                        <td class="text-center">
+                                            {% if usuario.foto_perfil %}
+                                                <img src="{{ usuario.foto_perfil.url }}" alt="{{ usuario.username }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                                            {% else %}
+                                                <i class="bi bi-person-circle text-muted" style="font-size: 2rem;"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td class="align-middle">
+                                            <strong>{{ usuario.username }}</strong>
+                                            {% if usuario.is_superuser %}
+                                                <span class="badge bg-warning text-dark ms-1">
+                                                    <i class="bi bi-star-fill"></i> Super
+                                                </span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="align-middle">
+                                            {{ usuario.get_full_name|default:"-" }}
+                                        </td>
+                                        <td class="align-middle">
+                                            <small>{{ usuario.email|default:"-" }}</small>
+                                        </td>
+                                        <td class="align-middle">
+                                            <small>{{ usuario.cpf }}</small>
+                                        </td>
+                                        <td class="align-middle">
+                                            {{ usuario.nome_cidade|default:"-" }}
+                                        </td>
+                                        <td class="align-middle">
+                                            {% for group in usuario.groups.all %}
+                                                <span class="badge bg-primary">{{ group.name }}</span>
+                                            {% empty %}
+                                                <span class="text-muted">-</span>
+                                            {% endfor %}
+                                        </td>
+                                        <td class="align-middle">
+                                            {% if usuario.is_active %}
+                                                <span class="badge bg-success">Ativo</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">Inativo</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="align-middle" style="white-space: nowrap;">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a href="{% url 'editar_usuario_admin' usuario.pk %}" 
+                                                class="btn btn-outline-primary" 
+                                                title="Editar">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+
+                                                <a href="{% url 'deletar_usuario' usuario.pk %}" 
+                                                class="btn btn-outline-danger" 
+                                                title="Excluir">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paginação -->
+        <div class="row mt-4">
+            <div class="col-12">
+                {% include 'includes/pagination.html' %}
+            </div>
+        </div>
+
+    {% else %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                    <i class="bi bi-info-circle" style="font-size: 2rem;"></i>
+                    <h4 class="mt-3">Nenhum usuário encontrado</h4>
+                    <p>Tente ajustar os filtros de busca ou cadastre um novo usuário.</p>
+                    <a href="{% url 'criar_usuario_admin' %}" class="btn btn-success mt-2">
+                        <i class="bi bi-person-plus"></i> Cadastrar Novo Usuário
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% block extra_css %}
+<style>
+    .table thead th {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .table tbody tr {
+        transition: background-color 0.2s;
+    }
+    
+    .table tbody tr:hover {
+        background-color: rgba(76, 175, 80, 0.1);
+    }
+    
+    .badge {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+</style>
+{% endblock %}
+{% endblock %}

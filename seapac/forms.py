@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from .models import Family, Project, Technician, Subsystem, TimelineEvent
 from django.forms import formset_factory, BaseFormSet
+from .validators import validate
 import json
 from django.core.exceptions import ValidationError
 from decimal import Decimal, InvalidOperation
@@ -34,6 +35,15 @@ class TechnicianForm(ModelForm):
             "data_nascimento": forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'especialidade': forms.Select(attrs={'class': 'form-control'}),
         }
+
+    #validando CPF
+    def clean_cpf(self):
+        cpf = self.cleaned_data['cpf']
+
+        if not validate(cpf):
+            raise forms.ValidationError("CPF inválido.")
+
+        return re.sub(r'\D', '', cpf)
         
 class FamilyForm(ModelForm):
     class Meta:

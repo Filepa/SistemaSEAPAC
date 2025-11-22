@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Usuário - WorkApp{% endblock %}
+
+{% block center %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        Confirmar Exclusão
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <strong>Atenção!</strong> Esta ação não pode ser desfeita.
+                    </div>
+
+                    <h5 class="mb-3">Você tem certeza que deseja excluir este usuário?</h5>
+
+                    <!-- Detalhes do Usuário -->
+                    <div class="usuario-preview card bg-light mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 text-center">
+                                    {% if usuario.foto_perfil %}
+                                        <img src="{{ usuario.foto_perfil.url }}" alt="{{ usuario.username }}" class="rounded-circle img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+                                    {% else %}
+                                        <i class="bi bi-person-circle text-muted" style="font-size: 5rem;"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-9">
+                                    <h5 class="mb-3">
+                                        <i class="bi bi-person-badge text-success"></i> 
+                                        {{ usuario.get_full_name|default:usuario.username }}
+                                    </h5>
+                                    
+                                    <div class="mb-2">
+                                        <strong><i class="bi bi-at text-success"></i> Username:</strong>
+                                        {{ usuario.username }}
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <strong><i class="bi bi-envelope text-success"></i> E-mail:</strong>
+                                        {{ usuario.email|default:"-" }}
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <strong><i class="bi bi-card-text text-success"></i> CPF:</strong>
+                                        {{ usuario.cpf }}
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <strong><i class="bi bi-geo-alt text-success"></i> Cidade:</strong>
+                                        {{ usuario.nome_cidade|default:"-" }}
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <strong><i class="bi bi-people-fill text-success"></i> Grupos:</strong>
+                                        {% for group in usuario.groups.all %}
+                                            <span class="badge bg-primary">{{ group.name }}</span>
+                                        {% empty %}
+                                            <span class="text-muted">Nenhum grupo</span>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <strong><i class="bi bi-calendar-check text-success"></i> Cadastrado em:</strong>
+                                        {{ usuario.date_joined|date:"d/m/Y H:i" }}
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <strong><i class="bi bi-toggle-on text-success"></i> Status:</strong>
+                                        {% if usuario.is_active %}
+                                            <span class="badge bg-success">Ativo</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">Inativo</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulário de Confirmação -->
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="d-flex gap-2 justify-content-end">
+                            <a href="{% url 'list_user' %}" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Sim, Excluir Usuário
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_css %}
+<style>
+    .card.border-danger {
+        border: 2px solid #dc3545 !important;
+    }
+
+    .usuario-preview {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+    }
+
+    .btn-danger {
+        padding: 10px 25px;
+        font-weight: 500;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    .img-thumbnail {
+        border: 2px solid #dc3545;
+    }
+</style>
+{% endblock %}
+{% endblock %}
