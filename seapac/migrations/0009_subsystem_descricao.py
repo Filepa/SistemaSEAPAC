@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0008_delete_user'),
+        ("seapac", "0008_delete_user"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='subsystem',
-            name='descricao',
-            field=models.TextField(default=''),
+            model_name="subsystem",
+            name="descricao",
+            field=models.TextField(default=""),
             preserve_default=False,
         ),
     ]

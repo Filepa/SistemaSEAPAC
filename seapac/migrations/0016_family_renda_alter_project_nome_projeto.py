@@ -6,18 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0015_project_status'),
+        ("seapac", "0015_project_status"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='family',
-            name='renda',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),
+            model_name="family",
+            name="renda",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=10, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='nome_projeto',
+            model_name="project",
+            name="nome_projeto",
             field=models.CharField(max_length=200),
         ),
     ]

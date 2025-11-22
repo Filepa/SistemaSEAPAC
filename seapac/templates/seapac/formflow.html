@@ -20,7 +20,7 @@
                         {% if subsystem.get_photo_url %}
                             <img src="{{ subsystem.get_photo_url }}" alt="{{ subsystem.nome_subsistema }}" class="form-subsystem-image">
                         {% else %}
-                            <img src="{% static 'img/fotos_subsistemas/default.png' %}" alt="imagem aleatória" class="form-subsystem-image">
+                            <img src="{% static 'img/fotos_subsistemas/' %}{{subsystem.id}}/{{subsystem.id}}.jpg" alt="imagem aleatória" class="form-subsystem-image">
                         {% endif %}
                     </div>
                 </label>

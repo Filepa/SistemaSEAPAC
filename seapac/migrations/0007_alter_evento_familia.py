@@ -7,13 +7,17 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0006_evento_confirmado_evento_familia'),
+        ("seapac", "0006_evento_confirmado_evento_familia"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='evento',
-            name='familia',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='eventos', to='seapac.family'),
+            model_name="evento",
+            name="familia",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="eventos",
+                to="seapac.family",
+            ),
         ),
     ]

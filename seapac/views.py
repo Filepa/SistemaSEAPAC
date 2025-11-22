@@ -1,5 +1,23 @@
-from .models import Family, Subsystem, Evento, Project, Technician, FamilySubsystem, TimelineEvent, Municipality, Evento
-from .forms import FamilyForm, ProjectForm, TechnicianForm, SubsystemForm, TimelineEventForm, FluxoForm, BaseFluxoFormSet
+from .models import (
+    Family,
+    Subsystem,
+    Evento,
+    Project,
+    Technician,
+    FamilySubsystem,
+    TimelineEvent,
+    Municipality,
+    Evento,
+)
+from .forms import (
+    FamilyForm,
+    ProjectForm,
+    TechnicianForm,
+    SubsystemForm,
+    TimelineEventForm,
+    FluxoForm,
+    BaseFluxoFormSet,
+)
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
@@ -13,28 +31,35 @@ from django.urls import reverse
 
 import json
 
-LEVEL_CHOICES = [
-    (1, "Inicial"),
-    (2, "Intermediario"),
-    (3, "Avancado")
-]
+LEVEL_CHOICES = [(1, "Inicial"), (2, "Intermediario"), (3, "Avancado")]
 
-#--------------DASHBOARD--------------
+
+# --------------DASHBOARD--------------
 @never_cache
 @login_required
 def dashboard(request):
-    level = request.GET.get('nivel')
-    query = request.GET.get('q')
+    level = request.GET.get("nivel")
+    query = request.GET.get("q")
     families = Family.objects.all()
     if query:
         families = families.filter(nome_titular__icontains=query)
     if level:
-        families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
-    total_municipios = Municipality.objects.filter(family__isnull=False).distinct().count()
+        families = [
+            f
+            for f in families
+            if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))
+        ]
+    total_municipios = (
+        Municipality.objects.filter(family__isnull=False).distinct().count()
+    )
     total_families = Family.objects.count()
     total_tecnicos = Technician.objects.count()
-    total_avancado = len([f for f in Family.objects.all() if f.get_nivel() == "Avancado"])
-    total_intermediario = len([f for f in Family.objects.all() if f.get_nivel() == "Intermediario"])
+    total_avancado = len(
+        [f for f in Family.objects.all() if f.get_nivel() == "Avancado"]
+    )
+    total_intermediario = len(
+        [f for f in Family.objects.all() if f.get_nivel() == "Intermediario"]
+    )
     total_inicial = len([f for f in Family.objects.all() if f.get_nivel() == "Inicial"])
     total_visitas = Evento.objects.count()
 
@@ -53,56 +78,57 @@ def dashboard(request):
     }
     return render(request, "seapac/dashboard.html", context)
 
-#--------------CRUD FAMILIAS (COMPLETO)--------------
+
+# --------------CRUD FAMILIAS (COMPLETO)--------------
 @never_cache
 @login_required
 def register(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = FamilyForm(request.POST, request.FILES)
         if form.is_valid():
             family = form.save(commit=False)
             family.save()
-            return redirect('edit_flow', id=family.id)
+            return redirect("edit_flow", id=family.id)
     else:
         form = FamilyForm()
-    return render(request, "seapac/familias/form.html", {
-        'form': form,
-        'title': 'Cadastrar Família'
-    })
+    return render(
+        request,
+        "seapac/familias/form.html",
+        {"form": form, "title": "Cadastrar Família"},
+    )
+
 
 @never_cache
 @login_required
 def detail_family(request, id):
     family = get_object_or_404(Family, id=id)
-    context= {
-        'family': family,
-        'title': 'Detalhes da '
-    }
-    return render(request, 'seapac/familias/detail_family.html', context)
+    context = {"family": family, "title": "Detalhes da "}
+    return render(request, "seapac/familias/detail_family.html", context)
+
 
 @never_cache
 @login_required
 def edit_family(request, id):
     family = get_object_or_404(Family, id=id)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = FamilyForm(request.POST, request.FILES, instance=family)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect("dashboard")
     else:
         form = FamilyForm(instance=family)
-    return render(request, "seapac/familias/form.html", {
-        'form': form,
-        'title': 'Editar Família'
-    })
+    return render(
+        request, "seapac/familias/form.html", {"form": form, "title": "Editar Família"}
+    )
+
 
 @never_cache
 @login_required
 def list_families(request):
-    level = request.GET.get('nivel')
-    query = request.GET.get('q')
-    subsystem_name = request.GET.get('subsystem')
+    level = request.GET.get("nivel")
+    query = request.GET.get("q")
+    subsystem_name = request.GET.get("subsystem")
 
     families = Family.objects.all()
 
@@ -110,7 +136,9 @@ def list_families(request):
         families = families.filter(nome_titular__icontains=query)
 
     if subsystem_name:
-        families = families.filter(subsistemas__nome_subsistema=subsystem_name).distinct()
+        families = families.filter(
+            subsistemas__nome_subsistema=subsystem_name
+        ).distinct()
 
     if level:
         try:
@@ -120,32 +148,37 @@ def list_families(request):
             pass
 
     paginator = Paginator(families, 4)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
     subsystems = Subsystem.objects.all()
 
     context = {
-        'title': 'Lista de Famílias',
-        'nivel_selecionado': level,
-        'query': query,
-        'page_obj': page_obj,
-        'families': page_obj,
-        'subsystems': subsystems,
-        'subsystem_selected': subsystem_name,
-        'objeto': 'familias'
+        "title": "Lista de Famílias",
+        "nivel_selecionado": level,
+        "query": query,
+        "page_obj": page_obj,
+        "families": page_obj,
+        "subsystems": subsystems,
+        "subsystem_selected": subsystem_name,
+        "objeto": "familias",
     }
     return render(request, "seapac/familias/list_families.html", context)
+
 
 @never_cache
 @login_required
 def delete_family(request, id):
     family = get_object_or_404(Family, id=id)
     family.delete()
-    messages.success(request, f'A família "{family.get_nome_familia}" foi excluída com sucesso!')
-    return redirect('dashboard')
+    messages.success(
+        request, f'A família "{family.get_nome_familia}" foi excluída com sucesso!'
+    )
+    return redirect("dashboard")
 
-#--------------RENDA FAMILIAR--------------
+
+# --------------RENDA FAMILIAR--------------
+
 
 @never_cache
 @login_required
@@ -164,238 +197,253 @@ def renda_familiar(request, id):
         "total_receita_potencial": resultado["total_receita_potencial"],
         "renda_total_potencial": resultado["renda_total_potencial"],
         "title": f"Renda da ",
-        'diferenca': diferenca,
+        "diferenca": diferenca,
     }
     return render(request, "seapac/familias/renda_familiar.html", context)
 
-#--------------CRUD PROJETOS (COMPLETO)------------------
+
+# --------------CRUD PROJETOS (COMPLETO)------------------
 @never_cache
 @login_required
 def list_projects(request):
-    status = request.GET.get('status')
-    query = request.GET.get('q')
+    status = request.GET.get("status")
+    query = request.GET.get("q")
 
     projects = Project.objects.all()
     if status:
         projects = projects.filter(status=status)
     if query:
         projects = projects.filter(nome_projeto__icontains=query)
-    
+
     paginator = Paginator(projects, 3)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     context = {
-        'query': query,
-        'page_obj': page_obj,
-        'projects': page_obj,
-        'objeto':'projetos',
-        'status': status,
+        "query": query,
+        "page_obj": page_obj,
+        "projects": page_obj,
+        "objeto": "projetos",
+        "status": status,
     }
-    return render(request, 'seapac/projetos/projects.html', context)
+    return render(request, "seapac/projetos/projects.html", context)
+
 
 @never_cache
 @login_required
-def create_projects(request): 
-    if request.method == 'POST':
+def create_projects(request):
+    if request.method == "POST":
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('list_projects')
-    else: 
+            return redirect("list_projects")
+    else:
         form = ProjectForm()
-        
-    return render(request, 'seapac/projetos/projects_form.html', {
-        'form': form
-    })
+
+    return render(request, "seapac/projetos/projects_form.html", {"form": form})
+
 
 @never_cache
 @login_required
-def edit_projects(request, pk): 
+def edit_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
-    
-    if request.method == 'POST':
+
+    if request.method == "POST":
         form = ProjectForm(request.POST, instance=projetos)
         if form.is_valid():
             form.save()
-            return redirect('detail_projects', pk=projetos.pk)
+            return redirect("detail_projects", pk=projetos.pk)
     else:
         form = ProjectForm(instance=projetos)
-    
-    return render(request, 'seapac/projetos/projects_form.html', {
-       'form': form,
-        'projetos': projetos
-    })
+
+    return render(
+        request,
+        "seapac/projetos/projects_form.html",
+        {"form": form, "projetos": projetos},
+    )
+
 
 @never_cache
 @login_required
 def detail_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
-    context= {
-        'projetos': projetos
-    }
-    return render(request, 'seapac/projetos/projects_detail.html', context) 
+    context = {"projetos": projetos}
+    return render(request, "seapac/projetos/projects_detail.html", context)
+
 
 @never_cache
 @login_required
 def delete_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
     projetos.delete()
-    messages.success(request, f'O projeto "{projetos.nome_projeto}" foi excluído com sucesso!')
-    return redirect('list_projects')
+    messages.success(
+        request, f'O projeto "{projetos.nome_projeto}" foi excluído com sucesso!'
+    )
+    return redirect("list_projects")
 
-#--------------CRUD TECNICOS (COMPLETO)--------------
+
+# --------------CRUD TECNICOS (COMPLETO)--------------
 @never_cache
 @login_required
 def list_tecs(request):
-    especialidade = request.GET.get('especialidade')
-    query = request.GET.get('q')
+    especialidade = request.GET.get("especialidade")
+    query = request.GET.get("q")
 
     tecs = Technician.objects.all()
     if especialidade:
         tecs = tecs.filter(especialidade=especialidade)
     if query:
         tecs = tecs.filter(nome_tecnico__icontains=query)
-    
-    
+
     paginator = Paginator(tecs, 3)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     context = {
-        'page_obj': page_obj,
-        'tecs': page_obj,
-        'objeto':'técnicos',
-        'especialidade': especialidade,
+        "page_obj": page_obj,
+        "tecs": page_obj,
+        "objeto": "técnicos",
+        "especialidade": especialidade,
     }
-    return render(request, 'seapac/tecnicos/tecnicos.html', context)
+    return render(request, "seapac/tecnicos/tecnicos.html", context)
+
 
 @never_cache
 @login_required
-def create_tecs(request): 
-    if request.method == 'POST':
+def create_tecs(request):
+    if request.method == "POST":
         form = TechnicianForm(request.POST)
         if form.is_valid():
             tecs = form.save()
-            return redirect('list_tecs')
+            return redirect("list_tecs")
 
-    else: 
+    else:
         form = TechnicianForm()
-        
-    return render(request, 'seapac/tecnicos/tecnicos_form.html', {
-        'form': form
-    })
+
+    return render(request, "seapac/tecnicos/tecnicos_form.html", {"form": form})
+
 
 @never_cache
 @login_required
-def edit_tecs(request, pk): 
+def edit_tecs(request, pk):
     tecs = get_object_or_404(Technician, pk=pk)
-    
-    if request.method == 'POST':
+
+    if request.method == "POST":
         form = TechnicianForm(request.POST, instance=tecs)
         if form.is_valid():
             form.save()
-            return redirect('detail_tecs', pk=tecs.pk)
+            return redirect("detail_tecs", pk=tecs.pk)
     else:
         form = TechnicianForm(instance=tecs)
-    
-    return render(request, 'seapac/tecnicos/tecnicos_form.html', {
-       'form': form,
-        'tecs': tecs
-    })
+
+    return render(
+        request, "seapac/tecnicos/tecnicos_form.html", {"form": form, "tecs": tecs}
+    )
+
 
 @never_cache
 @login_required
 def detail_tecs(request, pk):
     tecs = get_object_or_404(Technician, pk=pk)
-    context= {
-        'tecs': tecs
-    }
-    return render(request, 'seapac/tecnicos/tecnicos_detail.html', context)
+    context = {"tecs": tecs}
+    return render(request, "seapac/tecnicos/tecnicos_detail.html", context)
+
 
 @never_cache
 @login_required
 def delete_tecs(request, pk):
     tecs = get_object_or_404(Technician, pk=pk)
     tecs.delete()
-    messages.success(request, f'Técnico {tecs.nome_tecnico} excluído com sucesso!')
-    return redirect('list_tecs')
+    messages.success(request, f"Técnico {tecs.nome_tecnico} excluído com sucesso!")
+    return redirect("list_tecs")
 
 
-#--------------CRUD SUBSISTEMAS (COMPLETO)--------------
+# --------------CRUD SUBSISTEMAS (COMPLETO)--------------
+
 
 @never_cache
 @login_required
 def list_subsystems(request):
-    query = request.GET.get('q')
+    query = request.GET.get("q")
     subsistemas = Subsystem.objects.all()
     if query:
         subsistemas = subsistemas.filter(nome_subsistema__icontains=query)
     context = {
         "subsistemas": subsistemas,
-        'title': 'Lista de Subsistemas',
-        "query": query
+        "title": "Lista de Subsistemas",
+        "query": query,
     }
     return render(request, "seapac/subsistemas/list_subsystems.html", context)
+
 
 @never_cache
 @login_required
 def create_subsystems(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SubsystemForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('list_subsystems')
+            return redirect("list_subsystems")
     else:
         form = SubsystemForm()
 
-    return render(request, 'seapac/subsistemas/subsystem_form.html', {
-        'form': form,
-        'title': 'Cadastrar Subsistema'
-    })
+    return render(
+        request,
+        "seapac/subsistemas/subsystem_form.html",
+        {"form": form, "title": "Cadastrar Subsistema"},
+    )
+
 
 @never_cache
 @login_required
 def edit_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SubsystemForm(request.POST, request.FILES, instance=subsistema)
         if form.is_valid():
             form.save()
-            return redirect('list_subsystems')
+            return redirect("list_subsystems")
     else:
-        form_data = '\n'.join([p.get('nome', '') for p in subsistema.produtos_base])
-        form = SubsystemForm(instance=subsistema, initial={'produtos_base': form_data})
+        form_data = "\n".join([p.get("nome", "") for p in subsistema.produtos_base])
+        form = SubsystemForm(instance=subsistema, initial={"produtos_base": form_data})
 
-    return render(request, 'seapac/subsistemas/subsystem_form.html', {
-        'title': 'Editar Subsistema',
-        'form': form,
-        'subsistema': subsistema
-    })
+    return render(
+        request,
+        "seapac/subsistemas/subsystem_form.html",
+        {"title": "Editar Subsistema", "form": form, "subsistema": subsistema},
+    )
+
 
 @never_cache
 @login_required
 def delete_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
     subsistema.delete()
-    messages.success(request, f'Subsistema "{subsistema.nome_subsistema}" excluído com sucesso!')
-    return redirect('list_subsystems')
+    messages.success(
+        request, f'Subsistema "{subsistema.nome_subsistema}" excluído com sucesso!'
+    )
+    return redirect("list_subsystems")
 
-#--------------CRUD FLUXO+SUBSISTEMAS--------------
+
+# --------------CRUD FLUXO+SUBSISTEMAS--------------
 @never_cache
 @login_required
 def flow(request, id):
     family = get_object_or_404(Family, id=id)
-    family_subsystems = FamilySubsystem.objects.filter(family=family).select_related('subsystem')
-    style_mode = request.GET.get('style', 'default')
+    family_subsystems = FamilySubsystem.objects.filter(family=family).select_related(
+        "subsystem"
+    )
+    style_mode = request.GET.get("style", "default")
 
     subsystems_data = []
     for family_subsystem in family_subsystems:
-        subsystems_data.append({
-            'id': family_subsystem.subsystem.id,
-            'nome_subsistema': family_subsystem.subsystem.nome_subsistema,
-            'tipo': family_subsystem.subsystem.tipo,
-            'produtos_saida': family_subsystem.produtos_saida,
-        })
+        subsystems_data.append(
+            {
+                "id": family_subsystem.subsystem.id,
+                "nome_subsistema": family_subsystem.subsystem.nome_subsistema,
+                "tipo": family_subsystem.subsystem.tipo,
+                "produtos_saida": family_subsystem.produtos_saida,
+            }
+        )
 
     # -------------------------------
     # Montagem dos fluxos
@@ -404,16 +452,16 @@ def flow(request, id):
     for subsystem in subsystems_data:
         nome_subsistema = subsystem["nome_subsistema"]
         for produto in subsystem["produtos_saida"]:
-            nome_produto = produto['nome']
-            fluxos_do_produto = produto.get('fluxos', [])
+            nome_produto = produto["nome"]
+            fluxos_do_produto = produto.get("fluxos", [])
 
             # calcula total de qtd pra determinar porcentagem automática
-            total_qtd = sum((f.get('qtd') or 0) for f in fluxos_do_produto)
+            total_qtd = sum((f.get("qtd") or 0) for f in fluxos_do_produto)
 
             for fluxo in fluxos_do_produto:
-                destino = fluxo.get('destino', 'Mundo Externo')
-                qtd = fluxo.get('qtd')
-                und = fluxo.get('und', '')
+                destino = fluxo.get("destino", "Mundo Externo")
+                qtd = fluxo.get("qtd")
+                und = fluxo.get("und", "")
                 porcentagem_calc = round((qtd / total_qtd) * 100, 1) if total_qtd else 0
 
                 rotulo_fluxo = nome_produto
@@ -448,14 +496,12 @@ def flow(request, id):
     for origem, produto, destino in fluxos:
         flux_count[origem] = flux_count.get(origem, 0) + 1
 
-    subsystems_com_fluxo = {
-        nome for fluxo in fluxos for nome in (fluxo[0], fluxo[2])
-    }
+    subsystems_com_fluxo = {nome for fluxo in fluxos for nome in (fluxo[0], fluxo[2])}
 
     subsystems_sem_fluxo = [
-        s['nome_subsistema'].replace(" ", "_")
+        s["nome_subsistema"].replace(" ", "_")
         for s in subsystems_data
-        if s['nome_subsistema'] not in subsystems_com_fluxo
+        if s["nome_subsistema"] not in subsystems_com_fluxo
     ]
 
     # -------------------------------
@@ -463,13 +509,15 @@ def flow(request, id):
     # -------------------------------
     click_lines = []
     for s in subsystems_data:
-        subsystem_id = s['id']
-        nome_subsistema = s['nome_subsistema'].replace(" ", "_")
+        subsystem_id = s["id"]
+        nome_subsistema = s["nome_subsistema"].replace(" ", "_")
         host = request.get_host()
-        if ':' not in host:
+        if ":" not in host:
             host = f"{host}:82"
         url = f"{request.scheme}://{host}{reverse('subsystem_panel', args=[family.id, subsystem_id])}"
-        click_lines.append(f'click {nome_subsistema} href "{url}" "Abrir painel de {nome_subsistema}"')
+        click_lines.append(
+            f'click {nome_subsistema} href "{url}" "Abrir painel de {nome_subsistema}"'
+        )
 
     for nome in subsystems_sem_fluxo:
         text_list.append(f"{nome}")
@@ -515,18 +563,21 @@ def flow(request, id):
     # -------------------------------
     style_lines = []
     for s in subsystems_data:
-        nome = s['nome_subsistema'].replace(" ", "_")
-        tipo = s.get('tipo', 'SS')
-        n_fluxos = flux_count.get(s['nome_subsistema'], 0)
+        nome = s["nome_subsistema"].replace(" ", "_")
+        tipo = s.get("tipo", "SS")
+        n_fluxos = flux_count.get(s["nome_subsistema"], 0)
         fill_color = get_color_intensity(n_fluxos, tipo)
-        style_lines.append(f"style {nome} fill:{fill_color},stroke:#333,stroke-width:1px;")
+        style_lines.append(
+            f"style {nome} fill:{fill_color},stroke:#333,stroke-width:1px;"
+        )
 
     # -------------------------------
     # Agrupamento dos "ME" em subgraph
     # -------------------------------
     me_nodes = [
-        s['nome_subsistema'].replace(" ", "_")
-        for s in subsystems_data if s['tipo'] == "ME"
+        s["nome_subsistema"].replace(" ", "_")
+        for s in subsystems_data
+        if s["tipo"] == "ME"
     ]
     if me_nodes:
         mundo_externo = "subgraph Mundo Externo\n"
@@ -539,9 +590,9 @@ def flow(request, id):
     # -------------------------------
     # Gera conteúdo Mermaid
     # -------------------------------
-    diagram_lines = '\n'.join(text_list)
-    style_lines_str = '\n'.join(style_lines)
-    click_lines_str = '\n'.join(click_lines)
+    diagram_lines = "\n".join(text_list)
+    style_lines_str = "\n".join(style_lines)
+    click_lines_str = "\n".join(click_lines)
 
     conteudo_mermaid = f"""flowchart LR
 {mundo_externo}
@@ -554,147 +605,184 @@ def flow(request, id):
 
 {style_lines_str}
 """
-    #print(conteudo_mermaid) #comentário para teste
+    # print(conteudo_mermaid) #comentário para teste
     context = {
         "id": id,
         "family": family,
         "family_subsystems": family_subsystems,
-        'style_mode': style_mode,
+        "style_mode": style_mode,
         "title": "Fluxo",
-        "conteudo_mermaid": conteudo_mermaid
+        "conteudo_mermaid": conteudo_mermaid,
     }
     return render(request, "seapac/flow.html", context)
+
 
 @never_cache
 @login_required
 def edit_flow(request, id):
     family = get_object_or_404(Family, id=id)
     subsystems = Subsystem.objects.all()
-    selected_ids = list(family.subsistemas.values_list('id', flat=True))
-    if request.method == 'POST':
-        selected = request.POST.getlist('subsistemas')
+    selected_ids = list(family.subsistemas.values_list("id", flat=True))
+    if request.method == "POST":
+        selected = request.POST.getlist("subsistemas")
         family.subsistemas.set(selected)
         family.save()
-        return redirect('dashboard')
-    return render(request, "seapac/formflow.html", {
-        'family': family,
-        'subsystems': subsystems,
-        'selected_ids': selected_ids,
-        'title': 'Fluxo'
-    })
+        return redirect("dashboard")
+    return render(
+        request,
+        "seapac/formflow.html",
+        {
+            "family": family,
+            "subsystems": subsystems,
+            "selected_ids": selected_ids,
+            "title": "Fluxo",
+        },
+    )
+
 
 @never_cache
 @login_required
 def subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
-    family_subsystem = get_object_or_404(FamilySubsystem, family=family, subsystem_id=subsystem_id)
+    family_subsystem = get_object_or_404(
+        FamilySubsystem, family=family, subsystem_id=subsystem_id
+    )
 
     for produto in family_subsystem.produtos_saida:
         fluxos = produto.get("fluxos", [])
         total_qtd = sum(f.get("qtd", 0) or 0 for f in fluxos)
         for fluxo in fluxos:
             qtd = fluxo.get("qtd", 0) or 0
-            fluxo["porcentagem_calc"] = round((qtd / total_qtd) * 100, 2) if total_qtd else 0
+            fluxo["porcentagem_calc"] = (
+                round((qtd / total_qtd) * 100, 2) if total_qtd else 0
+            )
 
     if not family_subsystem.produtos_saida:
         family_subsystem.produtos_saida = family_subsystem.subsystem.produtos_base
         family_subsystem.save()
 
-    return render(request, "seapac/subsystem_panel.html", {
-        'subsystem': family_subsystem.subsystem,
-        'family': family,
-        'family_subsystem': family_subsystem,
-        'title': 'Painel do Subsistema',
-        'type': 'readonly'
-    })
+    return render(
+        request,
+        "seapac/subsystem_panel.html",
+        {
+            "subsystem": family_subsystem.subsystem,
+            "family": family,
+            "family_subsystem": family_subsystem,
+            "title": "Painel do Subsistema",
+            "type": "readonly",
+        },
+    )
+
 
 @never_cache
 @login_required
 def edit_subsystem_panel(request, family_id, subsystem_id):
     family = get_object_or_404(Family, id=family_id)
-    family_subsystem = get_object_or_404(FamilySubsystem, family=family, subsystem_id=subsystem_id)
+    family_subsystem = get_object_or_404(
+        FamilySubsystem, family=family, subsystem_id=subsystem_id
+    )
 
     subsystems_destino = family.subsistemas.all()
-    destino_choices = [(s.nome_subsistema, s.nome_subsistema) for s in subsystems_destino]
-    destino_choices.insert(0, ('', '---------'))  # opção vazia
+    destino_choices = [
+        (s.nome_subsistema, s.nome_subsistema) for s in subsystems_destino
+    ]
+    destino_choices.insert(0, ("", "---------"))  # opção vazia
 
-    produto_choices = [(p['nome'], p['nome']) for p in family_subsystem.produtos_saida]
+    produto_choices = [(p["nome"], p["nome"]) for p in family_subsystem.produtos_saida]
 
-    FluxoFormSet = formset_factory(FluxoForm, formset=BaseFluxoFormSet, extra=1, can_delete=True)
+    FluxoFormSet = formset_factory(
+        FluxoForm, formset=BaseFluxoFormSet, extra=1, can_delete=True
+    )
 
-    if request.method == 'POST':
-        formset = FluxoFormSet(request.POST, prefix='fluxo')
+    if request.method == "POST":
+        formset = FluxoFormSet(request.POST, prefix="fluxo")
 
         for form in formset:
-            form.fields['nome_produto'].choices = produto_choices
-            form.fields['destino'].choices = destino_choices
+            form.fields["nome_produto"].choices = produto_choices
+            form.fields["destino"].choices = destino_choices
 
         if formset.is_valid():
             produtos_saida_atualizados = list(family_subsystem.produtos_saida)
-            novos_fluxos = {p['nome']: [] for p in produtos_saida_atualizados}
+            novos_fluxos = {p["nome"]: [] for p in produtos_saida_atualizados}
 
             for form in formset:
-                if not form.cleaned_data or form.cleaned_data.get('DELETE'):
+                if not form.cleaned_data or form.cleaned_data.get("DELETE"):
                     continue
 
-                nome_produto = form.cleaned_data['nome_produto']
-                novos_fluxos[nome_produto].append({
-                    'qtd': float(form.cleaned_data.get('qtd') or 0),
-                    'custo': float(form.cleaned_data.get('custo') or 0),
-                    'und': form.cleaned_data.get('und') or '',
-                    'valor': float(form.cleaned_data.get('valor') or 0),
-                    'valor_potencial': float(form.cleaned_data.get('valor_potencial') or 0),
-                    'porcentagem': float(form.cleaned_data.get('porcentagem') or 0),
-                    'destino': form.cleaned_data.get('destino') or '',
-                })
+                nome_produto = form.cleaned_data["nome_produto"]
+                novos_fluxos[nome_produto].append(
+                    {
+                        "qtd": float(form.cleaned_data.get("qtd") or 0),
+                        "custo": float(form.cleaned_data.get("custo") or 0),
+                        "und": form.cleaned_data.get("und") or "",
+                        "valor": float(form.cleaned_data.get("valor") or 0),
+                        "valor_potencial": float(
+                            form.cleaned_data.get("valor_potencial") or 0
+                        ),
+                        "porcentagem": float(form.cleaned_data.get("porcentagem") or 0),
+                        "destino": form.cleaned_data.get("destino") or "",
+                    }
+                )
 
             for produto in produtos_saida_atualizados:
-                nome = produto['nome']
-                produto['fluxos'] = novos_fluxos.get(nome, [])
+                nome = produto["nome"]
+                produto["fluxos"] = novos_fluxos.get(nome, [])
 
             family_subsystem.produtos_saida = produtos_saida_atualizados
             family_subsystem.save()
 
-            return redirect('subsystem_panel', family_id=family.id, subsystem_id=family_subsystem.subsystem.id)
+            return redirect(
+                "subsystem_panel",
+                family_id=family.id,
+                subsystem_id=family_subsystem.subsystem.id,
+            )
 
     else:
         initial_data = []
         for produto in family_subsystem.produtos_saida:
-            if produto['fluxos']:
-                for fluxo in produto['fluxos']:
-                    initial_data.append({
-                        'nome_produto': produto['nome'],
-                        'qtd': fluxo.get('qtd', ''),
-                        'und': fluxo.get('und', ''),
-                        'custo': fluxo.get('custo', ''),
-                        'valor': fluxo.get('valor', ''),
-                        'valor_potencial': fluxo.get('valor_potencial', ''),
-                        'porcentagem': fluxo.get('porcentagem', ''),
-                        'destino': fluxo.get('destino', ''),
-                    })
+            if produto["fluxos"]:
+                for fluxo in produto["fluxos"]:
+                    initial_data.append(
+                        {
+                            "nome_produto": produto["nome"],
+                            "qtd": fluxo.get("qtd", ""),
+                            "und": fluxo.get("und", ""),
+                            "custo": fluxo.get("custo", ""),
+                            "valor": fluxo.get("valor", ""),
+                            "valor_potencial": fluxo.get("valor_potencial", ""),
+                            "porcentagem": fluxo.get("porcentagem", ""),
+                            "destino": fluxo.get("destino", ""),
+                        }
+                    )
 
-        formset = FluxoFormSet(initial=initial_data, prefix='fluxo')
+        formset = FluxoFormSet(initial=initial_data, prefix="fluxo")
 
         for form in formset:
-            form.fields['nome_produto'].choices = produto_choices
-            form.fields['destino'].choices = destino_choices
+            form.fields["nome_produto"].choices = produto_choices
+            form.fields["destino"].choices = destino_choices
 
-    return render(request, "seapac/subsystem_panel.html", {
-        'subsystem': family_subsystem.subsystem,
-        'family': family,
-        'family_subsystem': family_subsystem,
-        'title': 'Editar Painel do Subsistema',
-        'type': 'edit',
-        'formset': formset,
-    })
+    return render(
+        request,
+        "seapac/subsystem_panel.html",
+        {
+            "subsystem": family_subsystem.subsystem,
+            "family": family,
+            "family_subsystem": family_subsystem,
+            "title": "Editar Painel do Subsistema",
+            "type": "edit",
+            "formset": formset,
+        },
+    )
 
-#--------------CRUD TIMELINE--------------
+
+# --------------CRUD TIMELINE--------------
+
 
 @never_cache
 @login_required
 def timeline(request, id):
     family = get_object_or_404(Family, id=id)
-    timeline_events = family.timeline_events.all().order_by('data')
+    timeline_events = family.timeline_events.all().order_by("data")
 
     secoes = {}
     for evento in timeline_events:
@@ -706,7 +794,9 @@ def timeline(request, id):
     for secao, eventos in secoes.items():
         conteudo_mermaid += f"    section {secao}\n"
         for evento in eventos:
-            conteudo_mermaid += f"        {evento.data} : {evento.titulo} - {evento.descricao}\n"
+            conteudo_mermaid += (
+                f"        {evento.data} : {evento.titulo} - {evento.descricao}\n"
+            )
 
     context = {
         "id": id,
@@ -716,78 +806,93 @@ def timeline(request, id):
     }
     return render(request, "seapac/timeline/timeline.html", context)
 
+
 @never_cache
 @login_required
 def add_timeline(request, id):
     family = get_object_or_404(Family, id=id)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = TimelineEventForm(request.POST)
         if form.is_valid():
             timeline_event = form.save(commit=False)
             timeline_event.family = family
             timeline_event.save()
-            return redirect('timeline', id=family.id)
+            return redirect("timeline", id=family.id)
     else:
         form = TimelineEventForm()
 
-    return render(request, "seapac/timeline/form_timeline.html", {
-        'form': form,
-        'title': 'Adicionar Evento à Timeline',
-        'family': family
-    })
+    return render(
+        request,
+        "seapac/timeline/form_timeline.html",
+        {"form": form, "title": "Adicionar Evento à Timeline", "family": family},
+    )
+
 
 @never_cache
 @login_required
 def edit_timeline(request, id, event_id):
     family = get_object_or_404(Family, id=id)
     event = get_object_or_404(TimelineEvent, id=event_id, family=family)
-    timeline_events = family.timeline_events.all().order_by('-data')
+    timeline_events = family.timeline_events.all().order_by("-data")
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = TimelineEventForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
-            return redirect('timeline', id=family.id)
+            return redirect("timeline", id=family.id)
     else:
         form = TimelineEventForm(instance=event)
 
-    return render(request, "seapac/timeline/form_timeline.html", {
-        'form': form,
-        'title': 'Editar Evento da Timeline',
-        'family': family,
-        'timeline_events': timeline_events,
-        'event': event,
-    })
+    return render(
+        request,
+        "seapac/timeline/form_timeline.html",
+        {
+            "form": form,
+            "title": "Editar Evento da Timeline",
+            "family": family,
+            "timeline_events": timeline_events,
+            "event": event,
+        },
+    )
+
 
 @never_cache
 @login_required
 def search_timeline_event(request, id):
     family = get_object_or_404(Family, id=id)
 
-    if request.method == 'POST':
-        termo = request.POST.get('termo')
+    if request.method == "POST":
+        termo = request.POST.get("termo")
         if termo:
             try:
                 evento = family.timeline_events.get(titulo__icontains=termo)
-                return redirect('edit_timeline', id=family.id, event_id=evento.id)
+                return redirect("edit_timeline", id=family.id, event_id=evento.id)
             except TimelineEvent.DoesNotExist:
-                messages.error(request, f"Nenhum evento encontrado com o título '{termo}'.")
+                messages.error(
+                    request, f"Nenhum evento encontrado com o título '{termo}'."
+                )
         else:
             messages.error(request, "Por favor, digite um título para pesquisar.")
 
-    return redirect('timeline', id=family.id)
+    return redirect("timeline", id=family.id)
 
-#--------------CRUD CALENDARIO--------------
+
+# --------------CRUD CALENDARIO--------------
+
 
 @never_cache
 @login_required
 def calendar(request):
-    level = request.GET.get('nivel')
-    query = request.GET.get('q')
+    level = request.GET.get("nivel")
+    query = request.GET.get("q")
     families = Family.objects.all()
     if level:
-        families = [f for f in families if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))]
+        families = [
+            f
+            for f in families
+            if str(f.get_nivel()) == str(dict(LEVEL_CHOICES).get(int(level)))
+        ]
     if query:
         families = families.filter(nome_titular__icontains=query)
     context = {
@@ -798,22 +903,27 @@ def calendar(request):
     }
     return render(request, "seapac/calendar.html", context)
 
+
 def eventos_json(request):
     eventos = Evento.objects.all()
-    data = [{
-        'id': e.id,
-        'title': e.titulo,
-        'start': e.inicio.isoformat(),
-        'backgroundColor': '#4CAF50' if e.confirmado else '#f44336',
-    } for e in eventos]
+    data = [
+        {
+            "id": e.id,
+            "title": e.titulo,
+            "start": e.inicio.isoformat(),
+            "backgroundColor": "#4CAF50" if e.confirmado else "#f44336",
+        }
+        for e in eventos
+    ]
     return JsonResponse(data, safe=False)
+
 
 @csrf_exempt
 def criar_evento(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         data = json.loads(request.body)
-        start_datetime = parse_datetime(data['start'])
-        titulo = data['title']
+        start_datetime = parse_datetime(data["start"])
+        titulo = data["title"]
         familia_id = titulo.split()[0]
         family = get_object_or_404(Family, id=familia_id)
 
@@ -822,26 +932,32 @@ def criar_evento(request):
             inicio=start_datetime,
             familia=family,
         )
-        return JsonResponse({'status': 'ok', 'id': evento.id})
-    return JsonResponse({'status': 'error'}, status=400)
+        return JsonResponse({"status": "ok", "id": evento.id})
+    return JsonResponse({"status": "error"}, status=400)
+
 
 @csrf_exempt
 def deletar_evento(request, event_id):
-    if request.method == 'DELETE':
+    if request.method == "DELETE":
         try:
             evento = Evento.objects.get(id=event_id)
             evento.delete()
-            return JsonResponse({'status': 'ok'})
+            return JsonResponse({"status": "ok"})
         except Evento.DoesNotExist:
-            return JsonResponse({'status': 'error', 'message': 'Evento não encontrado'}, status=404)
-        
+            return JsonResponse(
+                {"status": "error", "message": "Evento não encontrado"}, status=404
+            )
+
+
 @csrf_exempt
 def confirmar_evento(request, event_id):
-    if request.method == 'POST':
+    if request.method == "POST":
         try:
             evento = Evento.objects.get(id=event_id)
             evento.confirmado = True
             evento.save()
-            return JsonResponse({'status': 'ok', 'message': 'Evento confirmado'})
+            return JsonResponse({"status": "ok", "message": "Evento confirmado"})
         except Evento.DoesNotExist:
-            return JsonResponse({'status': 'error', 'message': 'Evento não encontrado'}, status=404)
+            return JsonResponse(
+                {"status": "error", "message": "Evento não encontrado"}, status=404
+            )

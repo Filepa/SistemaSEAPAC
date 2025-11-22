@@ -6,11 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0007_alter_evento_familia'),
+        ("seapac", "0007_alter_evento_familia"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='User',
+            name="User",
         ),
     ]

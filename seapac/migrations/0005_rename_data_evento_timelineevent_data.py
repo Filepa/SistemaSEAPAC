@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0004_timelineevent'),
+        ("seapac", "0004_timelineevent"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='timelineevent',
-            old_name='data_evento',
-            new_name='data',
+            model_name="timelineevent",
+            old_name="data_evento",
+            new_name="data",
         ),
     ]

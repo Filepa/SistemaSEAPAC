@@ -1183,7 +1183,7 @@
     "pk": 2,
     "fields": {
       "nome_subsistema": "Caprinocultura",
-      "descricao": "",
+      "descricao": "Criação e manejo de caprinos para produção de carne, leite ou couro, adequada a ambientes semiáridos e de baixo custo de manutenção.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1210,7 +1210,7 @@
     "pk": 3,
     "fields": {
       "nome_subsistema": "Avicultura",
-      "descricao": "",
+      "descricao": "Criação de aves, especialmente galinhas, para produção de ovos e carne, com foco em sistemas sustentáveis e integração com a propriedade rural.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1241,7 +1241,7 @@
     "pk": 4,
     "fields": {
       "nome_subsistema": "Bovinocultura",
-      "descricao": "",
+      "descricao": "Criação de bovinos para produção de leite e carne, envolvendo manejo alimentar, sanitário e práticas sustentáveis.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1276,7 +1276,7 @@
     "pk": 5,
     "fields": {
       "nome_subsistema": "Suinocultura",
-      "descricao": "",
+      "descricao": "Criação de suínos destinada à produção de carne, utilizando boas práticas de manejo, nutrição e biossegurança.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1299,7 +1299,7 @@
     "pk": 6,
     "fields": {
       "nome_subsistema": "Quintal",
-      "descricao": "",
+      "descricao": "Espaço multifuncional próximo à residência, onde se cultivam plantas alimentares, medicinais e pequenas criações para autoconsumo.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1322,7 +1322,7 @@
     "pk": 7,
     "fields": {
       "nome_subsistema": "Apicultura",
-      "descricao": "",
+      "descricao": "Criação de abelhas com ferrão para produção de mel, própolis e outros derivados, contribuindo para polinização e biodiversidade.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1353,7 +1353,7 @@
     "pk": 8,
     "fields": {
       "nome_subsistema": "Meliponicultura",
-      "descricao": "",
+      "descricao": "Criação de abelhas nativas sem ferrão, importante para polinização, preservação ambiental e produção de mel de alto valor agregado.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1376,7 +1376,7 @@
     "pk": 9,
     "fields": {
       "nome_subsistema": "Horticultura",
-      "descricao": "",
+      "descricao": "Cultivo intensivo de hortaliças, legumes e verdes, usando boas práticas agroecológicas e manejo sustentável do solo.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1419,7 +1419,7 @@
     "pk": 10,
     "fields": {
       "nome_subsistema": "Fruticultura",
-      "descricao": "",
+      "descricao": "Cultivo de frutíferas com foco em produção sustentável, manejo de podas, irrigação, pragas e colheita.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1446,7 +1446,7 @@
     "pk": 11,
     "fields": {
       "nome_subsistema": "Roçado",
-      "descricao": "",
+      "descricao": "Área tradicional de cultivo diversificado, geralmente em sistema de sequeiro, utilizada para produção de alimentos básicos.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1489,7 +1489,7 @@
     "pk": 12,
     "fields": {
       "nome_subsistema": "Forragem",
-      "descricao": "",
+      "descricao": "Área destinada à produção de plantas forrageiras utilizadas na alimentação de animais, garantindo suplementação durante períodos secos.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1524,7 +1524,7 @@
     "pk": 13,
     "fields": {
       "nome_subsistema": "Plantas medicinais",
-      "descricao": "",
+      "descricao": "Cultivo e manejo de espécies vegetais utilizadas para fins terapêuticos, valorizando saberes tradicionais e práticas fitoterápicas.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1551,7 +1551,7 @@
     "pk": 14,
     "fields": {
       "nome_subsistema": "Viveiro de mudas",
-      "descricao": "",
+      "descricao": "Estrutura destinada à produção de mudas de espécies nativas, frutíferas e ornamentais para reflorestamento, agroecologia ou comercialização.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1574,7 +1574,7 @@
     "pk": 15,
     "fields": {
       "nome_subsistema": "Banco de sementes",
-      "descricao": "",
+      "descricao": "Espaço para conservação, troca e reprodução de sementes crioulas, preservando a biodiversidade agrícola e a autonomia dos agricultores.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1597,7 +1597,7 @@
     "pk": 16,
     "fields": {
       "nome_subsistema": "Piscicultura",
-      "descricao": "",
+      "descricao": "Criação de peixes em tanques, açudes ou viveiros, voltada para produção de proteína animal e geração de renda.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1615,8 +1615,8 @@
     "model": "seapac.subsystem",
     "pk": 17,
     "fields": {
-      "nome_subsistema": "Cacinicultura",
-      "descricao": "",
+      "nome_subsistema": "Carcinicultura",
+      "descricao": "Criação de camarões em viveiros escavados ou tanques, com manejo especializado de água, alimentação e qualidade ambiental.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1631,7 +1631,7 @@
     "pk": 18,
     "fields": {
       "nome_subsistema": "Floricultura",
-      "descricao": "",
+      "descricao": "Produção de flores e plantas ornamentais para fins comerciais, estéticos ou paisagísticos.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1646,7 +1646,7 @@
     "pk": 19,
     "fields": {
       "nome_subsistema": "Compostagem",
-      "descricao": "",
+      "descricao": "Processo de transformação de resíduos orgânicos em adubo natural, utilizado para melhorar a fertilidade do solo.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1669,7 +1669,7 @@
     "pk": 20,
     "fields": {
       "nome_subsistema": "Artesanato",
-      "descricao": "",
+      "descricao": "Produção manual de peças decorativas ou utilitárias, utilizando materiais locais e saberes culturais tradicionais.",
       "tipo": "SS",
       "produtos_base": [
         {
@@ -1692,7 +1692,7 @@
     "pk": 21,
     "fields": {
       "nome_subsistema": "Cisterna P1MC",
-      "descricao": "",
+      "descricao": "Tecnologia social de captação de água de chuva para consumo humano, com capacidade de 16 mil litros.",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -1707,7 +1707,7 @@
     "pk": 22,
     "fields": {
       "nome_subsistema": "Cisterna P1+2",
-      "descricao": "",
+      "descricao": "Cisterna destinada à produção agrícola, com maior capacidade de armazenamento, usada para irrigação e criação de animais.",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -1730,7 +1730,7 @@
     "pk": 23,
     "fields": {
       "nome_subsistema": "Barreiro Trincheira",
-      "descricao": "",
+      "descricao": "Estrutura escavada no solo para armazenar água de chuva, utilizada na dessedentação de animais ou irrigação.",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -1749,7 +1749,7 @@
     "pk": 24,
     "fields": {
       "nome_subsistema": "Barragem",
-      "descricao": "",
+      "descricao": "Construção hidrológica destinada a reter água, aumentando a disponibilidade hídrica para produção ou consumo.",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -1768,7 +1768,7 @@
     "pk": 25,
     "fields": {
       "nome_subsistema": "Reuso de Água Cinza",
-      "descricao": "",
+      "descricao": "Sistema que trata e reutiliza águas provenientes de pias, chuveiros e lavanderias para irrigação de plantas.",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -1783,7 +1783,7 @@
     "pk": 26,
     "fields": {
       "nome_subsistema": "Reuso de Água Total",
-      "descricao": "",
+      "descricao": "Tecnologia que permite reuso completo das águas residenciais, incluindo água negra, após tratamento adequado.",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -1798,7 +1798,7 @@
     "pk": 27,
     "fields": {
       "nome_subsistema": "Biodigestor",
-      "descricao": "",
+      "descricao": "Equipamento que transforma resíduos orgânicos em biogás e biofertilizante, promovendo energia renovável e adubação natural.",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -1817,7 +1817,7 @@
     "pk": 28,
     "fields": {
       "nome_subsistema": "Secador Solar",
-      "descricao": "",
+      "descricao": "Estrutura que utiliza energia solar para desidratar alimentos, aumentando sua conservação e valor comercial.",
       "tipo": "TS",
       "produtos_base": [
         {
@@ -1840,7 +1840,7 @@
     "pk": 29,
     "fields": {
       "nome_subsistema": "Mercado Local",
-      "descricao": "",
+      "descricao": "Espaço onde agricultores comercializam diretamente sua produção, fortalecendo a economia local e valorizando produtos da agricultura familiar.",
       "tipo": "ME",
       "produtos_base": []
     }
@@ -1850,7 +1850,7 @@
     "pk": 30,
     "fields": {
       "nome_subsistema": "Feira Agroecológica",
-      "descricao": "",
+      "descricao": "Ambiente de comercialização de produtos orgânicos ou agroecológicos diretamente pelo agricultor, promovendo renda e alimentação saudável.",
       "tipo": "ME",
       "produtos_base": []
     }
@@ -1860,7 +1860,7 @@
     "pk": 31,
     "fields": {
       "nome_subsistema": "PNAE",
-      "descricao": "",
+      "descricao": "Subsistema relacionado ao fornecimento de alimentos da agricultura familiar para o Programa Nacional de Alimentação Escolar.",
       "tipo": "ME",
       "produtos_base": []
     }
@@ -1870,7 +1870,7 @@
     "pk": 32,
     "fields": {
       "nome_subsistema": "Farmácia",
-      "descricao": "",
+      "descricao": "Espaço de preparo e distribuição de remédios naturais, produtos fitoterápicos ou itens de saúde comunitária.",
       "tipo": "ME",
       "produtos_base": []
     }
@@ -1880,7 +1880,7 @@
     "pk": 33,
     "fields": {
       "nome_subsistema": "Atravessador",
-      "descricao": "",
+      "descricao": "Agente intermediário que compra produtos dos agricultores e revende, influenciando preços e dinâmica de mercado.",
       "tipo": "ME",
       "produtos_base": []
     }
