@@ -48,7 +48,7 @@
                     {% if user.is_administrador %}
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="/admin/">
+                            <a class="dropdown-item" href="{% url 'list_user' %}">
                                 <i class="bi bi-shield-lock"></i> Painel Admin
                             </a>
                         </li>
