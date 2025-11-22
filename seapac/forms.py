@@ -156,7 +156,7 @@ class SubsystemForm(forms.ModelForm):
             "nome_subsistema": forms.TextInput(attrs={"class": "form-control"}),
             "descricao": forms.Textarea(attrs={"class": "form-control"}),
             "foto_subsistema": forms.FileInput(attrs={"class": "form-control"}),
-            "tipo": forms.Select(attrs={"class": "form-select"}),
+            "tipo": forms.Select(attrs={"class": "form-control"}),
         }
 
     # Função para validar o tipo de imagem enviada pelo usuário
