@@ -281,7 +281,7 @@ class TimelineEvent(models.Model):
         return f"{self.titulo} - {self.family.get_nome_familia()}"
 
 
-class Evento(models.Model):
+class Evento(models.Model): #corrigir para chave composta
     titulo = models.CharField(max_length=200)
     inicio = models.DateTimeField()
     familia = models.ForeignKey(
