@@ -166,6 +166,7 @@ def list_user(request):
         "painel/list_user.html",
         {
             "usuarios": page_obj,
+            "page_obj": page_obj,
             "filtro_form": filtro_form,
         },
     )
