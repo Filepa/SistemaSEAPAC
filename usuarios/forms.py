@@ -239,7 +239,7 @@ class UsuarioEditForm(forms.ModelForm):
             "last_name": forms.TextInput(attrs={"class": "form-control"}),
             "email": forms.EmailInput(attrs={"class": "form-control"}),
             "cpf": forms.TextInput(attrs={"class": "form-control"}),
-            "nome_cidade": forms.TextInput(attrs={"class": "form-control"}),
+            "nome_cidade": forms.Select(attrs={"class": "form-control"}),
             "endereco": forms.TextInput(attrs={"class": "form-control"}),
             "nome_bairro": forms.TextInput(attrs={"class": "form-control"}),
             "foto_perfil": forms.FileInput(attrs={"class": "form-control"}),
@@ -264,6 +264,11 @@ class UsuarioEditForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if self.instance.pk:
             self.fields["grupos"].initial = self.instance.groups.all()
+
+        # --- FORMATAÇÃO DO CPF NA EDIÇÃO ---
+        cpf = self.instance.cpf
+        if cpf and cpf.isdigit() and len(cpf) == 11:
+            self.initial["cpf"] = f"{cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}"
 
     def save(self, commit=True):
         user = super().save(commit=False)

@@ -1885,18 +1885,6 @@
       "produtos_base": []
     }
   },
-  { 
-    "model": "seapac.family",
-    "pk": 1,
-    "fields": {
-      "nome_titular": "Teste Júnior",
-      "data_inicio": "2025-01-01",
-      "contato": "(84) 94002-8922",
-      "municipio": 101,
-      "projetos": [1],
-      "subsistemas": [1, 29]
-    }
-  },
   {
     "model": "seapac.project",
     "pk": 1,
