@@ -244,7 +244,11 @@ def create_projects(request):
     else:
         form = ProjectForm()
 
-    return render(request, "seapac/projetos/projects_form.html", {"form": form, "title": "Cadastrar Projeto"})
+    return render(
+        request,
+        "seapac/projetos/projects_form.html",
+        {"form": form, "title": "Cadastrar Projeto"},
+    )
 
 
 @never_cache
@@ -323,7 +327,11 @@ def create_tecs(request):
     else:
         form = TechnicianForm()
 
-    return render(request, "seapac/tecnicos/tecnicos_form.html", {"form": form, "title": "Cadastrar Técnico"})
+    return render(
+        request,
+        "seapac/tecnicos/tecnicos_form.html",
+        {"form": form, "title": "Cadastrar Técnico"},
+    )
 
 
 @never_cache
@@ -340,7 +348,9 @@ def edit_tecs(request, pk):
         form = TechnicianEditForm(instance=tecs)
 
     return render(
-        request, "seapac/tecnicos/tecnicos_form.html", {"form": form, "tecs": tecs, "title": "Editar Técnico"}
+        request,
+        "seapac/tecnicos/tecnicos_form.html",
+        {"form": form, "tecs": tecs, "title": "Editar Técnico"},
     )
 
 
@@ -409,7 +419,9 @@ def edit_subsystems(request, id):
             return redirect("list_subsystems")
     else:
         form_data = "\n".join([p.get("nome", "") for p in subsistema.produtos_base])
-        form = SubsystemEditForm(instance=subsistema, initial={"produtos_base": form_data})
+        form = SubsystemEditForm(
+            instance=subsistema, initial={"produtos_base": form_data}
+        )
 
     return render(
         request,

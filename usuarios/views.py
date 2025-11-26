@@ -227,7 +227,7 @@ def editar_usuario_admin(request, pk):
             "form": form,
             "titulo": f"Editar Usuário: {usuario.username}",
             "usuario": usuario,
-            'tipo': 'edit',
+            "tipo": "edit",
         },
     )
 
