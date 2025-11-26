@@ -239,7 +239,7 @@ def create_projects(request):
     else:
         form = ProjectForm()
 
-    return render(request, "seapac/projetos/projects_form.html", {"form": form})
+    return render(request, "seapac/projetos/projects_form.html", {"form": form, "title": "Cadastrar Projeto"})
 
 
 @never_cache
@@ -258,7 +258,7 @@ def edit_projects(request, pk):
     return render(
         request,
         "seapac/projetos/projects_form.html",
-        {"form": form, "projetos": projetos},
+        {"form": form, "projetos": projetos, "title": "Editar Projeto"},
     )
 
 
@@ -318,7 +318,7 @@ def create_tecs(request):
     else:
         form = TechnicianForm()
 
-    return render(request, "seapac/tecnicos/tecnicos_form.html", {"form": form})
+    return render(request, "seapac/tecnicos/tecnicos_form.html", {"form": form, "title": "Cadastrar Técnico"})
 
 
 @never_cache
@@ -335,7 +335,7 @@ def edit_tecs(request, pk):
         form = TechnicianForm(instance=tecs)
 
     return render(
-        request, "seapac/tecnicos/tecnicos_form.html", {"form": form, "tecs": tecs}
+        request, "seapac/tecnicos/tecnicos_form.html", {"form": form, "tecs": tecs, "title": "Editar Técnico"}
     )
 
 

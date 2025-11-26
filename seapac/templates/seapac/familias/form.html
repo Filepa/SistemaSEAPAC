@@ -1,63 +1,88 @@
 {% extends 'base.html' %}
 
 {% block center %}
-<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
-<div>
-    <form method="post" enctype="multipart/form-data" class="container-forms">
-        <section class='forms-section'>
+<div class="container py-4">
+
+    <form method="post" enctype="multipart/form-data"
+          class="card shadow-sm border-0 rounded-3 bg-white">
+
+        <!-- TOPO VERDE DENTRO DO CARD -->
+        <div class="card-header bg-success text-white rounded-top">
+            <h4 class="mb-0">
+                <i class="fas fa-user-plus"></i>
+                {{ title }}
+            </h4>
+        </div>
+
+        <div class="p-4">
+            {% csrf_token %}
+
             {% if form.errors %}
-                <div style="background:#fee; border:1px solid #f99; padding:10px; margin-bottom:15px; border-radius:5px;">
-                    <strong>Erros encontrados:</strong>
-                    <ul>
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <li><b>{{ field.label }}:</b> {{ error }}</li>
-                            {% endfor %}
+            <div class="alert alert-danger border-danger-subtle" role="alert">
+                <strong>Erros encontrados:</strong>
+                <ul class="mt-2 mb-0">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li><b>{{ field.label }}:</b> {{ error }}</li>
                         {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
             {% endif %}
-            <div class="forms-info-titular">
-                <div class="section-header form-header">
-                    <h2>Informações do Titular</h2>
-                </div>
-                {% csrf_token %}
+
+        <h5 class="text-success border-bottom pb-2">Informações do Titular</h5>
+
+        <div class="row mt-3 h-100 d-flex align-items-stretch">
+
+            <!-- COLUNA ESQUERDA -->
+            <div class="col-md-6 d-flex flex-column">
                 <div class="mb-3">
-                    <label for="nome_titular" class="form-label">Nome</label>
+                    {{ form.nome_titular.label_tag }}
                     {{ form.nome_titular }}
                 </div>
+
                 <div class="mb-3">
-                    <label for="data_inicio" class="form-label">Data de Iniciação</label>
-                    {{ form.data_inicio }}
-                </div>
-                <div class="mb-3">
-                    <label for="contato" class="form-label">Contato</label>
+                    {{ form.contato.label_tag }}
                     {{ form.contato }}
                 </div>
+
                 <div class="mb-3">
-                    <label for="projetos" class="form-label">Projeto</label>
-                    {{ form.projetos }}
+                    {{ form.data_inicio.label_tag }}
+                    {{ form.data_inicio }}
                 </div>
+
                 <div class="mb-3">
-                    <label for="municipio" class="form-label">Município</label>
+                    {{ form.municipio.label_tag }}
                     {{ form.municipio }}
                 </div>
             </div>
-        </section>
-        <div class="box-save-cancel">
-            <button class="btn btn-success" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16"><path d="M11 2H9v3h2z"/><path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"/></svg>
-                <p class='btn-text'>Salvar</p>
+
+            <!-- COLUNA DIREITA (preenche toda a altura disponível) -->
+            <div class="col-md-6 d-flex flex-column">
+                <div class="mb-3 flex-grow-1 d-flex flex-column">
+                    {{ form.projetos.label_tag }}
+                    {{ form.projetos }}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="d-flex gap-3 justify-content-end pt-3 border-top">
+
+            <button type="submit" class="btn btn-success d-flex align-items-center gap-2 px-4">
+                <i class="bi bi-floppy"></i>
+                Salvar
             </button>
-            <button class="btn btn-danger" type="reset" onclick="window.location.href='{% url 'dashboard' %}'">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/></svg>
-                <p class='btn-text'>Cancelar</p>
-            </button>
+
+            <a href="{% url 'dashboard' %}" class="btn btn-danger d-flex align-items-center gap-2 px-4">
+                <i class="bi bi-x"></i>
+                Cancelar
+            </a>
+
         </div>
     </form>
 </div>
-
 {% endblock %}

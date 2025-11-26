@@ -15,7 +15,7 @@ class ProjectForm(ModelForm):
         widgets = {
             "nome_projeto": forms.TextInput(attrs={"class": "form-control"}),
             "descricao": forms.Textarea(
-                attrs={"class": "form-control", "stle": "max-width:400px;"}
+                attrs={"class": "form-control"}
             ),
             "tecnicos": forms.SelectMultiple(
                 attrs={"class": "form-control", "size": 5}
@@ -65,14 +65,22 @@ class FamilyForm(ModelForm):
         exclude = ["terra", "subsistemas"]
         fields = "__all__"
         widgets = {
-            "nome_titular": forms.TextInput(attrs={"class": "form-control"}),
-            "data_inicio": forms.DateInput(
-                attrs={"class": "form-control", "type": "date"}, format="%Y-%m-%d"
+            "nome_titular": forms.TextInput(
+                attrs={"class": "form-control"}
             ),
-            "contato": forms.TextInput(attrs={"class": "form-control"}),
-            "municipio": forms.Select(attrs={"class": "form-control"}),
+            "data_inicio": forms.DateInput(
+                attrs={"class": "form-control", "type": "date"},
+                format="%Y-%m-%d"
+            ),
+            "contato": forms.TextInput(
+                attrs={"class": "form-control"}
+            ),
+            "municipio": forms.Select(
+                attrs={"class": "form-control"}
+            ),
             "projetos": forms.SelectMultiple(
-                attrs={"class": "form-control", "size": 5}
+                attrs={"class": "form-control",
+                       "size": 14}
             ),
         }
 
@@ -171,7 +179,7 @@ class SubsystemForm(forms.ModelForm):
         }
 
     # Função para validar o tipo de imagem enviada pelo usuário
-    def clean_foto_subssistema(self):
+    def clean_foto_subsistema(self):
         foto = self.cleaned_data.get("foto_subsistema")
 
         # Caso o usuário não envie nada (edição sem trocar a foto), retorna normal
@@ -226,6 +234,6 @@ class TimelineEventForm(ModelForm):
             "data": forms.DateInput(
                 attrs={"class": "form-control", "type": "date"}, format="%Y-%m-%d"
             ),
-            "descricao": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
+            "descricao": forms.Textarea(attrs={"class": "form-control", "rows": 8}),
             "secao": forms.TextInput(attrs={"class": "form-control"}),
         }

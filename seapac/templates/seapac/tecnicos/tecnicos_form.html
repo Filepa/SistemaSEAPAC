@@ -2,15 +2,26 @@
 {% load static %}
 
 {% block center %}
-<div class="form-container">
-    <h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
-    
-    <form method="post" enctype="multipart/form-data" class="container-forms">
-        <section class='forms-section'>
+
+<div class="container py-4" style="max-width: 850px;">
+
+    <form method="post" enctype="multipart/form-data" class="card shadow-sm border-0 bg-white">
+
+        <!-- HEADER VERDE -->
+        <div class="card-header bg-success text-white rounded-top">
+            <h4 class="mb-0">
+                <i class="fas fa-user-tie"></i> {{ title }}
+            </h4>
+        </div>
+
+        <div class="card-body">
+
+            {% csrf_token %}
+
             {% if form.errors %}
-                <div style="background:#fee; border:1px solid #f99; padding:10px; margin-bottom:15px; border-radius:5px;">
+                <div class="alert alert-danger border-danger-subtle">
                     <strong>Erros encontrados:</strong>
-                    <ul>
+                    <ul class="mt-2 mb-0">
                         {% for field in form %}
                             {% for error in field.errors %}
                                 <li><b>{{ field.label }}:</b> {{ error }}</li>
@@ -22,154 +33,61 @@
                     </ul>
                 </div>
             {% endif %}
-            <div class="forms-info-titular">
-                <div class="section-header form-header">
-                    <h2>Informações do Técnico</h2>
+
+            <h5 class="text-success border-bottom pb-2 mb-4">Informações do Técnico</h5>
+
+            <!-- GRID -->
+            <div class="row g-4">
+
+                <div class="col-md-8">
+                    <label class="form-label">Nome do Técnico:</label>
+                    {{ form.nome_tecnico }}
                 </div>
 
-                {% csrf_token %}
-                
-                <div class="form-grid">
-                    <div class="mb-3">
-                        <label for="nome_tecnico" class="form-label">Nome do Técnico:</label>
-                        {{ form.nome_tecnico }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="especialidade" class="form-label">Especialidade:</label>
-                        {{ form.especialidade }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="telefone" class="form-label">Telefone:</label>
-                        {{ form.telefone }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="cpf" class="form-label">CPF:</label>
-                        {{ form.cpf }}
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email:</label>
-                        {{ form.email }}
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="data_nascimento" class="form-label">Data de nascimento:</label>
-                        {{ form.data_nascimento }}
-                    </div>
-
+                <div class="col-md-4">
+                    <label class="form-label">Especialidade:</label>
+                    {{ form.especialidade }}
                 </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Telefone:</label>
+                    {{ form.telefone }}
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">CPF:</label>
+                    {{ form.cpf }}
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Email:</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Data de nascimento:</label>
+                    {{ form.data_nascimento }}
+                </div>
+
             </div>
-        </section>
-        
-        <div class="box-save-cancel">
-            <button class="btn btn-success" type="submit" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16"><path d="M11 2H9v3h2z"/><path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"/></svg>
-                <p class='btn-text'>Salvar</p>
-            </button>
 
-            <button class="btn btn-danger" type="button" onclick="window.location.href='{% url 'list_tecs' %}'">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-                </svg>
-                <span class='btn-text'>Cancelar</span>
-            </button>
+            <!-- BOTÕES -->
+            <div class="d-flex justify-content-end gap-3 mt-4 pt-3 border-top">
+
+                <button class="btn btn-success d-flex align-items-center gap-2 px-4" type="submit">
+                    <i class="bi bi-floppy"></i>
+                    Salvar
+                </button>
+
+                <a href="{% url 'list_tecs' %}" class="btn btn-danger d-flex align-items-center gap-2 px-4">
+                    <i class="bi bi-x-lg"></i>
+                    Cancelar
+                </a>
+            </div>
+
         </div>
     </form>
+
 </div>
 
-<style>
-    .form-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    
-    .section-header {
-        text-align: center;
-        margin-bottom: 25px;
-        color: #0f451d;
-    }
-    
-    .form-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-    }
-    
-    .form-label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 500;
-        color: #333;
-    }
-    
-    input, textarea, select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-        box-sizing: border-box;
-    }
-    
-    input:focus, textarea:focus, select:focus {
-        outline: none;
-        border-color: #0f451d;
-        box-shadow: 0 0 0 2px rgba(15, 69, 29, 0.2);
-    }
-    
-    .box-save-cancel {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-    }
-    
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    .btn-success {
-        background-color: #0f451d;
-        color: white;
-    }
-    
-    .btn-success:hover {
-        background-color: #0a3015;
-        transform: translateY(-2px);
-    }
-    
-    .btn-danger {
-        background-color: #dc3545;
-        color: white;
-    }
-    
-    .btn-danger:hover {
-        background-color: #bd2130;
-        transform: translateY(-2px);
-    }
-    
-    @media (max-width: 768px) {
-        .form-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .box-save-cancel {
-            flex-direction: column;
-        }
-    }
-</style>
 {% endblock %}
