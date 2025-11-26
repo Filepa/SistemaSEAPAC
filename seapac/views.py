@@ -17,6 +17,11 @@ from .forms import (
     TimelineEventForm,
     FluxoForm,
     BaseFluxoFormSet,
+    FamilyEditForm,
+    ProjectEditForm,
+    TechnicianEditForm,
+    SubsystemEditForm,
+    TimelineEventEditForm,
 )
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -112,12 +117,12 @@ def edit_family(request, id):
     family = get_object_or_404(Family, id=id)
 
     if request.method == "POST":
-        form = FamilyForm(request.POST, request.FILES, instance=family)
+        form = FamilyEditForm(request.POST, request.FILES, instance=family)
         if form.is_valid():
             form.save()
             return redirect("dashboard")
     else:
-        form = FamilyForm(instance=family)
+        form = FamilyEditForm(instance=family)
     return render(
         request, "seapac/familias/form.html", {"form": form, "title": "Editar Família"}
     )
@@ -248,12 +253,12 @@ def edit_projects(request, pk):
     projetos = get_object_or_404(Project, pk=pk)
 
     if request.method == "POST":
-        form = ProjectForm(request.POST, instance=projetos)
+        form = ProjectEditForm(request.POST, instance=projetos)
         if form.is_valid():
             form.save()
             return redirect("detail_projects", pk=projetos.pk)
     else:
-        form = ProjectForm(instance=projetos)
+        form = ProjectEditForm(instance=projetos)
 
     return render(
         request,
@@ -327,12 +332,12 @@ def edit_tecs(request, pk):
     tecs = get_object_or_404(Technician, pk=pk)
 
     if request.method == "POST":
-        form = TechnicianForm(request.POST, instance=tecs)
+        form = TechnicianEditForm(request.POST, instance=tecs)
         if form.is_valid():
             form.save()
             return redirect("detail_tecs", pk=tecs.pk)
     else:
-        form = TechnicianForm(instance=tecs)
+        form = TechnicianEditForm(instance=tecs)
 
     return render(
         request, "seapac/tecnicos/tecnicos_form.html", {"form": form, "tecs": tecs, "title": "Editar Técnico"}
@@ -398,13 +403,13 @@ def edit_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
 
     if request.method == "POST":
-        form = SubsystemForm(request.POST, request.FILES, instance=subsistema)
+        form = SubsystemEditForm(request.POST, request.FILES, instance=subsistema)
         if form.is_valid():
             form.save()
             return redirect("list_subsystems")
     else:
         form_data = "\n".join([p.get("nome", "") for p in subsistema.produtos_base])
-        form = SubsystemForm(instance=subsistema, initial={"produtos_base": form_data})
+        form = SubsystemEditForm(instance=subsistema, initial={"produtos_base": form_data})
 
     return render(
         request,
@@ -837,12 +842,12 @@ def edit_timeline(request, id, event_id):
     timeline_events = family.timeline_events.all().order_by("-data")
 
     if request.method == "POST":
-        form = TimelineEventForm(request.POST, instance=event)
+        form = TimelineEventEditForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
             return redirect("timeline", id=family.id)
     else:
-        form = TimelineEventForm(instance=event)
+        form = TimelineEventEditForm(instance=event)
 
     return render(
         request,
