@@ -44,7 +44,11 @@
         <!-- Paginação -->
         {% include "partials/pagination.html" %}
     {% else %}
-        <p class="text-center text-muted mt-4">Nenhum Técnico encontrado.</p>
+        <div class="no-families">
+            <i class="fas fa-search"></i>
+            <h3>Nenhum técnico encontrado</h3>
+            <p>Tente ajustar os filtros de pesquisa.</p>
+        </div>
     {% endif %}
 </div>
 

@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sistema de Monitoramento de Transição Agroecológica - Apoiando pequenos agricultores em parceria com a SEAPAC">
     <title>Sistema de Monitoramento - Transição Agroecológica | SEAPAC</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/homepage.css" >
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Header e Navegação -->
@@ -20,14 +21,16 @@
                     <p>Transição Agroecológica</p>
                 </div>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#about">O que é o Sistema?</a></li>
                 <li><a href="#howto">Como Utilizar</a></li>
                 <li><a href="#team">Quem Somos</a></li>
                 <li><a href="{% url 'login' %}">Entre | Cadastre-se</a></li>
             </ul>
-            <button class="menu-toggle">☰</button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
@@ -282,6 +285,26 @@
                 }
             });
         });
+
+        const toggleButton = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('navLinks');
+
+        if (toggleButton && sidebar) {
+        toggleButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sidebar.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (
+            sidebar.classList.contains('open') &&
+            !sidebar.contains(e.target) &&
+            !toggleButton.contains(e.target)
+            ) {
+            sidebar.classList.remove('open');
+            }
+        });
+        }
     </script>
 </body>
 </html>

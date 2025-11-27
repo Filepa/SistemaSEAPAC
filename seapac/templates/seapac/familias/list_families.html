@@ -104,7 +104,11 @@
             {% endwith %}
         {% endif %}
     {% else %}
-        <p class="no-results">Nenhuma família encontrada.</p>
+        <div class="no-families">
+            <i class="fas fa-search"></i>
+            <h3>Nenhuma família encontrada</h3>
+            <p>Tente ajustar os filtros de pesquisa.</p>
+        </div>
     {% endif %}
 </div>
 {% endblock %}

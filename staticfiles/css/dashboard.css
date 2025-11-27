@@ -772,6 +772,10 @@ body {
         align-items: flex-start;
         gap: var(--space-4);
     }
+
+    .user-info, .text-start{
+        display: none !important;
+    }
 }
 
 /* Loading Animation */
