@@ -28,8 +28,10 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.dateparse import parse_datetime
+from .reports.pdf import gerar_relatorio_family
 from django.core.paginator import Paginator
 from django.forms import formset_factory
+from django.http import FileResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.urls import reverse
@@ -966,3 +968,17 @@ def confirmar_evento(request, event_id):
             return JsonResponse(
                 {"status": "error", "message": "Evento não encontrado"}, status=404
             )
+
+
+# -------------- GERAÇÃO DE RELATÓRIOS--------------
+
+@login_required
+def relatorio_family_pdf(request, id):
+    family = get_object_or_404(Family, id=id)
+    pdf_buffer = gerar_relatorio_family(family)
+
+    return FileResponse(
+        pdf_buffer,
+        as_attachment=True,
+        filename=f"relatorio_{family.nome_titular}.pdf"
+    )

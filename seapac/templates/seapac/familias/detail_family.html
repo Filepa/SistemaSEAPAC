@@ -25,6 +25,12 @@
                     <a href="{% url 'dashboard' %}" class="btn btn-primary" id="addProjectBtn">
                          <i class="	fas fa-step-backward"></i> Voltar
                     </a>
+                    <a href="{% url 'relatorio_family' family.id %}" 
+                        class="btn btn-success" 
+                        target="_blank">
+                            📄 Gerar Relatório PDF
+                    </a>
+
                 </div>
             </div>
         </div>
