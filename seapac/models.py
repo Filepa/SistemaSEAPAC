@@ -283,9 +283,7 @@ class TimelineEvent(models.Model):
 
 class Evento(models.Model):
     titulo = models.CharField(max_length=200)
-
-    data = models.DateField(null=True, blank=True)  # <-- apenas o dia
-    inicio = models.TimeField()  # opcional (hora da visita)
+    data = models.DateField()
 
     familia = models.ForeignKey(
         Family, on_delete=models.CASCADE, related_name="eventos"

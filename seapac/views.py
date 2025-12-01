@@ -944,7 +944,6 @@ def criar_evento(request):
 
         start_datetime = parse_datetime(data["start"])
         data_evento = start_datetime.date()
-        hora_evento = start_datetime.time()
 
         titulo = data["title"]
         familia_id = titulo.split()[0]
@@ -963,7 +962,6 @@ def criar_evento(request):
         evento = Evento.objects.create(
             titulo=titulo,
             data=data_evento,
-            inicio=hora_evento,
             familia=family,
         )
 
