@@ -86,6 +86,8 @@ urlpatterns = [
     path("api/events/confirm/<int:event_id>/", confirmar_evento),
     # usuários e recuperação de senha
     path("usuarios/", include("usuarios.urls")),
+    # Geração de relatórios
+    path("familia/<int:id>/relatorio/", relatorio_family_pdf, name="relatorio_family"),
 ]
 
 if settings.DEBUG:
