@@ -281,13 +281,27 @@ class TimelineEvent(models.Model):
         return f"{self.titulo} - {self.family.get_nome_familia()}"
 
 
-class Evento(models.Model):  # corrigir para chave composta
+class Evento(models.Model):
     titulo = models.CharField(max_length=200)
-    inicio = models.DateTimeField()
+
+    data = models.DateField(null=True, blank=True)  # <-- apenas o dia
+    inicio = models.TimeField()  # opcional (hora da visita)
+
     familia = models.ForeignKey(
-        Family, on_delete=models.CASCADE, null=False, related_name="eventos"
+        Family,
+        on_delete=models.CASCADE,
+        related_name="eventos"
     )
+
     confirmado = models.BooleanField(default=False)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["familia", "data"],
+                name="unique_evento_por_familia_e_dia"
+            )
+        ]
+
     def __str__(self):
-        return f"{self.titulo} - {self.inicio}"
+        return f"{self.familia} - {self.data}"

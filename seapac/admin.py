@@ -138,8 +138,8 @@ class TimelineEventAdmin(admin.ModelAdmin):
 
 @admin.register(Evento)
 class EventoAdmin(admin.ModelAdmin):
-    list_display = ("titulo", "familia", "inicio", "confirmado")
+    list_display = ("titulo", "familia", "data", "confirmado")
     list_filter = ("confirmado",)
     search_fields = ("titulo", "familia__nome_titular")
-    date_hierarchy = "inicio"
+    date_hierarchy = "data"
     list_select_related = ("familia",)

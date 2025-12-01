@@ -927,8 +927,8 @@ def eventos_json(request):
         {
             "id": e.id,
             "title": e.titulo,
-            "start": e.inicio.isoformat(),
-            "backgroundColor": "#4CAF50" if e.confirmado else "#f44336",
+            "start": e.data.isoformat(),
+            "backgroundColor": "#4CAF50" if e.confirmado else "#4285F4",
         }
         for e in eventos
     ]
@@ -939,19 +939,35 @@ def eventos_json(request):
 def criar_evento(request):
     if request.method == "POST":
         data = json.loads(request.body)
+
         start_datetime = parse_datetime(data["start"])
+        data_evento = start_datetime.date()
+        hora_evento = start_datetime.time()
+
         titulo = data["title"]
         familia_id = titulo.split()[0]
         family = get_object_or_404(Family, id=familia_id)
 
+        # ✅ Validação extra (boa prática)
+        if Evento.objects.filter(familia=family, data=data_evento).exists():
+            return JsonResponse(
+                {
+                    "status": "error",
+                    "message": "Esta família já possui visita marcada para este dia."
+                },
+                status=400
+            )
+
         evento = Evento.objects.create(
             titulo=titulo,
-            inicio=start_datetime,
+            data=data_evento,
+            inicio=hora_evento,
             familia=family,
         )
-        return JsonResponse({"status": "ok", "id": evento.id})
-    return JsonResponse({"status": "error"}, status=400)
 
+        return JsonResponse({"status": "ok", "id": evento.id})
+
+    return JsonResponse({"status": "error"}, status=400)
 
 @csrf_exempt
 def deletar_evento(request, event_id):

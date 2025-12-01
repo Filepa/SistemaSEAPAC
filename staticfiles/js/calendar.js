@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }).then(response => {
         if (response.ok) {
           info.event.remove();
-          alert('Visita deletada.');
         } else {
           alert('Erro ao deletar visita.');
         }
@@ -70,9 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   },
 
-    drop: function (info) {
-      const dateStr = info.date.toISOString();
-      
+    eventReceive: function(info) {
+      // ✅ Remove o evento temporário criado pelo FullCalendar
+      info.event.remove();
+
       fetch('/api/events/create/', {
         method: 'POST',
         headers: {
@@ -80,14 +80,17 @@ document.addEventListener('DOMContentLoaded', function() {
           'X-CSRFToken': '{{ csrf_token }}',
         },
         body: JSON.stringify({
-          title: info.draggedEl.innerText,
-          start: dateStr
+          title: info.event.title,
+          start: info.event.start.toISOString()
         })
-      }).then(response => response.json())
-        .then(data => {
-          if (data.status === 'ok') {
-            calendar.refetchEvents();
-          }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          calendar.refetchEvents(); // agora vem só do banco
+        } else {
+          alert(data.message);
+        }
       });
     }
   });
