@@ -6,22 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('seapac', '0021_remove_technician_descricao'),
+        ("seapac", "0021_remove_technician_descricao"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='evento',
-            name='data',
+            model_name="evento",
+            name="data",
             field=models.DateField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='evento',
-            name='inicio',
+            model_name="evento",
+            name="inicio",
             field=models.TimeField(),
         ),
         migrations.AddConstraint(
-            model_name='evento',
-            constraint=models.UniqueConstraint(fields=('familia', 'data'), name='unique_evento_por_familia_e_dia'),
+            model_name="evento",
+            constraint=models.UniqueConstraint(
+                fields=("familia", "data"), name="unique_evento_por_familia_e_dia"
+            ),
         ),
     ]

@@ -2,8 +2,10 @@
 
 import io
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
 
 def grafico_producao(produtos):
     nomes = [p["produto"] for p in produtos]
@@ -13,7 +15,7 @@ def grafico_producao(produtos):
     ax.bar(nomes, qtd)
     ax.set_title("Produção total por produto")
     ax.set_ylabel("Quantidade")
-    ax.tick_params(axis='x', rotation=45)
+    ax.tick_params(axis="x", rotation=45)
 
     buf = io.BytesIO()
     fig.savefig(buf, format="png", dpi=140, bbox_inches="tight")
@@ -27,7 +29,7 @@ def grafico_receita_real_potencial(produtos):
     receita_real = [p["receita"] for p in produtos]
     receita_pot = [p["receita_potencial"] for p in produtos]
 
-    fig, ax = plt.subplots(figsize=(5.5, 3))  
+    fig, ax = plt.subplots(figsize=(5.5, 3))
 
     x = range(len(nomes))
     ax.bar(x, receita_real, label="Receita Real")

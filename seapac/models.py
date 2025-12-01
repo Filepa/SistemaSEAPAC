@@ -288,9 +288,7 @@ class Evento(models.Model):
     inicio = models.TimeField()  # opcional (hora da visita)
 
     familia = models.ForeignKey(
-        Family,
-        on_delete=models.CASCADE,
-        related_name="eventos"
+        Family, on_delete=models.CASCADE, related_name="eventos"
     )
 
     confirmado = models.BooleanField(default=False)
@@ -298,8 +296,7 @@ class Evento(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["familia", "data"],
-                name="unique_evento_por_familia_e_dia"
+                fields=["familia", "data"], name="unique_evento_por_familia_e_dia"
             )
         ]
 

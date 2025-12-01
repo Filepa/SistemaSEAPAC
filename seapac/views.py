@@ -955,9 +955,9 @@ def criar_evento(request):
             return JsonResponse(
                 {
                     "status": "error",
-                    "message": "Esta família já possui visita marcada para este dia."
+                    "message": "Esta família já possui visita marcada para este dia.",
                 },
-                status=400
+                status=400,
             )
 
         evento = Evento.objects.create(
@@ -970,6 +970,7 @@ def criar_evento(request):
         return JsonResponse({"status": "ok", "id": evento.id})
 
     return JsonResponse({"status": "error"}, status=400)
+
 
 @csrf_exempt
 def deletar_evento(request, event_id):
@@ -1000,13 +1001,12 @@ def confirmar_evento(request, event_id):
 
 # -------------- GERAÇÃO DE RELATÓRIOS--------------
 
+
 @login_required
 def relatorio_family_pdf(request, id):
     family = get_object_or_404(Family, id=id)
     pdf_buffer = gerar_relatorio_family(family)
 
     return FileResponse(
-        pdf_buffer,
-        as_attachment=True,
-        filename=f"relatorio_{family.nome_titular}.pdf"
+        pdf_buffer, as_attachment=True, filename=f"relatorio_{family.nome_titular}.pdf"
     )
