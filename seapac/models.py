@@ -100,7 +100,6 @@ class Family(models.Model):
         for fs in FamilySubsystem.objects.filter(family=self):
             produtos_dict = {}
 
-            # Agrupar fluxos por produto
             for produto in fs.produtos_saida:
                 nome = produto.get("nome", "Produto sem nome")
                 fluxos = produto.get("fluxos", [])
@@ -131,11 +130,10 @@ class Family(models.Model):
                     )
                     produtos_dict[nome]["custo_total"] += qtd * custo
 
-                    if valor > 0:  # fluxo vendido
+                    if valor > 0:
                         produtos_dict[nome]["valor_unitario"] = valor
                         produtos_dict[nome]["qtd_vendida"] += qtd
 
-            # Agora calcular as métricas finais por produto
             for nome, dados in produtos_dict.items():
                 qtd_total = dados["qtd_total"]
                 qtd_vendida = dados["qtd_vendida"]
@@ -144,11 +142,9 @@ class Family(models.Model):
                 custo_unitario = dados["custo_unitario"]
                 custo_total = dados["custo_total"]
 
-                # Receita e lucro reais
                 receita_real = valor_unitario * qtd_vendida
                 lucro_real = receita_real - custo_total
 
-                # Receita e lucro potenciais — caso vendesse tudo
                 receita_potencial = valor_potencial * qtd_total
                 lucro_potencial = receita_potencial - custo_total
 
@@ -156,7 +152,7 @@ class Family(models.Model):
                     {
                         "subsistema": fs.subsystem.nome_subsistema,
                         "produto": nome,
-                        "qtd": qtd_total,  # mostra a quantidade total do produto
+                        "qtd": qtd_total,
                         "valor": valor_unitario,
                         "valor_potencial": valor_potencial,
                         "custo": custo_unitario,
@@ -217,14 +213,14 @@ class Subsystem(models.Model):
         return None
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # salva a imagem normalmente
+        super().save(*args, **kwargs)
 
         if self.foto_subsistema.url:
             caminho = os.path.join(settings.MEDIA_ROOT, self.foto_subsistema.name)
 
             img = Image.open(caminho)
             tamanho_max = (400, 400)
-            img.thumbnail(tamanho_max)  # Redimensiona mantendo proporção
+            img.thumbnail(tamanho_max)
             img.save(caminho)
 
 
@@ -258,7 +254,7 @@ class Project(models.Model):
     )
     orcamento = models.CharField(
         max_length=30, blank=True, null=True
-    )  # nao tem no diagrama mas eu mantive
+    )
 
     def __str__(self):
         return self.nome_projeto

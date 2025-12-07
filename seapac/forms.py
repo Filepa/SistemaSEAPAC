@@ -59,14 +59,9 @@ class ProjectForm(ModelForm):
 
 
 class ProjectEditForm(ProjectForm):
-    """
-    Edição do projeto.
-    Mantém widgets do ProjectForm e garante que campos M2M sejam setados em save().
-    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Se quiser formatar algo inicial, faça aqui (ex.: orçamento)
         if (
             self.instance
             and self.instance.pk
@@ -78,7 +73,6 @@ class ProjectEditForm(ProjectForm):
         project = super().save(commit=False)
         if commit:
             project.save()
-            # Set M2M
             if "tecnicos" in self.cleaned_data:
                 project.tecnicos.set(self.cleaned_data["tecnicos"])
             if "familias" in self.cleaned_data:
@@ -100,7 +94,6 @@ class TechnicianForm(ModelForm):
             "cpf": "CPF",
             "data_nascimento": "Data de Nascimento",
             "especialidade": "Especialidade",
-            "foto_perfil": "Foto do Técnico",
         }
         widgets = {
             "nome_tecnico": forms.TextInput(
@@ -119,51 +112,23 @@ class TechnicianForm(ModelForm):
                 attrs={"class": "form-control", "type": "date"}
             ),
             "especialidade": forms.Select(attrs={"class": "form-select"}),
-            # if your model field name for photo is different, adjust accordingly
-            "foto_perfil": forms.ClearableFileInput(attrs={"class": "form-control"}),
         }
 
     def clean_cpf(self):
         cpf = self.cleaned_data.get("cpf", "")
         if cpf and not validate(cpf):
             raise forms.ValidationError("CPF inválido.")
-        # store only digits
         return re.sub(r"\D", "", cpf or "")
 
 
 class TechnicianEditForm(TechnicianForm):
-    """
-    Edição do técnico — mostra foto existente e formata cpf na inicialização.
-    """
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Formata CPF no campo (apenas para visualização)
         if self.instance and getattr(self.instance, "cpf", None):
             cpf = self.instance.cpf
             if cpf and cpf.isdigit() and len(cpf) == 11:
                 self.initial["cpf"] = f"{cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}"
-
-    def clean_foto_perfil(self):
-        # valida foto se for enviada
-        foto = self.cleaned_data.get("foto_perfil")
-        if not foto:
-            return foto
-
-        extensoes_validas = [".jpg", ".jpeg", ".png"]
-        ext = os.path.splitext(foto.name)[1].lower()
-        if ext not in extensoes_validas:
-            raise forms.ValidationError(
-                "Envie uma imagem nos formatos JPG, JPEG ou PNG."
-            )
-        try:
-            img = Image.open(foto)
-            img.verify()
-        except Exception:
-            raise forms.ValidationError("O arquivo enviado não é uma imagem válida.")
-        return foto
-
 
 # ---------------------------
 # FAMILY
@@ -197,9 +162,6 @@ class FamilyForm(ModelForm):
 
 
 class FamilyEditForm(FamilyForm):
-    """
-    Edição da família — caso precise setar M2M (projetos), override save.
-    """
 
     def save(self, commit=True):
         family = super().save(commit=False)
@@ -211,7 +173,7 @@ class FamilyEditForm(FamilyForm):
 
 
 # ---------------------------
-# PRODUTO / FLUXO (mantidos, apenas padronizados)
+# PRODUTO / FLUXO
 # ---------------------------
 class ProdutoForm(forms.Form):
     nome = forms.CharField(
@@ -414,16 +376,11 @@ class SubsystemForm(ModelForm):
 
 
 class SubsystemEditForm(SubsystemForm):
-    """
-    Edição: converte produtos_base (lista/dict) em texto multi-linha para exibição/edit.
-    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Se instance.produtos_base for uma lista de dicts, converte para linhas
         if self.instance and getattr(self.instance, "produtos_base", None):
             pb = self.instance.produtos_base
-            # aceita lista de dicts ou string
             if isinstance(pb, list):
                 linhas = []
                 for item in pb:

@@ -14,6 +14,7 @@ urlpatterns = [
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
     path("perfil/", views.perfil_view, name="perfil"),
+
     # Recuperação de senha
     path(
         "reset_password/",
@@ -44,6 +45,7 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+    
     # Painel Adm
     path("gerenciar/", views.list_user, name="list_user"),
     path("gerenciar/criar/", views.criar_usuario_admin, name="criar_usuario_admin"),

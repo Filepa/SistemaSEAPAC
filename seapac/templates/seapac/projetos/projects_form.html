@@ -7,7 +7,6 @@
 
     <form method="post" enctype="multipart/form-data" class="card shadow-sm border-0 bg-white">
 
-        <!-- HEADER VERDE DO CARD -->
         <div class="card-header bg-success text-white rounded-top">
             <h4 class="mb-0"><i class="fas fa-project-diagram"></i> {{ title }}</h4>
         </div>
@@ -34,7 +33,6 @@
 
             <h5 class="text-success border-bottom pb-2 mb-4">Informações do Projeto</h5>
 
-            <!-- GRID -->
             <div class="row g-4">
 
                 <div class="col-md-6">
@@ -52,7 +50,7 @@
                     {{ form.orcamento }}
                 </div>
 
-                <div class="col-12"> <!--ver uma maneira de deixar a descrição com width 100%-->
+                <div class="col-12">
                     <label class="form-label">Descrição dos objetivos e atividades:</label>
                     {{ form.descricao }}
                 </div>
@@ -79,7 +77,6 @@
 
             </div>
 
-            <!-- BOTÕES -->
             <div class="d-flex justify-content-end gap-3 mt-4 pt-3 border-top">
 
                 <button class="btn btn-success d-flex align-items-center gap-2 px-4" type="submit">

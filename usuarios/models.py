@@ -6,7 +6,6 @@ from PIL import Image
 from django.conf import settings
 
 
-# Model base para usuários (sejam eles de qualquer grupo)
 class Usuario(AbstractUser):
     username = models.CharField(max_length=50, unique=True, null=False)
     email = models.EmailField(blank=False)
@@ -25,7 +24,6 @@ class Usuario(AbstractUser):
     def __str__(self):
         return f"{self.username} - {self.cpf}"
 
-    # Vê qual tipo de usuário que está logado no sistema (se é ADM ou Técnico)
     @property
     def is_administrador(self):
         return self.groups.filter(name="ADMINISTRADORES").exists()
@@ -45,14 +43,13 @@ class Usuario(AbstractUser):
             return self.foto_perfil.url
         return None
 
-    # redimensionamento de imagem
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # salva a imagem normalmente
+        super().save(*args, **kwargs)
 
         if self.foto_perfil:
             caminho = os.path.join(settings.MEDIA_ROOT, self.foto_perfil.name)
 
             img = Image.open(caminho)
             tamanho_max = (400, 400)
-            img.thumbnail(tamanho_max)  # Redimensiona mantendo proporção
+            img.thumbnail(tamanho_max)
             img.save(caminho)

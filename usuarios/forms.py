@@ -8,7 +8,6 @@ import re
 from PIL import Image
 
 
-# Criando um usuário:
 class UsuarioCreationForm(UserCreationForm):
     nome_cidade = forms.ModelChoiceField(
         queryset=Municipality.objects.all(),
@@ -56,7 +55,6 @@ class UsuarioCreationForm(UserCreationForm):
             {"class": "form-control", "placeholder": "Confirme a senha"}
         )
 
-    # validando CPF
     def clean_cpf(self):
         cpf = self.cleaned_data["cpf"]
 
@@ -66,7 +64,6 @@ class UsuarioCreationForm(UserCreationForm):
         return re.sub(r"\D", "", cpf)
 
 
-# formulário para login
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(
@@ -80,7 +77,6 @@ class LoginForm(AuthenticationForm):
     )
 
 
-# formulário para edição do usuário (com adiçao de novas informações)
 class PerfilForm(forms.ModelForm):
     nome_cidade = forms.ModelChoiceField(
         queryset=Municipality.objects.all(),
@@ -128,15 +124,12 @@ class PerfilForm(forms.ModelForm):
             "nome_bairro": "Bairro",
         }
 
-    # Função para validar o tipo de imagem enviada pelo usuário
     def clean_foto_perfil(self):
         foto = self.cleaned_data.get("foto_perfil")
 
-        # Caso o usuário não envie nada (edição sem trocar a foto), retorna normal
         if not foto:
             return foto
 
-        # Verificar a extensão permitida
         extensoes_validas = [".jpg", ".jpeg", ".png"]
         import os
 
@@ -146,10 +139,9 @@ class PerfilForm(forms.ModelForm):
                 "Envie uma imagem nos formatos JPG, JPEG ou PNG."
             )
 
-        # Verificar se o arquivo é realmente uma imagem
         try:
             img = Image.open(foto)
-            img.verify()  # verifica estrutura interna
+            img.verify()
 
         except Exception:
             raise forms.ValidationError("O arquivo enviado não é uma imagem válida.")
@@ -157,7 +149,6 @@ class PerfilForm(forms.ModelForm):
         return foto
 
 
-# filtro de usuários
 class UsuarioFiltroForm(forms.Form):
 
     username = forms.CharField(
@@ -208,7 +199,6 @@ class UsuarioFiltroForm(forms.Form):
     )
 
 
-# Editar usuário no painel
 class UsuarioEditForm(forms.ModelForm):
 
     grupos = forms.ModelMultipleChoiceField(
@@ -265,7 +255,6 @@ class UsuarioEditForm(forms.ModelForm):
         if self.instance.pk:
             self.fields["grupos"].initial = self.instance.groups.all()
 
-        # --- FORMATAÇÃO DO CPF NA EDIÇÃO ---
         cpf = self.instance.cpf
         if cpf and cpf.isdigit() and len(cpf) == 11:
             self.initial["cpf"] = f"{cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}"
@@ -274,21 +263,17 @@ class UsuarioEditForm(forms.ModelForm):
         user = super().save(commit=False)
         if commit:
             user.save()
-            # Atualizar grupos
             if "grupos" in self.cleaned_data:
                 user.groups.set(self.cleaned_data["grupos"])
         return user
 
-        # Função para validar o tipo de imagem enviada pelo usuário
 
     def clean_foto_perfil(self):
         foto = self.cleaned_data.get("foto_perfil")
 
-        # Caso o usuário não envie nada (edição sem trocar a foto), retorna normal
         if not foto:
             return foto
 
-        # Verificar a extensão permitida
         extensoes_validas = [".jpg", ".jpeg", ".png"]
         import os
 
@@ -298,17 +283,15 @@ class UsuarioEditForm(forms.ModelForm):
                 "Envie uma imagem nos formatos JPG, JPEG ou PNG."
             )
 
-        # Verificar se o arquivo é realmente uma imagem
         try:
             img = Image.open(foto)
-            img.verify()  # verifica estrutura interna
+            img.verify()
 
         except Exception:
             raise forms.ValidationError("O arquivo enviado não é uma imagem válida.")
 
         return foto
 
-        # validando CPF
 
     def clean_cpf(self):
         cpf = self.cleaned_data["cpf"]

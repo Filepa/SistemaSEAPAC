@@ -464,9 +464,6 @@ def flow(request, id):
             }
         )
 
-    # -------------------------------
-    # Montagem dos fluxos
-    # -------------------------------
     fluxos = []
     for subsystem in subsystems_data:
         nome_subsistema = subsystem["nome_subsistema"]
@@ -474,7 +471,6 @@ def flow(request, id):
             nome_produto = produto["nome"]
             fluxos_do_produto = produto.get("fluxos", [])
 
-            # calcula total de qtd pra determinar porcentagem automática
             total_qtd = sum((f.get("qtd") or 0) for f in fluxos_do_produto)
 
             for fluxo in fluxos_do_produto:
@@ -493,9 +489,7 @@ def flow(request, id):
 
                 fluxos.append((nome_subsistema, rotulo_fluxo, destino))
 
-    # -------------------------------
-    # Geração do texto Mermaid
-    # -------------------------------
+
     text_list = []
     if style_mode == "notext":
         for origem, _, destino in fluxos:
@@ -508,9 +502,7 @@ def flow(request, id):
             destino_corrigida = destino.replace(" ", "_")
             text_list.append(f"{origem_corrigida} --{produto}--> {destino_corrigida}")
 
-    # -------------------------------
-    # Contagem de fluxos
-    # -------------------------------
+
     flux_count = {}
     for origem, produto, destino in fluxos:
         flux_count[origem] = flux_count.get(origem, 0) + 1
@@ -523,9 +515,7 @@ def flow(request, id):
         if s["nome_subsistema"] not in subsystems_com_fluxo
     ]
 
-    # -------------------------------
-    # Clique nos nós
-    # -------------------------------
+
     click_lines = []
     for s in subsystems_data:
         subsystem_id = s["id"]
@@ -541,9 +531,7 @@ def flow(request, id):
     for nome in subsystems_sem_fluxo:
         text_list.append(f"{nome}")
 
-    # -------------------------------
-    # Definição de cores
-    # -------------------------------
+
     def get_color_intensity(n, tipo):
         if tipo == "TS":
             if n <= 2:
@@ -555,7 +543,6 @@ def flow(request, id):
             else:
                 return "#125877"
         elif tipo == "ME":
-            # tons contrastantes de amarelo/dourado
             if n <= 2:
                 return "#f7d26a"
             elif n <= 5:
@@ -564,7 +551,7 @@ def flow(request, id):
                 return "#c48f00"
             else:
                 return "#7a5e00"
-        else:  # SS
+        else:
             if n <= 2:
                 return "#b7f5b7"
             elif n <= 5:
@@ -577,9 +564,7 @@ def flow(request, id):
     classDefSS = "classDef cssFlowSS stroke:#333,stroke-width:1px;"
     classDefTS = "classDef cssFlowTS stroke:#333,stroke-width:1px;"
 
-    # -------------------------------
-    # Estilo dos nós
-    # -------------------------------
+
     style_lines = []
     for s in subsystems_data:
         nome = s["nome_subsistema"].replace(" ", "_")
@@ -590,9 +575,7 @@ def flow(request, id):
             f"style {nome} fill:{fill_color},stroke:#333,stroke-width:1px;"
         )
 
-    # -------------------------------
-    # Agrupamento dos "ME" em subgraph
-    # -------------------------------
+
     me_nodes = [
         s["nome_subsistema"].replace(" ", "_")
         for s in subsystems_data
@@ -606,9 +589,7 @@ def flow(request, id):
     else:
         mundo_externo = ""
 
-    # -------------------------------
-    # Gera conteúdo Mermaid
-    # -------------------------------
+
     diagram_lines = "\n".join(text_list)
     style_lines_str = "\n".join(style_lines)
     click_lines_str = "\n".join(click_lines)
@@ -624,7 +605,6 @@ def flow(request, id):
 
 {style_lines_str}
 """
-    # print(conteudo_mermaid) #comentário para teste
     context = {
         "id": id,
         "family": family,
@@ -705,7 +685,7 @@ def edit_subsystem_panel(request, family_id, subsystem_id):
     destino_choices = [
         (s.nome_subsistema, s.nome_subsistema) for s in subsystems_destino
     ]
-    destino_choices.insert(0, ("", "---------"))  # opção vazia
+    destino_choices.insert(0, ("", "---------"))
 
     produto_choices = [(p["nome"], p["nome"]) for p in family_subsystem.produtos_saida]
 
@@ -949,7 +929,6 @@ def criar_evento(request):
         familia_id = titulo.split()[0]
         family = get_object_or_404(Family, id=familia_id)
 
-        # ✅ Validação extra (boa prática)
         if Evento.objects.filter(familia=family, data=data_evento).exists():
             return JsonResponse(
                 {

@@ -80,7 +80,6 @@
             </h2>
 
             <div class="row g-4">
-                <!-- Coluna da Esquerda - Informações do Usuário -->
                 <div class="col-lg-4">
                     <div class="card shadow-sm mb-4">
                         <div class="card-body text-center">
@@ -141,7 +140,6 @@
         
                 </div>
 
-                <!-- Coluna da Direita - Formulário de Edição -->
                 <div class="col-lg-8">
                     <div class="card shadow-sm">
                         <div class="card-header bg-success text-white">
@@ -153,7 +151,6 @@
                             <form method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
 
-                                <!-- Dados Pessoais -->
                                 <div class="section-title mb-3">
                                     <h6 class="text-success border-bottom pb-2">
                                         <i class="bi bi-person"></i> Dados Pessoais
@@ -192,7 +189,6 @@
                                 </div>
 
 
-                                <!-- Foto de Perfil -->
                                 <div class="section-title mb-3 mt-4">
                                     <h6 class="text-success border-bottom pb-2">
                                         <i class="bi bi-image"></i> Foto de Perfil
@@ -218,7 +214,7 @@
                                     <small class="text-muted">Formatos aceitos: JPG, PNG e JPEG. Tamanho máximo: 2MB</small>
                                 </div>
 
-                                <!-- Endereço -->
+
                                 <div class="section-title mb-3 mt-4">
                                     <h6 class="text-success border-bottom pb-2">
                                         <i class="bi bi-geo-alt"></i> Endereço
@@ -256,14 +252,13 @@
                                     </div>
                                 </div>
 
-                                <!-- Erros gerais -->
+
                                 {% if form.non_field_errors %}
                                     <div class="alert alert-danger">
                                         {{ form.non_field_errors }}
                                     </div>
                                 {% endif %}
 
-                                <!-- Botões -->
                                 <div class="d-flex gap-2 justify-content-end mt-4 pt-3 border-top">
                                     <a href="{% url 'dashboard' %}" class="btn btn-secondary">
                                         <i class="bi bi-x-circle"></i> Cancelar

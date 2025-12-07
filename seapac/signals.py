@@ -12,14 +12,12 @@ def atualizar_familias_com_novos_produtos(sender, instance, **kwargs):
         produtos_saida = fs.produtos_saida or []
         nomes_existentes = {p["nome"] for p in produtos_saida}
 
-        # adiciona novos produtos
         novos_produtos = []
         for produto in produtos_base:
             nome = produto.get("nome") if isinstance(produto, dict) else produto
             if nome not in nomes_existentes:
                 novos_produtos.append({"nome": nome, "fluxos": []})
 
-        # remove produtos que não estão mais no base
         nomes_produtos_base = {
             p.get("nome") if isinstance(p, dict) else p for p in produtos_base
         }

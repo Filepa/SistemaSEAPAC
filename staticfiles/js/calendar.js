@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
   },
 
     eventReceive: function(info) {
-      // ✅ Remove o evento temporário criado pelo FullCalendar
       info.event.remove();
 
       fetch('/api/events/create/', {
@@ -87,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(response => response.json())
       .then(data => {
         if (data.status === 'ok') {
-          calendar.refetchEvents(); // agora vem só do banco
+          calendar.refetchEvents();
         } else {
           alert(data.message);
         }

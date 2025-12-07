@@ -19,7 +19,6 @@
         </div>
     </div>
 
-    <!-- Card de Filtros -->
     <div class="row mb-4">
         <div class="col-12">
             <div class="card shadow-sm border-0">
@@ -32,7 +31,6 @@
                     <form method="get" id="filtroForm">
                         <div class="row g-3">
                             
-                            <!-- Filtro por Username -->
                             <div class="col-md-2">
                                 <label for="{{ filtro_form.username.id_for_label }}" class="form-label fw-bold">
                                     <i class="bi bi-person text-success"></i> Nome de Usuário
@@ -40,7 +38,6 @@
                                 {{ filtro_form.username }}
                             </div>
 
-                            <!-- Filtro por Email -->
                             <div class="col-md-2">
                                 <label for="{{ filtro_form.email.id_for_label }}" class="form-label fw-bold">
                                     <i class="bi bi-envelope text-success"></i> E-mail
@@ -48,7 +45,6 @@
                                 {{ filtro_form.email }}
                             </div>
 
-                            <!-- Filtro por CPF -->
                             <div class="col-md-2">
                                 <label for="{{ filtro_form.cpf.id_for_label }}" class="form-label fw-bold">
                                     <i class="bi bi-card-text text-success"></i> CPF
@@ -56,7 +52,6 @@
                                 {{ filtro_form.cpf }}
                             </div>
 
-                            <!-- Filtro por Cidade -->
                             <div class="col-md-2">
                                 <label for="{{ filtro_form.nome_cidade.id_for_label }}" class="form-label fw-bold">
                                     <i class="bi bi-geo-alt text-success"></i> Cidade
@@ -64,7 +59,6 @@
                                 {{ filtro_form.nome_cidade }}
                             </div>
 
-                            <!-- Filtro por Grupo -->
                             <div class="col-md-2">
                                 <label for="{{ filtro_form.grupo.id_for_label }}" class="form-label fw-bold">
                                     <i class="bi bi-people-fill text-success"></i> Grupo
@@ -72,7 +66,6 @@
                                 {{ filtro_form.grupo }}
                             </div>
 
-                            <!-- Filtro por Status -->
                             <div class="col-md-2">
                                 <label for="{{ filtro_form.is_active.id_for_label }}" class="form-label fw-bold">
                                     <i class="bi bi-toggle-on text-success"></i> Status
@@ -82,7 +75,6 @@
                             
                         </div>
 
-                        <!-- Botões de Ação -->
                         <div class="row mt-4">
                             <div class="col-12">
                                 <div class="d-flex gap-2">
@@ -101,7 +93,6 @@
         </div>
     </div>
     
-    <!-- Contador de Resultados -->
     {% if request.GET %}
     <div class="row mb-3">
         <div class="col-12">
@@ -115,7 +106,6 @@
     </div>
     {% endif %}
 
-    <!-- Tabela de Usuários -->
     {% if usuarios %}
         <div class="row">
             <div class="col-12">
@@ -206,7 +196,6 @@
         </div>
         <br>
 
-        <!-- Paginação -->
         {% include "partials/pagination.html" %}
 
     {% else %}

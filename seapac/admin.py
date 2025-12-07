@@ -10,11 +10,6 @@ from .models import (
     Evento,
 )
 
-# ---------------------------
-# Inline para relações
-# ---------------------------
-
-
 class FamilySubsystemInline(admin.TabularInline):
     model = FamilySubsystem
     extra = 1
@@ -36,11 +31,6 @@ class TechnicianInline(admin.TabularInline):
     extra = 1
     verbose_name = "Técnico no Projeto"
     verbose_name_plural = "Técnicos no Projeto"
-
-
-# ---------------------------
-# MODELOS PRINCIPAIS
-# ---------------------------
 
 
 @admin.register(Technician)

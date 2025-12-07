@@ -1,5 +1,3 @@
-# seapac/reports/graficos.py
-
 import io
 import matplotlib
 
