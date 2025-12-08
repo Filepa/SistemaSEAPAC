@@ -267,7 +267,6 @@ class UsuarioEditForm(forms.ModelForm):
                 user.groups.set(self.cleaned_data["grupos"])
         return user
 
-
     def clean_foto_perfil(self):
         foto = self.cleaned_data.get("foto_perfil")
 
@@ -291,7 +290,6 @@ class UsuarioEditForm(forms.ModelForm):
             raise forms.ValidationError("O arquivo enviado não é uma imagem válida.")
 
         return foto
-
 
     def clean_cpf(self):
         cpf = self.cleaned_data["cpf"]

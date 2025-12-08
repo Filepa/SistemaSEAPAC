@@ -253,9 +253,7 @@ class Project(models.Model):
     status = models.CharField(
         max_length=30, choices=STATUS_CHOICES, default="planejamento"
     )
-    orcamento = models.CharField(
-        max_length=30, blank=True, null=True
-    )
+    orcamento = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return self.nome_projeto

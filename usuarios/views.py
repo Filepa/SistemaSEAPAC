@@ -64,7 +64,6 @@ def login_view(request):
     return render(request, "login/login.html", {"form": form})
 
 
-
 @require_POST
 def logout_view(request):
     request.session.flush()

@@ -10,6 +10,7 @@ from .models import (
     Evento,
 )
 
+
 class FamilySubsystemInline(admin.TabularInline):
     model = FamilySubsystem
     extra = 1

@@ -130,6 +130,7 @@ class TechnicianEditForm(TechnicianForm):
             if cpf and cpf.isdigit() and len(cpf) == 11:
                 self.initial["cpf"] = f"{cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}"
 
+
 # ---------------------------
 # FAMILY
 # ---------------------------

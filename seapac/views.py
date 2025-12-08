@@ -390,12 +390,14 @@ def list_subsystems(request):
     }
     return render(request, "seapac/subsistemas/list_subsystems.html", context)
 
+
 @never_cache
 @login_required
 def detail_subsystems(request, id):
     subsistema = get_object_or_404(Subsystem, id=id)
     context = {"subsistema": subsistema, "title": "Detalhes do Subsistema"}
     return render(request, "seapac/subsistemas/subsystem_detail.html", context)
+
 
 @never_cache
 @login_required
@@ -495,7 +497,6 @@ def flow(request, id):
 
                 fluxos.append((nome_subsistema, rotulo_fluxo, destino))
 
-
     text_list = []
     if style_mode == "notext":
         for origem, _, destino in fluxos:
@@ -508,7 +509,6 @@ def flow(request, id):
             destino_corrigida = destino.replace(" ", "_")
             text_list.append(f"{origem_corrigida} --{produto}--> {destino_corrigida}")
 
-
     flux_count = {}
     for origem, produto, destino in fluxos:
         flux_count[origem] = flux_count.get(origem, 0) + 1
@@ -520,7 +520,6 @@ def flow(request, id):
         for s in subsystems_data
         if s["nome_subsistema"] not in subsystems_com_fluxo
     ]
-
 
     click_lines = []
     for s in subsystems_data:
@@ -536,7 +535,6 @@ def flow(request, id):
 
     for nome in subsystems_sem_fluxo:
         text_list.append(f"{nome}")
-
 
     def get_color_intensity(n, tipo):
         if tipo == "TS":
@@ -570,7 +568,6 @@ def flow(request, id):
     classDefSS = "classDef cssFlowSS stroke:#333,stroke-width:1px;"
     classDefTS = "classDef cssFlowTS stroke:#333,stroke-width:1px;"
 
-
     style_lines = []
     for s in subsystems_data:
         nome = s["nome_subsistema"].replace(" ", "_")
@@ -580,7 +577,6 @@ def flow(request, id):
         style_lines.append(
             f"style {nome} fill:{fill_color},stroke:#333,stroke-width:1px;"
         )
-
 
     me_nodes = [
         s["nome_subsistema"].replace(" ", "_")
@@ -594,7 +590,6 @@ def flow(request, id):
         mundo_externo += "end"
     else:
         mundo_externo = ""
-
 
     diagram_lines = "\n".join(text_list)
     style_lines_str = "\n".join(style_lines)

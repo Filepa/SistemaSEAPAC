@@ -1,5 +1,6 @@
 import re
 
+
 def validate(cpf: str) -> bool:
 
     # Retorno:
