@@ -390,6 +390,12 @@ def list_subsystems(request):
     }
     return render(request, "seapac/subsistemas/list_subsystems.html", context)
 
+@never_cache
+@login_required
+def detail_subsystems(request, id):
+    subsistema = get_object_or_404(Subsystem, id=id)
+    context = {"subsistema": subsistema, "title": "Detalhes do Subsistema"}
+    return render(request, "seapac/subsistemas/subsystem_detail.html", context)
 
 @never_cache
 @login_required

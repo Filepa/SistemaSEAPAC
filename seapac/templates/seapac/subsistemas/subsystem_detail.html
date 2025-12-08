@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block center %}
+
+<h1 class='title'>{% block title %}{{ title }}{% endblock title %}</h1>
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p style="font-family: 'Arial', sans-serif; font-size: 24px; color: gray;">
+                        Informações sobre o subsistema cadastrado:
+                    </p>
+                </div>
+                <div>
+                    <a href="{% url 'edit_subsystems' subsistema.id %}" class="btn btn-primary" id="addProjectBtn">
+                        <i class="fas fa-pencil-alt"></i> Editar
+                    </a>
+                    {% if user.is_administrador %}
+                        <a href="{% url 'delete_subsystems' subsistema.id %}" onclick="return confirm('Tem certeza que deseja deletar esta família?')" class="btn btn-primary" id="addProjectBtn">
+                            <i class="fas fa-trash-alt"></i> Deletar
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'list_subsystems' %}" class="btn btn-primary" id="addProjectBtn">
+                         <i class="	fas fa-step-backward"></i> Voltar
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header" style="color: rgb(231, 237, 231); background-color: rgb(39, 129, 39);">
+                    <h5 class="mb-0"><i class="	fas fa-info-circle"></i> Informações</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Nome do Subsistema:</dt>
+                        <dd class="col-sm-8">{{ subsistema.nome_subsistema }}</dd>
+
+                        <dt class="col-sm-4">Descrição:</dt>
+                        <dd class="col-sm-8">{{ subsistema.descricao }}</dd>
+
+                        <dt class="col-sm-4">Tipo:</dt>
+                        <dd class="col-sm-8">{{ subsistema.tipo}}</dd>
+
+                        <dt class="col-sm-4">Produtos Vinculados:</dt>
+                        {% for produtos in subsistema.produtos_base %}
+                            <dd class="col-sm-8">{{ produtos.nome }}</dd>
+                            <dt class="col-sm-4"></dt>
+                        {% empty %}
+                            <dd class="col-sm-8">Nenhum produto vinculado.</dd>
+                        {% endfor %}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

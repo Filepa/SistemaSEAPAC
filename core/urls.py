@@ -71,6 +71,7 @@ urlpatterns = [
     ),
     # subsistemas
     path("lista-subsistemas/", list_subsystems, name="list_subsystems"),
+    path("lista-subsistemas/detalhar/<str:id>/", detail_subsystems, name="detail_subsystems"),
     path("lista-subsistemas/novo/", create_subsystems, name="create_subsystems"),
     path("lista-subsistemas/editar/<str:id>/", edit_subsystems, name="edit_subsystems"),
     path(
