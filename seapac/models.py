@@ -215,13 +215,14 @@ class Subsystem(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        if self.foto_subsistema.url:
+        if self.foto_subsistema and self.foto_subsistema.name:
             caminho = os.path.join(settings.MEDIA_ROOT, self.foto_subsistema.name)
 
-            img = Image.open(caminho)
-            tamanho_max = (400, 400)
-            img.thumbnail(tamanho_max)
-            img.save(caminho)
+            if os.path.exists(caminho):
+                img = Image.open(caminho)
+                tamanho_max = (400, 400)
+                img.thumbnail(tamanho_max)
+                img.save(caminho)
 
 
 class FamilySubsystem(models.Model):
@@ -238,7 +239,7 @@ class FamilySubsystem(models.Model):
 
 class Project(models.Model):
     STATUS_CHOICES = [
-        ("", "Em Execução"),
+        ("em-execucao", "Em Execução"),
         ("concluido", "Concluído"),
         ("planejamento", "Em Planejamento"),
     ]

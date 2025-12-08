@@ -316,6 +316,11 @@ class SubsystemForm(ModelForm):
         ),
         label="Produtos Base",
     )
+    foto_subsistema = forms.ImageField(
+        required=False,
+        label="Foto do Subsistema",
+        widget=forms.ClearableFileInput(attrs={"class": "form-control"}),
+    )
 
     class Meta:
         model = Subsystem
@@ -329,15 +334,11 @@ class SubsystemForm(ModelForm):
         labels = {
             "nome_subsistema": "Nome do Subsistema",
             "descricao": "Descrição",
-            "foto_subsistema": "Foto do Subsistema",
             "tipo": "Tipo",
         }
         widgets = {
             "nome_subsistema": forms.TextInput(attrs={"class": "form-control"}),
             "descricao": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
-            "foto_subsistema": forms.ClearableFileInput(
-                attrs={"class": "form-control"}
-            ),
             "tipo": forms.Select(attrs={"class": "form-select"}),
         }
 
@@ -360,7 +361,6 @@ class SubsystemForm(ModelForm):
 
     def clean_produtos_base(self):
         data = self.cleaned_data.get("produtos_base", "")
-        # aceita JSON lista ou linhas
         if isinstance(data, str) and data.strip().startswith("["):
             try:
                 parsed = json.loads(data)

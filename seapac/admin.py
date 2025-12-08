@@ -49,7 +49,7 @@ class MunicipalityAdmin(admin.ModelAdmin):
 
 @admin.register(Subsystem)
 class SubsystemAdmin(admin.ModelAdmin):
-    list_display = ("nome_subsistema", "tipo", "descricao_resumida", "has_valid_photo")
+    list_display = ("nome_subsistema", "tipo", "descricao_resumida")
     list_filter = ("tipo",)
     search_fields = ("nome_subsistema",)
     readonly_fields = ("foto_preview",)

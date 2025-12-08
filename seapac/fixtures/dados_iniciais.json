@@ -1303,7 +1303,27 @@
       "tipo": "SS",
       "produtos_base": [
         {
-          "nome": "Fruta",
+          "nome": "Banana",
+          "fluxos": []
+        },
+        {
+          "nome": "Acerola",
+          "fluxos": []
+        },
+        {
+          "nome": "Pinha",
+          "fluxos": []
+        },
+        {
+          "nome": "Graviola",
+          "fluxos": []
+        },
+        {
+          "nome": "Caju",
+          "fluxos": []
+        },
+        {
+          "nome": "Goiaba",
           "fluxos": []
         },
         {
